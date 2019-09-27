@@ -8,14 +8,17 @@
 .text
 .globl main
 main:
-
+#    -------------------------------------
 stampa:
-    li  $v0, 1  # Load immediate in v0 l'1 che stampa un intero
-    la  $a0, contatore   # Carico in a0 l'indirizzo del contatore
+    li $v0, 1    # system call #1 - print int
+    la $a0, contatore
     syscall
-
+    li  $t1, contatore    # t1 = contatore
+    addi $t1, 1
+    slt $t1, 100, stampa
+#    -------------------------------------
 exit:
-    li    $v0, 1
+    li $v0, 10
     syscall
 #    la    $t1, array #T1 punta ad array
 #    lw    $t2, 0($t1)
@@ -33,13 +36,15 @@ exit:
 #    syscall
 #    li    $a0, 3
 #    li    $a1, 5
+#    -------------------------------------
+#    COME FARE PER CHIAMARE UNA PROCEDURA
 #    addi  $sp, $sp, -4
 #    sw    $ra, 0($sp)
 #    jal   sum
 #    lw    $ra, 0($sp)
 #    addi  $sp, $sp, 4
+#    -------------------------------------
 #    move  $a0, $v0
-#
-sum:
-    add   $v0, $a0, $a1
-    jr    $ra
+#    sum:
+#    add   $v0, $a0, $a1
+#    jr    $ra
