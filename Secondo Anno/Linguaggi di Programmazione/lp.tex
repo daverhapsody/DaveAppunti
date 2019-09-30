@@ -1,0 +1,181 @@
+\documentclass[12pt, a4paper, openany, oneside]{book}
+\usepackage[italian]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath} 
+\usepackage{xcolor}
+%usepackage[latin1]{inputenc}
+\begin{document}
+\pagestyle{headings}
+\author{DaveRhapsody}
+\title{Linguaggi di Programmazione}
+\color{blue}
+\date{30 Settembre 2019}
+\color{black}
+\maketitle
+\tableofcontents
+\chapter{Introduzione al corso}
+\section{Programma del corso}
+Il corso è volto ad insegnare dei paradigmi di programmazione dei seguenti tipi:
+\subsection{Logica Matematica e Linguaggi logici (Prolog)}
+Termini, fatti(predicati), regole, unificazione, procedura di risoluzione
+\subsection{Linguaggi funzionali e Lisp (et al.)}
+Atomi, liste, funzioni e ricorsione
+\subsection{Linguaggi imperativi} % (fold)
+\label{sub:linguaggi_imperativi}
+Memoria, stato, assegnamenti, puntatori
+\newline \newline
+{\color{black} \rule{\linewidth}{0.3mm} }
+\newline
+Il concetto è che con questo corso si vanno a studiare paradigmi più evoluti,
+usati tutt'ora e comunque aventi un ampio approccio logico, oltretutto LISP è 
+usato nelle pagine web (Si userà moltissimo la ricorsione, A I U T O)
+\section{Modalità d'esame}
+\label{sec:modalità_d_esame}
+\subsection{subsection name}
+\label{sub:subsection_name}
+\begin{itemize}
+	\item il voto finale sarà una media pesata dei voti conseguiti nell'esame relativo alla parte teorica e nell'esame del progetto 
+	\begin{itemize}
+		\item Occhio, il peso è a discrezione dei prof
+	\end{itemize}
+\end{itemize}
+\subsection{Prove parziali}
+\label{sub:prove_parziali}
+Le prove d'esame sono costituite da uno scritto di 6-10 domande, e da un progetto da consegnare entro una data prefissata
+\section{Appelli regolari}
+\label{sec:appelli_regolari}
+Gli appelli regolari sono composti da un progetto ed un esame scritto, che può
+essere seguito da un esame orale a discrezione del docente basato sui temi trattati durante il corso
+\newline
+\textbf{NON C'E' POSSIBILITA' DI RECUPERI}, infatti scritto, orale e progetto vanno sostenuti \color{red} \textbf{NELLO STESSO APPELLO} \color{black}
+\newline
+Progetto e scritto sono corretti separatamente
+\paragraph{NON CI SARANNO ECCEZIONI}
+\label{par:non_ci_saranno_eccezioni}
+Lo avete già letto nel passaggio precedente, ma lo ripeto lo stesso perchè 
+deve essere chiaro che N O N  S I  F A N N O  E C C E Z I O N I.
+%------------------------------------------------------------------------------
+\chapter{Il paradigma}
+\section{Cos'è?}
+E' il metodo di soluzione ad undeterminato problema, a seconda dei paradigmi si
+hanno diversi tipi di linguaggi di programmazione
+\section{Storicamente}
+Il primo paradigma è l'imperativo, cioè il paradigma basato sui tre costrutti
+di selezione, iterazione e sequenza. \newline
+Inoltre si mantiene il concetto di assegnamento di un valore ad una determinata variabile
+\subsection{L'effetto collaterale}
+Successivamente vedremo che in Prolog ci saranno parecchi problemi se provassimo
+ad assegnare direttamente un valore ad una variabile
+\section{Logica del primo ordine}
+Prolog è costituito da una serie di clausole derivanti dalla logica del primo
+ordine
+\section{Linguaggi funzionali}
+Questi si basano proprio sui concetti matematici di funzione, ad esempio si 
+ragiona sui domini, sui codomini, sull'insiemistica, solite cose
+%------------------------------------------------------------------------------
+\chapter{Paradigma imperativo}
+Le caratteristiche essenziali dei linguaggi imperativi sono legate all'archit-
+tettura di Von Neumann, costituita dai famosi due componenti \textbf{Memoria (componente passiva) e Processore (componente attiva)}
+\newline
+In pratica la principale attività che ha la cpu è quella di eseguire calcoli
+ed assegnare valori alle variabili, che sono delle celle di memoria.
+\paragraph{Va considerato}
+Il concetto di variabile è un'astrazione di una cella di memoria, per dire 
+se giochi su assembly vai a toccare i veri e propri registri, mentre su C o 
+Assembly si ragiona per nome di variabile, non vai di indirizzamento fisico
+%------------------------------------------------------------------------------
+\section{Il concetto di variabile}
+In Prolog e LISP cambia completamente il concetto di variabile, ma per come 
+saranno presentati vedremo che non c'entra niente. \newline
+In matematica abbiamo il concetto di variabile? Sì, quella che sta dentro una
+funzione, in informatica è diciamo diverso, non è un'astrazione, ma lo vedremo
+in seguito
+\section{Modello di Von Neumann}
+Per manipolare la memoria utilizzo la variabile, simbolo che indica la cella 
+di memoria, nei linguaggi funzionali sarà possibile usare il concetto di 
+variabile matematica. 
+\newline \newline
+Alla fine il modello di Neumann è composto da I/O, Memoria e CPU con i suoi 
+cicli di clock
+\section{Stile prescrittivo}
+Un programma scritto in un linguaggio imperativo prescrive le operazioni che
+la CPU deve eseguire per modificare lo stato di un sistema \newline \newline
+Le istruzioni sono eseguite nell'ordine in cui queste appaiono, ad eccezione
+delle strutture di controllo
+\paragraph{Realizzati} sia attraverso interpretazione che compilazione, nati
+più per manipolazione numerica che simbolica.
+\newline \newline
+\section{Concetto di programma}
+Un programma è intendibile come un insieme di algoritmi e di strutture dati
+ma la struttura di un programma consiste in
+\begin{itemize}
+	\item Una parte dichiarativa in cui son presenti le dichiarazioni di tutte
+	le variabili del programma e del loro tipo
+	\item Una parte che descrive l'algoritmo risolutivo utilizzato, mediante istruzioni del linguaggio	
+\end{itemize}
+\section{Perchè utilizzare paradigmi diversi?}
+Per esempio l'intelligenza artificiale si sviluppa su linguaggi di 
+programmazione specifici, bisogna usare linguaggi che operino in un 
+determinato modo, considerati tipo di Altissimo super mega galatticissifantastico livello infatti, utilizzabili pure da non programatori
+\newline \newline
+Infatti son generati per manipolazione simbolica non numerica 
+\section{Paradigma logico}
+Concetto primitivo: Deduzione logica, avente una base di logica formale e un 
+obbiettivo, che è intendibile come formalizzazione del ragionamento
+\newline \newline
+\textbf{Programmare infatti significa} descrivere il problema con frasi 
+(Formule logiche) del linguaggio, \newline
+Interrogare il sistema, che effettua deduzioni in base alla "conoscenza 
+rappresentata" 
+\paragraph{Ai lettori} Mi rendo conto che non si capisca un cazzo, voi 
+immaginatevi come mi stia sentendo al momento io mentre prendo appunti.. 
+Perdonatemi
+\newline \newline
+Prolog è un insieme di formule ben formate, ragiona con il linguaggio logico, 
+con una descrizione della realtà di interesse, di fatto è una dimostrazione in
+un linguaggio logico che costituiscono un programma, poi ho una frase da dare
+al mio interprete, Prolog icchè fa? Semplicemente la realizza sotto forma di 
+dimostrazione. 
+\newline \newline
+\section{Esempio di un programma Prolog}
+Ci sono fondamentalmente:
+\begin{itemize}
+	\item Asserzioni incondizionate (\color{red} fatti \color{black})
+	A.
+	\item Asserzioni condizionate (\color{red} regole \color{black})
+	A :- B, C, D, ... , Z.
+	\begin{itemize}
+		\item A è la conclusione o conseguente (deve avere una sola clausola)
+		\item B, C, D, \dots,Z sono le premesse o antecedenti 
+	\end{itemize} 
+	\item Un'\color{red}interrogazione \color{black} ha la forma: :- K, L, M, 
+	\dots, P. \newline
+\end{itemize}
+Ovviamente A, B, C, *TUTTE LE ALTRE*, sono semplicemente predicati
+\newline
+MI RACCOMANDO MASSIMA ATTENZIONE ALLA SINTASSI, ogni clausola Prolog termina
+con un punto. \newline \newline
+La ',' si legge come AND
+\subsection{Esempio:}
+Due individui sono colleghi se lavorano per la stessa ditta/azienda
+\color{red} Regole \color{blue} Fatti \color{black} Interrogazione
+\newline \newline
+\color{red}
+collega(X, Y) :-  \newline	
+lavora(X, Z), \newline	
+lavora(Y, Z), \newline	
+diverso(X, Y).
+\newline \newline
+\color{blue}
+lavora(ciro, ibm)  \newline
+lavora(ugo, ibm)  \newline
+lavora(olivia, samsung)  \newline
+lavora(ernesto, olivetti)  \newline
+lavora(enrica, samsung)
+\newline \newline
+\color{black}
+:- collega(X, Y). 
+
+
+\end{document}
