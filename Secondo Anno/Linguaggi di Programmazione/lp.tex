@@ -58,13 +58,20 @@ deve essere chiaro che N O N  S I  F A N N O  E C C E Z I O N I.
 %------------------------------------------------------------------------------
 \chapter{Il paradigma}
 \section{Cos'è?}
-E' il metodo di soluzione ad undeterminato problema, a seconda dei paradigmi si
+E' il metodo di soluzione ad un determinato problema, a seconda dei paradigmi si
 hanno diversi tipi di linguaggi di programmazione
 \section{Storicamente}
 Il primo paradigma è l'imperativo, cioè il paradigma basato sui tre costrutti
 di selezione, iterazione e sequenza. \newline
 Inoltre si mantiene il concetto di assegnamento di un valore ad una determinata variabile
 \subsection{L'effetto collaterale}
+Viene definito effetto collaterale quando, a seguito dell'esecuzione di un qualsiasi
+codice, il contenuto di un'area di memoria viene cambiato; per intenderci, anche
+solo l'istruzione "x += 1" genera un effetto collaterale, poichè nell'area di 
+memoria di x viene cambiato il valore. \newline
+Perchè è importante tutto ciò, direte. Semplice: il paradigma puro funzionale si 
+basa proprio sul fatto che un programma non generi mai, mai, \emph{M A I}, effetti 
+collaterali.
 Successivamente vedremo che in Prolog ci saranno parecchi problemi se provassimo
 ad assegnare direttamente un valore ad una variabile
 \section{Logica del primo ordine}
@@ -75,8 +82,9 @@ Questi si basano proprio sui concetti matematici di funzione, ad esempio si
 ragiona sui domini, sui codomini, sull'insiemistica, solite cose
 %------------------------------------------------------------------------------
 \chapter{Paradigma imperativo}
-Le caratteristiche essenziali dei linguaggi imperativi sono legate all'archit-
-tettura di Von Neumann, costituita dai famosi due componenti \textbf{Memoria (componente passiva) e Processore (componente attiva)}
+Le caratteristiche essenziali dei linguaggi imperativi sono legate all'archittettura 
+di Von Neumann, costituita dai famosi due componenti 
+\textbf{Memoria (componente passiva) e Processore (componente attiva)}
 \newline
 In pratica la principale attività che ha la cpu è quella di eseguire calcoli
 ed assegnare valori alle variabili, che sono delle celle di memoria.
