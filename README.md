@@ -12,7 +12,7 @@ I miei appunti sono stati presi tutti a lezione, quindi c'è scritto quello che 
 
 ### Cosa potrete trovare in questa repo:
 
-In questa repo saranno presenti appunti che ho preso a **lezione** ed  alcune **slides** disponibili pure tramite E-Learning. Il formato dei file sorgenti dei miei **pdf** sono (purtroppo per chi non ha **Mac**) in formato **.pages** MA ho caricato comunque anche il file pdf, in modo da agevolare utenti di qualsiasi sistema operativo.
+In questa repo saranno presenti appunti che ho preso a **lezione** ed  alcune **slides** disponibili pure tramite E-Learning. Il formato dei file sorgenti dei miei **pdf** è (purtroppo per chi non ha **Mac**) in **.pages** MA ho caricato comunque anche il file .pdf, in modo da agevolare utenti di qualsiasi sistema operativo.
 
 
 
