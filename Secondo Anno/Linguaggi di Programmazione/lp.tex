@@ -262,11 +262,39 @@ E' molto incastrato ma si riesce a capire, associamo per esempio ad item = 2
 Noi ci arriviamo con la logica che c'è, ma in realtà cosa faremo? Ragioniamo 
 per gradi
 \begin{enumerate}
-	\item null list? false
-	\item è 2 = al primo elemento della lista? False
-	\item è 2 = al secondo elemento della lista? True
+	\item null list? \color{magenta} false \color{black}
+	\item è 2 = al primo elemento della lista? \color{magenta} False \color{black}
+	\item è 2 = al secondo elemento della lista? \color{blue}True \color{black}
 \end{enumerate}
-Se LISP trova T è come se scrivessimo  \color{magenta}\textbf{true}\color{black}
+Se LISP trova T è come se scrivessimo  \color{blue}\textbf{true}\color{black}
+\section{Ambienti RunTime di linguaggi logici funzionali e non}
+\begin{itemize}
+	\item Richiami di nozioni di architettura e programmazione
+	\item Per eseguire un programma di qualsiasi linguaggio il sistema operativo deve mettere a disposizione l'ambiente runtime che dia almeno due funzioni
+	\begin{itemize}
+		\item Mantenimento dello stato della computazione(pc, limiti di memoria)
+		\item Gestione memoria disponibile (fisica e virtuale)
+	\end{itemize}
+	\item L'ambiente runtime può essere una vera e propria macchina virtuale tipo la JVM di java
+	\item In particolare la gestione di memoria avviene usando due aree concettualmente ben distinte con funzioni diverse
+	\begin{itemize}
+		\item Lo stack, ambiente dell'ambiente runtime che serve per la gestione delle chiamate, a procedure metodi etc
+		\item L'heap dell'ambiente runtime serve per gestire strutture dinamiche
+		\begin{itemize}
+			\item Alberi
+			\item Liste etc
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+\subsection{Activation frame}
+\begin{itemize}
+	\item La valutazione di procedure avviene mediante la costruzione sullo stack di sistema di activation frames
+	\item i parametri formali di una procedura vengono associati ai valori (si passa tutto per valore, non esistono effetti collaterali)
+	\item E' un altro modo di chiamare i record di attivazione, via
+	\item Il corpo della procedura viene valutato (ricorsivamente) tenendo questi legami in maniera statica
+	\newline
+	cioè il concetto è che bisogna capire cosa accade con variabili che risultino libere in una sottoespressione
+\end{itemize}
 
 
 \end{document}
