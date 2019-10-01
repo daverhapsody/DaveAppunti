@@ -28,9 +28,9 @@ Atomi, liste, funzioni e ricorsione
 \subsection{Linguaggi imperativi} % (fold)
 \label{sub:linguaggi_imperativi}
 Memoria, stato, assegnamenti, puntatori
-\newline 
+\\ 
 {\color{black} \rule{\linewidth}{0.3mm} }
-\newline
+\\
 Il concetto è che con questo corso si vanno a studiare paradigmi più evoluti,
 usati tutt'ora e comunque aventi un ampio approccio logico, oltretutto LISP è 
 usato nelle pagine web (Si userà moltissimo la ricorsione, A I U T O)
@@ -53,7 +53,7 @@ Gli appelli regolari sono composti da un progetto ed un esame scritto, che può
 essere seguito da un esame orale a discrezione del docente basato sui temi trattati durante il corso
 \newline
 \textbf{NON C'E' POSSIBILITA' DI RECUPERI}, infatti scritto, orale e progetto vanno sostenuti \color{red} \textbf{NELLO STESSO APPELLO} \color{black}
-\newline
+\\
 Progetto e scritto sono corretti separatamente
 \paragraph{NON CI SARANNO ECCEZIONI}
 \label{par:non_ci_saranno_eccezioni}
@@ -66,13 +66,13 @@ E' il metodo di soluzione ad un determinato problema, a seconda dei paradigmi si
 hanno diversi tipi di linguaggi di programmazione
 \subsection{Storicamente}
 Il primo paradigma è l'imperativo, cioè il paradigma basato sui tre costrutti
-di selezione, iterazione e sequenza. \newline
+di selezione, iterazione e sequenza. \\
 Inoltre si mantiene il concetto di assegnamento di un valore ad una determinata variabile
 \subsection{L'effetto collaterale}
 Viene definito effetto collaterale quando, a seguito dell'esecuzione di un qualsiasi
 codice, il contenuto di un'area di memoria viene cambiato; per intenderci, anche
 solo l'istruzione "x += 1" genera un effetto collaterale, poichè nell'area di 
-memoria di x viene cambiato il valore. \newline
+memoria di x viene cambiato il valore. \\
 Perchè è importante tutto ciò, direte. Semplice: il paradigma puro funzionale si 
 basa proprio sul fatto che un programma non generi mai, mai, \emph{M A I}, effetti 
 collaterali.
@@ -92,7 +92,7 @@ l'importanza degli effetti collaterali, evitati nei linguaggi funzionali).
 Le caratteristiche essenziali dei linguaggi imperativi sono legate all'architettura 
 di Von Neumann, costituita dai famosi due componenti 
 \textbf{Memoria (componente passiva) e Processore (componente attiva)}
-\newline
+\\
 In pratica la principale attività che ha la cpu è quella di eseguire calcoli
 ed assegnare valori alle variabili, che sono delle celle di memoria.
 \paragraph{Va considerato}
@@ -102,7 +102,7 @@ Assembly si ragiona per nome di variabile, non vai di indirizzamento fisico
 %------------------------------------------------------------------------------
 \subsection{Il concetto di variabile}
 In Prolog e LISP cambia completamente il concetto di variabile, ma per come 
-saranno presentati vedremo che non c'entra niente. \newline
+saranno presentati vedremo che non c'entra niente. \\
 In matematica abbiamo il concetto di variabile? Sì, quella che sta dentro una
 funzione, in informatica è diciamo diverso, non è un'astrazione, ma lo vedremo
 in seguito
@@ -110,17 +110,17 @@ in seguito
 Per manipolare la memoria utilizzo la variabile, simbolo che indica la cella 
 di memoria, nei linguaggi funzionali sarà possibile usare il concetto di 
 variabile matematica. 
-\newline \newline
+\medskip\\
 Alla fine il modello di Neumann è composto da I/O, Memoria e CPU con i suoi 
 cicli di clock
 \section{Stile prescrittivo}
 Un programma scritto in un linguaggio imperativo prescrive le operazioni che
-la CPU deve eseguire per modificare lo stato di un sistema \newline \newline
+la CPU deve eseguire per modificare lo stato di un sistema \medskip\\
 Le istruzioni sono eseguite nell'ordine in cui queste appaiono, ad eccezione
 delle strutture di controllo
 \paragraph{Realizzati} sia attraverso interpretazione che compilazione, nati
 più per manipolazione numerica che simbolica.
-\newline
+\\
 \section{Concetto di programma}
 Un programma è intendibile come un insieme di algoritmi e di strutture dati
 ma la struttura di un programma consiste in
@@ -133,26 +133,26 @@ ma la struttura di un programma consiste in
 Per esempio l'intelligenza artificiale si sviluppa su linguaggi di 
 programmazione specifici, bisogna usare linguaggi che operino in un 
 determinato modo, considerati tipo di Altissimo super mega galatticissifantastico livello infatti, utilizzabili pure da non programatori
-\newline \newline
+\medskip\\
 Infatti son generati per manipolazione simbolica non numerica 
 \section{Paradigma logico}
 Concetto primitivo: Deduzione logica, avente una base di logica formale e un 
 obbiettivo, che è intendibile come formalizzazione del ragionamento
-\newline \newline
+\medskip\\
 \textbf{Programmare infatti significa} descrivere il problema con frasi 
-(Formule logiche) del linguaggio, \newline
+(Formule logiche) del linguaggio, \\
 Interrogare il sistema, che effettua deduzioni in base alla "conoscenza 
 rappresentata" 
 \paragraph{Ai lettori} Mi rendo conto che non si capisca un cazzo, voi 
 immaginatevi come mi stia sentendo al momento io mentre prendo appunti.. 
 Perdonatemi
-\newline \newline
+\medskip\\
 Prolog è un insieme di formule ben formate, ragiona con il linguaggio logico, 
 con una descrizione della realtà di interesse, di fatto è una dimostrazione in 
 un linguaggio logico che costituisce un programma. Più semplicemente ho una  
 frase da dare al mio interprete, Prolog icchè fa? Semplicemente la realizza  
 sotto forma di dimostrazione. 
-\newline 
+\\
 \section{Esempio di un programma Prolog}
 Ci sono fondamentalmente:
 \begin{itemize}
@@ -165,43 +165,43 @@ Ci sono fondamentalmente:
 		\item B, C, D, \dots,Z sono le premesse o antecedenti 
 	\end{itemize} 
 	\item Un'\color{red}interrogazione \color{black} ha la forma: :- K, L, M, 
-	\dots, P. \newline
+	\dots, P.
 \end{itemize}
 Ovviamente A, B, C, *TUTTE LE ALTRE*, sono semplicemente predicati
-\newline
+\\
 MI RACCOMANDO MASSIMA ATTENZIONE ALLA SINTASSI, ogni clausola Prolog termina
-con un punto. \newline \newline
+con un punto. \medskip\\
 La ',' si legge come AND
 \subsection{Esempio:}
 Due individui sono colleghi se lavorano per la stessa ditta/azienda
 \color{red} Regole \color{blue} Fatti \color{black} Interrogazione
 \newline \newline
 \color{red}
-collega(X, Y) :-  \newline	
-\tab lavora(X, Z), \newline	
-\tab lavora(Y, Z), \newline	
-\tab diverso(X, Y).
-\newline \newline
+collega(X, Y) :-  \\	
+lavora(X, Z), \\	
+lavora(Y, Z), \\
+diverso(X, Y).
+\medskip\\
 \color{blue}
-lavora(ciro, ibm)  \newline
-lavora(ugo, ibm)  \newline
-lavora(olivia, samsung)  \newline
-lavora(ernesto, olivetti)  \newline
+lavora(ciro, ibm)  \\
+lavora(ugo, ibm)  \\
+lavora(olivia, samsung)  \\
+lavora(ernesto, olivetti)  \\
 lavora(enrica, samsung)
-\newline \newline
+\medskip\\
 \color{black}
 :- collega(X, Y). 
 \newline
 {\color{black} \rule{\linewidth}{0.3mm} }
-\newline
+\\
 Programmare Prolog non è come scrivere in un linguaggio di programmazione, non
 si scrive un algoritmo, in questo caso abbiamo le famose clausole, (regole e 
 fatti), 
 \paragraph{ATTENZIONE} l'interrogazione non è una clausola, occhio a non confondersi
 \subsection{Esempio dell'ordine di una lista}
 \begin{itemize}
-	\item \textbf{Ordine prescrittivo}: Controlla se la lista è vuota, e dà come risultato la lista vuota stessa, altrimenti calcola una permutazione della lista e controlla se è ordinata, dando come risultato $L_{1}$ altrimenti fa una permutazione su L etc.
-	\newline
+	\item Ordine prescrittivo: Controlla se la lista è vuota, e dà come risultato la lista vuota stessa, altrimenti calcola una permutazione della lista e controlla se è ordinata, dando come risultato $L_{1}$ altrimenti fa una permutazione su L etc.
+	\\
 	Il programmatore deve specificare le istruzioni che generano la sequenza di permutazioni della lista L
 	$
 	\begin{cases}
@@ -217,14 +217,12 @@ fatti),
 \end{itemize}
 \section{Paradigma funzionale}
 \begin{itemize}
-	\item 
-	Si basa sul concetto di funzione matematica, ossia una associazione tra due 
+	\item Si basa sul concetto di funzione matematica, ossia una associazione tra due 
 	insiemi che relaziona ad ogni elemento di un insieme (dominio) un solo 
 	elemento di un altro insieme (codominio)
 	\item La definizione di una funzione specifica dominio, codominio, e regola di associazione 
-	\newline
-	\item ESEMPIO: \newline
-	Incr: N $\to$ N \newline
+	\item ESEMPIO: \\
+	Incr: N $\to$ N \\
 	Incr(x) - x + 1
 	\item Dopo aver dato definizione, una funzione è aopplicabile ad un elemento del 
 	dominio (argomento) per restituire l'elemento del codominio ad esso associato
@@ -239,7 +237,7 @@ fatti),
 \label{par:attenzione}
 Il concetto di variabile che utilizziamo è quello di "costante" matematica, in 
 cui i valori NON sono mutabili, non ho nessun asegnamento
-\newline \newline
+\medskip\\
 L'essenza della programmazione funzionale consiste nel combinare funzioni mediante composizione e uso della ricorsione
 % paragraph attenzione (end)
 \subsection{Composizione di funzioni + ricorsione} 
@@ -248,29 +246,30 @@ La struttura di un programma consiste nella definizione di un insieme di funzion
 L'esecuzione del programma consiste nella VALUTAZIONE dell'APPLICAZIONE di una
 funzione principale a una serie di argomenti
 \section{LISP}
-LISt Processing, \newline \newline
+
+LISt processing, \medskip\\
+
 Il progretto originale era di creare un linguaggio funzionale puro, infatti
 nel corso degli anni sono stati sviluppati molti ambienti di sviluppo lisp
 di cui terremo in considerazione Common Lisp e Scheme, oltre che emacs etc.
 \subsection{Esempio di programma LISP}
-Controlla un elemento se appartiene ad una lista \newline \newline
-\begin{lstlisting}[language=LISP]
-(defun member (item list)) 
-    (cond ((null list)nil) 
-        ((equal item(first list))T) 
-    (T(member item(rest list)))) 
-    (member 42(list 12 34 42))
-\end{lstlisting}
+
+Controlla un elemento se appartiene ad una lista \medskip\\
+(defun member (item list)) \\
+(cond ((null list)nil) \\
+((equal item(first list))T) \\
+(T(member item(rest list)))) \\
+(member 42(list 12 34 42)) \medskip\\
+DEVO AGGIUNGERE I COLORI AIUTO CE LA POSSO FARE \medskip\\
+%%AGGIUNGI I COLORI
 Dopo una parentesi tonda ci va per forza una funzione, è fondamentale, defun 
-definisce una funzione infatti, dopo c'è il nome di tale funzione. In LISP la 
-tabulazione è ESSENZIALE, AUGURI A DISTINGUERE DOVE PORTI LA QUINTA PARENTESI DELLE 
-DODICI CHE HAI SCRITTO PIANGENDO SUL CODICE ALLE 2 DI NOTTE.
-\newline
+definisce una funzione infatti, dopo c'è il nome di tale funzione.
+\\
 Gli elementi si separano con lo spazio NON con la virgola, mi raccomando.
-\newline
+\\
 La terza riga è la più ostica e dice: è uguale T al primo elemento della lista?
 E' molto incastrato ma si riesce a capire, associamo per esempio ad item = 2
-(E' un esempio) e list = [1,2] \newline
+(E' un esempio) e list = [1,2] \\
 Noi ci arriviamo con la logica che c'è, ma in realtà cosa faremo? Ragioniamo 
 per gradi
 \begin{enumerate}
@@ -304,6 +303,9 @@ Se LISP trova T è come se scrivessimo  \color{blue}\textbf{true}\color{black}
 	\item i parametri formali di una procedura vengono associati ai valori (si passa tutto per valore, non esistono effetti collaterali)
 	\item E' un altro modo di chiamare i record di attivazione, via
 	\item Il corpo della procedura viene valutato (ricorsivamente) tenendo questi legami in maniera statica
+
+	\\
+	cioè il concetto è che bisogna capire cosa accade con variabili che risultino libere in una sottoespressione
 \end{itemize}
 cioè il concetto è che bisogna capire cosa accade con variabili che risultino libere in una sottoespressione
 \section{Activation Frame di una funzione}
@@ -401,6 +403,7 @@ di verità
 \newline \newline
 Negli esercizi potremo usare 
 
+\end{document}
 $$
 \frac{F_{1}, F_{2}, ... , F_{K}}{R}$$ 
 E' la forma generale di una regola, sopra hai l'insieme delle formule vere tra le formule ben formate e R è la formula generata da “inserire” in FBF. \newline \newline
@@ -451,3 +454,4 @@ sia vera, se combinandola con le proposizioni in fbf ottengo una contraddizione
 , allora si pul concludere con la verità di p
  \end{document}}
 }
+
