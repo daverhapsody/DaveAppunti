@@ -1,9 +1,10 @@
-\documentclass[12pt, a4paper, openany, twoside]{book}
+\documentclass[12pt, a4paper, openany, oneside]{book}
 \usepackage[italian]{babel}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath} 
 \usepackage{xcolor}
+\usepackage[margin=1in]{geometry} 
 %usepackage[latin1]{inputenc}
 \begin{document}
 \pagestyle{plain}
@@ -63,8 +64,8 @@ propria scala da usare, ci saranno i coefficienti di riferimento, i prefissi
 \section{Notazione scientifica}
 Ecco un esempio di numero scritto in notazione scientifica: 
 \[
-	5 x 10^{5} = 50000 \newline
-	8 x 10^{-1} = 0,1 
+5 x 10^{5} = 50000 \newline
+8 x 10^{-1} = 0,1 
 \]
 \newline \newline
 Ragionando su come sono composti, abbiamo le cifre significative, ovvero cifre
@@ -76,7 +77,7 @@ Se specifico una cifra (tipo anche) lo 0 in un $0,12320$ esso è cifra significa
 \newline \newline
 Se ho invece un numero tipo $1,010$ posso scriverlo in due modi
 \begin{itemize}
-	\item 1,011 +- 0,001
+	\item 1,011 +/- (Ok non so come si fa il + e - in \LaTeX) 0,001
 	\item 1,01 
 \end{itemize}
 Nulla di estremamente complesso ma va detto comunque, per dire se ho $1,234567$
@@ -128,8 +129,8 @@ Per descrivere questo bisogna trovare una legge che sia in grado di esprimere
 per qualsiasi istante quali possano essere le condizioni. 
 $$
 \begin{cases}
-		 t_{\lambda} = $tempo richiesto per arrivare dalla posizione $p_{0}$ a
-		 $p_{\lambda}  \\
+t_{\lambda} = $tempo richiesto per arrivare dalla posizione $p_{0}$ a
+$p_{\lambda}  \\
 
 \end{cases}
 $$ 
@@ -148,8 +149,16 @@ $\Delta t = t_{Finale} - t_{Iniziale}$
 \newline
 Abbiamo 3 velocità:
 \begin{itemize}
-	\item Velocità media scalare: $v = \frac{distanza~percorsa}{\Delta t}$ che è la distanza percorsa sul tempo passato da quando son partito a quando sono arrivato
-	\item Velocità media vettoriale: $\vec{v} = \frac{\vec{\Delta x}}{\Delta t}$ con $\Delta x$ che è il vettore spostamento tra la posizione $p_{iniziale}$ e $p_{finale}$ 
-	\item 
+	\item {Velocità media scalare: $v_{media} = \frac{distanza~percorsa}{\Delta
+	t}$ che è la distanza percorsa sul tempo passato da quando son partito a 
+	quando sono arrivato }
+	\item {Velocità media vettoriale: $\vec{v} = \frac{\vec{\Delta x}}
+	{\Delta t}$ con $\Delta x$ che è il vettore spostamento tra la posizione 
+	$p_{iniziale}$ e $p_{finale}$ }
 \end{itemize}
+\subsection*{Osservazione:}
+Ragionando per formule inverse, se voglio capire quanto ho percorso mi basta 
+fare $d = \Delta t * v_{media}$ , ma in realtà non è propriamente corretto. 
+\newline \newline
+
 \end{document}
