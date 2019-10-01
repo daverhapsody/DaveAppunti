@@ -367,5 +367,31 @@ un insieme di passi intermedi che possono essere presi dalle conoscenze
  \newline \newline
  Le regole di inferenza sono applicabili solo ai passi precedenti rispetto ad 
  una formula
- \newline
-\end{document}
+ \section{Logica Proposizionale}
+ Nella logica proposizionale ci si occupa delle conclusioni che possiamo 
+ trarre da un insieme di proposizioni, abbiamo infatti un insieme P di 
+ proposizioni \newline \newline
+ Si introduce il concetto di \textbf{interpretazione} di un insieme di 
+ proposizioni, infatti all'insieme P si associa una funzione di verità (True e 
+ False) \newline \newline
+ Questa funzione associa un valore di verità ad ogni elemento di P, ad ogni 
+ proposizione. La valutazione è il ponte tra sintassi e semantica di un 
+ linguaggio
+\newline \newline
+Chiaramente posso legare tra loro le proposizioni con $\and \or$ e $\not$ 
+Una formula ben formata è un insieme di espressioni sintatticamente corrette di
+un linguaggio
+\newline
+In prolog le formule atomiche le chiameremo letterali, che possono esser 
+positivi e negativi, e qui si richiamano i concetti di fondamenti della tabella
+di verità
+\newline \newline
+Negli esercizi potremo usare 
+
+$$
+\frac{F_{1}, F_{2}, ... , F_{K}}{R}$$ 
+E' la forma generale di una regola, sopra hai l'insieme delle formule vere tra le formule ben formate e R è la formula generata da “inserire” in FBF. \newline \newline
+L'esempio di inferenza che si usa di solito è il Modus Ponens: 
+$$\frac{p \to q, p}{p} $$
+Se il conseguente appare come formula negata, si negherà anche la formula originaria
+ \end{document}
