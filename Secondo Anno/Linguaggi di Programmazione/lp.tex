@@ -4,6 +4,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath} 
 \usepackage{xcolor}
+\usepackage{listings}
 \usepackage[margin=1in]{geometry}
 %usepackage[latin1]{inputenc}
 \begin{document}
@@ -244,13 +245,13 @@ nel corso degli anni sono stati sviluppati moplti ambienti di sviluppo lisp
 di cui terremo in considerazione Common Lisp e Scheme, oltre che emacs etc.
 \subsection{Esempio di programma LISP}
 Controlla un elemento se appartiene ad una lista \newline \newline
-(defun member (item list)) \newline
-(cond ((null list)nil) \newline
-((equal item(first list))T) \newline
-(T(member item(rest list)))) \newline
-(member 42(list 12 34 42)) \newline \newline
-DEVO AGGIUNGERE I COLORI AIUTO CE LA POSSO FARE \newline \newline
-%%AGGIUNGI I COLORI
+\begin{lstlisting}[language=Prolog]
+(defun member (item list)) 
+(cond ((null list)nil) 
+((equal item(first list))T) 
+(T(member item(rest list)))) 
+(member 42(list 12 34 42))
+\end{lstlisting}
 Dopo una parentesi tonda ci va per forza una funzione, è fondamentale, defun 
 definisce una funzione infatti, dopo c'è il nome di tale funzione.
 \newline
@@ -311,7 +312,35 @@ L'heap è l'area di memoria destinata alla memorizzazione delle strutture per i
 dati dinamiche, mentre invece il garbage collector ha il compito di accumulare
 lo schifo che si accumula tra variabili non deallocate etc, e le dealloca 
 appunto.
+\chapter{Logica e ragionamento}
+Partiamo con le cose semplici, bisogna passare da quello che è un linguaggio 
+parlato a una stesura di condizioni \newline
 
+Prendiamo un triangolo, vogliamo dimostrare che se due triangoli hanno i due lati uguali allora è isoscele \newline
 
+\begin{itemize}
+	\item AB = BC per ipotesi
+	\item ABH = HBC per (3)
+	\item Il triangolo HBC è uguale al triangolo HBC ABH per (2)
+	\item A e C per (1)
+\end{itemize}
 
+\paragraph{Attenzione} in una dimostrazione non si può dare nulla per 
+scontato, tutto cilò che noi diamo per assodato, un pc non lo dà, dobbiamo 
+essere molto precisi nelle indicazioni, bisogna lavorare in un'ottica più 
+precisa
+\newline
+cerchiamo ora di tradurra tutto in un linguaggio più formale
+SE AB = BC E BH = BH e ABH = HBC allora il triangolo ABH è uguale a HBC 
+ed abbiamo trasformato (1) in \newline
+SE triangolo ABH è uguale al triangolo HBC ALLORA AB = BC e BH = BH e AH = HC,
+E ABH = HBC E AHB = CHB E A = C
+\newline
+Da un punto di vista formale noi partiamo da un'ipotesi, noi vogliamo 
+dimostrare che A = C.
+\newline
+La dimostrazione è un processo sintattico, non ragiono in termini di verità, 
+perchè NON si sta parlando di interpretazione ma manipolazione delle formula
+\newline
+Ogni passo deve corrispondere ad una formula, e subito dopo le etichette 
 \end{document}
