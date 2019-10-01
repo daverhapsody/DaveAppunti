@@ -4,10 +4,12 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath} 
 \usepackage{xcolor}
+\usepackage{listings}
+\usepackage[margin=1in]{geometry}
 %usepackage[latin1]{inputenc}
 \begin{document}
-\pagestyle{headings}
-\author{DaveRhapsody}
+%\pagestyle{plain}
+\author{DaveRhapsody \and Jacopo De Angelis \and DlcGold}
 \title{Linguaggi di Programmazione}
 \color{blue}
 \date{30 Settembre 2019}
@@ -24,7 +26,7 @@ Atomi, liste, funzioni e ricorsione
 \subsection{Linguaggi imperativi} % (fold)
 \label{sub:linguaggi_imperativi}
 Memoria, stato, assegnamenti, puntatori
-\newline \newline
+\newline 
 {\color{black} \rule{\linewidth}{0.3mm} }
 \newline
 Il concetto è che con questo corso si vanno a studiare paradigmi più evoluti,
@@ -60,7 +62,7 @@ deve essere chiaro che N O N  S I  F A N N O  E C C E Z I O N I.
 \section{Cos'è?}
 E' il metodo di soluzione ad un determinato problema, a seconda dei paradigmi si
 hanno diversi tipi di linguaggi di programmazione
-\section{Storicamente}
+\subsection{Storicamente}
 Il primo paradigma è l'imperativo, cioè il paradigma basato sui tre costrutti
 di selezione, iterazione e sequenza. \newline
 Inoltre si mantiene il concetto di assegnamento di un valore ad una determinata variabile
@@ -81,7 +83,7 @@ ordine
 Questi si basano proprio sui concetti matematici di funzione, ad esempio si 
 ragiona sui domini, sui codomini, sull'insiemistica, solite cose
 %------------------------------------------------------------------------------
-\chapter{Paradigma imperativo}
+\section{Paradigma imperativo}
 Le caratteristiche essenziali dei linguaggi imperativi sono legate all'architettura 
 di Von Neumann, costituita dai famosi due componenti 
 \textbf{Memoria (componente passiva) e Processore (componente attiva)}
@@ -93,7 +95,7 @@ Il concetto di variabile è un'astrazione di una cella di memoria, per dire
 se giochi su assembly vai a toccare i veri e propri registri, mentre su C o 
 Assembly si ragiona per nome di variabile, non vai di indirizzamento fisico
 %------------------------------------------------------------------------------
-\section{Il concetto di variabile}
+\subsection{Il concetto di variabile}
 In Prolog e LISP cambia completamente il concetto di variabile, ma per come 
 saranno presentati vedremo che non c'entra niente. \newline
 In matematica abbiamo il concetto di variabile? Sì, quella che sta dentro una
@@ -113,7 +115,7 @@ Le istruzioni sono eseguite nell'ordine in cui queste appaiono, ad eccezione
 delle strutture di controllo
 \paragraph{Realizzati} sia attraverso interpretazione che compilazione, nati
 più per manipolazione numerica che simbolica.
-\newline \newline
+\newline
 \section{Concetto di programma}
 Un programma è intendibile come un insieme di algoritmi e di strutture dati
 ma la struttura di un programma consiste in
@@ -141,11 +143,11 @@ immaginatevi come mi stia sentendo al momento io mentre prendo appunti..
 Perdonatemi
 \newline \newline
 Prolog è un insieme di formule ben formate, ragiona con il linguaggio logico, 
-con una descrizione della realtà di interesse, di fatto è una dimostrazione in
-un linguaggio logico che costituiscono un programma, poi ho una frase da dare
-al mio interprete, Prolog icchè fa? Semplicemente la realizza sotto forma di 
-dimostrazione. 
-\newline \newline
+con una descrizione della realtà di interesse, di fatto è una dimostrazione in 
+un linguaggio logico che costituisce un programma. Più semplicemente ho una  
+frase da dare al mio interprete, Prolog icchè fa? Semplicemente la realizza  
+sotto forma di dimostrazione. 
+\newline 
 \section{Esempio di un programma Prolog}
 Ci sono fondamentalmente:
 \begin{itemize}
@@ -184,6 +186,237 @@ lavora(enrica, samsung)
 \newline \newline
 \color{black}
 :- collega(X, Y). 
+\newline
+{\color{black} \rule{\linewidth}{0.3mm} }
+\newline
+Programmare Prolog non è come scrivere in un linguaggio di programmazione, non
+si scrive un algoritmo, in questo caso abbiamo le famose clausole, (regole e 
+fatti), 
+\paragraph{ATTENZIONE} l'interrogazione non è una clausola, occhio a non confondersi
+\subsection{Esempio dell'ordine di una lista}
+\begin{itemize}
+	\item Ordine prescrittivo: Controlla se la lista è vuota, e dà come risultato la lista vuota stessa, altrimenti calcola una permutazione della lista e controlla se è ordinata, dando come risultato $L_{1}$ altrimenti fa una permutazione su L etc.
+	\newline
+	Il programmatore deve specificare le istruzioni che generano la sequenza di permutazioni della lista L
+	$
+	\begin{cases}
+	$il risultato dell'ordinamento di una lista vuota è la lista vuota $\\
+	$Il risultato dell'ordinamento di una lista L e $L_{1} 
+	\end{cases}
+	$
+	\item Stile Dichiarativo: L'ambiente si fa carico di generare possibili permutazioni della lista L, secondo deduzione matematica
+\end{itemize}
+\section{Paradigma funzionale}
+\begin{itemize}
+	\item 
+	Si basa sul concetto di funzione matematica, ossia una associazione tra due 
+	insiemi che relaziona ad ogni elemento di un insieme (dominio) un solo 
+	elemento di un altro insieme (codominio)
+	\item La definizione di una funzione specifica dominio, codominio, e regola di associazione 
+	\newline
+	\item ESEMPIO: \newline
+	Incr: N $\to$ N \newline
+	Incr(x) - x + 1
+	\item Dopo aver dato definizione, una funzione è aopplicabile ad un elemento del 
+	dominio (argomento) per restituire l'elemento del codominio ad esso associato
+	(valutazione)
+	\item incr(3) $\to$ 4 
+	L'unica operazione utilizzata nel funzionale è l'applicazione di funzioni  
+	\item Il ruolo dell'esecutore di un linguaggio funzionale si esaurisce nel calutare l'applicazione di una funzione (il programma) e produrre un valore 
+	\item Nel paradigma funzionale puro il valore di una funzione è determinato dagli argomenti che riceve al momento della sua applicazione e non dallo stato del sistema rappresentato dall'insieme complessivo dei valori associati a variabili(e/o locazioni di memoria) in quel momento 
+	\item Oggettivamente si ha l'assenza di effetti collaterali \newline \newline
+\end{itemize}
+\paragraph{Attenzione} % (fold)
+\label{par:attenzione}
+Il concetto di variabile che utilizziamo è quello di "costante" matematica, in 
+cui i valori NON sono mutabili, non ho nessun asegnamento
+\newline \newline
+L'essenza della programmazione funzionale consiste nel combinare funzioni mediante composizione e uso della ricorsione
+% paragraph attenzione (end)
+\subsection{Composizione di funzioni + ricorsione} 
+La struttura di un programma consiste nella definizione di un insieme di funzioni ricorsive mutualmente
+\newline \newline
+L'esecuzione del programma consiste nella VALUTAZIONE dell'APPLICAZIONE di una
+funzione principale a una serie di argomenti
+\section{LISP}
+LISt processing, \newline \newline
+Il progretto originale era di creare un linguaggio funzionale puro, infatti
+nel corso degli anni sono stati sviluppati moplti ambienti di sviluppo lisp
+di cui terremo in considerazione Common Lisp e Scheme, oltre che emacs etc.
+\subsection{Esempio di programma LISP}
+Controlla un elemento se appartiene ad una lista \newline \newline
+\begin{lstlisting}[language=Prolog]
+(defun member (item list)) 
+(cond ((null list)nil) 
+((equal item(first list))T) 
+(T(member item(rest list)))) 
+(member 42(list 12 34 42))
+\end{lstlisting}
+Dopo una parentesi tonda ci va per forza una funzione, è fondamentale, defun 
+definisce una funzione infatti, dopo c'è il nome di tale funzione.
+\newline
+Gli elementi si separano con lo spazio NON con la virgola, mi raccomando.
+\newline
+La terza riga è la più ostica e dice: è uguale T al primo elemento della lista?
+E' molto incastrato ma si riesce a capire, associamo per esempio ad item = 2
+(E' un esempio) e list = [1,2] \newline
+Noi ci arriviamo con la logica che c'è, ma in realtà cosa faremo? Ragioniamo 
+per gradi
+\begin{enumerate}
+	\item null list? \color{magenta} false \color{black}
+	\item è 2 = al primo elemento della lista? \color{magenta} False \color{black}
+	\item è 2 = al secondo elemento della lista? \color{blue}True \color{black}
+\end{enumerate}
+Se LISP trova T è come se scrivessimo  \color{blue}\textbf{true}\color{black}
+\section{Ambienti RunTime di linguaggi logici funzionali e non}
+\begin{itemize}
+	\item Richiami di nozioni di architettura e programmazione
+	\item Per eseguire un programma di qualsiasi linguaggio il sistema operativo deve mettere a disposizione l'ambiente runtime che dia almeno due funzioni
+	\begin{itemize}
+		\item Mantenimento dello stato della computazione(pc, limiti di memoria)
+		\item Gestione memoria disponibile (fisica e virtuale)
+	\end{itemize}
+	\item L'ambiente runtime può essere una vera e propria macchina virtuale tipo la JVM di java
+	\item In particolare la gestione di memoria avviene usando due aree concettualmente ben distinte con funzioni diverse
+	\begin{itemize}
+		\item Lo stack, ambiente dell'ambiente runtime che serve per la gestione delle chiamate, a procedure metodi etc
+		\item L'heap dell'ambiente runtime serve per gestire strutture dinamiche
+		\begin{itemize}
+			\item Alberi
+			\item Liste etc
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+\subsection{Activation frame}
+\begin{itemize}
+	\item La valutazione di procedure avviene mediante la costruzione sullo stack di sistema di activation frames
+	\item i parametri formali di una procedura vengono associati ai valori (si passa tutto per valore, non esistono effetti collaterali)
+	\item E' un altro modo di chiamare i record di attivazione, via
+	\item Il corpo della procedura viene valutato (ricorsivamente) tenendo questi legami in maniera statica
+\end{itemize}
+cioè il concetto è che bisogna capire cosa accade con variabili che risultino libere in una sottoespressione
+\section{Activation Frame di una funzione}
+Contiene:
+\begin{itemize}
+	\item Return address
+	\item Registri
+	\item Static / Dynamic link (lo statico punta alle variabili globali)
+	\item Argomenti
+	\item Local definitions (RV)
+\end{itemize}
+Se si ha in mente come funziona oggettivamente lo stack (con i record di
+attivazione) è la stessa cosa \newline
+All'esame si potrebbe chiedere cos'è l'activation frame e a icchè serve
+\section{Heap e Garbage Collector}
+L'heap è l'area di memoria destinata alla memorizzazione delle strutture per i
+dati dinamiche, mentre invece il garbage collector ha il compito di accumulare
+lo schifo che si accumula tra variabili non deallocate etc, e le dealloca 
+appunto.
+\chapter{Logica e ragionamento}
+Partiamo con le cose semplici, bisogna passare da quello che è un linguaggio 
+parlato a una stesura di condizioni \newline
 
+Prendiamo un triangolo, vogliamo dimostrare che se due triangoli hanno i due lati uguali allora è isoscele \newline
+$$AB = BC \vdash \angle A \angle C$$ 
+\begin{enumerate}
+	\item AB = BC per ipotesi
+	\item ABH = HBC per (3)
+	\item Il triangolo HBC è uguale al triangolo HBC ABH per (2)
+	\item A e C per (1)
+\end{enumerate}
+\subsection{Regole di inferenza}
+\begin{enumerate}
+	\item Introduzione della congiunzione (L'AND)
+	\item Modus Ponens
+	\item Eliminazione della congiunzione
+\end{enumerate}
+Come lavora il Modus Ponens: \newline
+E' semplice manipolazione sintattica, osservando la formula che ci vien data
+possiamo riscriverla scrivendo come base di conoscenza il conseguente, cioè in pratica prendo e sostituisco con il conseguente.
+\newline \newline
+Per far si che le mie formule siano vere se avessi un A or B può esser vera in 
+ben tre casi diversi, non posso eliminare i due casi disgiunti, se voglio 
+mantenere una solidità non posso, e quindi questa regola (disgiunzione) non 
+esiste.
+\paragraph{Attenzione} in una dimostrazione non si può dare nulla per 
+scontato, tutto cilò che noi diamo per assodato, un pc non lo dà, dobbiamo 
+essere molto precisi nelle indicazioni, bisogna lavorare in un'ottica più 
+precisa
+\newline \newline
+cerchiamo ora di tradurra tutto in un linguaggio più formale
+SE AB = BC E BH = BH e ABH = HBC allora il triangolo ABH è uguale a HBC 
+ed abbiamo trasformato (1) in \newline \newline
+SE triangolo ABH è uguale al triangolo HBC ALLORA AB = BC e BH = BH e AH = HC,
+E ABH = HBC E AHB = CHB E A = C
+\newline \newline
+Da un punto di vista formale noi partiamo da un'ipotesi, noi vogliamo 
+dimostrare che A = C.
+\newline \newline
+La dimostrazione è un processo sintattico, non ragiono in termini di verità, 
+perchè NON si sta parlando di interpretazione ma manipolazione delle formula
+\newline \newline
+Ogni passo deve corrispondere ad una formula, e subito dopo le etichette
+\paragraph{Differenza tra assiomi e ipotesi}
+Gli assiomi sono conoscenza pregressa del dominio, mentre le ipotesi sono solo
+supposizioni iniziali, uno si specifica, l'altro no
+\section{Dimostrazione}
+E' una sequenza di passi dove il finale è la formula da dimostrare e abbiamo
+un insieme di passi intermedi che possono essere presi dalle conoscenze
+ pregresse, oppure applicando regole di inferenza ai passi PRECEDENTI, solo
+ precedenti mi raccomando.
+ \newline \newline
+ Le regole di inferenza sono applicabili solo ai passi precedenti rispetto ad 
+ una formula
+ \section{Logica Proposizionale}
+ Nella logica proposizionale ci si occupa delle conclusioni che possiamo 
+ trarre da un insieme di proposizioni, abbiamo infatti un insieme P di 
+ proposizioni \newline \newline
+ Si introduce il concetto di \textbf{interpretazione} di un insieme di 
+ proposizioni, infatti all'insieme P si associa una funzione di verità (True e 
+ False) \newline \newline
+ Questa funzione associa un valore di verità ad ogni elemento di P, ad ogni 
+ proposizione. La valutazione è il ponte tra sintassi e semantica di un 
+ linguaggio
+\newline \newline
+Chiaramente posso legare tra loro le proposizioni con $\vee \wedge$ e $\neg$ 
+Una formula ben formata è un insieme di espressioni sintatticamente corrette di
+un linguaggio
+\newline
+In prolog le formule atomiche le chiameremo letterali, che possono esser 
+positivi e negativi, e qui si richiamano i concetti di fondamenti della tabella
+di verità
+\newline \newline
+Negli esercizi potremo usare 
 
-\end{document}
+$$
+\frac{F_{1}, F_{2}, ... , F_{K}}{R}$$ 
+E' la forma generale di una regola, sopra hai l'insieme delle formule vere tra le formule ben formate e R è la formula generata da “inserire” in FBF. \newline \newline
+L'esempio di inferenza che si usa di solito è il Modus Ponens: 
+$$\frac{p \to q, p}{p} $$
+Se il conseguente appare come formula negata, si negherà anche la formula originaria
+\subsubsection{Rsempio:}
+$\frac{p \vee \neg q}{vero} $ Terzo escluso \newline
+$\frac{\neg \neg q}{q} $ eliminazione $\neg$ \newline
+$\frac{p \wedge vero}{p} $ eliminazione $\vee$ \newline
+$\frac{p \wedge \neg p}{q} $ contraddizione
+\section{Principio di risoluzione}
+E' una regola di inferenza generalizzata semplice e facile da utilizzare ed 
+implementare, in pratica opera su fbf trasformate in forme normali congiunte, ed ognuno dei congiunti vien detto \textbf{clausola}
+\newline \newline
+L'osservazione fondamentale alla base del principio di risoluzione è un'estensione della nozione di rimozione dell'implicazione su base della contraddizione \newline \newline
+In pratica si usa per le dimostrazioni per assurdo.
+\section{Unit Resolution}
+Da un lato ho una formula ben formata disgiuntiva e dall'altro ho un letterale 
+(o asserito), e una di queste formule è costituita da un solo letterale, per 
+questo si chiama unit, è sintassi, non ci sto capendo più un cazzo pure
+io, non so davvero che dirvi.. 
+\paragraph{Esempio:} 
+\begin{itemize}
+	\item <non piove>, <piove o c'è il sole>
+	\item <c'è il sole>
+\end{itemize}
+La dimostrazione per assurdo di fatto funziona assumendo che la formula negata
+sia vera, se combinandola con le proposizioni in fbf ottengo una contraddizione
+, allora si pul concludere con la verità di p
+ \end{document}}
+}
