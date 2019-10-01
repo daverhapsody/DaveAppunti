@@ -6,6 +6,8 @@
 \usepackage{xcolor}
 \usepackage{listings}
 \usepackage[margin=1in]{geometry}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+
 %usepackage[latin1]{inputenc}
 \begin{document}
 %\pagestyle{plain}
@@ -81,7 +83,10 @@ Prolog è costituito da una serie di clausole derivanti dalla logica del primo
 ordine
 \section{Linguaggi funzionali}
 Questi si basano proprio sui concetti matematici di funzione, ad esempio si 
-ragiona sui domini, sui codomini, sull'insiemistica, solite cose
+ragiona sui domini, sui codomini, sull'insiemistica, solite cose. La loro caratteristica
+è che ogni funzione, dato sempre lo stesso input, restituisce sempre lo stesso
+risultato. Cosa vuol dire questo? Che non dipende da variabili esterne (e da qui
+l'importanza degli effetti collaterali, evitati nei linguaggi funzionali).
 %------------------------------------------------------------------------------
 \section{Paradigma imperativo}
 Le caratteristiche essenziali dei linguaggi imperativi sono legate all'architettura 
@@ -173,9 +178,9 @@ Due individui sono colleghi se lavorano per la stessa ditta/azienda
 \newline \newline
 \color{red}
 collega(X, Y) :-  \newline	
-lavora(X, Z), \newline	
-lavora(Y, Z), \newline	
-diverso(X, Y).
+\tab lavora(X, Z), \newline	
+\tab lavora(Y, Z), \newline	
+\tab diverso(X, Y).
 \newline \newline
 \color{blue}
 lavora(ciro, ibm)  \newline
@@ -195,7 +200,7 @@ fatti),
 \paragraph{ATTENZIONE} l'interrogazione non è una clausola, occhio a non confondersi
 \subsection{Esempio dell'ordine di una lista}
 \begin{itemize}
-	\item Ordine prescrittivo: Controlla se la lista è vuota, e dà come risultato la lista vuota stessa, altrimenti calcola una permutazione della lista e controlla se è ordinata, dando come risultato $L_{1}$ altrimenti fa una permutazione su L etc.
+	\item \textbf{Ordine prescrittivo}: Controlla se la lista è vuota, e dà come risultato la lista vuota stessa, altrimenti calcola una permutazione della lista e controlla se è ordinata, dando come risultato $L_{1}$ altrimenti fa una permutazione su L etc.
 	\newline
 	Il programmatore deve specificare le istruzioni che generano la sequenza di permutazioni della lista L
 	$
@@ -204,7 +209,11 @@ fatti),
 	$Il risultato dell'ordinamento di una lista L e $L_{1} 
 	\end{cases}
 	$
-	\item Stile Dichiarativo: L'ambiente si fa carico di generare possibili permutazioni della lista L, secondo deduzione matematica
+    Quindi, lo stile prescrittivo presuppone che OGNI SINGOLO CASO venga considerato
+    e programmato. non esiste il "ma è ovvio che debba fare questo", ogni singolo
+    caso è tua responsabilità. Sì, tua, proprio tu che stai leggendo. Prolog si
+    basa su questo tipo di ordine.
+	\item \textbf{Stile Dichiarativo}: L'ambiente si fa carico di generare possibili permutazioni della lista L, secondo deduzione matematica
 \end{itemize}
 \section{Paradigma funzionale}
 \begin{itemize}
@@ -239,21 +248,23 @@ La struttura di un programma consiste nella definizione di un insieme di funzion
 L'esecuzione del programma consiste nella VALUTAZIONE dell'APPLICAZIONE di una
 funzione principale a una serie di argomenti
 \section{LISP}
-LISt processing, \newline \newline
+LISt Processing, \newline \newline
 Il progretto originale era di creare un linguaggio funzionale puro, infatti
-nel corso degli anni sono stati sviluppati moplti ambienti di sviluppo lisp
+nel corso degli anni sono stati sviluppati molti ambienti di sviluppo lisp
 di cui terremo in considerazione Common Lisp e Scheme, oltre che emacs etc.
 \subsection{Esempio di programma LISP}
 Controlla un elemento se appartiene ad una lista \newline \newline
-\begin{lstlisting}[language=Prolog]
+\begin{lstlisting}[language=LISP]
 (defun member (item list)) 
-(cond ((null list)nil) 
-((equal item(first list))T) 
-(T(member item(rest list)))) 
-(member 42(list 12 34 42))
+    (cond ((null list)nil) 
+        ((equal item(first list))T) 
+    (T(member item(rest list)))) 
+    (member 42(list 12 34 42))
 \end{lstlisting}
 Dopo una parentesi tonda ci va per forza una funzione, è fondamentale, defun 
-definisce una funzione infatti, dopo c'è il nome di tale funzione.
+definisce una funzione infatti, dopo c'è il nome di tale funzione. In LISP la 
+tabulazione è ESSENZIALE, AUGURI A DISTINGUERE DOVE PORTI LA QUINTA PARENTESI DELLE 
+DODICI CHE HAI SCRITTO PIANGENDO SUL CODICE ALLE 2 DI NOTTE.
 \newline
 Gli elementi si separano con lo spazio NON con la virgola, mi raccomando.
 \newline
@@ -330,14 +341,16 @@ $$AB = BC \vdash \angle A \angle C$$
 	\item Modus Ponens
 	\item Eliminazione della congiunzione
 \end{enumerate}
-Come lavora il Modus Ponens: \newline
+Come lavora il \textbf{Modus Ponens}: \newline
 E' semplice manipolazione sintattica, osservando la formula che ci vien data
-possiamo riscriverla scrivendo come base di conoscenza il conseguente, cioè in pratica prendo e sostituisco con il conseguente.
+possiamo riscriverla scrivendo come base di conoscenza il conseguente, 
+cioè in pratica prendo e sostituisco con il conseguente.
 \newline \newline
-Per far si che le mie formule siano vere se avessi un A or B può esser vera in 
+Per far si che le mie formule siano vere, se avessi un A or B può esser vera in 
 ben tre casi diversi, non posso eliminare i due casi disgiunti, se voglio 
 mantenere una solidità non posso, e quindi questa regola (disgiunzione) non 
 esiste.
+% consiglio di inserire un'immagine che mostri lo schema del modus ponens
 \paragraph{Attenzione} in una dimostrazione non si può dare nulla per 
 scontato, tutto cilò che noi diamo per assodato, un pc non lo dà, dobbiamo 
 essere molto precisi nelle indicazioni, bisogna lavorare in un'ottica più 
@@ -394,10 +407,10 @@ E' la forma generale di una regola, sopra hai l'insieme delle formule vere tra l
 L'esempio di inferenza che si usa di solito è il Modus Ponens: 
 $$\frac{p \to q, p}{p} $$
 Se il conseguente appare come formula negata, si negherà anche la formula originaria
-\subsubsection{Rsempio:}
-$\frac{p \vee \neg q}{vero} $ Terzo escluso \newline
-$\frac{\neg \neg q}{q} $ eliminazione $\neg$ \newline
-$\frac{p \wedge vero}{p} $ eliminazione $\vee$ \newline
+\subsubsection{Esempio:}
+$\frac{p \vee \neg q}{vero} $ Terzo escluso \newline \\
+$\frac{\neg \neg q}{q} $ eliminazione $\neg$ \newline \\
+$\frac{p \wedge vero}{p} $ eliminazione $\vee$ \newline \\
 $\frac{p \wedge \neg p}{q} $ contraddizione
 \section{Principio di risoluzione}
 E' una regola di inferenza generalizzata semplice e facile da utilizzare ed 
@@ -408,8 +421,26 @@ In pratica si usa per le dimostrazioni per assurdo.
 \section{Unit Resolution}
 Da un lato ho una formula ben formata disgiuntiva e dall'altro ho un letterale 
 (o asserito), e una di queste formule è costituita da un solo letterale, per 
-questo si chiama unit, è sintassi, non ci sto capendo più un cazzo pure
-io, non so davvero che dirvi.. 
+questo si chiama unit, è sintassi, non ci sto capendo più un cazzo pure. 
+io, non so davvero che dirvi.. \\
+Eccomi, arrivo da autore esterno a spiegare: prendiamo prima lo schemino semplice
+semplice \\
+$ P <-- A \wedge B \wedge C \wedge D ...$ \\
+Questo vuol dire che P è vera solo se tutte A, B, C e D sono vere. Ora, prendiamo 
+nuovamente il codice prolog visto all'inizio: \\
+\color{red}
+collega(X, Y) :-  \newline	
+\tab lavora(X, Z), \newline	
+\tab lavora(Y, Z), \newline	
+\tab diverso(X, Y). \color{black}\\
+Cosa cambia dal dire questo o la regola sopra? La corrispondenza è semplicemente: \\
+\color{red}
+\textbf{P} è collega(X, Y) :-  \newline	
+\tab \textbf{A} è lavora(X, Z), \newline	
+\tab \textbf{B} è lavora(Y, Z), \newline	
+\tab \textbf{C} è diverso(X, Y). \color{black}\\
+Questo vuol dire che la nostra unit, P, è vera solo se sono vere le altre. Fine 
+del mio intervento, la linea di nuovo a Dave.
 \paragraph{Esempio:} 
 \begin{itemize}
 	\item <non piove>, <piove o c'è il sole>
