@@ -6,7 +6,9 @@
 
 ### Avvertenze:
 
-I miei appunti sono stati presi tutti a lezione, quindi c'è scritto quello che durante le lezioni viene erogato agli studenti, ma **CIO' CHE C'E' NEGLI APPUNTI NON E' LEGGE**. Non prendete i miei appunti per buoni a prescindere, anzi! Se ci sono correzioni da proporre, qualcosa che non è chiaro, qualcosa che vi può tornare utile cambiare, inviate un **ISSUE**, oppure una **PULL REQUEST** con la modifica che intendete fare!
+1) I miei appunti sono stati presi tutti a lezione, quindi c'è scritto quello che durante le lezioni viene erogato agli studenti, ma **CIÒ CHE C'È NEGLI APPUNTI NON È LEGGE**. Non prendete i miei appunti per buoni a prescindere, anzi! Se ci sono correzioni da proporre, qualcosa che non è chiaro, qualcosa che vi può tornare utile cambiare, inviate un **ISSUE**, oppure una **PULL REQUEST** con la modifica che intendete fare!
+
+2) Gli appunti del primo anno li ho presi conscio del fatto che sarei stato io stesso ad utilizzarli, pertanto questi ultimi sono incompleti, mi rendo conto che effettivamente manchino un po' di cose, altre sono scritte male, MA in caso di necessità prendo e mi metto a cambiare o aggiungere roba. Gli appunti del secondo sono presi pensando che verranno letti da terzi, e non solo dal sottoscritto
 
 ------
 
