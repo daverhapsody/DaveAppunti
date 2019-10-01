@@ -4,7 +4,10 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath} 
 \usepackage{xcolor}
+\usepackage{listings}
 \usepackage[margin=1in]{geometry}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+
 %usepackage[latin1]{inputenc}
 \begin{document}
 %\pagestyle{plain}
@@ -80,7 +83,10 @@ Prolog è costituito da una serie di clausole derivanti dalla logica del primo
 ordine
 \section{Linguaggi funzionali}
 Questi si basano proprio sui concetti matematici di funzione, ad esempio si 
-ragiona sui domini, sui codomini, sull'insiemistica, solite cose
+ragiona sui domini, sui codomini, sull'insiemistica, solite cose. La loro caratteristica
+è che ogni funzione, dato sempre lo stesso input, restituisce sempre lo stesso
+risultato. Cosa vuol dire questo? Che non dipende da variabili esterne (e da qui
+l'importanza degli effetti collaterali, evitati nei linguaggi funzionali).
 %------------------------------------------------------------------------------
 \section{Paradigma imperativo}
 Le caratteristiche essenziali dei linguaggi imperativi sono legate all'architettura 
@@ -203,7 +209,11 @@ fatti),
 	$Il risultato dell'ordinamento di una lista L e $L_{1} 
 	\end{cases}
 	$
-	\item Stile Dichiarativo: L'ambiente si fa carico di generare possibili permutazioni della lista L, secondo deduzione matematica
+    Quindi, lo stile prescrittivo presuppone che OGNI SINGOLO CASO venga considerato
+    e programmato. non esiste il "ma è ovvio che debba fare questo", ogni singolo
+    caso è tua responsabilità. Sì, tua, proprio tu che stai leggendo. Prolog si
+    basa su questo tipo di ordine.
+	\item \textbf{Stile Dichiarativo}: L'ambiente si fa carico di generare possibili permutazioni della lista L, secondo deduzione matematica
 \end{itemize}
 \section{Paradigma funzionale}
 \begin{itemize}
@@ -236,11 +246,14 @@ La struttura di un programma consiste nella definizione di un insieme di funzion
 L'esecuzione del programma consiste nella VALUTAZIONE dell'APPLICAZIONE di una
 funzione principale a una serie di argomenti
 \section{LISP}
+
 LISt processing, \medskip\\
+
 Il progretto originale era di creare un linguaggio funzionale puro, infatti
-nel corso degli anni sono stati sviluppati moplti ambienti di sviluppo lisp
+nel corso degli anni sono stati sviluppati molti ambienti di sviluppo lisp
 di cui terremo in considerazione Common Lisp e Scheme, oltre che emacs etc.
 \subsection{Esempio di programma LISP}
+
 Controlla un elemento se appartiene ad una lista \medskip\\
 (defun member (item list)) \\
 (cond ((null list)nil) \\
@@ -290,19 +303,155 @@ Se LISP trova T è come se scrivessimo  \color{blue}\textbf{true}\color{black}
 	\item i parametri formali di una procedura vengono associati ai valori (si passa tutto per valore, non esistono effetti collaterali)
 	\item E' un altro modo di chiamare i record di attivazione, via
 	\item Il corpo della procedura viene valutato (ricorsivamente) tenendo questi legami in maniera statica
+
 	\\
 	cioè il concetto è che bisogna capire cosa accade con variabili che risultino libere in una sottoespressione
 \end{itemize}
+cioè il concetto è che bisogna capire cosa accade con variabili che risultino libere in una sottoespressione
 \section{Activation Frame di una funzione}
 Contiene:
 \begin{itemize}
 	\item Return address
 	\item Registri
-	\item Static / Dynamic link
+	\item Static / Dynamic link (lo statico punta alle variabili globali)
 	\item Argomenti
 	\item Local definitions (RV)
 \end{itemize}
+Se si ha in mente come funziona oggettivamente lo stack (con i record di
+attivazione) è la stessa cosa \newline
+All'esame si potrebbe chiedere cos'è l'activation frame e a icchè serve
+\section{Heap e Garbage Collector}
+L'heap è l'area di memoria destinata alla memorizzazione delle strutture per i
+dati dinamiche, mentre invece il garbage collector ha il compito di accumulare
+lo schifo che si accumula tra variabili non deallocate etc, e le dealloca 
+appunto.
+\chapter{Logica e ragionamento}
+Partiamo con le cose semplici, bisogna passare da quello che è un linguaggio 
+parlato a una stesura di condizioni \newline
 
-
+Prendiamo un triangolo, vogliamo dimostrare che se due triangoli hanno i due lati uguali allora è isoscele \newline
+$$AB = BC \vdash \angle A \angle C$$ 
+\begin{enumerate}
+	\item AB = BC per ipotesi
+	\item ABH = HBC per (3)
+	\item Il triangolo HBC è uguale al triangolo HBC ABH per (2)
+	\item A e C per (1)
+\end{enumerate}
+\subsection{Regole di inferenza}
+\begin{enumerate}
+	\item Introduzione della congiunzione (L'AND)
+	\item Modus Ponens
+	\item Eliminazione della congiunzione
+\end{enumerate}
+Come lavora il \textbf{Modus Ponens}: \newline
+E' semplice manipolazione sintattica, osservando la formula che ci vien data
+possiamo riscriverla scrivendo come base di conoscenza il conseguente, 
+cioè in pratica prendo e sostituisco con il conseguente.
+\newline \newline
+Per far si che le mie formule siano vere, se avessi un A or B può esser vera in 
+ben tre casi diversi, non posso eliminare i due casi disgiunti, se voglio 
+mantenere una solidità non posso, e quindi questa regola (disgiunzione) non 
+esiste.
+% consiglio di inserire un'immagine che mostri lo schema del modus ponens
+\paragraph{Attenzione} in una dimostrazione non si può dare nulla per 
+scontato, tutto cilò che noi diamo per assodato, un pc non lo dà, dobbiamo 
+essere molto precisi nelle indicazioni, bisogna lavorare in un'ottica più 
+precisa
+\newline \newline
+cerchiamo ora di tradurra tutto in un linguaggio più formale
+SE AB = BC E BH = BH e ABH = HBC allora il triangolo ABH è uguale a HBC 
+ed abbiamo trasformato (1) in \newline \newline
+SE triangolo ABH è uguale al triangolo HBC ALLORA AB = BC e BH = BH e AH = HC,
+E ABH = HBC E AHB = CHB E A = C
+\newline \newline
+Da un punto di vista formale noi partiamo da un'ipotesi, noi vogliamo 
+dimostrare che A = C.
+\newline \newline
+La dimostrazione è un processo sintattico, non ragiono in termini di verità, 
+perchè NON si sta parlando di interpretazione ma manipolazione delle formula
+\newline \newline
+Ogni passo deve corrispondere ad una formula, e subito dopo le etichette
+\paragraph{Differenza tra assiomi e ipotesi}
+Gli assiomi sono conoscenza pregressa del dominio, mentre le ipotesi sono solo
+supposizioni iniziali, uno si specifica, l'altro no
+\section{Dimostrazione}
+E' una sequenza di passi dove il finale è la formula da dimostrare e abbiamo
+un insieme di passi intermedi che possono essere presi dalle conoscenze
+ pregresse, oppure applicando regole di inferenza ai passi PRECEDENTI, solo
+ precedenti mi raccomando.
+ \newline \newline
+ Le regole di inferenza sono applicabili solo ai passi precedenti rispetto ad 
+ una formula
+ \section{Logica Proposizionale}
+ Nella logica proposizionale ci si occupa delle conclusioni che possiamo 
+ trarre da un insieme di proposizioni, abbiamo infatti un insieme P di 
+ proposizioni \newline \newline
+ Si introduce il concetto di \textbf{interpretazione} di un insieme di 
+ proposizioni, infatti all'insieme P si associa una funzione di verità (True e 
+ False) \newline \newline
+ Questa funzione associa un valore di verità ad ogni elemento di P, ad ogni 
+ proposizione. La valutazione è il ponte tra sintassi e semantica di un 
+ linguaggio
+\newline \newline
+Chiaramente posso legare tra loro le proposizioni con $\vee \wedge$ e $\neg$ 
+Una formula ben formata è un insieme di espressioni sintatticamente corrette di
+un linguaggio
+\newline
+In prolog le formule atomiche le chiameremo letterali, che possono esser 
+positivi e negativi, e qui si richiamano i concetti di fondamenti della tabella
+di verità
+\newline \newline
+Negli esercizi potremo usare 
 
 \end{document}
+$$
+\frac{F_{1}, F_{2}, ... , F_{K}}{R}$$ 
+E' la forma generale di una regola, sopra hai l'insieme delle formule vere tra le formule ben formate e R è la formula generata da “inserire” in FBF. \newline \newline
+L'esempio di inferenza che si usa di solito è il Modus Ponens: 
+$$\frac{p \to q, p}{p} $$
+Se il conseguente appare come formula negata, si negherà anche la formula originaria
+\subsubsection{Esempio:}
+$\frac{p \vee \neg q}{vero} $ Terzo escluso \newline \\
+$\frac{\neg \neg q}{q} $ eliminazione $\neg$ \newline \\
+$\frac{p \wedge vero}{p} $ eliminazione $\vee$ \newline \\
+$\frac{p \wedge \neg p}{q} $ contraddizione
+\section{Principio di risoluzione}
+E' una regola di inferenza generalizzata semplice e facile da utilizzare ed 
+implementare, in pratica opera su fbf trasformate in forme normali congiunte, ed ognuno dei congiunti vien detto \textbf{clausola}
+\newline \newline
+L'osservazione fondamentale alla base del principio di risoluzione è un'estensione della nozione di rimozione dell'implicazione su base della contraddizione \newline \newline
+In pratica si usa per le dimostrazioni per assurdo.
+\section{Unit Resolution}
+Da un lato ho una formula ben formata disgiuntiva e dall'altro ho un letterale 
+(o asserito), e una di queste formule è costituita da un solo letterale, per 
+questo si chiama unit, è sintassi, non ci sto capendo più un cazzo pure. 
+io, non so davvero che dirvi.. \\
+Eccomi, arrivo da autore esterno a spiegare: prendiamo prima lo schemino semplice
+semplice \\
+$ P <-- A \wedge B \wedge C \wedge D ...$ \\
+Questo vuol dire che P è vera solo se tutte A, B, C e D sono vere. Ora, prendiamo 
+nuovamente il codice prolog visto all'inizio: \\
+\color{red}
+collega(X, Y) :-  \newline	
+\tab lavora(X, Z), \newline	
+\tab lavora(Y, Z), \newline	
+\tab diverso(X, Y). \color{black}\\
+Cosa cambia dal dire questo o la regola sopra? La corrispondenza è semplicemente: \\
+\color{red}
+\textbf{P} è collega(X, Y) :-  \newline	
+\tab \textbf{A} è lavora(X, Z), \newline	
+\tab \textbf{B} è lavora(Y, Z), \newline	
+\tab \textbf{C} è diverso(X, Y). \color{black}\\
+Questo vuol dire che la nostra unit, P, è vera solo se sono vere le altre. Fine 
+del mio intervento, la linea di nuovo a Dave.
+\paragraph{Esempio:} 
+\begin{itemize}
+	\item <non piove>, <piove o c'è il sole>
+	\item <c'è il sole>
+\end{itemize}
+La dimostrazione per assurdo di fatto funziona assumendo che la formula negata
+sia vera, se combinandola con le proposizioni in fbf ottengo una contraddizione
+, allora si pul concludere con la verità di p
+ \end{document}}
+}
+
