@@ -378,7 +378,7 @@ un insieme di passi intermedi che possono essere presi dalle conoscenze
  proposizione. La valutazione è il ponte tra sintassi e semantica di un 
  linguaggio
 \newline \newline
-Chiaramente posso legare tra loro le proposizioni con $\and \or$ e $\not$ 
+Chiaramente posso legare tra loro le proposizioni con $\vee \wedge$ e $\neg$ 
 Una formula ben formata è un insieme di espressioni sintatticamente corrette di
 un linguaggio
 \newline
@@ -394,4 +394,29 @@ E' la forma generale di una regola, sopra hai l'insieme delle formule vere tra l
 L'esempio di inferenza che si usa di solito è il Modus Ponens: 
 $$\frac{p \to q, p}{p} $$
 Se il conseguente appare come formula negata, si negherà anche la formula originaria
- \end{document}
+\subsubsection{Rsempio:}
+$\frac{p \vee \neg q}{vero} $ Terzo escluso \newline
+$\frac{\neg \neg q}{q} $ eliminazione $\neg$ \newline
+$\frac{p \wedge vero}{p} $ eliminazione $\vee$ \newline
+$\frac{p \wedge \neg p}{q} $ contraddizione
+\section{Principio di risoluzione}
+E' una regola di inferenza generalizzata semplice e facile da utilizzare ed 
+implementare, in pratica opera su fbf trasformate in forme normali congiunte, ed ognuno dei congiunti vien detto \textbf{clausola}
+\newline \newline
+L'osservazione fondamentale alla base del principio di risoluzione è un'estensione della nozione di rimozione dell'implicazione su base della contraddizione \newline \newline
+In pratica si usa per le dimostrazioni per assurdo.
+\section{Unit Resolution}
+Da un lato ho una formula ben formata disgiuntiva e dall'altro ho un letterale 
+(o asserito), e una di queste formule è costituita da un solo letterale, per 
+questo si chiama unit, è sintassi, non ci sto capendo più un cazzo pure
+io, non so davvero che dirvi.. 
+\paragraph{Esempio:} 
+\begin{itemize}
+	\item <non piove>, <piove o c'è il sole>
+	\item <c'è il sole>
+\end{itemize}
+La dimostrazione per assurdo di fatto funziona assumendo che la formula negata
+sia vera, se combinandola con le proposizioni in fbf ottengo una contraddizione
+, allora si pul concludere con la verità di p
+ \end{document}}
+}
