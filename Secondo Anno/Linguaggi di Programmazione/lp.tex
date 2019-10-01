@@ -300,10 +300,18 @@ Contiene:
 \begin{itemize}
 	\item Return address
 	\item Registri
-	\item Static / Dynamic link
+	\item Static / Dynamic link (lo statico punta alle variabili globali)
 	\item Argomenti
 	\item Local definitions (RV)
 \end{itemize}
+Se si ha in mente come funziona oggettivamente lo stack (con i record di
+attivazione) è la stessa cosa \newline
+All'esame si potrebbe chiedere cos'è l'activation frame e a icchè serve
+\section{Heap e Garbage Collector}
+L'heap è l'area di memoria destinata alla memorizzazione delle strutture per i
+dati dinamiche, mentre invece il garbage collector ha il compito di accumulare
+lo schifo che si accumula tra variabili non deallocate etc, e le dealloca 
+appunto.
 
 
 
