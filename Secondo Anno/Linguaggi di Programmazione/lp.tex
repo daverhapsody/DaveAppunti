@@ -317,30 +317,55 @@ Partiamo con le cose semplici, bisogna passare da quello che è un linguaggio
 parlato a una stesura di condizioni \newline
 
 Prendiamo un triangolo, vogliamo dimostrare che se due triangoli hanno i due lati uguali allora è isoscele \newline
-
-\begin{itemize}
+$$AB = BC \vdash \angle A \angle C$$ 
+\begin{enumerate}
 	\item AB = BC per ipotesi
 	\item ABH = HBC per (3)
 	\item Il triangolo HBC è uguale al triangolo HBC ABH per (2)
 	\item A e C per (1)
-\end{itemize}
-
+\end{enumerate}
+\subsection{Regole di inferenza}
+\begin{enumerate}
+	\item Introduzione della congiunzione (L'AND)
+	\item Modus Ponens
+	\item Eliminazione della congiunzione
+\end{enumerate}
+Come lavora il Modus Ponens: \newline
+E' semplice manipolazione sintattica, osservando la formula che ci vien data
+possiamo riscriverla scrivendo come base di conoscenza il conseguente, cioè in pratica prendo e sostituisco con il conseguente.
+\newline \newline
+Per far si che le mie formule siano vere se avessi un A or B può esser vera in 
+ben tre casi diversi, non posso eliminare i due casi disgiunti, se voglio 
+mantenere una solidità non posso, e quindi questa regola (disgiunzione) non 
+esiste.
 \paragraph{Attenzione} in una dimostrazione non si può dare nulla per 
 scontato, tutto cilò che noi diamo per assodato, un pc non lo dà, dobbiamo 
 essere molto precisi nelle indicazioni, bisogna lavorare in un'ottica più 
 precisa
-\newline
+\newline \newline
 cerchiamo ora di tradurra tutto in un linguaggio più formale
 SE AB = BC E BH = BH e ABH = HBC allora il triangolo ABH è uguale a HBC 
-ed abbiamo trasformato (1) in \newline
+ed abbiamo trasformato (1) in \newline \newline
 SE triangolo ABH è uguale al triangolo HBC ALLORA AB = BC e BH = BH e AH = HC,
 E ABH = HBC E AHB = CHB E A = C
-\newline
+\newline \newline
 Da un punto di vista formale noi partiamo da un'ipotesi, noi vogliamo 
 dimostrare che A = C.
-\newline
+\newline \newline
 La dimostrazione è un processo sintattico, non ragiono in termini di verità, 
 perchè NON si sta parlando di interpretazione ma manipolazione delle formula
-\newline
-Ogni passo deve corrispondere ad una formula, e subito dopo le etichette 
+\newline \newline
+Ogni passo deve corrispondere ad una formula, e subito dopo le etichette
+\paragraph{Differenza tra assiomi e ipotesi}
+Gli assiomi sono conoscenza pregressa del dominio, mentre le ipotesi sono solo
+supposizioni iniziali, uno si specifica, l'altro no
+\section{Dimostrazione}
+E' una sequenza di passi dove il finale è la formula da dimostrare e abbiamo
+un insieme di passi intermedi che possono essere presi dalle conoscenze
+ pregresse, oppure applicando regole di inferenza ai passi PRECEDENTI, solo
+ precedenti mi raccomando.
+ \newline \newline
+ Le regole di inferenza sono applicabili solo ai passi precedenti rispetto ad 
+ una formula
+ \newline
 \end{document}
