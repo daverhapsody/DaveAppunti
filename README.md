@@ -6,7 +6,7 @@
 
 ### Avvertenze:
 
-I miei appunti sono stati presi tutti a lezione, quindi c'è scritto quello che durante le lezioni viene erogato agli studenti, ma **CIO' CHE C'E' NEGLI APPUNTI NON E' LEGGE**. Non prendete i miei appunti per buoni a prescindere, anzi! Se ci sono correzioni da proporre, qualcosa che non è chiaro, qualcosa che vi può tornare utile cambiare, inviate un **ISSUE**, oppure una **PULL REQUEST** con la modifica che intendete fare!
+I miei appunti sono stati presi tutti a lezione, quindi c'è scritto quello che durante le lezioni viene erogato agli studenti, ma **CIÒ CHE C'È NEGLI APPUNTI NON È LEGGE**. Non prendete i miei appunti per buoni a prescindere, anzi! Se ci sono correzioni da proporre, qualcosa che non è chiaro, qualcosa che vi può tornare utile cambiare, inviate un **ISSUE**, oppure una **PULL REQUEST** con la modifica che intendete fare!
 
 ------
 
