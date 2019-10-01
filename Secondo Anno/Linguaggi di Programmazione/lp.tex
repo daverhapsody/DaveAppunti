@@ -185,7 +185,74 @@ lavora(enrica, samsung)
 \newline \newline
 \color{black}
 :- collega(X, Y). 
-
-
-
+\newline
+{\color{black} \rule{\linewidth}{0.3mm} }
+\newline
+Programmare Prolog non è come scrivere in un linguaggio di programmazione, non
+si scrive un algoritmo, in questo caso abbiamo le famose clausole, (regole e 
+fatti), 
+\paragraph{ATTENZIONE} l'interrogazione non è una clausola, occhio a non confondersi
+\subsection{Esempio dell'ordine di una lista}
+\begin{itemize}
+	\item Ordine prescrittivo: Controlla se la lista è vuota, e dà come risultato la lista vuota stessa, altrimenti calcola una permutazione della lista e controlla se è ordinata, dando come risultato $L_{1}$ altrimenti fa una permutazione su L etc.
+	\newline
+	Il programmatore deve specificare le istruzioni che generano la sequenza di permutazioni della lista L
+	$
+	\begin{cases}
+	$il risultato dell'ordinamento di una lista vuota è la lista vuota $\\
+	$Il risultato dell'ordinamento di una lista L e $L_{1} 
+	\end{cases}
+	$
+	\item Stile Dichiarativo: L'ambiente si fa carico di generare possibili permutazioni della lista L, secondo deduzione matematica
+\end{itemize}
+\section{Paradigma funzionale}
+\begin{itemize}
+	\item 
+	Si basa sul concetto di funzione matematica, ossia una associazione tra due 
+	insiemi che relaziona ad ogni elemento di un insieme (dominio) un solo 
+	elemento di un altro insieme (codominio)
+	\item La definizione di una funzione specifica dominio, codominio, e regola di associazione 
+	\newline
+	\item ESEMPIO: \newline
+	Incr: N $\to$ N \newline
+	Incr(x) - x + 1
+	\item Dopo aver dato definizione, una funzione è aopplicabile ad un elemento del 
+	dominio (argomento) per restituire l'elemento del codominio ad esso associato
+	(valutazione)
+	\item incr(3) $\to$ 4 
+	L'unica operazione utilizzata nel funzionale è l'applicazione di funzioni  
+	\item Il ruolo dell'esecutore di un linguaggio funzionale si esaurisce nel calutare l'applicazione di una funzione (il programma) e produrre un valore 
+	\item Nel paradigma funzionale puro il valore di una funzione è determinato dagli argomenti che riceve al momento della sua applicazione e non dallo stato del sistema rappresentato dall'insieme complessivo dei valori associati a variabili(e/o locazioni di memoria) in quel momento 
+	\item Oggettivamente si ha l'assenza di effetti collaterali \newline \newline
+\end{itemize}
+\paragraph{Attenzione} % (fold)
+\label{par:attenzione}
+Il concetto di variabile che utilizziamo è quello di "costante" matematica, in 
+cui i valori NON sono mutabili, non ho nessun asegnamento
+\newline \newline
+L'essenza della programmazione funzionale consiste nel combinare funzioni mediante composizione e uso della ricorsione
+% paragraph attenzione (end)
+\subsection{Composizione di funzioni + ricorsione} 
+La struttura di un programma consiste nella definizione di un insieme di funzioni ricorsive mutualmente
+\newline \newline
+L'esecuzione del programma consiste nella VALUTAZIONE dell'APPLICAZIONE di una
+funzione principale a una serie di argomenti
+\section{LISP}
+LISt processing, \newline \newline
+Il progretto originale era di creare un linguaggio funzionale puro, infatti
+nel corso degli anni sono stati sviluppati moplti ambienti di sviluppo lisp
+di cui terremo in considerazione Common Lisp e Scheme, oltre che emacs etc.
+\subsection{Esempio di programma LISP}
+Controlla un elemento se appartiene ad una lista \newline \newline
+(defun member (item list)) \newline
+(cond ((null list)nil) \newline
+((equal item(first list))T) \newline
+(T(member item(rest list)))) \newline
+(member 42(list 12 34 42)) \newline \newline
+%%AGGIUNGI I COLORI
+Dopo una parentesi tonda ci va per forza una funzione, è fondamentale, defun 
+definisce una funzione infatti, dopo c'è il nome di tale funzione.
+\newline
+Gli elementi si separano con lo spazio NON con la virgola, mi raccomando.
+\newline
 \end{document}
