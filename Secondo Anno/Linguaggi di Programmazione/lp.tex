@@ -209,10 +209,10 @@ fatti),
 	$Il risultato dell'ordinamento di una lista L e $L_{1} 
 	\end{cases}
 	$
-    Quindi, lo stile prescrittivo presuppone che OGNI SINGOLO CASO venga considerato
-    e programmato. non esiste il "ma è ovvio che debba fare questo", ogni singolo
-    caso è tua responsabilità. Sì, tua, proprio tu che stai leggendo. Prolog si
-    basa su questo tipo di ordine.
+	Quindi, lo stile prescrittivo presuppone che OGNI SINGOLO CASO venga considerato
+	e programmato. non esiste il "ma è ovvio che debba fare questo", ogni singolo
+	caso è tua responsabilità. Sì, tua, proprio tu che stai leggendo. Prolog si
+	basa su questo tipo di ordine.
 	\item \textbf{Stile Dichiarativo}: L'ambiente si fa carico di generare possibili permutazioni della lista L, secondo deduzione matematica
 \end{itemize}
 \section{Paradigma funzionale}
@@ -256,10 +256,10 @@ di cui terremo in considerazione Common Lisp e Scheme, oltre che emacs etc.
 Controlla un elemento se appartiene ad una lista \\ \\
 \begin{lstlisting}[language=LISP]
 (defun member (item list)) 
-    (cond ((null list)nil) 
-        ((equal item(first list))T) 
-    (T(member item(rest list)))) 
-    (member 42(list 12 34 42))
+(cond ((null list)nil) 
+((equal item(first list))T) 
+(T(member item(rest list)))) 
+(member 42(list 12 34 42))
 \end{lstlisting}
 Dopo una parentesi tonda ci va per forza una funzione, è fondamentale, defun 
 definisce una funzione infatti, dopo c'è il nome di tale funzione. In LISP la 
@@ -375,21 +375,21 @@ supposizioni iniziali, uno si specifica, l'altro no
 \section{Dimostrazione}
 E' una sequenza di passi dove il finale è la formula da dimostrare e abbiamo
 un insieme di passi intermedi che possono essere presi dalle conoscenze
- pregresse, oppure applicando regole di inferenza ai passi PRECEDENTI, solo
- precedenti mi raccomando.
- \\ \\
- Le regole di inferenza sono applicabili solo ai passi precedenti rispetto ad 
- una formula
- \section{Logica Proposizionale}
- Nella logica proposizionale ci si occupa delle conclusioni che possiamo 
- trarre da un insieme di proposizioni, abbiamo infatti un insieme P di 
- proposizioni \\ \\
- Si introduce il concetto di \textbf{interpretazione} di un insieme di 
- proposizioni, infatti all'insieme P si associa una funzione di verità (True e 
- False) \\ \\
- Questa funzione associa un valore di verità ad ogni elemento di P, ad ogni 
- proposizione. La valutazione è il ponte tra sintassi e semantica di un 
- linguaggio
+pregresse, oppure applicando regole di inferenza ai passi PRECEDENTI, solo
+precedenti mi raccomando.
+\\ \\
+Le regole di inferenza sono applicabili solo ai passi precedenti rispetto ad 
+una formula
+\section{Logica Proposizionale}
+Nella logica proposizionale ci si occupa delle conclusioni che possiamo 
+trarre da un insieme di proposizioni, abbiamo infatti un insieme P di 
+proposizioni \\ \\
+Si introduce il concetto di \textbf{interpretazione} di un insieme di 
+proposizioni, infatti all'insieme P si associa una funzione di verità (True e 
+False) \\ \\
+Questa funzione associa un valore di verità ad ogni elemento di P, ad ogni 
+proposizione. La valutazione è il ponte tra sintassi e semantica di un 
+linguaggio
 \\ \\
 Chiaramente posso legare tra loro le proposizioni con $\vee \wedge$ e $\neg$ 
 Una formula ben formata è un insieme di espressioni sintatticamente corrette di
@@ -448,6 +448,6 @@ del mio intervento, la linea di nuovo a Dave.
 \end{itemize}
 La dimostrazione per assurdo di fatto funziona assumendo che la formula negata
 sia vera, se combinandola con le proposizioni in fbf ottengo una contraddizione
-, allora si pul concludere con la verità di p
- \end{document}}
-}
+, allora si pul concludere con la verità della proposizione.
+
+\end{document}
