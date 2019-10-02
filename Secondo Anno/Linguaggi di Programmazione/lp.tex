@@ -563,7 +563,35 @@ Qui si fa menzione della definizione \textbf{Ricorsiva} di Formula Ben Formata
 cioè:
 $$FBF = \{t_{j}, r_{t_{1}, ... ,t_{k}}\}$$
 Dove $t_{j}$ è un termine elemento di C, di V, oppure un'applicazione di una
-funzione f($t_{1}, ... ,t_{s}$)
+funzione f($t_{1}, ... ,t_{s}$)\\ mentre
+$$r(t_{1}, ... ,t_{k})$$ 
+Che sarebbe un termine costituito da un predicato (dove le t derivano dai termini
+appartenenti alle FBF) \\ \\
+Contiamo che diversi elementi di FBF connessi dai connettivi $\forall , \exists
+\neg, \to$ appartengono ad FBF
+\paragraph{Si denota} t($t_{1}, ... ,t_{s}$) tale combinazione di termini \\
+\\
+{\color{black} \rule{\linewidth}{0.2mm} }
+\\
+Grazie alle definizioni precedenti possiamo andare a risolvere l'esempio di 
+Socrate. \\
+Iniziamo dalle cose semplici, definiamo chi sono le costanti (insieme C)$\to$ \\
+Socrate è una costante, pertanto apparterrà all'insieme C: C = \{Socrate\}, e poi
+possiamo definire quello che sono i predicati, che sono in questo caso uomo e 
+mortale. \\ \\
+I predicati appartengono all'insieme R; R = \{ uomo. mortale\} \\ \\
+Benissimo, proviamo ora a realizzare la frase "Tutti gli uomini sono mortali": \\
+Se tutti gli uomini son mortali, significa che per ogni elemento x tale che esso
+sia un uomo, si implica che x sia mortale. 
+\paragraph{Osservazione} Quando dico "Sia un uomo" e "Sia mortale", intendo che
+la funzione uomo(x) e mortale(x) siano tendenzialmente delle booleane \\ \\
+Infatti ritrascrivendolo vien fuori: $\forall$ x, (uomo(x)$\to$mortale(x)), 
+tenendo conto che Socrate è un uomo, pertanto si dirà uomo(Socrate), che se
+pensate al booleano, sì, darà \color{blue} \textbf{ true} \color{black}.
+
+
+
+
 
 
 
