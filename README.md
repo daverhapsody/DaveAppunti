@@ -1,9 +1,5 @@
 # Benvenuti nel magico mondo di Dave
 
-[TOC]
-
-
-
 ### Avvertenze:
 
 1) I miei appunti sono stati presi tutti a lezione, quindi c'è scritto quello che durante le lezioni viene erogato agli studenti, ma **CIÒ CHE C'È NEGLI APPUNTI NON È LEGGE**. Non prendete i miei appunti per buoni a prescindere, anzi! Se ci sono correzioni da proporre, qualcosa che non è chiaro, qualcosa che vi può tornare utile cambiare, inviate un **ISSUE**, oppure una **PULL REQUEST** con la modifica che intendete fare!
@@ -27,6 +23,12 @@ Se non dovesse piacermi il **LaTeX** magari proverò **markdown** (In modo che c
 ### Perchè LaTeX o Markdown?
 
 Sono formati open, il che significa che sono apribili, visualizzabili, modificabili da QUALSIASI piattaforma, il che fa in modo che chiunque possa collaborare alla realizzazione di un prodotto completo e quindi più "consistente" (?)
+
+------
+
+### Come si fa una pull request? (Si ringrazia la collaborazione di [Sofia](https://github.com/amarusofia))
+Vedi il tasto `Fork` in alto a destra? Premendolo, creerai una copia di questa repository sul tuo profilo.
+Adesso puoi fare le tue modifiche. Non appena avrai finito, premi il tasto `Pull request` e crea una nuova PR. 
 
 
 

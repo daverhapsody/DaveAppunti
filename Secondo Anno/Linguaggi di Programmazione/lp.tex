@@ -209,10 +209,10 @@ fatti),
 	$Il risultato dell'ordinamento di una lista L e $L_{1} 
 	\end{cases}
 	$
-    Quindi, lo stile prescrittivo presuppone che OGNI SINGOLO CASO venga considerato
-    e programmato. non esiste il "ma è ovvio che debba fare questo", ogni singolo
-    caso è tua responsabilità. Sì, tua, proprio tu che stai leggendo. Prolog si
-    basa su questo tipo di ordine.
+	Quindi, lo stile prescrittivo presuppone che OGNI SINGOLO CASO venga considerato
+	e programmato. non esiste il "ma è ovvio che debba fare questo", ogni singolo
+	caso è tua responsabilità. Sì, tua, proprio tu che stai leggendo. Prolog si
+	basa su questo tipo di ordine.
 	\item \textbf{Stile Dichiarativo}: L'ambiente si fa carico di generare possibili permutazioni della lista L, secondo deduzione matematica
 \end{itemize}
 \section{Paradigma funzionale}
@@ -256,10 +256,10 @@ di cui terremo in considerazione Common Lisp e Scheme, oltre che emacs etc.
 Controlla un elemento se appartiene ad una lista \\ \\
 \begin{lstlisting}[language=LISP]
 (defun member (item list)) 
-    (cond ((null list)nil) 
-        ((equal item(first list))T) 
-    (T(member item(rest list)))) 
-    (member 42(list 12 34 42))
+(cond ((null list)nil) 
+((equal item(first list))T) 
+(T(member item(rest list)))) 
+(member 42(list 12 34 42))
 \end{lstlisting}
 Dopo una parentesi tonda ci va per forza una funzione, è fondamentale, defun 
 definisce una funzione infatti, dopo c'è il nome di tale funzione. In LISP la 
@@ -375,21 +375,21 @@ supposizioni iniziali, uno si specifica, l'altro no
 \section{Dimostrazione}
 E' una sequenza di passi dove il finale è la formula da dimostrare e abbiamo
 un insieme di passi intermedi che possono essere presi dalle conoscenze
- pregresse, oppure applicando regole di inferenza ai passi PRECEDENTI, solo
- precedenti mi raccomando.
- \\ \\
- Le regole di inferenza sono applicabili solo ai passi precedenti rispetto ad 
- una formula
- \section{Logica Proposizionale}
- Nella logica proposizionale ci si occupa delle conclusioni che possiamo 
- trarre da un insieme di proposizioni, abbiamo infatti un insieme P di 
- proposizioni \\ \\
- Si introduce il concetto di \textbf{interpretazione} di un insieme di 
- proposizioni, infatti all'insieme P si associa una funzione di verità (True e 
- False) \\ \\
- Questa funzione associa un valore di verità ad ogni elemento di P, ad ogni 
- proposizione. La valutazione è il ponte tra sintassi e semantica di un 
- linguaggio
+pregresse, oppure applicando regole di inferenza ai passi PRECEDENTI, solo
+precedenti mi raccomando.
+\\ \\
+Le regole di inferenza sono applicabili solo ai passi precedenti rispetto ad 
+una formula
+\section{Logica Proposizionale}
+Nella logica proposizionale ci si occupa delle conclusioni che possiamo 
+trarre da un insieme di proposizioni, abbiamo infatti un insieme P di 
+proposizioni \\ \\
+Si introduce il concetto di \textbf{interpretazione} di un insieme di 
+proposizioni, infatti all'insieme P si associa una funzione di verità (True e 
+False) \\ \\
+Questa funzione associa un valore di verità ad ogni elemento di P, ad ogni 
+proposizione. La valutazione è il ponte tra sintassi e semantica di un 
+linguaggio
 \\ \\
 Chiaramente posso legare tra loro le proposizioni con $\vee \wedge$ e $\neg$ 
 Una formula ben formata è un insieme di espressioni sintatticamente corrette di
@@ -414,9 +414,11 @@ $\frac{p \wedge vero}{p} $ eliminazione $\vee$ \\ \\
 $\frac{p \wedge \neg p}{q} $ contraddizione
 \section{Principio di risoluzione}
 E' una regola di inferenza generalizzata semplice e facile da utilizzare ed 
-implementare, in pratica opera su fbf trasformate in forme normali congiunte, ed ognuno dei congiunti vien detto \textbf{clausola}
+implementare, in pratica opera su formule ben formate trasformate in forme 
+normali congiunte, ed ognuno dei congiunti vien detto \textbf{clausola}
 \\ \\
-L'osservazione fondamentale alla base del principio di risoluzione è un'estensione della nozione di rimozione dell'implicazione su base della contraddizione \\ \\
+L'osservazione fondamentale alla base del principio di risoluzione è un'estensione 
+della nozione di rimozione dell'implicazione su base della contraddizione \\ \\
 In pratica si usa per le dimostrazioni per assurdo.
 \section{Unit Resolution}
 Da un lato ho una formula ben formata disgiuntiva e dall'altro ho un letterale 
@@ -448,6 +450,149 @@ del mio intervento, la linea di nuovo a Dave.
 \end{itemize}
 La dimostrazione per assurdo di fatto funziona assumendo che la formula negata
 sia vera, se combinandola con le proposizioni in fbf ottengo una contraddizione
-, allora si pul concludere con la verità di p
- \end{document}}
-}
+, allora si pul concludere con la verità della proposizione.
+%Da inizio capitolo a qua devo riguardare e completare con le cose mancanti
+\subsection{Esempio di dimostrazione per assurdo}
+Abbiamo una proposizione $\lambda$ e dobbiamo dimostrare che essa sia vera: \\
+Per dimostrarlo occorre porre per ipotesi che $\neg \lambda$ sia vera e 
+\color{red}SE \color{black} FBF U {$\neg \lambda$} genera una contraddizione,
+\color{red}ALLORA \color{black} $\lambda$ è vera!
+\section{Ricapitolando} 
+Quello che noi definiamo come "Calcolo Logico" delle proposizioni va a toccare
+\begin{itemize}
+	\item Dal punto di vista della sintassi
+	\begin{itemize}
+		\item Un insieme di proposizioni che chiameremo \textbf{P}
+		\item Un insieme di \textbf{FBF}, tale che \textbf{P}$ \subseteq$ \textbf{FBF}
+		\item Un sottoinsieme di assiomi \textbf{A} $ \subseteq $ \textbf{FBF}
+		\item Un insieme di regole di inferenza che ci permettono di 
+		incrementare \textbf{FBF}
+	\end{itemize}
+	\item Dal punto di vista della Semantica
+	\begin{itemize}
+		\item Una funzione di verità che consente di distinguere \textbf{true} e
+		\textbf{false} rispetto alle tavole di verità o funzioni di interpretazione
+	\end{itemize}
+\end{itemize}
+\section{L'assioma}
+Un assioma è una conoscenza che si da per assodata, qualcosa di sicuramente vero,
+se vogliamo anche "scontato" 
+\subsection{L'esempio dell'unicorno}
+Se l'unicorno è mitico, allora è immortale, ma se non è mitico allora è mortale.
+Se è mortale o immortale allora è cornuto. L'unicorno è magico se è cornuto. \\ \\
+L'unicorno:
+\begin{itemize}
+	\item E' mitico?
+	\item E' magico?
+	\item E' cornuto?
+\end{itemize}
+\subsubsection{Procedimento}
+\begin{enumerate}
+	\item Esprimere il problema in forma di logica delle proposizioni
+	\item Individuare i teoremi da dimostrare
+	\item Dimostrare i teoremi
+\end{enumerate}
+In pratica per risolvere questo problema bisogna elencare ogni proposizione
+in questo modo:
+\begin{itemize}
+	\item UM = Mitico
+	\item UI = Immortale 
+	\item UMag = Magico
+	\item UC = Cornuto
+\end{itemize}
+Ritrascriviamo quindi la nostra frase iniziale: \\
+UM $\to$ UI, \\
+$\neg$UM $\to \neg$ UI, \\
+$\neg$UI $\vee$ UI $\to$ UC \\
+UC $\to$ UMag \\
+Mentre per quanto riguarda le domande poste:
+\begin{enumerate}
+	\item S $\vdash$ UM ?
+	\item S $\vdash$ UMag ?
+	\item S $\vdash$ UC?
+\end{enumerate}
+Ora, il metodo per risolvere le $\vdash$ potrebbe essere tramite negazione della
+nostra ipotesi. In che senso? Proviamo con il caso S $\vdash$ UC \\ \\
+\begin{itemize}
+	\item P1: $\neg$ UI $\vee$ UI $\to$ UC (Da S)
+	\item P2: $\neg$ UI $\vee$ UI (Che era stato dimostrato in un passaggio 
+	precedente con la dimostrazione di A$\to$(B$\to$C))
+	\item P3: UC (Da P1, P2 e modus ponens)
+\end{itemize} 
+\subsection{Tautologie e modelli}
+Una fbf che si verifica in ogni caso, è detta \textbf{Tautologia} (Fondamenti
+docet)\\
+Una particolare \textbf{Interpretazione} V che rende vere tutte le formule in
+\textbf{S} viene detta \textbf{modello} di S
+\section{La logica del primo ordine}
+Se la logica proposizionale si dimostra utile, avente caratteristiche di 
+computazione che da questo punto di vista sono chiare, c'è da dire che la 
+semantica è chiara allo stesso modo, però purtroppo non ci permette di 
+fare asserzioni in merito ad insieme di elementi in maniera concisa.
+\paragraph{Ai lettori} Cioè io sto capendo logica adesso e non l'ho capita a 
+Fondamenti.. Meditiamo ragazzuoli, meditiamo.
+\\
+{\color{black} \rule{\linewidth}{0.2mm} }
+\\
+Con la \textbf{Logica del primo Ordine} introduciamo modi diversi di esprimere
+le proposizioni, prendiamo per esempio Socrate (Ricordate Palmonari? Ecco)\\
+\begin{itemize}
+	\item Tutti gli uomini sono mortali
+	\item Socrate è un uomo
+	\item dalle precedenti ipotesi si deduce che Socrate è mortale
+\end{itemize}
+C'è un problemino di fondo, non si può esprimere in alcun modo qualcosa del tipo
+"Tutti gli uomini sono mortali" \\ \\
+Un linguaggio logico del primo ordine è costituito da \textbf{termini} che in 
+pratica si costruiscono con 	
+\begin{itemize}
+	\item V: insieme di simboli di variabili
+	\item C: insieme di simboli di costante
+	\item R: insieme di simboli di relazione o predicati (di qualsiasi arità)
+	\item F: insieme di simboli di funzione (di qualsiasi arità)
+\end{itemize}
+\paragraph{Ah, giusto} L'arità sarebbe il numero di argomenti di una relazione o
+predicato. (Chiaramente anche funzioni, in quanto caso particolare di relazione)
+\\ \\
+Inoltre si hanno i connettivi logici, ovvero $\forall$ (Per ogni) e $\exists$ 
+(Esiste). \\ \\
+Con la logica di primo ordina si ragiona diversamente, infatti il linguaggio
+è costruito ricorsivamente, ed i termini minimi sono detti \textbf{PREDICATI}
+\subsection{Le Formule Ben Formate nella logica del primo ordine}
+Qui si fa menzione della definizione \textbf{Ricorsiva} di Formula Ben Formata
+cioè:
+$$FBF = \{t_{j}, r_{t_{1}, ... ,t_{k}}\}$$
+Dove $t_{j}$ è un termine elemento di C, di V, oppure un'applicazione di una
+funzione f($t_{1}, ... ,t_{s}$)\\ mentre
+$$r(t_{1}, ... ,t_{k})$$ 
+Che sarebbe un termine costituito da un predicato (dove le t derivano dai termini
+appartenenti alle FBF) \\ \\
+Contiamo che diversi elementi di FBF connessi dai connettivi $\forall , \exists
+\neg, \to$ appartengono ad FBF
+\paragraph{Si denota} t($t_{1}, ... ,t_{s}$) tale combinazione di termini \\
+\\
+{\color{black} \rule{\linewidth}{0.2mm} }
+\\
+Grazie alle definizioni precedenti possiamo andare a risolvere l'esempio di 
+Socrate. \\
+Iniziamo dalle cose semplici, definiamo chi sono le costanti (insieme C)$\to$ \\
+Socrate è una costante, pertanto apparterrà all'insieme C: C = \{Socrate\}, e poi
+possiamo definire quello che sono i predicati, che sono in questo caso uomo e 
+mortale. \\ \\
+I predicati appartengono all'insieme R; R = \{ uomo. mortale\} \\ \\
+Benissimo, proviamo ora a realizzare la frase "Tutti gli uomini sono mortali": \\
+Se tutti gli uomini son mortali, significa che per ogni elemento x tale che esso
+sia un uomo, si implica che x sia mortale. 
+\paragraph{Osservazione} Quando dico "Sia un uomo" e "Sia mortale", intendo che
+la funzione uomo(x) e mortale(x) siano tendenzialmente delle booleane \\ \\
+Infatti ritrascrivendolo vien fuori: $\forall$ x, (uomo(x)$\to$mortale(x)), 
+tenendo conto che Socrate è un uomo, pertanto si dirà uomo(Socrate), che se
+pensate al booleano, sì, darà \color{blue} \textbf{ true} \color{black}.
+
+
+
+
+
+
+
+\end{document}
