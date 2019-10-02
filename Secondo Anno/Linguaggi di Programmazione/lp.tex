@@ -589,6 +589,58 @@ Infatti ritrascrivendolo vien fuori: $\forall$ x, (uomo(x)$\to$mortale(x)),
 tenendo conto che Socrate è un uomo, pertanto si dirà uomo(Socrate), che se
 pensate al booleano, sì, darà \color{blue} \textbf{ true} \color{black}.
 
+\subsection{Calcoli logici}
+Per ottenere il risultato è necessario che si utilizzino delle regole di
+calcolo %%(Soprattutto quelle legate al $\forall$ ed $\exists$ 
+\subsubsection{Regola di eliminazione del quantificatore universale}
+Il discorso è: Come si risolve il $\forall$?
+$$\frac{\forall x, T(..., x, ...), c\in C}{T(..., c, ...)} $$
+Si ok, ma come lo realizziamo?  \\ 
+Con questa super mega iper formula possiamo finalmente derivare la nostra
+conclusione a partire dalle asserzioni iniziali. 
+\begin{enumerate}
+	\item uomo(Socrate)
+	\item $\forall$x, uomo(x) $\to$ mortale(x)
+	\item mortale(Socrate)
+\end{enumerate}
+Andiamo a scrivercela sostituendo alla formula $\to$
+$$\frac{(\forall x, uomo(x) \to mortale(x)), Socrate\in C}{uomo(Socrate)\to 
+mortale(Socrate)}$$
+Ora andiamo a togliere il quantificatore universale ($\forall$ detto in modo figo)
+
+$$frac{uomo(Socrate), uomo(Socrate) \to mortale(Socrate)}{mortale(Socrate)}$$
+
+Cosa notiamo? Il "denominatore" della prima formula è diventato il "numeratore"
+della seconda, infatti vedete come abbiamo uomo(Socrate) -> mortale(Socrate)?
+\\ \\
+A questo punto bisogna togliere anche l'implicazione, o meglio risolverla. 
+Riflettendoci $A \to B$ a cosa è uguale? $\neg A \wedge \neg B$, in questo
+modo abbiamo risolto l'implicazione.
+\section{Altre regole in Logica del Primo Ordine}
+Abbiamo risolto il $\forall$, ok, ma l'$\exists$?
+Introduciamo quindi il quantificatore esistenziale:
+$$\frac{T(..., c, ...), c\in C}{\exists x, T(..., x, ...)}$$
+Per completezza possiamo dedurre il fatto che 
+$$
+\begin{cases}
+	\case SE $\exists x, \neg T(..., x, ...) = \neg \forall x, T(..., x, ...)$
+	\case SE $\forall x, \neg T(..., x, ...) = \neg \exists x, T(..., x, ...)$
+\end{cases}$$
+
+Spiegato peggio, se dico che esiste un elemento, per cui non si verifica una 
+proprietà, allora non per ogni elemento essa si verifica. \\ 
+Spiegato ancora peggio, se uno solo non si verifica, allora significa che non 
+tutte si verificano \\ \\
+
+Nel secondo caso invece se dico che per ogni x una proprietà non si verifica,
+allora non esiste alcun x per cui si verifica 
+
+\paragraph{Precisazione} In effetti negare il $\forall$ si tradurrebbe in 
+"non tutte le x", mentre è molto più semplice per l'$\exists$ in cui si dice
+"non esiste", lo specifico perchè io mi ci confondevo spesso.
+
+
+
 
 
 
