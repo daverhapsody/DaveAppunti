@@ -137,7 +137,15 @@ $$
 \subsection{Alcune precisazioni}
 \begin{itemize}
 	\item Lo spostamento è la distanza in linea d'aria
-	\item La distanza percorsa può essere nettamente maggiore
+	\item La distanza percorsa può essere nettamente maggiore, poichè è il 
+	percorso specifico che vado ad effettuare
+	\begin{itemize}
+		\item Per intenderci, da A a B potrei dover passare per un punto C, 
+		la distanza diventa minimo la somma di( A + B ) + (C + B), di conseguenza
+		a meno che siano allineati, cambia già la distanza
+		\item Se da A vado a B e torno indietro, la distanza percorsa è 2AB, 
+		mentre lo spostamento vettoriale è 0
+	\end{itemize}
 \end{itemize}
 Lo spostamento è vettoriale, la distanza percorsa è uno scalare
 \section{La velocità}
@@ -160,5 +168,79 @@ Abbiamo 3 velocità:
 Ragionando per formule inverse, se voglio capire quanto ho percorso mi basta 
 fare $d = \Delta t * v_{media}$ , ma in realtà non è propriamente corretto. 
 \newline \newline
+Se per esempio avessi qualcosa del tipo
+$$
+\begin{cases}
+SE ~ t_{1} = 1 ~ E ~ x_{1} = 1  \\ 
+SE ~ t_{2} = 2 ~ E ~ x_{2} = 4  \\ 
+SE ~ t_{3} = 3 ~ E ~ x_{3} = 9  \\
+SE ~ t_{4} = 4 ~ E ~ x_{4} = 16 
+\end{cases}$$
+Posso osservare che lo spazio percorso x(t) corrisponda all'accelerazione A*$t^{2}$
+$$x(t) = At^{2}$$
+Queste quantità sono vicine alle nostre esigenze quotidiane, oggettivamente lo
+spostamento vettoriale non dice nulla, non ci permette di dire assolutamente
+nulla durante uno spostamento. Ok, sì, la velocità media, ma in fisica non è che
+conti poi così tanto.
+\paragraph{Esempio}	
+Prendiamo un percorso $\Delta x$ (differenza tra un $x_{0} $ e $x_{1}$ che
+decidiamo noi) se io impiego un tempo $\Delta t$ (differenza tra un $t_{0} $ e 
+$t_{1}$ che sono istanti di tempo diciamo) avrei: $$\frac{\Delta x}{\Delta t} 
+= v_{media}$$ Ora il concetto è che non mi dice nulla di cosa accade nel mezzo
+del tragitto. 
+\paragraph{Ipotesi} Immaginate di avere istante tra i due che abbiam scelto,
+se usassimo la velocità media, in un determinato istante, per via dell'approssimazione
+potrebbe risultare che abbiam percorso più o anche meno chilometri, è troppo
+impreciso MA
+\\ \\
+Più sono corte le distanze, o meglio, minore è il valore di $\Delta x$ e minore
+sarà l'errore di approssimazione. Basti pensare alla media di un viaggio per
+ipotesi da Milano a Roma, magari per un tratto vado a 150, ma in un altro per 
+il traffico vado a 3 chilometri al millennio, la media è bassissima MA per via
+di questi due picchi
+\\ \\
+Possiamo ricavare dalla nostra formula con il $\Delta x$ e $\Delta t$ che quindi
+la posizione che si assume in un determinato istante sia:
+$$x_{1} = x_{0} + v_{media} x \Delta t$$
+Quando il $\Delta t$ tende a 0, notiamo che la velocità tenderà ad $\infty$
+il limite con t che tende a 0 della velocità vettoriale fratto delta t = v
+$\lim_{\Delta t \to 0} \frac{\Delta \vec{x}}{\Delta t} = v_{istantanea}$
+La velocità istantanea non è altro che la velocità in un determinato istante,
+perchè in ognuno degli istanti ho una velocità v(t). \\ \\
+Per ogni istante in pratica io calcolo alla fine 
+$$v(t) = \frac{dx(t)}{dt}$$
+Quindi in pratica otteniamo che la velocità istantanea è letteralmente una 
+derivata, in cui la t è la "discriminante" della velocità istantanea che si 
+aveva in un determinato istante (perdonate la ripetizione).
+\\ \\ 
+Con questa velocità istantanea possiamo (se applichiamo la legge oraria), 
+calcolare in modo più preciso lo spazio percorso in un determinato istante! Come?
+$$x_{1} = x_{0} + v_{t_{0}} x \Delta t$$
+Cioè siamo arrivati che abbiamo la posizione iniziale e l'istante iniziale, più
+la velocità istantanea (che è una derivata), ora ci basta solo applicare la 
+formula. 
+\\ \\ 
+Dati due punti $p_{0}$ e $p_{1}$ in una curva, essi avranno quindi i corrispettivi 
+istantanei, quindi otteniamo un $\Delta x$ ed un $\Delta t$, prendendo questi 
+ultimi si avrà che $$\Delta x_{n} = v_{m_{n}} \cdot \Delta t_{n}$$ e quindi in 
+pratica per finire avremmo
+$$\Delta x = \sum_{k=1}^n \Delta n = \sum_{k=1}^n v_{m_{n}} \cdot \Delta t_{n}$$
+La somma dei $\Delta x$ ennesimi, è coincidente con la somma di tutte le aree
+$A_{n}$ dove $A_{n} \sim \Delta x$. \\ \\
+Se $\Delta t_{n} \to 0$ allora $\Delta x = \int v(t) dt$ \\
+Per un punto specifico ad esempio avremmo che 
+$$x_{1} = x_{0} + \int_{t_{0}}^{t_{1}} v(t) dt $$
+\paragraph{Piccola osservazione} Quando diciamo che $\lim{\Delta t \to 0}$ 
+$\frac{\Delta x}{\Delta t} = v_{istantanea}$, stiamo dando per assodato che
+diminuendo l'intervallo di tempo, diminuirà il relativo spostamento, pertanto
+otterremo $\frac{0}{0}$, ok, ma vedremo che appunto tenderà ad un valore finito.
+\section{Come varia la velocità}
+Quando ho una velocità che cambia, posso definire la variazione della velocità 
+vettoriale nell'unità di tempo, e questa si chiamerà accelerazione vettoriale media
+e la indichiamo con $\vec{a_{media}}$, MA come prima servirà trovare l'accelerazione 
+istantanea. Come si trova? Come prima si usano i limiti.
+\\ \\
+Per $\Delta t \to 0$ abbiamo che $\vec{a(t)} = \lim{\Delta t \to 0} 
+\frac{\vec{\Delta v}}{\Delta t} = \frac{dv}{dt} $
 
 \end{document}
