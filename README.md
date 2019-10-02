@@ -26,7 +26,7 @@ Sono formati open, il che significa che sono apribili, visualizzabili, modificab
 
 ------
 
-### Come si fa una pull request? (Si ringrazia la collaborazione di [Sofia](https://github.com/amarusofia)
+### Come si fa una pull request? (Si ringrazia la collaborazione di [Sofia](https://github.com/amarusofia))
 Vedi il tasto `Fork` in alto a destra? Premendolo, creerai una copia di questa repository sul tuo profilo.
 Adesso puoi fare le tue modifiche. Non appena avrai finito, premi il tasto `Pull request` e crea una nuova PR. 
 
