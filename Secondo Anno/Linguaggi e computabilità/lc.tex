@@ -13,6 +13,88 @@
 \date{2 Ottobre 2019}
 \maketitle
 \tableofcontents
-\chapter{Capitolo 1}
+\chapter*{L'esame}
+Avremo due compitini, uno a novembre ed uno a Gennaio, in un anno sono 
+disponibili 5 appelli, se uno è del terzo anno, può fare i compitini, basta che
+ci sia spazio nelle aule, la precedenza va a coloro che sono del secondo anno.
+\\ \\
+Al secondo appello (Quello di Febbraio) puoi recuperare il voto negativo di uno
+dei due compitini. Non presentarsi è esattamente come provarci e non passare, 
+quindi rischiate, conviene.
+\\ \\ 
+L'orale va sostenuto nello stesso appello dello scritto, cioè io faccio lo 
+scritto, lo passo, l'orale lo devo fare in quella sessione.
+Per chi fa i compitini ed ha consegnato anche gli esercizi di lab. può fare un
+orale prima del 5 Febbraio OPPURE si può fare assieme a coloro che hanno fatto
+l'esame il 5.
+\\ \\
+Gli esercizi valgono dal momento che li invii fino a fine anno, quindi ha senso
+farli subito tutti
+\\
+{\color{black} \rule{\linewidth}{0.3mm} }
+\\
+\chapter{Linguaggi formali}
+Nascono per essere in grado di creare i linguaggi di programmazione, o meglio
+servono per gestire i protocolli di comunicazione e la possibilità di comunicare
+una determinata operazione al calcolatore.
+\section{Backus-noun form}
 
+\section{Model checking}
+Usato per protocolli di comunicazione, per esempio per protocolli di pagamento,
+in realtà di qualsiasi tipo, chiaramente per la sicurezza questo è l'ideale, 
+perchè si descrive lo stato di sistema, e si specifica se ogni stato è sicuro
+(Sicuro sia dal punto di vista dei risultati corretti che sicuri)
+\\ \\
+E' usato anche per il software, cioè in maniera automatica deduce in base alle
+condizioni di ingresso, se son corrette. Ce la fa? Si per programmi piccini, 
+ma alla fine, ma ingenerale, non esiste una tecnica che preso un software ti 
+dimostra che esso sia corretto in ogni caso. Non esiste nessuna procedura generale,
+se esistesse ci sarebbero contraddizioni logiche.
+\paragraph{Cos'è una contraddizione logica?} 
+E' un paradosso, ma a livello un po' più infame, pensate alla frase "Questa 
+frase è vera", se ci scavate a fondo, dopo un po' diventa una contraddizione.
+\section{Automi a stati finiti}
+Sono insiemi di stati ai quali arrivan dall'esterno dei dati, ed a seconda dello
+stato in cui si trovano, e del dato che arriva, allora potrebbero verificarsi le
+famose "Transizioni" che consistono nel cambiare stato.
+\\ \\ 
+La memoria del Latch SR, ad esempio, funziona come un automa, nel senso, varia
+a seconda dello stato interno, e del valore di ingresso.
+\\ \\
+\paragraph{Linguaggio Per} E' uno dei primi linguaggi di scripting, anche se ce 
+n'era qualcun altro prima, e contiene istruzioni per gestire espressioni regolari
+che possono essere applicate su testi lunghi per fare ricerche.\\ 
+In pratia prendevano delle sequenze di DNA (tera di dati), e venivano analizzati
+(con espressioni regolari) da questo linguaggio.
+\chapter{Alfabeto}
+E' un insieme finito e non vuoto di simboli, ad esempio:
+{A, B, C, D, ... , Z} , {1, 2, 3, 4, ..., 9}. \\ 
+Per gli alfabeti useremo lettere greche tipo: $\Sigma, \Lambda, \Gamma$, vediamo
+alcune definizioni ora:
+\paragraph{Stringa} La stringa è una sequenza di simboli, se è 
+vuota si definisce vuota, può esistere. \\ Data una stringa w, si indica la sua
+lunghezza con |w|. Per esempio: |acdas234| = 8, mentre se ho |$\epsilon$| = 0,
+poichè si indica che una stringa è vuota dicendo che essa abbia solo una lettera
+greca dentro
+\paragraph{Concatenazione tra stringhe}
+La concatenazione fa in modo che date due stringhe w, x l'ultimo carattere di x
+sarà il successivo dell'ultimo di w. pertanto, w, x $\to$ w $\circ$ x = wx \\
+Per esempio se ho una stringa vuota, e la concateno ad una stringa, otterrò la
+stringa (3+0 fa 0, no? :)) $\to \epsilon \circ $ w = w
+\subparagraph{NON Commutatività di una stringa}
+Concatenare due stringhe non è sempre possibile, a meno che siano perfettamente
+identiche
+\paragraph{Potenze di un alfabeto} 
+Prendiamo un alfabeto $\Sigma$ e per un k intero >= 0 $\Sigma ^{k} = \Sigma x, 
+\Sigma x, \Sigma x, \Sigma x$, ottengo una permutazione di k volte $\Sigma$, tutte
+appartenenti a $\Sigma ^{k}$ \\ \\
+Come sarà la sua cardinalità? |$\Sigma$| = q $\to$  |$\Sigma ^{k}| - q^{k}$.
+\\ \\ 
+Per k = 1 avrei $\Sigma ^{1}$ w = qualsiasi elemento di $\Sigma$(un solo elemento) 
+\\ \\
+Se ho $\Sigma$ = {0, 1} \\
+$\Sigma ^{2}$ = Tutte le permutazioni che posso fare con 0, 1 \textbf{i lunghezza 2}
+(I valori di $\Sigma$)
+\\ \\
+Per definizione $\Sigma ^{0}$ = {$\epsilon$}
 \end{document}
