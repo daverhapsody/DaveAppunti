@@ -86,7 +86,7 @@ In pratia prendevano delle sequenze di DNA (tera di dati), e venivano analizzati
 (con espressioni regolari) da questo linguaggio.
 \chapter{Alfabeto}
 E' un insieme finito e non vuoto di simboli, ad esempio:
-{A, B, C, D, ... , Z} , {1, 2, 3, 4, ..., 9}. \\ 
+\{A, B, C, D, ... , Z\} , \{1, 2, 3, 4, ..., 9\}. \\ 
 Per gli alfabeti useremo lettere greche tipo: $\Sigma, \Lambda, \Gamma$, vediamo
 alcune definizioni ora:
 \paragraph{Stringa} La stringa è una sequenza di simboli, se è 
@@ -136,7 +136,7 @@ $$L_{2} = {ac, ca, acb, abc, cab, cba, ...}\\
 abc \in L_{2}?? Yes\\
 ccbb \in L_{2}?? Nope$$ 
 
-\paragraph{Detto meglio} (Problema di Membership) $W \in \Sigma ^{*} \to L 
+\paragraph{Detto meglio} (Problema di Membership) \\ $W \in \Sigma ^{*} \to L 
 \begin{cases}
 SI, ~ Se ~ w \in L \\
 NO, ~ Se ~ W \in \Sigma ^{*} senza ~ L (Complemento~di~L)
@@ -154,17 +154,54 @@ generarlo ~(grammatica)\\
 riconoscerlo ~(macchina~autonoma)
 \end{cases}$
 \paragraph{Grammatica} Insieme di regole che specificano come va fatta una stringa
-Una grammatica G è una quadrupla $\to$ G = (V, T, P, S) in cui
+Una grammatica G è una quadrupla $\to$ G = (V, T, P, S) ~in ~cui~
 \begin{itemize}
 	\item V: variabili
 	\item T: Simboli terminali
 	\item P: insieme delle produzioni
 	\item $S \in V$: simbolo di start
 \end{itemize}
-\paragraph{Problema di decisione} E' un problema la cui risposta possibile è
-sì o no (Cioè alla fine true o false). Risolvere un problema di decisione non 
-pè altro che risolvere un problema di membership.
-\\ \\
+
+\paragraph{I tipi di grammatiche}
+Esiste una gerarchia (Noam) Chomsky, che negli anni 50 si poneva domande su 
+cosa accade nel cervello umano quando si elabora un linguaggio. \\ \\
+La sua ipotesi (smentita) c'è una sorta di grammatica codificata/cablata
+per elaborare il linguaggio, e (malgrado smentita) è saltata comunque fuori 
+questa gerarchia
+\begin{enumerate}
+	\item Grammatiche tipo 0: , i 	
+	\begin{itemize}
+		\item Non hanno restrizioni sulle produzioni
+		\item Sono riconosciuti dalle macchine di Turing (Alan Turing)
+		\item linguaggi che generano sono i ricorsivamente numerati, li vedremo a 
+		computabilità (Sia deterministiche che non)
+	\end{itemize}
+	\item Grammatiche Tipo 1: La testa ha lunghezza $\geq$ corpo, ne vedremo 
+	solo due esempi
+	\begin{itemize}
+		\item Linguaggi dipendenti dal contesto, riconosciuti da macchine 
+		particolari come la macchina di Turing, che lavorano spazio lineare
+		Cioè Se n è la lunghezza della prima forma sentenziale da cui parto, 
+		tutte le altre forme sentenziali non potranno essere più lunghe, e quindi
+		non può crescere il numero di simboli, tenderà sempre a diminuire.
+	\end{itemize}
+	Le regole di produzione di tipo 1:
+	$\alpha _{1} ~ A ~ \alpha _{2} ~ \to ~ \alpha _{1}~ \beta ~ \alpha_{2} ~ con ~ \alpha _{1,2}
+	,\beta ~ \in ~ (V ~ \cup ~ T)^{*} ~ , ~ \beta ~ \neq ~ \epsilon, A\in V$
+	\paragraph{Problema di decisione} E' un problema la cui risposta possibile è
+	sì o no (Cioè alla fine true o false). Risolvere un problema di decisione non 
+	pè altro che risolvere un problema di membership.
+	\item Grammatiche Tipo 2: 
+	Le regole di produzione qui sono del tipo A$\in$B, con A$\in$V e 
+	$\beta \in(V \cup T)^{*}$
+	Sono linguaggi context free, e vengono riconosciuti da macchine (o automi) a
+	pila monoterministica
+	\item Grammatiche Tipo 3: Sono le grammatiche regolari e quindi producono e
+	generano semplicemente linguaggi regolari, e le produzioni delle grammatiche
+	regolari si possono tutte trasformare in modo tale che A$\in$ aB $\wedge$ A
+	$\in$ a con A, B$\in$V e a$\in$ T, riconosciuti da automi a stati finiti, 
+	deterministici o monodeterministici
+\end{enumerate}
 Il complemento di un linguaggio può essere sia infinito che finito (Nel senso
 posso escludere elementi oppure posso considerare solo quelli!)
 \\ \\ 
@@ -183,8 +220,8 @@ Più in modo formale si può dore che w è \textbf{palindroma} quando $w = w^{R}
 Definizione induttiva:
 $$
 \begin{cases}
-	base:~\epsilon, 0, 1 \in L_{pal} \\
-	passo~induttivo:~ se ~w\in ~L_{pal} ~allora ~OwO, ~1w1 ~\in ~L_{pal}
+base:~\epsilon, 0, 1 \in L_{pal} \\
+passo~induttivo:~ se ~w\in ~L_{pal} ~allora ~OwO, ~1w1 ~\in ~L_{pal}
 \end{cases}
 $$
 \\
@@ -194,21 +231,21 @@ S ~ \in ~ 0 \\
 S ~ \in ~ 1 \\
 S ~ \in ~ 0S0 \\
 S ~ \in ~ 1S1$$
-Con S che è una variabile (categoria sintattica), e {0, 1} che sono i simboli
+Con S che è una variabile (categoria sintattica), e \{0, 1\} che sono i simboli
 terminali con cui si scrivono le stringhe del linguaggio.\\ \\
 Queste si chiamano regole di produzione in cui la testa è occupata in questo
 caso dalla freccia, mentre i vari 0 1 0S0 e 1S1 sono il corpo. S PUO' diventare
 il corpo \\ \\ 
 Detto questo possiamo dire che
-$$G_{pal} = (V, T, P, S), in cui $$\\
+$$G_{pal} = (V, T, P, S), ~in ~cui $$\\
 \begin{itemize}
-	\item V = {S}
-	\item T = {0, 1}
+	\item V = \{S\}
+	\item T = \{0, 1\}
 	\item P = $S \in \epsilon, S \in 0, S \in 1, S \in 0S0, S \in 1S1$
 \end{itemize}
 
 Più in generale
-$$G_{pal} = ({S},{0, 1}, P, S) dove P = {S \in \epsilon, ...}$$
+$$G_{pal} = (\{S\},\{0, 1\}, P, S) dove P = \{S \in \epsilon, ...\}$$
 \paragraph{Derivazione}
 $S \implies 1S1 \implies 10S01$, dove 1S1 è una forma sentenziale e la S cambia in
 funzione delle regole che ho deciso sopra (per generare la stringa ovviamente.)
@@ -225,5 +262,9 @@ iniziano per 0, devo avere, dato che non posso forzare l'ordine con cui vengono
 applicate le mie regolo, devo avere un "permesso" speciale che consenta di 
 generare 0 all'inizio alla fine. Cioè, dentro ci può essere un pandemonio, ma 
 fuori ci deve essere la regola che stabilisce l'esistenza di 0.
+\section{Parentesi bilanciate}
+T =\{(,)\}, in cui () $\in$ $L_{bal}$, (()) $\in$ $L_{bal}$, ()() $\in$ $L_{bal}$,
+$\epsilon \in L_{bal}$ \\ \\
+Se W $\in L_{bal}$, allora (W) $\in L_{bal}$ esattamente come WW$\in L_{bal}$
 
 \end{document}
