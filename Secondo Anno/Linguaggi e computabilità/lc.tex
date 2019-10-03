@@ -4,7 +4,14 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath} 
 \usepackage{xcolor}
-\usepackage[margin=0.5in]{geometry}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
 %usepackage[latin1]{inputenc}
 \begin{document}
 \pagestyle{plain}
@@ -37,7 +44,18 @@ farli subito tutti
 Nascono per essere in grado di creare i linguaggi di programmazione, o meglio
 servono per gestire i protocolli di comunicazione e la possibilità di comunicare
 una determinata operazione al calcolatore.
-\section{Backus-noun form}
+\section{Backus-naur form (Backus Normal Form)}
+\paragraph{Definizione}Da 
+\href{https://it.wikipedia.org/wiki/Backus-Naur_Form}{Wikipedia}:
+è una metasintassi, ovvero un formalismo attraverso cui è possibile descrivere 
+la sintassi di linguaggi formali (il prefisso meta ha proprio a che vedere con 
+la natura circolare di questa definizione). Si tratta di uno strumento molto 
+usato per descrivere in modo preciso e non ambiguo la sintassi dei linguaggi di
+programmazione, dei protocolli di rete e così via, benché non manchino in 
+letteratura esempi di sue applicazioni a contesti anche non informatici e 
+addirittura non tecnologici. La BNF viene usata nella maggior parte dei testi 
+sulla teoria dei linguaggi di programmazione e in molti testi introduttivi su
+specifici linguaggi.  
 
 \section{Model checking}
 Usato per protocolli di comunicazione, per esempio per protocolli di pagamento,
@@ -97,4 +115,5 @@ $\Sigma ^{2}$ = Tutte le permutazioni che posso fare con 0, 1 \textbf{i lunghezz
 (I valori di $\Sigma$)
 \\ \\
 Per definizione $\Sigma ^{0}$ = {$\epsilon$}
+
 \end{document}
