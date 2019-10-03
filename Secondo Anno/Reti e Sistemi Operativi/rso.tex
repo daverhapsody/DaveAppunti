@@ -7,18 +7,154 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{hyperref}
 \hypersetup{
-    colorlinks=true,
-    linkcolor=blue,
-    filecolor=magenta,      
-    urlcolor=cyan,
+colorlinks=true,
+linkcolor=blue,
+filecolor=magenta,      
+urlcolor=cyan,
 }
 %usepackage[latin1]{inputenc}
 \begin{document}
-\pagestyle{headingsg}
+\pagestyle{headings}
 \author{DaveRhapsody}
 \title{Reti e Sistemi Operativi}
 \date{3 Ottobre 2019}
 \maketitle
 \tableofcontents
-\chapter{Capitolo 1}
+\chapter{La rete}
+La rete è un insieme di nodi, che sono tendenzialmente pc, server, terminali,
+e dispositivi radio che consentono ai dispositivi senza fili di collegarsi
+(per intenderci, gli access point wi-fi), ma attenzione! \\ \\
+Qui si parla di wi-fi, non della rete a cella telefonica, non si parla di 4G etc.
+\section{Il modello TCP/IP}
+Al centro è presente un Router, dispositivo in grado di INDIRIZZARE quelli che
+sono i pacchetti IP (Internet Protocol). Cos'è un pacchetto?
+\paragraph{Pacchetto}: E' un "Record/Struct" composto da un campo dati 
+detto payload), ed un
+campo header, che serve al protocollo di riferimento come etichetta che dice (ad 
+un protocollo)  "Questo pacchetto lo puoi leggere".
+Cosa contiene l'Header? 
+$$header=\begin{cases}
+indirizzi \\ livelli~di~priorità \\ contatori 
+\end{cases}$$
+A che servono i contatori? 	\\
+Immagina di avere un problema nella rete in cui appare un routing loop (pensate
+alla lista circolare)\\ \\
+I pacchetti è auspicabile che siano di dimensioni piccine, immaginate un film 
+di dimensioni tendenti al Gigabyte, un pacchetto da un Giga è pressochè (ad oggi)
+insostenibile, pertanto, si riduce in pezzettini. Soprattutto c'è una probabilità
+di errore più bassa! 
+(Pensate di mangiarvi una Fiorentina in un solo boccone o di tagliarla prima un
+pochino, stesso concetto.) \\ \\
+Un altro motivo per cui vengono usati i pacchetti è legato al fatto che inviare
+un qualsiasi dato occupa un canale. Intendiamoci, se da A a B (terminali) abbiamo un solo
+cavo, non c'è problema, no?	\\ \\ Ok, ma se A e B sono degli switch aventi 10 pc 
+connessi assieme? Se uno deve caricare un giga di roba la gente deve aspettare 
+che questo finisca MA utilizzando un sistema a pacchetti, otteniamo che ci sia
+una sorta di "turno" per ogni pacchetto. Di conseguenza non si intasa la luce.
+\\ \\
+Il sistema sopracitato si chiama multiplazione o multiplexing statistico, perchè
+quando io metto tanti flussi di info che viaggiano sullo stesso collegamento, 
+potrebbero accadere congestioni di rete, oppure comunque uno deve aspettare. Ecco
+i pacchetti dei pacchetti che attendono si chiama buffer. Più hai host di rete,
+più ti conviene aumentare la dimensione del buffer.
+\\
+\paragraph{Lo switch} Sono dei dispositivi che consentono di costruire la rete
+con più livelli, proprio perchè ad essi vengono collegati altri dispositivi. 
+Uno switch utilizza connessioni Ethernet, ed una serie di nodi collegati ad uno
+switch forma una LAN. ATTENZIONE, quando si menziona l'access point, la rete 
+che si forma si chiama WLAN, ovvero (Wireless LAN (Local area network)).
+\paragraph{Terminale}
+Il terminale (o host) sarà tendenzialmente un qualsiasi dispositivo che hosta 
+applicazioni che lavorano in rete. 
+\subparagraph{ATTENZIONE} la rete è identificata dal Router.
+\\
+Quando noi diciamo Internet, di fatto, stiamo parlando di un insieme di reti,
+appunto inter - net, più reti, ergo, più router. C'è un agreement totale che 
+consente ad un terminale in una zona, per poter arrivare ad un'altra.
+\\ \\
+Vi ricordate il cammino dei nodi? Ecco, stesso concetto.
+\\
+Questi nodi che si attraversano per passare da una rete A ad una rete B si 
+chiamano autonomous systems, ed il cammino tra mittente e destinatario di un 
+messaggio è identificato dagli autonomous per cui il pacchetto passo.
+\\ \\
+Più precisamente questi Autonomous sono dei Gateway, gestiti con un protocollo
+(BGP, Border Gateway Protocol) in grado di regolare le comunicazioni tra questi AS.
+\\ Ogni sistema autonomo, a sua volta all'interno avrà un certo insieme di altri 
+router e reti, e quindi sarà presente un altro protocollo (IGP, Internal gateway 
+protocol).
+\paragraph{Sicurezza di un AS}
+Ogni sistema autonomo è gestito da un "master" in grado di poter decidere cosa 
+possa passare da quella rete, specifica le famose policy di Routing. La domanda
+che sorge è.. Chi gestisce gli AS in toto? I gestori della rete, quelli telefonici.
+\section{Cosa influenza le prestazioni di una rete?}
+Analizzeremo due quantità
+\paragraph{Latenza/ritardo}
+La latenza (o ritardo) non è altro che il tempo che intercorre tra l'invio e la 
+ricezione di un pacchetto. 
+Esistono diversi tempi:
+\begin{itemize}
+	\item Tempo di processing: E' una quantità infinitesimale che indica il 
+	tempo impiegato per elaboare un pacchetto
+	\item Tempo di coda: Per misurarlo devo capire oggettivamente quanto viene
+	usata quella coda (esistono interi studi sulle code, ma a noi ci importa
+	una bellissima  ;) (Almeno, per questo corso si intende)) \\ \\
+	Per un sistema stabile è auspicabile che il rapporto tra i dati contenibili
+	nel buffer ed il rate di dati trasmessi al secondo sia $\leq$ 1, detto meglio:
+	$$ \frac{nL}{R}\leq 1$$ 
+\end{itemize}
+\paragraph{Throughput}
+Il through put è il quantitativo di dati che riescono ad essere trasferiti in 
+un determinato quantitativo di tempo (Avete presente Mbps, Gbps, Kbps, quella
+roba lì)
+\section{Stratificazione}
+Il concetto di stratificazione consiste nel includere le funzioni di una rete
+non in un solo protocollo ma in una serie di protocollo che abbiano uno
+specifico compito, e sia indipendente dagli altri 
+\paragraph{La filosofia KISS}
+Keep it simple stupid, è la filosofia che regola anche il mondo Unix e Gnu/Linux,
+ovvero, ogni componente fa il suo mestiere, fa la sua funzione, evitare di 
+mettere in mano ad un componente 10 compiti diversi, per intenderci. 
+\\ \\ 
+Inoltre dividendo in più componenti io ho possibilità di testare il singolo
+componente, il singolo protocollo, il singolo problema SENZA, S E N Z A andare
+a danneggiare o danneggiare gli altri protocolli/componenti!
+\paragraph{Stack ISO/OSI}
+Questo è lo stack più preciso ingrandito dell'TCP/IP, visto dal livello più 
+basso al livello più alto
+\begin{itemize}
+	\item physical
+	\item data link
+	\item network
+	\item transport
+	\item session
+	\item presentation
+	\item application
+\end{itemize}
+\section{livello Physical}
+Nel livello fisico viene convertito quello che è il segnale elettrico in una
+sequenza di 0 ed 1
+\section{Livello Data Link}
+Si implementa MAC (Medium Access Control), converte quelli che erano
+degli 0 ed 1 e li fa diventare dei pacchetti (yes, c'è il primo header, cioè 
+quello del physical).
+\\ \\ 
+L'indirizzo MAC identifica univocamente un dispositivo in rete, QUALSIASI esso sia.
+E non solo, mondialmente, N O N esistono due dispositivi DIVERSI aventi lo STESSO
+Mac address. A che serve oltre questo? Serve al protocollo ip per capire CHI
+è il mittente o destinatario, e sì, è incluso nell'header
+\section{Rete} E' il livello di internet, l'IP protocol, con indirizzo ipv4 v6 etc.
+\section{Trasporto}
+E' il livello in grado di trasportare tramite internet quelli che sono i pacchetti
+applicazione, trasporta i datagram ip, trasporta i pacchetti appunto tramite 
+internet, sono presenti due protocolli (TCP e UDP) che si occupano di fare questo
+\section{Applicazioni} Il nome parla da sè, non lo studieremo in questo corso.
+\\ \\
+Qui noi si studierà dal data link al transport MA in ordine invertito, ovvero
+partiamo da "Che cosa vuole l'applicazione?" e poi andiamo a scalare.
+
+
+
+
+
 \end{document}
