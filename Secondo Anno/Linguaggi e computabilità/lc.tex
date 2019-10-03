@@ -7,10 +7,10 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{hyperref}
 \hypersetup{
-    colorlinks=true,
-    linkcolor=blue,
-    filecolor=magenta,      
-    urlcolor=cyan,
+colorlinks=true,
+linkcolor=blue,
+filecolor=magenta,      
+urlcolor=cyan,
 }
 %usepackage[latin1]{inputenc}
 \begin{document}
@@ -115,6 +115,115 @@ Se ho $\Sigma$ = {0, 1} \\
 $\Sigma ^{2}$ = Tutte le permutazioni che posso fare con 0, 1 \textbf{i lunghezza 2}
 (I valori di $\Sigma$)
 \\ \\
-Per definizione $\Sigma ^{0}$ = {$\epsilon$}
+Per definizione $\Sigma ^{0}$ = {$\epsilon$}, \\
+\subparagraph{Attenzione} Quello che è contenuto in $\Sigma$ è un insieme di STRINGHE
+non caratteri o simboli. 
+\paragraph{Chiusura di Kleene}
+$\Sigma ^{*}$ = U per k $\geq$ 0 $\Sigma ^{*}$ = U per k $\in$ {0 ad $\infty$}
+di $\Sigma ^{k}$
+\\ \\
+$\Sigma ^{+}$ = $\Sigma ^{*} - \Sigma ^{0}$, invece $\Sigma ^{*}$ è considerabile
+come $\Sigma ^{+} \cup \Sigma ^{0}$
+\paragraph{ATTENZIONE} La L che userò nei prossimi passaggi ($\to L$) è una MACCHINA 
+AUTONOMA che verifica la stringa in questione
+\paragraph{Linguaggio L su $\Sigma$}
+E' un sotto insieme di $\Sigma ^{*}$, o meglio L  $\subseteq \Sigma ^{*}$ 
+Ad esempio:
+$$\Sigma = {a, b, c} \to L_{1}={aa, cbc}  \subseteq \Sigma ^{*} \\
+L_{2} = {w \in {a,b,c}^{*} t.c. ~ W ~ contiene ~ stesso ~ numero~di~a~e~c} $$
+In pratica
+$$L_{2} = {ac, ca, acb, abc, cab, cba, ...}\\
+abc \in L_{2}?? Yes\\
+ccbb \in L_{2}?? Nope$$ 
+
+\paragraph{Detto meglio} (Problema di Membership) $W \in \Sigma ^{*} \to L 
+\begin{cases}
+SI, ~ Se ~ w \in L \\
+NO, ~ Se ~ W \in \Sigma ^{*} senza ~ L (Complemento~di~L)
+\end{cases}$ \\ \\
+Attenzione, il linguaggio è un insieme, contiene quindi ELEMENTI, e di 
+conseguenza può contenere anche l'insieme vuoto! \\ \\
+\paragraph{Osservazione:} w può essere appartente a $\Sigma ^{*}$ MA non 
+all'insieme vuoto. Occhio a non confondersi
+\\ \\
+In generale un linguaggio formale va studiato secondo due punti di vista almeno.
+\\ \\
+Avendo un linguaggio L  $\subseteq \Sigma ^{*} posso 
+\begin{cases}
+generarlo ~(grammatica)\\
+riconoscerlo ~(macchina~autonoma)
+\end{cases}$
+\paragraph{Grammatica} Insieme di regole che specificano come va fatta una stringa
+Una grammatica G è una quadrupla $\to$ G = (V, T, P, S) in cui
+\begin{itemize}
+	\item V: variabili
+	\item T: Simboli terminali
+	\item P: insieme delle produzioni
+	\item $S \in V$: simbolo di start
+\end{itemize}
+\paragraph{Problema di decisione} E' un problema la cui risposta possibile è
+sì o no (Cioè alla fine true o false). Risolvere un problema di decisione non 
+pè altro che risolvere un problema di membership.
+\\ \\
+Il complemento di un linguaggio può essere sia infinito che finito (Nel senso
+posso escludere elementi oppure posso considerare solo quelli!)
+\\ \\ 
+\section{Linguaggio context-free (CFL) legati a grammatiche Context Free (CFG)}
+In questo caso si utilizza una forma ricorsiva per definire questi linguaggi,
+\\ \\
+Ricordiamoci del fatto che io posso mettere due linguaggi in serie, posso 
+includerne uno in un altro MA non posso accavallarli. Nel senso, o tutto di 
+entrambi, o niente. Ma torniamo ai \textbf{Context free}
+\\ \\
+\paragraph{La stringa palindroma}
+Sono stringhe la cui lettura è identica in qualsiasi verso si leggano. Supponiamo
+$\Sigma$ = {0, 1} es. $L_{pal} \subseteq \Sigma ^{*} \to "0110", "11011", 
+\epsilon$, perchè la stringa vuota è considerata palindroma. \\ 
+Più in modo formale si può dore che w è \textbf{palindroma} quando $w = w^{R}$
+Definizione induttiva:
+$$
+\begin{cases}
+	base:~\epsilon, 0, 1 \in L_{pal} \\
+	passo~induttivo:~ se ~w\in ~L_{pal} ~allora ~OwO, ~1w1 ~\in ~L_{pal}
+\end{cases}
+$$
+\\
+$$
+S \in \epsilon\\
+S ~ \in ~ 0 \\
+S ~ \in ~ 1 \\
+S ~ \in ~ 0S0 \\
+S ~ \in ~ 1S1$$
+Con S che è una variabile (categoria sintattica), e {0, 1} che sono i simboli
+terminali con cui si scrivono le stringhe del linguaggio.\\ \\
+Queste si chiamano regole di produzione in cui la testa è occupata in questo
+caso dalla freccia, mentre i vari 0 1 0S0 e 1S1 sono il corpo. S PUO' diventare
+il corpo \\ \\ 
+Detto questo possiamo dire che
+$$G_{pal} = (V, T, P, S), in cui $$\\
+\begin{itemize}
+	\item V = {S}
+	\item T = {0, 1}
+	\item P = $S \in \epsilon, S \in 0, S \in 1, S \in 0S0, S \in 1S1$
+\end{itemize}
+
+Più in generale
+$$G_{pal} = ({S},{0, 1}, P, S) dove P = {S \in \epsilon, ...}$$
+\paragraph{Derivazione}
+$S \implies 1S1 \implies 10S01$, dove 1S1 è una forma sentenziale e la S cambia in
+funzione delle regole che ho deciso sopra (per generare la stringa ovviamente.)
+\\ \\ In modo compatto: \\
+$S \in \epsilon | 0 | 1 | 0S0 | 1S1$
+\\ \\
+C'è una precisazione da fare, se per esempio avessi la regola che le mie stringhe
+debbano iniziare per 0, quando andrò a fare 0S0, allora quell'S volendo può
+essere sostituita con una \textbf{nuova} variabile che chiamiamo \textbf{X}. \\ \\
+\textbf{X} non è altro che una variabile che rappresenta l'insieme di tutte le
+palindrome.
+Perchè cambiare variabile? Perchè se io voglio ad esempio le palindrome che 
+iniziano per 0, devo avere, dato che non posso forzare l'ordine con cui vengono
+applicate le mie regolo, devo avere un "permesso" speciale che consenta di 
+generare 0 all'inizio alla fine. Cioè, dentro ci può essere un pandemonio, ma 
+fuori ci deve essere la regola che stabilisce l'esistenza di 0.
 
 \end{document}
