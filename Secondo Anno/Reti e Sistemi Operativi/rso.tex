@@ -20,7 +20,7 @@ urlcolor=cyan,
 \date{3 Ottobre 2019}
 \maketitle
 \tableofcontents
-\chapter*{La rete}
+\chapter{La rete}
 La rete è un insieme di nodi, che sono tendenzialmente pc, server, terminali,
 e dispositivi radio che consentono ai dispositivi senza fili di collegarsi
 (per intenderci, gli access point wi-fi), ma attenzione! \\ \\
@@ -170,10 +170,142 @@ creato un panino (\color{red}Pacchetto\color{black})! \\ \\
 Il data link passerà questo panino al \color{red}Network\color{black}, e lì ci 
 saranno altre due fette di pane che includeranno il nostro panino. 
 Ed in questo modo abbiamo ottenuto un panino dentro ad un altro panino! Ossia,
- un pacchetto incapsulato in un pacchetto che semplicemente aggiunge un header 
- (o intestazione) ;) Ma torniamo seri adesso. \\
+un pacchetto incapsulato in un pacchetto che semplicemente aggiunge un header 
+(o intestazione) ;) Ma torniamo seri adesso. \\
 {\color{black} \rule{\linewidth}{0.2mm} }
 \\
-
-
+\chapter{Livello Trasporto}
+Il livello di trasporto è il livello che riceve messaggi dal livello application
+ed ha come compito quello di mettere in comunicazione end-to-end due nodi.
+Nel caso del livello di trasporto non si parla di pacchetti ma di Segmenti (
+Dall'esempio sopra riportato sì, è stato incapsulato il pacchetto del lv network).
+\\ \\
+Quando viene analizzato il segmento si effettua la DEMULTIPLAZIONE 
+(Demultiplexing), ovvero si analizza l'header del segmento per vedere a quale
+applicazione sarà destinataria di un determinato messaggio.
+\paragraph{Cosa contiene un segmento di trasporto?}
+\begin{itemize}
+	\item Numero di porta: presente in ogni segmento, rappresenta una applicazione
+	e dal punto di vista dell'applicazione è come se fosse un punto di 
+	accesso, detto anche SOCKET. 
+	\paragraph{NON CONFONDIAMOCI} Il livello transport vede una porta, mentre
+	il livello applicazione vede un socket. All'atto pratico c'è una syscall
+	che letteralmente può attivare qualsiasi socket.
+	\item Protocollo Transport TCP o UDP.
+\end{itemize}
+\paragraph{Che differenza c'è tra TCP e UDP?}
+UDP è quello che usate negli streaming di Rojadirecta
+, in cui pur di vedere la vostra squadra 
+(che ovviamente è la Fiorentina, vero? <3) non vi preoccupate di perdere qualche
+dato (tipo immagine un po' sgranata ogni tanto e simili).
+\subparagraph{Infatti} UDP se ne frega se un pacchetto è arrivato, è usato
+per comunicazioni anche per esempio le voice chat, roba di questo genere, poichè
+\textbf{NON} effettua alcun controllo sulla correttezza dei messaggi, diciamo
+che lui ti invia roba, se non ti arriva non gli importa, va avanti, perchè qui
+è importante che si sia il più aggiornati possibile.
+\\ 
+Al contrario TCP effettua questi controlli, perchè con TCP si garantisce la 
+correttezza (sia dei dati stessi che dell'ordine in cui arrivano), pertanto 
+potrebbe essere un problema.
+\\ \\
+Il segmento può avere sia TCP che UDP, e nel caso di UDP si ha un IP +
+Porta di destinazione, o meglio
+$$Pacchetto UDP~ =~ \begin{cases}
+SourcePort: ~Porta~ sorgente \\
+DestinationPort: ~Porta~ di ~destinazione \\
+Lunghezza: Indica~ la~ lunghezza ~totale ~del ~segmento~ (+payload~ \\dei ~livelli
+~inferiori)\\
+Checksum:~ Verifica ~la ~correttezza ~di ~trasmissione \\
+\end{cases}$$
+\\ 
+Supponiamo di avere un web server, (quello che consente di vedere una pagina web)
+, la porta d'accesso è la stessa ma hai più utenti con la stessa pagina
+\\ \\
+Nel caso di TCP invece un segmento è composto non solo dall'IP + la porta di 
+destinazione, ma è composto in questo modo:
+$$\begin{cases}
+IP_{A} \\
+IP_{B} \\
+PORT_{A} \\
+PORT_{B}
+\end{cases}$$
+A e B in questo caso sono tendenzialmente sorgente e destinataria, ed il calcolo
+del checksum precedente è effettuato direttamente dal livello Transport stesso.
+\\ \\
+Attenzione, nell'introduzione abbiamo anche detto che già nel datalink abbiamo 
+dei controlli, pertanto ogni livello può svolgere la correzione dei pacchetti,
+pertanto non si attiva quasi mai, perchè Transport dà per scontato che Network
+e Datalink gli abbian passato qualcosa di corretto.
+\\ \\
+Il codice di implementazione del controllo è tipo di migliaia di righe di codice
+per correggere o prevenire errori, ed è giustissimo così. Contiamo che ormai TCP
+e UDP non si possono rompere, sono più che sicuri.
+\section{TCP}
+Il concetto è che si vuole trasferire dati in modo affidabile, o meglio, si 
+vuole fare in modo che i dati arrivino a destianazione 
+e siano corretti in generale.
+\\ \\ 
+Il trasferimento dati affidabile dipende da una serie di fattori, e si verifica
+quando ho una rete con le seguenti caratteristiche:
+\begin{enumerate}
+	\item Nessuna perdita
+	\item Nessun errore
+	\item I dati son corretti e presenti tutti quanti
+\end{enumerate} 
+\paragraph{Nel caso avvengano errori} si può ricorrere a diverse metodiche di
+soluzione, come ad esempio la tecnica di ritrasmissione. Ossia, non ti è 
+arrivato il mio pacchetto? Ok, te lo rimando. Nell'atto pratico è una cosa del tipo
+$$\begin{cases}
+if(ricevoAcknoledgment)~then~mandoSucessivo(); \\
+else~if(ricevoNotAcknoledgment)~rimandoPacchetto();
+\end{cases}$$
+Quello che chiamo not acknoledgment (che da ora chiameremo solo ACK) viene 
+inviato SE il pacchetto è non corretto, per esempio per il checksum.
+\\ \\
+E se il pacchetto poi è lo stesso? Ne ricevo due? No. I pacchetti sono numerati
+hanno un ordine, pertanto
+$$\begin{cases}
+if(ricevoACK) m+1;\\
+else m
+\end{cases}$$
+con m che è il "pezzetto" successivo o precedente, è importante che si capisca 
+questo.
+\\ \\ Ora cerchiamo di integrare, è necessario che il sistema mi mandi indietro
+sì se ha ricevuto ma ANCHE la posizione a cui è arrivato! (Sistema PAR, positive
+acknoledgmente with retransmition).
+\\ \\
+Quindi mi mandi un messaggio e io ti rispondo dicendo ok messaggio, tu mi mandi
+il due, io rispondo ok due, tu mi mandi tre io rispondo ok due, mi rimandi tre.
+\paragraph{Perdite}
+Sì, ok, ma se uno non mi riesce a rispondere? Si imposta un semplice timer
+la cui scadenza implica che ti rimando il pacchetto. Un po' come quando dici
+una cosa con la musica alta a uno e lui ti guarda tipo fisso... Passa tempo, e
+poi ripeti la cosa. 
+\\ \\ 
+E se io continuo a rispondere? Lui che fa continua come un pazzo a ripetere la
+stessa cosa come Ciuchino che chiedeva a Shrek ogni 2 millisecondi
+"Siamo arrivati?"? NO! C'è un contatore che si aziona ad ogni mancata risposta,
+una volta che arriva ad un tot, chiudo la comunicazione.
+$$\begin{cases}
+	if(timerGoesOff) ~ trasmetti(messaggio_{i}) ~ AND ~ setTimer(0); \\
+	else ~if(ACK_{i}) ~trasmetti(messaggio_{i+1} ~ AND~  setTimer(0)); \\
+	else~ trasmetti(messaggio_{i}) ~ AND ~ setTimer(0);
+\end{cases}$$
+\paragraph{ATTENZIONE} Supponendo un timer troppo corto, accadrebbe che il 
+destinatario non fa in tempo a rispondere, e quindi il mittente rifà la domanda
+prima di ricevere la risposta, hai già due domande con una risposta. \\ \\ 
+All'atto pratico questo problema esiste davvero, è un problema reale, pertanto si deve
+riuscire a capire il modo in cui il timer vada adattato alle condizioni di rete,
+che a seconda del traffico può essere più lenta o anche più veloce.\\ \\
+\subsection{I tempi di una connessione}
+Riprendiamo il concetto di latenza (tempo che intercorre tra invio e ricezione),
+bene, quello è concettualmente il tempo di trasmissione, da qui possiamo calcolare che
+$$utilizzoRete = \frac{\frac{L}{R}}{latenza+\frac{L}{R}}$$ 
+in cui $\frac{L}{R}$ rappresenta la quantità di dati passabili in un determinato
+tempo. E la latenza... E' la latenza. 
+\subsection{Protocolli a Finestra Scorrevole (Sliding Windows)}
+Io trasferisco un insieme di w pacchetti, i quali impiegheranno $w*\frac{L}{R} 
+\geq \frac{L}{R}+RTT$ tempo ad esser trasposti, pertanto ne esce che
+$$w \geq \frac{RTT\cdot R}{L} +1$$
+Questo ovviamente in mancanza di errori e perdite.
 \end{document}
