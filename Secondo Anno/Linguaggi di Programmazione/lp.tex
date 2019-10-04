@@ -18,7 +18,7 @@
 \color{black}
 \maketitle
 \tableofcontents
-\chapter*{Introduzione al corso}
+\chapter{Introduzione al corso}
 \section{Programma del corso}
 Il corso è volto ad insegnare dei paradigmi di programmazione dei seguenti tipi:
 \subsection{Logica Matematica e Linguaggi logici (Prolog)}
@@ -625,8 +625,8 @@ $$\frac{T(..., c, ...), c\in C}{\exists x, T(..., x, ...)}$$
 Per completezza possiamo dedurre il fatto che 
 $$
 \begin{cases}
-	\case SE $\exists x, \neg T(..., x, ...) = \neg \forall x, T(..., x, ...)$
-	\case SE $\forall x, \neg T(..., x, ...) = \neg \exists x, T(..., x, ...)$
+	SE \exists x, \neg T(..., x, ...) = \neg \forall x, T(..., x, ...) \\
+	SE \forall x, \neg T(..., x, ...) = \neg \exists x, T(..., x, ...)
 \end{cases}$$
 
 Spiegato peggio, se dico che esiste un elemento, per cui non si verifica una 
