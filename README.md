@@ -30,6 +30,17 @@ Sono formati open, il che significa che sono apribili, visualizzabili, modificab
 Vedi il tasto `Fork` in alto a destra? Premendolo, creerai una copia di questa repository sul tuo profilo.
 Adesso puoi fare le tue modifiche. Non appena avrai finito, premi il tasto `Pull request` e crea una nuova PR. 
 
+------
+
+### Voglio collaborare ma non ho una repo?
+
+Non darò una risposta banale del tipo "Createla", trankk ;))) Ma sarebbe auspicabile per il futuro averne una,
+consiglio davvero personale ;) ma ad ogni modo se vi va potete direttamente aggiungere voi il vostro file alla
+mia repo (Sì, sempre con la pull request spiegata qui sopra). OVVIAMENTE verrà segnato che i file sono di 
+vostra proprietà. Aprite la mia cartella di 'fisica', il Formulario è prodotto da [DlcGold](https://github.com/dlcgold))
+
+
+
 
 
 
