@@ -20,7 +20,7 @@ urlcolor=cyan,
 \date{2 Ottobre 2019}
 \maketitle
 \tableofcontents
-\chapter*{L'esame}
+\chapter{L'esame}
 Avremo due compitini, uno a novembre ed uno a Gennaio, in un anno sono 
 disponibili 5 appelli, se uno è del terzo anno, può fare i compitini, basta che
 ci sia spazio nelle aule, la precedenza va a coloro che sono del secondo anno.
@@ -263,8 +263,118 @@ applicate le mie regolo, devo avere un "permesso" speciale che consenta di
 generare 0 all'inizio alla fine. Cioè, dentro ci può essere un pandemonio, ma 
 fuori ci deve essere la regola che stabilisce l'esistenza di 0.
 \section{Parentesi bilanciate}
-T =\{(,)\}, in cui () $\in$ $L_{bal}$, (()) $\in$ $L_{bal}$, ()() $\in$ $L_{bal}$,
-$\epsilon \in L_{bal}$ \\ \\
-Se W $\in L_{bal}$, allora (W) $\in L_{bal}$ esattamente come WW$\in L_{bal}$
+T =\{(,)\}, in cui () $\in$ $L_{pal}$, (()) $\in$ $L_{pal}$, ()() $\in$ $L_{pal}$,
+$\epsilon \in L_{pal}$ \\ \\
+Se W $\in L_{pal}$, allora (W) $\in L_{pal}$ esattamente come WW$\in L_{pal}$
+\paragraph{Ex 5.19 p 182}
+$\epsilon$ ()  ()() (w) $\L_{pal}$
+$$\begin{cases}
+	\underline{base}: \epsilon	\\
+	\underline{Passo}: Se~w\in L_{pal} ~ allora ~ ww\in L_{pal} 
+	 ~AND~ (w)\in L_{pal} 
+\end{cases}$$
+Dato G=(V, T, P, B) \\
+B $\to$ BB | (B) | $\epsilon$, \\ \\
+V = \{B\} T = \{(, )\} e \\
+P = \{B $\to$ BB, B $\to$ (B), B$\to \epsilon$\} \\ \\
+A questo punto, se avessi ()(()) otterrei: \\
+B $\implies _{1}$ BB $\implies _{2}$ B(B) $\implies _{2}$ (B)(B) $\implies _{3}$
+()(B) $\implies _{2}$ ()((B)) $\implies _{3}$ ()(()) \\
+Quindi questa stringa è possibile generarla.
+\section{Produzioni Context - Free}
+A $\to$ $\gamma$ dove A $\in$ V e $\gamma \in (V\vee T)^{*}$ \\ \\
+Agendo come prima:	\\
+B $\implies _{1}$ BB $\implies _{2}$ (B)B $\implies _{3}$ ()B $\implies _{2}$ 
+()(B) $\implies _{2}$ ()((B))$\implies _{3}$ ()(())
+\section{Derivazione left/right most}
+Per evidenziare che sia una letf o right most invece del numeretto, alla freccia
+si aggiunge un lm o rm (Left o Right most). Sempre con l'esempio di prima -> \\ \\
+B $\implies _{rm}$ BB $\implies _{rm}$ B(B) $\implies _{rm}$ B((B)) 
+$\implies _{rm}$ B(()) $\implies _{rm}$ (B)(()) $\implies _{rm}$ ()(())
+\paragraph{Ex 5.3, p 162}
+Regole di produzione:
+E $\in$ I | E + E | E * E | (E) \\ \\
+I $\in$ a | b | Ia | Ib | I0 | I1 \\ \\
+G = (V, T, P, E)      V = \{E, I\} \\
+T = \{+, *, (, ), a, b, 0, 1\} \\ \\ \\
+La E diventa identificatore quindi $E \implies I \implies a$ (stessa roba per b)
+quindi $E \implies I \implies Ia \implies I0a \implies Ib0a \implies I1b0a 
+\implies b1b0a$ 
+%\implies I1b0a  \implies b1b0a \implies D10b01a$
+\\ \\
+Proviamo a generare a * (a+b00) (metodo Left-Most) \\
+E $\implies _{lm}$ E * E $\implies _{lm}$ I * E $\implies _{lm}$ a * E
+$\implies _{lm}$ A * (E) $\implies _{lm}$ a * (E + E) $\implies _{lm}$ a * 
+(I + E) $\implies _{lm}$ a * (a + E) $\implies _{lm}$ a * (a + I) $\implies _{lm}$
+a * (a + I0) $\implies _{lm}$ a * (a + I00) $\implies _{lm}$ a *(a + b00) \\ \\
+Per parcondicio, ora faremo anche la generazione con il Right Most \\
+E $\implies _{rm}$ E * E $\implies _{rm}$ E * (E) $\implies _{rm}$ E * (E + E)
+$\implies _{rm}$ E (E + I) $\implies _{rm}$ E * (E + I0) $\implies _{rm}$ 
+E * (E + I00) $\implies _{rm}$ E * (E + b00) $\implies _{rm}$ E * (I + b00)
+$\implies _{rm}$ E * (a + b00) $\implies _{rm}$ I * (a + b00) $\implies _{rm}$ 
+a * (a + b00) \\ \\
+Per indicare che "in qualche modo" è possibile ottenere una determinata stringa
+si scrive $$E \implies _{rm/lm}^{*}$$.
+\\ \\ 
+Data $\alpha A \beta, ~con~ \alpha \beta \in (V U T)^{*}, ~con~ A\in V$ \\
+$A \in \gamma$ (Regole di produzione) \\
+$\alpha A \beta \implies \alpha \gamma \beta$ 
+\paragraph{Se A è var. più a sx} $\implies _{lm}$ altrimenti diventa 
+$\implies _{rm}$ Nel caso sia più a destra
+\\ \\
+\section{Definizione di $\implies ^{*}$}
+Per induzione: \\ \\
+$$\begin{cases}
+	Base: ~\forall \alpha \in (V U T)^{*}, \alpha \implies ^{*} \alpha
+	Passo: ~Se~ \alpha \implies ^{*} \beta e \beta \implies \gamma \\
+			allora~ \alpha \implies ^{*} \gamma ~ dove ~ \alpha, \beta, \gamma 
+			\in (V U T)*
+\end{cases}$$
+Pertanto $\alpha \implies ^{*} \beta$ sse $\exists \gamma _{1}, \gamma _{2}, 
+..., \gamma _{n} \in (VUT)^{*}$ con n$\geq$ t.c
+$\alpha = \gamma _{1}, \beta = \gamma _{n} e \forall i = 1, 2, ..., n-1$ si ha che
+$\gamma _{i} \implies \gamma _{i+1}$ 
+\section{Definizione forma sentenziale}
+Sia G = (V, T, P, S) una CFG, e $\alpha \in (VUT)^{*}$ t.c. S $\implies ^{*} \alpha$ \\ \\
+Ogni volta che io genero nella forma sentenziale uno zero, in realtà se ne 
+genera un altro, quindi se ho $S \implies 0S0 \implies 00S00$, imponendo un vincolo
+sugli zeri prima e dopo la S, quindi per esempio se avessi: \\ \\
+I $\to$ 0 | 1 | $\epsilon$ | I0 | I1 Reg. \\
+$I \implies I0 \implies I00 \implies I000 \implies I1000 $
+\section{Inferenza Ricorsiva}
+L'obbiettivo è dimostrare che dato un obbiettivo si può ricavare in 0 o più passi
+una determinata stringa. \\ (E' la stringa dell'esercizio precedente: )
+Si agisce ponendo una tabella composta in questo modo 
 
+
+\begin{center}
+\begin{tabular}{ |c|c|c|c|c| } 
+ \hline
+ / & Stringa ricavata & Variabile & N proof & Stringhe impiegate\\
+ \hline
+ (1) & a & I & 5 & - \\
+ (2) & b & I & 6 & -  \\
+ (3) & b0 & I & 9 & (2)\\
+ (4) & b00 & I & 9 & (3)\\
+ (5) & a & E & 1 & (1)\\
+ (6) & b00 & E & 1 & (6)\\
+ (7) & a+b00 & E & 2 & (5),(6)\\
+ (8) & (a+b00) & E & 4 & (7)\\
+ (9) & a*(a+b00) & E & 3 & (5),(8)\\
+ \hline
+\end{tabular}
+\end{center}
+\section{Due teoremi importanti}
+\subsection{Th. 1}
+Sia G = (V, T, P, S) una CFG, e sia $\alpha \in (VUT)^{*} allora 
+S \implies ^{*}\alpha ~sse~ \alpha ~ e' ~ ottenibile ~ tramite ~ procedura ~ di  ~
+inferenza ~ ricorsiva$
+\subsection{Th. 2}
+Sia G = (V, T, P, S) una CFG, e $\alpha \in (VUT)^{*} allora S \implies ^{*} \alpha$
+se e solo se $S \implies _{rm} ^{*} \alpha$ OPPURE $S \implies _{lm} ^{*} \alpha$
+
+
+
+        
+  	
 \end{document}
