@@ -287,9 +287,9 @@ stessa cosa come Ciuchino che chiedeva a Shrek ogni 2 millisecondi
 "Siamo arrivati?"? NO! C'è un contatore che si aziona ad ogni mancata risposta,
 una volta che arriva ad un tot, chiudo la comunicazione.
 $$\begin{cases}
-	if(timerGoesOff) ~ trasmetti(messaggio_{i}) ~ AND ~ setTimer(0); \\
-	else ~if(ACK_{i}) ~trasmetti(messaggio_{i+1} ~ AND~  setTimer(0)); \\
-	else~ trasmetti(messaggio_{i}) ~ AND ~ setTimer(0);
+if(timerGoesOff) ~ trasmetti(messaggio_{i}) ~ AND ~ setTimer(0); \\
+else ~if(ACK_{i}) ~trasmetti(messaggio_{i+1} ~ AND~  setTimer(0)); \\
+else~ trasmetti(messaggio_{i}) ~ AND ~ setTimer(0);
 \end{cases}$$
 \paragraph{ATTENZIONE} Supponendo un timer troppo corto, accadrebbe che il 
 destinatario non fa in tempo a rispondere, e quindi il mittente rifà la domanda
@@ -301,11 +301,37 @@ che a seconda del traffico può essere più lenta o anche più veloce.\\ \\
 Riprendiamo il concetto di latenza (tempo che intercorre tra invio e ricezione),
 bene, quello è concettualmente il tempo di trasmissione, da qui possiamo calcolare che
 $$utilizzoRete = \frac{\frac{L}{R}}{latenza+\frac{L}{R}}$$ 
-in cui $\frac{L}{R}$ rappresenta la quantità di dati passabili in un determinato
-tempo. E la latenza... E' la latenza. 
+in cui $\frac{L}{R}$ Ha R che è la velocità di trasferimento
+dei pacchetti, mentre invece L sarebbe la lunghezza
+, ossia: $\frac{L}{R} = \frac{Lunghezza}{Velocita'~trasmissione}$
+E la latenza... E' la latenza. 
 \subsection{Protocolli a Finestra Scorrevole (Sliding Windows)}
 Io trasferisco un insieme di w pacchetti, i quali impiegheranno $w*\frac{L}{R} 
 \geq \frac{L}{R}+RTT$ tempo ad esser trasposti, pertanto ne esce che
 $$w \geq \frac{RTT\cdot R}{L} +1$$
 Questo ovviamente in mancanza di errori e perdite.
+\\ \\
+\subparagraph{Osservazione:} Stiamo ragionando su sistemi concettualmente 
+indistruttibili, quindi diciamo che non si è quasi menzionata la possibilità che
+un host possa disconnettersi.
+\subsection{Go Back N} 
+Poniamo caso che io trasmetto 5 messaggi: $m_{1, ..., 5}$ e mi arriva l'ok di
+ricezione dall'1 al 3, malgrado li abbia trasmessi tutti e 5, pertanto ciò che
+accade è che rinvierò dal messaggio 3 in poi.
+\subsection{Selective Repeat}
+Traccio la vita di ogni pacchetto individualmente, ossia ritrasmetto solo il
+pacchetto mancante, il problemino è legato al fatto di avere tanti timer, ma
+oggi c'è da considere che abbiamo processori nell'ordine dei Ghz, no problem.
+\\ \\ 
+Quando all'epoca il massimo processore esistente era di massimo 10 Mhz, insomma
+chiaro che ora essa sia la migliore delle soluzione. Ma cosa richiede più precisamente
+l'SR?
+\begin{itemize}
+	\item Ack individuali per ogni pacchetto
+	\item Un timer per ogni singolo pacchetto
+	\item Buffer sul ricevitore (E' un array di booleani all'atto pratico)
+\end{itemize}
+Ci sono dei casi in cui ci sono interazioni tra numero di pacchetto e dimensione
+finestra, ma sono problematiche di cui non approfondiamo perchè non ci interessa
+siccome non può praticamente mai capitare
 \end{document}
