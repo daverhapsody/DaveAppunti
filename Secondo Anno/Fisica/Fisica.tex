@@ -13,7 +13,7 @@
 \date{30 Settembre 2019}
 \maketitle
 \tableofcontents
-\chapter*{Introduzione al corso}
+\chapter{Introduzione al corso}
 Non è presente materiale didattico, le lezioni sono architettate in modo che
 si segua dalla lavagna, è consigliato dal prof stesso di usare gli appunti od i
 libri che (per coloro che han fatto fisica) si usavano alle superiori.
@@ -60,12 +60,12 @@ battiti del cuore.)
 \subsection{Dal punto di vista numerico}
 Si ha che in qualsiasi campo si ha un ordine di grandezza, ogni fenomeno ha la
 propria scala da usare, ci saranno i coefficienti di riferimento, i prefissi
-($micro mm, n$), c'è un vero e proprio intervallo di grandezze ($10^{n}$).
+($\mu,~ mm, ~ n$), c'è un vero e proprio intervallo di grandezze ($10^{n}$).
 \section{Notazione scientifica}
 Ecco un esempio di numero scritto in notazione scientifica: 
 \[
-5 x 10^{5} = 50000 \newline
-8 x 10^{-1} = 0,1 
+5 \cdot 10^{5} = 50000 \newline
+8 \cdot 10^{-1} = 0,1 
 \]
 \newline \newline
 Ragionando su come sono composti, abbiamo le cifre significative, ovvero cifre
@@ -100,9 +100,9 @@ Definiamo la differenza tra grandezza scalare e vettoriale
 	qualcosa di quantitativo più che qualitativo.
 \end{itemize}
 \subsection{Esempio di grandezza vettoriale}
-Supponiamo di avere due punti $x_{0} e x_{1}$ ponendoli distanti $\lambda$ tra 
-loro. $\lambda$ sarà coincidente con $x_{0} - x_{1}$. Per definire il verso
-basta osservare chi è il minimo tra $x_{0} e x_{1}$, lo si vede graficamente,
+Supponiamo di avere due punti $x_{0} ~ e ~ x_{1}$ ponendoli distanti $\lambda$ tra 
+loro. $\lambda$ sarà coincidente con $x_{0} ~ - ~ x_{1}$. Per definire il verso
+basta osservare chi è il minimo tra $x_{0} ~ e ~ x_{1}$, lo si vede graficamente,
 oppure osservando chi dei due è il maggiore. 
 \newline \newline
 Da un lato abbiamo un vettore (ancora monodimensionale), ma abbiamo anche 
@@ -110,12 +110,12 @@ dato un piano dimensionale, per esprimere il concetto di vettore relativo alla
 posizione del nostro punto.
 \newline \newline
 Il sistema di riferimento è il sistema cartesiano, in questo caso Monoasse 
-pertanto ci basta avere solo la $x$. $x_{0} e x_{1}$ sono semplicemente dei 
+pertanto ci basta avere solo la $x$. $x_{0} ~ e ~ x_{1}$ sono semplicemente dei 
 punti, ma hanno un nome specifico, in questo caso sono delle vere e proprie
 posizioni.
 \newline \newline
 Come si diceva prima, per capire il \textbf{Verso} bisogna osservare la differenza
-tra $x_{0} e x_{1}$, se negativa allora va all'indietro, al contrario andrebbe 
+tra $x_{0}  ~~ e  ~~ x_{1}$, se negativa allora va all'indietro, al contrario andrebbe 
 avanti molto semplicemente
 \subsection{L'esempio di una palla che cade in un piano inclinato}
 Il nostro punto materiale è la palla, e per capire lo spostamento bisogna
@@ -132,9 +132,8 @@ Per descrivere questo bisogna trovare una legge che sia in grado di esprimere
 per qualsiasi istante quali possano essere le condizioni. 
 $$
 \begin{cases}
-t_{\lambda} = $tempo richiesto per arrivare dalla posizione $p_{0}$ a
-$p_{\lambda}  \\
-
+t_{\lambda} = tempo ~ richiesto ~ per ~ arrivare ~ dalla ~ posizione ~ p_{0} ~ a
+~ p_{\lambda}  \\
 \end{cases}
 $$ 
 \subsection{Alcune precisazioni}
@@ -156,7 +155,7 @@ E' la quantità di spazio(s) percorsa da un corpo in un determinato tempo(t),
 specificando che ci sia la distanza percorsa e lo spostamento.
 \newline \newline
 Attenzione, prima c'è da tenere conto della differenza dei tempi, che chiameremo 
-$\Delta t = t_{Finale} - t_{Iniziale}$
+$\Delta t ~ = ~ t_{Finale} ~ - ~ t_{Iniziale}$
 \newline
 Abbiamo 3 velocità:
 \begin{itemize}
@@ -226,9 +225,9 @@ formula.
 \\ \\ 
 Prendiamo ora in esame un grafico che ha sulle ascisse il tempo e sulle ordinate le velocità istantanee registrate. Come nel caso precedente immaginiamo di avere un grafico con una funzione monotona crescente. Prendo due punti del grafico e calcolo la velocità media tra essi 
 $$\frac{v_{1} + v_{2}}{2}$$
-sappiamo anche che la velocità media è definita come \frac{\Delta x_{n}}{\Delta t_{n}}
-da cui ricaviamo \Delta x_{n} = v_{med} \Delta t_{n}.
-Se ripetiamo questo procedimento per tutti i \Delta t avremo:
+sappiamo anche che la velocità media è definita come $\frac{\Delta x_{n}}{\Delta t_{n}}$
+da cui ricaviamo $\Delta x_{n} = v_{med} \Delta t_{n}$.
+Se ripetiamo questo procedimento per tutti i $\Delta$ t avremo:
 %Dati due punti $p_{0}$ e $p_{1}$ in una curva, essi avranno quindi i corrispettivi 
 %istantanei, quindi otteniamo un $\Delta x$ ed un $\Delta t$, prendendo questi 
 %ultimi si avrà che $$\Delta x_{n} = v_{m_{n}} \Delta t_{n}$$ e quindi in 
@@ -237,10 +236,10 @@ $$\Delta x = \sum_{k=1}^n \Delta n = \sum_{k=1}^n v_{m_{n}} \cdot \Delta t_{n}$$
 La somma dei $\Delta x$ ennesimi, è coincidente con la somma di tutte le aree
 $A_{n}$ dove $A_{n} \sim \Delta x$. \\ \\
 Se $\Delta t_{n} \to 0$ allora $\Delta x = \int v(t) dt$ \\
-Per un punto specifico (sempre facendo tendere \Delta t a 0) ad esempio avremmo che 
+Per un punto specifico (sempre facendo tendere $\Delta t a 0$) ad esempio avremmo che 
 $$x_{1} = x_{0} + \int_{t_{0}}^{t_{1}} v(t) dt $$
 quindi per conoscere la posizione è sufficiente passare per un integrale definito della velocità.
-Per esempio, se la funzione posizione nel tempo è x_{t} = at^2 la v_{t} sará v_{t} = 2at
+Per esempio, se la funzione posizione nel tempo è $x_{t} = at^2 la v_{t} sará v_{t} = 2at$
 \paragraph{Piccola osservazione} Quando diciamo che $\lim{\Delta t \to 0}$ 
 $\frac{\Delta x}{\Delta t} = v_{istantanea}$, stiamo dando per assodato che
 diminuendo l'intervallo di tempo, diminuirà il relativo spostamento, pertanto
