@@ -204,35 +204,43 @@ di questi due picchi
 \\ \\
 Possiamo ricavare dalla nostra formula con il $\Delta x$ e $\Delta t$ che quindi
 la posizione che si assume in un determinato istante sia:
-$$x_{1} = x_{0} + v_{media} \cdot \Delta t$$
-Quando il $\Delta t$ tende a 0, notiamo che la velocità tenderà ad $\infty$
-il limite con t che tende a 0 della velocità vettoriale fratto delta t = v
+$$x_{1} = x_{0} + v_{media} \Delta t$$
+La velocità media però non indica praticamente nulla del moto, se mi servono dati precisi (es contachilometri) su una determinata velocitá prendo intervalli sempre minori.
+Quando il $\Delta t$ tende a 0, notiamo che la funzione non tenderà ad $\infty$ perchè c'è corrispondenza negli ordini di infinito.
+Quindi chiamo questo limite con t che tende a 0 della velocità vettoriale fratto delta t = v
 $\lim_{\Delta t \to 0} \frac{\Delta \vec{x}}{\Delta t} = v_{istantanea}$
-La velocità istantanea non è altro che la velocità in un determinato istante,
-perchè in ognuno degli istanti ho una velocità v(t). \\ \\
-Per ogni istante in pratica io calcolo alla fine 
+velocità istantanea, che non è altro che la velocità in un determinato istante.
+%perchè in ognuno degli istanti ho una velocità v(t). \\ \\
+Per ogni istante, per definizione di derivata, io calcolo alla fine 
 $$v(t) = \frac{dx(t)}{dt}$$
-Quindi in pratica otteniamo che la velocità istantanea è letteralmente una 
-derivata, in cui la t è la "discriminante" della velocità istantanea che si 
+Quindi in pratica otteniamo che la velocità istantanea è letteralmente la 
+derivata della posizione, in cui la t è la "discriminante" della velocità istantanea che si 
 aveva in un determinato istante (perdonate la ripetizione).
 \\ \\ 
 Con questa velocità istantanea possiamo (se applichiamo la legge oraria), 
-calcolare in modo più preciso lo spazio percorso in un determinato istante! Come?
-$$x_{1} = x_{0} + v_{t_{0}} \cdot \Delta t$$
+calcolare in modo più preciso la posizione in un determinato istante! Come?
+$$x_{t} = x_{0} + v_{t_{0}} dt$$
 Cioè siamo arrivati che abbiamo la posizione iniziale e l'istante iniziale, più
 la velocità istantanea (che è una derivata), ora ci basta solo applicare la 
 formula. 
 \\ \\ 
-Dati due punti $p_{0}$ e $p_{1}$ in una curva, essi avranno quindi i corrispettivi 
-istantanei, quindi otteniamo un $\Delta x$ ed un $\Delta t$, prendendo questi 
-ultimi si avrà che $$\Delta x_{n} = v_{m_{n}} \cdot \Delta t_{n}$$ e quindi in 
-pratica per finire avremmo
+Prendiamo ora in esame un grafico che ha sulle ascisse il tempo e sulle ordinate le velocità istantanee registrate. Come nel caso precedente immaginiamo di avere un grafico con una funzione monotona crescente. Prendo due punti del grafico e calcolo la velocità media tra essi 
+$$\frac{v_{1} + v_{2}}{2}$$
+sappiamo anche che la velocità media è definita come \frac{\Delta x_{n}}{\Delta t_{n}}
+da cui ricaviamo \Delta x_{n} = v_{med} \Delta t_{n}.
+Se ripetiamo questo procedimento per tutti i \Delta t avremo:
+%Dati due punti $p_{0}$ e $p_{1}$ in una curva, essi avranno quindi i corrispettivi 
+%istantanei, quindi otteniamo un $\Delta x$ ed un $\Delta t$, prendendo questi 
+%ultimi si avrà che $$\Delta x_{n} = v_{m_{n}} \Delta t_{n}$$ e quindi in 
+%pratica per finire avremmo
 $$\Delta x = \sum_{k=1}^n \Delta n = \sum_{k=1}^n v_{m_{n}} \cdot \Delta t_{n}$$
 La somma dei $\Delta x$ ennesimi, è coincidente con la somma di tutte le aree
 $A_{n}$ dove $A_{n} \sim \Delta x$. \\ \\
 Se $\Delta t_{n} \to 0$ allora $\Delta x = \int v(t) dt$ \\
-Per un punto specifico ad esempio avremmo che 
+Per un punto specifico (sempre facendo tendere \Delta t a 0) ad esempio avremmo che 
 $$x_{1} = x_{0} + \int_{t_{0}}^{t_{1}} v(t) dt $$
+quindi per conoscere la posizione è sufficiente passare per un integrale definito della velocità.
+Per esempio, se la funzione posizione nel tempo è x_{t} = at^2 la v_{t} sará v_{t} = 2at
 \paragraph{Piccola osservazione} Quando diciamo che $\lim{\Delta t \to 0}$ 
 $\frac{\Delta x}{\Delta t} = v_{istantanea}$, stiamo dando per assodato che
 diminuendo l'intervallo di tempo, diminuirà il relativo spostamento, pertanto
