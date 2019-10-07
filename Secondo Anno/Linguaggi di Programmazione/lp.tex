@@ -6,6 +6,7 @@
 \usepackage{xcolor}
 \usepackage{listings}
 \usepackage[margin=1in]{geometry}
+\definecolor{britishracinggreen}{rgb}{0.0, 0.26, 0.15}
 \newcommand\tab[1][1cm]{\hspace*{#1}}
 
 %usepackage[latin1]{inputenc}
@@ -625,8 +626,8 @@ $$\frac{T(..., c, ...), c\in C}{\exists x, T(..., x, ...)}$$
 Per completezza possiamo dedurre il fatto che 
 $$
 \begin{cases}
-	SE \exists x, \neg T(..., x, ...) = \neg \forall x, T(..., x, ...) \\
-	SE \forall x, \neg T(..., x, ...) = \neg \exists x, T(..., x, ...)
+	Se ~ \exists x, \neg T(..., x, ...) = \neg \forall x, T(..., x, ...) \\
+	Se ~ \forall x, \neg T(..., x, ...) = \neg \exists x, T(..., x, ...)
 \end{cases}$$
 
 Spiegato peggio, se dico che esiste un elemento, per cui non si verifica una 
@@ -640,12 +641,116 @@ allora non esiste alcun x per cui si verifica
 \paragraph{Precisazione} In effetti negare il $\forall$ si tradurrebbe in 
 "non tutte le x", mentre è molto più semplice per l'$\exists$ in cui si dice
 "non esiste", lo specifico perchè io mi ci confondevo spesso.
-
-
-
-
-
-
+\chapter{Prolog}
+Data questa confusissima introduzione giungiamo a trattare più nello specifico
+il linguaggio Prolog. Quando parliamo di Prolog, infatti, smettiamo di ragionare
+in modo \color{red} \textbf{imperativo} \color{black} per passare al paradigma 
+di \color{red} \textbf{programmazione logica} \color{black}.
+\paragraph{Premessa: }C'è (come lo è stato per Prog 1) da scaricarsi l'interprete
+di Prolog, si consiglia SWI-Prolog, che si appoggia ad Emacs come editor di testo.
+\\ \\
+(Sia per la stesura di questi appunti che per gli esercizi io ho sempre usato
+Sublime Text MA all'esame molto probabilmente dovremo usare quel che ci impongono
+loro, pertanto, meglio abituarsi da subito ad Emacs.)
+\section{Programmazione logica}
+Se prolog utilizza il paradigma di \color{red} \textbf{programmazione logica} 
+\color{black}, quest'ultima non è rappresentata solo da Prolog, ci sono ovviamente
+altri linguaggi che lo fanno. Perchè scegliere Prolog?
+\begin{itemize}
+	\item Il formalismo è più semplice
+	\item E' un linguaggio ad alto livello
+	\item La semantica è comprensibile
+\end{itemize}
+Quello che è il nostro programma divente un \color{red} insieme di formule
+\color{black} ed ha un enorme potere espressivo, mantenendo come chiave il fatto
+che la computazione effettiva è costruzione di una dimostrazione di una affermazione
+(Definita anche come goal, obbiettivo, meta).
+\subsection{Logica Matematica}
+\paragraph{Definizione Davis e Putnam: } Per logica matematica si intende la
+dimostrazione automatica di teoremi, secondo Davis e Putnam la logica matematica
+implica la dimostrazione dei teoremi
+\paragraph{Definizione Kowalski: } Interpretazione procedurale di formule. 
+Quindi in pratica qua si entra già più nel concetto di un linguaggio
+di programmazione.
+\section{Cos'è ProLog}
+Nel titolo di questa sezione la L maiuscola non è a caso, perchè Pro-Log sarebbe
+acronimo di \textbf{PRO}gramming \textbf{LOG}ic, ed è un linguaggio che si basa
+su una restrizione della logica del primo ordine.
+\subsection{Caratteristiche di Prolog}
+\begin{itemize}
+	\item Si basa su una restrizione della logica del primo ordine
+	\item Ha uno stile dichiarativo
+	\item E' usato per determinare quando una affermazione è vera e quali vincoli
+	abbiano fatto da discriminante tipo i vincoli sui valori da dare alle 
+	variabili che han generato la risposta
+\end{itemize}
+\section{Formule Ben Formate e Forma Normale}
+Qualsiasi formula ben formata può essere riscritta in forma normale a clausole.
+Esistono due forme normali a clausole:
+\begin{enumerate}
+	\item Forma congiunta: \\
+	La formula è una congiunzione di disgiunzioni di predicati o negazioni di 
+	predicati (letterali positivi e letterali negativi) \\ 
+	$$\bigwedge \limits_{i} (\bigvee \limits_{j} L_{ij})$$
+	\item Forma disgiunta: \\
+	E' una disgiunzione di congiunzioni di predicati o negazioni di predicati
+	(letterali positivi e letterali negativi)
+	$$\bigvee \limits _{j} (\bigwedge \limits _{i} L_{ij})$$
+\end{enumerate}
+\subsection{Forma normale congiuntiva}
+La clausole che hanno al più un solo letterale positivo (sia con che senza 
+letterali negativi) si chiamano cause di \color{red} \textbf{Horn} \color{black}
+Però occhio:
+Non tutte le formula ben formate si riescono a far diventare un insieme di 
+clausole di Horn, che per la cronaca compongono i programmi Prolog o meglio, 
+\color{blue} \textbf{I programmi prolog son collezioni di clausole di Horn} 
+\color{black}
+\subsection{Linguaggio dichiarativo}
+Uno dei punti di forza di Prolog è il fatto che sia un linguaggio dichiarativo,
+quindi è pressochè esente dall'avere istruzioni, contiene solo fatti e regole,
+che dal passaggio precedente sappiamo essere delle \color{blue} 
+\textbf{clausole di Horn} \color{black}. 
+\paragraph{Ricordiamo che: } Un fatto è una asserzione vera nel contesto che si 
+descrive, tipo assioma, mentre la regola è qualcosa che serve per dedurre dei 
+nuovi fatti \textbf{partendo} da quelli esistenti. \\ \\
+Un programma scritto in Prolog ci dà informazioni su un sistema, e vien chiamato
+\color{red} base di conoscenza \color{black} (Il programma eh, non il sistema.)
+\\ \\
+Inoltre, (\textit{già detto in precedenza ma va ripetuto perchè sicuramente anche io 
+stesso quando andrò a studiare da qua mi sarò già dimenticato}) un programma 
+Prolog \color{red} \textbf{non si esegue} \color{black}, ma si \textbf{interroga}.
+\\ \\
+Quali sono le possibili domande da fargli? Ad esempio:
+\begin{itemize}
+	\item Questa serie di fatti è vera? \\
+	E la risposta sarà \color{britishracinggreen}Si \color{black} o \color{red}No, 
+	\color{britishracinggreen}True \color{black} o \color{red}False, \color{britishracinggreen}1
+	 \color{black} o \color{red}0, \color{britishracinggreen}"Si broh" \color{black} o 
+	 \color{red}"No frate".
+\end{itemize}
+\section{Sintassi Prolog}
+\begin{itemize}
+	\item Fatto/Asserzione: *nomefatto*. 
+	\item Regole: c :- $b_{1}, ..., b_{n}$.
+	\item Goal/Query: ?-$q_{1}, ..., q_{n}$.
+\end{itemize}
+Ogni lettera avente un pedice tipo $p_{\lambda}$ o $q_{\kappa}$ sono tutti 
+termini composti, notare che in molte implementazioni il prompt Prolog è anche 
+un operatore che chiede al sistema di valutare il \color{blue} goal \color{black}
+\\ \\
+Ogni espressione Prolog diventa \textbf{TERMINE}, ne abbiamo diversi esempi:
+\begin{itemize}
+	\item Atomi: \\
+	E' una semplice sequenza di caratteri che inizia con carattere \textbf{Minuscolo}
+	e può avere il '\_', oppure è un numero, o qualcosa racchiusa tra apici (' ') 
+	\item Variabili
+	\item COmposizioni di altri termini (Da qui termine composto)
+\end{itemize}
+\paragraph{Precisazione}
+Ogni istruzione finisce con il punto, avete presente quando la vostra fidanzata
+capite che è innervosita con voi e alla fine delle frasi ci mette un '.' che vi
+fa gelare il sangue? Ecco, se qui non mettete il punto dopo ogni istruzione, 
+vedrete come vi gireranno i *\textit{Censura}* ;))))
 
 
 
