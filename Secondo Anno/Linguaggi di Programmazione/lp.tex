@@ -5,10 +5,10 @@
 \usepackage{amsmath} 
 \usepackage{xcolor}
 \usepackage{listings}
+\usepackage{hyperref}
 \usepackage[margin=1in]{geometry}
 \definecolor{britishracinggreen}{rgb}{0.0, 0.26, 0.15}
 \newcommand\tab[1][1cm]{\hspace*{#1}}
-
 %usepackage[latin1]{inputenc}
 \begin{document}
 %\pagestyle{plain}
@@ -289,9 +289,11 @@ Se LISP trova T è come se scrivessimo  \color{blue}\textbf{true}\color{black}
 		\item Gestione memoria disponibile (fisica e virtuale)
 	\end{itemize}
 	\item L'ambiente runtime può essere una vera e propria macchina virtuale tipo la JVM di java
-	\item In particolare la gestione di memoria avviene usando due aree concettualmente ben distinte con funzioni diverse
+	\item In particolare la gestione di memoria avviene usando due aree 
+	concettualmente ben distinte con funzioni diverse
 	\begin{itemize}
-		\item Lo stack, ambiente dell'ambiente runtime che serve per la gestione delle chiamate, a procedure metodi etc
+		\item Lo stack, ambiente dell'ambiente runtime che serve per la gestione 
+		delle chiamate, a procedure metodi etc
 		\item L'heap dell'ambiente runtime serve per gestire strutture dinamiche
 		\begin{itemize}
 			\item Alberi
@@ -301,12 +303,16 @@ Se LISP trova T è come se scrivessimo  \color{blue}\textbf{true}\color{black}
 \end{itemize}
 \subsection{Activation frame}
 \begin{itemize}
-	\item La valutazione di procedure avviene mediante la costruzione sullo stack di sistema di activation frames
-	\item i parametri formali di una procedura vengono associati ai valori (si passa tutto per valore, non esistono effetti collaterali)
+	\item La valutazione di procedure avviene mediante la costruzione sullo
+	stack di sistema di activation frames
+	\item i parametri formali di una procedura vengono associati ai valori
+	(si passa tutto per valore, non esistono effetti collaterali)
 	\item E' un altro modo di chiamare i record di attivazione, via
-	\item Il corpo della procedura viene valutato (ricorsivamente) tenendo questi legami in maniera statica
+	\item Il corpo della procedura viene valutato (ricorsivamente) tenendo 
+	questi legami in maniera statica
 \end{itemize}
-cioè il concetto è che bisogna capire cosa accade con variabili che risultino libere in una sottoespressione
+cioè il concetto è che bisogna capire cosa accade con variabili che risultino 
+libere in una sottoespressione
 \section{Activation Frame di una funzione}
 Contiene:
 \begin{itemize}
@@ -327,8 +333,8 @@ appunto.
 \chapter{Logica e ragionamento}
 Partiamo con le cose semplici, bisogna passare da quello che è un linguaggio 
 parlato a una stesura di condizioni \\
-
-Prendiamo un triangolo, vogliamo dimostrare che se due triangoli hanno i due lati uguali allora è isoscele \\
+Prendiamo un triangolo, vogliamo dimostrare che se due triangoli hanno i due
+lati uguali allora è isoscele \\
 $$AB = BC \vdash \angle A \angle C$$ 
 \begin{enumerate}
 	\item AB = BC per ipotesi
@@ -337,6 +343,10 @@ $$AB = BC \vdash \angle A \angle C$$
 	\item A e C per (1)
 \end{enumerate}
 \subsection{Regole di inferenza}
+Esempio di una regola di inferenza:
+\[
+\frac{F_{1}, F_{2}, F_{3}, ..., F_{n}}{R}
+\]
 \begin{enumerate}
 	\item Introduzione della congiunzione (L'AND)
 	\item Modus Ponens
@@ -390,7 +400,9 @@ proposizioni, infatti all'insieme P si associa una funzione di verità (True e
 False) \\ \\
 Questa funzione associa un valore di verità ad ogni elemento di P, ad ogni 
 proposizione. La valutazione è il ponte tra sintassi e semantica di un 
-linguaggio
+linguaggio \\
+Posso derivare sintatticamente una formula, e se ho consistenza delle supposizione
+avere comunque una formula.
 \\ \\
 Chiaramente posso legare tra loro le proposizioni con $\vee \wedge$ e $\neg$ 
 Una formula ben formata è un insieme di espressioni sintatticamente corrette di
@@ -401,10 +413,10 @@ positivi e negativi, e qui si richiamano i concetti di fondamenti della tabella
 di verità
 \\ \\
 Negli esercizi potremo usare 
-
 $$
 \frac{F_{1}, F_{2}, ... , F_{K}}{R}$$ 
-E' la forma generale di una regola, sopra hai l'insieme delle formule vere tra le formule ben formate e R è la formula generata da “inserire” in FBF. \\ \\
+E' la forma generale di una regola, sopra hai l'insieme delle formule vere tra 
+le formule ben formate e R è la formula generata da “inserire” in FBF. \\ \\
 L'esempio di inferenza che si usa di solito è il Modus Ponens: 
 $$\frac{p \to q, p}{p} $$
 Se il conseguente appare come formula negata, si negherà anche la formula originaria
@@ -422,10 +434,13 @@ L'osservazione fondamentale alla base del principio di risoluzione è un'estensi
 della nozione di rimozione dell'implicazione su base della contraddizione \\ \\
 In pratica si usa per le dimostrazioni per assurdo.
 \section{Unit Resolution}
+E' un caso particolare di principio di soluzione; \\ \\
 Da un lato ho una formula ben formata disgiuntiva e dall'altro ho un letterale 
 (o asserito), e una di queste formule è costituita da un solo letterale, per 
 questo si chiama unit, è sintassi, non ci sto capendo più un cazzo pure. 
-io, non so davvero che dirvi.. \\
+io, non so davvero che dirvi.. \\ \\ 
+\paragraph{Spiegazione fornita da} \href{https://github.com/JacopoDeAngelis}
+{Jacopo De Angelis} \\ \\
 Eccomi, arrivo da autore esterno a spiegare: prendiamo prima lo schemino semplice
 semplice \\
 $ P <-- A \wedge B \wedge C \wedge D ...$ \\
@@ -493,8 +508,13 @@ L'unicorno:
 	\item Individuare i teoremi da dimostrare
 	\item Dimostrare i teoremi
 \end{enumerate}
-In pratica per risolvere questo problema bisogna elencare ogni proposizione
-in questo modo:
+Cioè concettualmente devo cercare di individuare i predicati, e porli in modo
+più logico (Tipo mitico(x), magico(x) e cornuto(x)), MA MI RACCOMANDO ATTENZIONE.
+\paragraph{NON CONFONDERE} I termini a disposizione, se qui hai mortale o "Immortale"
+stai parlando di qualcosa che è Mortale $\vee \neg$ Mortale. \\
+Ora andiamo a risolvere questo esercizio, e si comincia con il dare un nome
+ai nostri predicati, che siccome sarebbero lunghi, saranno abbreviati in massimo
+5 predicati
 \begin{itemize}
 	\item UM = Mitico
 	\item UI = Immortale 
@@ -512,6 +532,7 @@ Mentre per quanto riguarda le domande poste:
 	\item S $\vdash$ UMag ?
 	\item S $\vdash$ UC?
 \end{enumerate}
+Risolvendo l'esercizio otteniamo che
 Ora, il metodo per risolvere le $\vdash$ potrebbe essere tramite negazione della
 nostra ipotesi. In che senso? Proviamo con il caso S $\vdash$ UC \\ \\
 \begin{itemize}
@@ -520,6 +541,11 @@ nostra ipotesi. In che senso? Proviamo con il caso S $\vdash$ UC \\ \\
 	precedente con la dimostrazione di A$\to$(B$\to$C))
 	\item P3: UC (Da P1, P2 e modus ponens)
 \end{itemize} 
+% Proviamo ora a verificare per esempio se l'unicorno è magico. Riscriviamoci
+% l'insieme $S = \{UM \implies UI, \neg UM \implies \neg UI, \neg UI \vee UI
+%  \implies UC, UC \implies Umag\}$
+Il compitino avrà un esercizio di questo livello di difficoltà che consisterà in
+una dimostrazione, che ovviamente va per assurdo.
 \subsection{Tautologie e modelli}
 Una fbf che si verifica in ogni caso, è detta \textbf{Tautologia} (Fondamenti
 docet)\\
@@ -533,7 +559,7 @@ fare asserzioni in merito ad insieme di elementi in maniera concisa.
 \paragraph{Ai lettori} Cioè io sto capendo logica adesso e non l'ho capita a 
 Fondamenti.. Meditiamo ragazzuoli, meditiamo. \\
 Sono Jacopo, vi parlo dal terzo anno. Fondamenti si capisce SOLO tramite gli 
-altri corsi.
+altri corsi. \\ \\
 \\
 {\color{black} \rule{\linewidth}{0.2mm} }
 \\
@@ -559,6 +585,29 @@ predicato. (Chiaramente anche funzioni, in quanto caso particolare di relazione)
 \\ \\
 Inoltre si hanno i connettivi logici, ovvero $\forall$ (Per ogni) e $\exists$ 
 (Esiste). \\ \\
+In Prolog ci sarà un uso implicito dei quantificatori, è implicita la 
+congiunzione, l'universale non è specificato ma è sottointeso, tutte le formule 
+valgono assumendosi la quantificazione universale. 
+\paragraph{Una sola causa} E' quantificata in modo esistenziale, la query. Se 
+Però questa è una cosa che si gestisce l'interprete, noi non ci si fa problemi 
+da questo punto di vista
+\\ \\
+Attenzione, in prolog non bisogna usare in modo intercambiabile simboli di 
+predicato con quelli di funzione, perchè supponiamo la funzione "successore di 
+un numero". La funzione successore dato un valore numerico $\lambda$, successore
+mi darà $\lambda$ + 1.
+\\ 
+In questo caso ha simbolo di funzione, il predicato ti dà o vero o falso, pochi 
+cazzi.
+\\ \\
+Se ho Successore(a, $\lambda$), questo mi dà true o false, è $\lambda$ successore
+di a? Se sì mi dà true o altrimenti mi dà false. Questa è la differenza, oltre al
+fatto che un predicato ragiona sul singolo argomento.
+\\ \\
+\paragraph{Postilla simpatica: }Quello che chiamo Modus Ponens, non è altro che 
+un modo più simpatico di chiamare l'eliminazione dell'implicazione, che è quello
+che facevamo a fondamenti, ma chiamiamolo modus ponens, perchè sì. 
+\\ \\
 Con la logica di primo ordina si ragiona diversamente, infatti il linguaggio
 è costruito ricorsivamente, ed i termini minimi sono detti \textbf{PREDICATI}
 \subsection{Le Formule Ben Formate nella logica del primo ordine}
@@ -591,7 +640,6 @@ la funzione uomo(x) e mortale(x) siano tendenzialmente delle booleane \\ \\
 Infatti ritrascrivendolo vien fuori: $\forall$ x, (uomo(x)$\to$mortale(x)), 
 tenendo conto che Socrate è un uomo, pertanto si dirà uomo(Socrate), che se
 pensate al booleano, sì, darà \color{blue} \textbf{ true} \color{black}.
-
 \subsection{Calcoli logici}
 Per ottenere il risultato è necessario che si utilizzino delle regole di
 calcolo %%(Soprattutto quelle legate al $\forall$ ed $\exists$ 
@@ -610,9 +658,7 @@ Andiamo a scrivercela sostituendo alla formula $\to$
 $$\frac{(\forall x, uomo(x) \to mortale(x)), Socrate\in C}{uomo(Socrate)\to 
 mortale(Socrate)}$$
 Ora andiamo a togliere il quantificatore universale ($\forall$ detto in modo figo)
-
 $$frac{uomo(Socrate), uomo(Socrate) \to mortale(Socrate)}{mortale(Socrate)}$$
-
 Cosa notiamo? Il "denominatore" della prima formula è diventato il "numeratore"
 della seconda, infatti vedete come abbiamo uomo(Socrate) -> mortale(Socrate)?
 \\ \\
@@ -626,18 +672,15 @@ $$\frac{T(..., c, ...), c\in C}{\exists x, T(..., x, ...)}$$
 Per completezza possiamo dedurre il fatto che 
 $$
 \begin{cases}
-	Se ~ \exists x, \neg T(..., x, ...) = \neg \forall x, T(..., x, ...) \\
-	Se ~ \forall x, \neg T(..., x, ...) = \neg \exists x, T(..., x, ...)
+Se ~ \exists x, \neg T(..., x, ...) = \neg \forall x, T(..., x, ...) \\
+Se ~ \forall x, \neg T(..., x, ...) = \neg \exists x, T(..., x, ...)
 \end{cases}$$
-
 Spiegato peggio, se dico che esiste un elemento, per cui non si verifica una 
 proprietà, allora non per ogni elemento essa si verifica. \\ 
 Spiegato ancora peggio, se uno solo non si verifica, allora significa che non 
 tutte si verificano \\ \\
-
 Nel secondo caso invece se dico che per ogni x una proprietà non si verifica,
 allora non esiste alcun x per cui si verifica 
-
 \paragraph{Precisazione} In effetti negare il $\forall$ si tradurrebbe in 
 "non tutte le x", mentre è molto più semplice per l'$\exists$ in cui si dice
 "non esiste", lo specifico perchè io mi ci confondevo spesso.
@@ -702,7 +745,7 @@ La clausole che hanno al più un solo letterale positivo (sia con che senza
 letterali negativi) si chiamano cause di \color{red} \textbf{Horn} \color{black}
 Però occhio:
 Non tutte le formula ben formate si riescono a far diventare un insieme di 
-clausole di Horn, che per la cronaca compongono i programmi Prolog o meglio, 
+ , che per la cronaca compongono i programmi Prolog o meglio, 
 \color{blue} \textbf{I programmi prolog son collezioni di clausole di Horn} 
 \color{black}
 \subsection{Linguaggio dichiarativo}
@@ -725,8 +768,8 @@ Quali sono le possibili domande da fargli? Ad esempio:
 	\item Questa serie di fatti è vera? \\
 	E la risposta sarà \color{britishracinggreen}Si \color{black} o \color{red}No, 
 	\color{britishracinggreen}True \color{black} o \color{red}False, \color{britishracinggreen}1
-	 \color{black} o \color{red}0, \color{britishracinggreen}"Si broh" \color{black} o 
-	 \color{red}"No frate".
+	\color{black} o \color{red}0, \color{britishracinggreen}"Si broh" \color{black} o 
+	\color{red}"No frate".
 \end{itemize}
 \section{Sintassi Prolog}
 \begin{itemize}
@@ -751,7 +794,4 @@ Ogni istruzione finisce con il punto, avete presente quando la vostra fidanzata
 capite che è innervosita con voi e alla fine delle frasi ci mette un '.' che vi
 fa gelare il sangue? Ecco, se qui non mettete il punto dopo ogni istruzione, 
 vedrete come vi gireranno i *\textit{Censura}* ;))))
-
-
-
 \end{document}
