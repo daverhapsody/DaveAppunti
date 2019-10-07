@@ -40,20 +40,24 @@ usato nelle pagine web (Si userà moltissimo la ricorsione, A I U T O)
 \subsection{subsection name}
 \label{sub:subsection_name}
 \begin{itemize}
-	\item il voto finale sarà una media pesata dei voti conseguiti nell'esame relativo alla parte teorica e nell'esame del progetto 
+	\item il voto finale sarà una media pesata dei voti conseguiti nell'esame 
+	relativo alla parte teorica e nell'esame del progetto 
 	\begin{itemize}
 		\item Occhio, il peso è a discrezione dei prof
 	\end{itemize}
 \end{itemize}
 \subsection{Prove parziali}
 \label{sub:prove_parziali}
-Le prove d'esame sono costituite da uno scritto di 6-10 domande, e da un progetto da consegnare entro una data prefissata
+Le prove d'esame sono costituite da uno scritto di 6-10 domande, e da un 
+progetto da consegnare entro una data prefissata
 \section{Appelli regolari}
 \label{sec:appelli_regolari}
 Gli appelli regolari sono composti da un progetto ed un esame scritto, che può
-essere seguito da un esame orale a discrezione del docente basato sui temi trattati durante il corso
+essere seguito da un esame orale a discrezione del docente basato sui temi 
+trattati durante il corso
 \\
-\textbf{NON C'E' POSSIBILITA' DI RECUPERI}, infatti scritto, orale e progetto vanno sostenuti \color{red} \textbf{NELLO STESSO APPELLO} \color{black}
+\textbf{NON C'E' POSSIBILITA' DI RECUPERI}, infatti scritto, orale e progetto 
+vanno sostenuti \color{red} \textbf{NELLO STESSO APPELLO} \color{black}
 \\
 Progetto e scritto sono corretti separatamente
 \paragraph{NON CI SARANNO ECCEZIONI}
@@ -133,7 +137,8 @@ ma la struttura di un programma consiste in
 \section{Perchè utilizzare paradigmi diversi?}
 Per esempio l'intelligenza artificiale si sviluppa su linguaggi di 
 programmazione specifici, bisogna usare linguaggi che operino in un 
-determinato modo, considerati tipo di Altissimo super mega galatticissifantastico livello infatti, utilizzabili pure da non programatori
+determinato modo, considerati tipo di Altissimo super mega galatticissifantastico 
+livello infatti, utilizzabili pure da non programatori
 \\ \\
 Infatti son generati per manipolazione simbolica non numerica 
 \section{Paradigma logico}
@@ -201,9 +206,13 @@ fatti),
 \paragraph{ATTENZIONE} l'interrogazione non è una clausola, occhio a non confondersi
 \subsection{Esempio dell'ordine di una lista}
 \begin{itemize}
-	\item \textbf{Ordine prescrittivo}: Controlla se la lista è vuota, e dà come risultato la lista vuota stessa, altrimenti calcola una permutazione della lista e controlla se è ordinata, dando come risultato $L_{1}$ altrimenti fa una permutazione su L etc.
+	\item \textbf{Ordine prescrittivo}: Controlla se la lista è vuota, e dà come 
+	risultato la lista vuota stessa, altrimenti calcola una permutazione della 
+	lista e controlla se è ordinata, dando come risultato $L_{1}$ altrimenti 
+	fa una permutazione su L etc.
 	\\
-	Il programmatore deve specificare le istruzioni che generano la sequenza di permutazioni della lista L
+	Il programmatore deve specificare le istruzioni che generano la sequenza 
+	di permutazioni della lista L
 	$
 	\begin{cases}
 	$il risultato dell'ordinamento di una lista vuota è la lista vuota $\\
@@ -214,7 +223,8 @@ fatti),
 	e programmato. non esiste il "ma è ovvio che debba fare questo", ogni singolo
 	caso è tua responsabilità. Sì, tua, proprio tu che stai leggendo. Prolog si
 	basa su questo tipo di ordine.
-	\item \textbf{Stile Dichiarativo}: L'ambiente si fa carico di generare possibili permutazioni della lista L, secondo deduzione matematica
+	\item \textbf{Stile Dichiarativo}: L'ambiente si fa carico di generare 
+	possibili permutazioni della lista L, secondo deduzione matematica
 \end{itemize}
 \section{Paradigma funzionale}
 \begin{itemize}
@@ -222,7 +232,8 @@ fatti),
 	Si basa sul concetto di funzione matematica, ossia una associazione tra due 
 	insiemi che relaziona ad ogni elemento di un insieme (dominio) un solo 
 	elemento di un altro insieme (codominio)
-	\item La definizione di una funzione specifica dominio, codominio, e regola di associazione 
+	\item La definizione di una funzione specifica dominio, codominio, e regola
+	 di associazione 
 	\\
 	\item ESEMPIO: \\
 	Incr: N $\to$ N \\
@@ -232,8 +243,12 @@ fatti),
 	(valutazione)
 	\item incr(3) $\to$ 4 
 	L'unica operazione utilizzata nel funzionale è l'applicazione di funzioni  
-	\item Il ruolo dell'esecutore di un linguaggio funzionale si esaurisce nel calutare l'applicazione di una funzione (il programma) e produrre un valore 
-	\item Nel paradigma funzionale puro il valore di una funzione è determinato dagli argomenti che riceve al momento della sua applicazione e non dallo stato del sistema rappresentato dall'insieme complessivo dei valori associati a variabili(e/o locazioni di memoria) in quel momento 
+	\item Il ruolo dell'esecutore di un linguaggio funzionale si esaurisce nel 
+	calutare l'applicazione di una funzione (il programma) e produrre un valore 
+	\item Nel paradigma funzionale puro il valore di una funzione è determinato 
+	dagli argomenti che riceve al momento della sua applicazione e non dallo 
+	stato del sistema rappresentato dall'insieme complessivo dei valori 
+	associati a variabili(e/o locazioni di memoria) in quel momento 
 	\item Oggettivamente si ha l'assenza di effetti collaterali \\ \\
 \end{itemize}
 \paragraph{Attenzione} % (fold)
@@ -241,10 +256,12 @@ fatti),
 Il concetto di variabile che utilizziamo è quello di "costante" matematica, in 
 cui i valori NON sono mutabili, non ho nessun asegnamento
 \\ \\
-L'essenza della programmazione funzionale consiste nel combinare funzioni mediante composizione e uso della ricorsione
+L'essenza della programmazione funzionale consiste nel combinare funzioni 
+mediante composizione e uso della ricorsione
 % paragraph attenzione (end)
 \subsection{Composizione di funzioni + ricorsione} 
-La struttura di un programma consiste nella definizione di un insieme di funzioni ricorsive mutualmente
+La struttura di un programma consiste nella definizione di un insieme di 
+funzioni ricorsive mutualmente
 \\ \\
 L'esecuzione del programma consiste nella VALUTAZIONE dell'APPLICAZIONE di una
 funzione principale a una serie di argomenti
@@ -283,7 +300,8 @@ Se LISP trova T è come se scrivessimo  \color{blue}\textbf{true}\color{black}
 \section{Ambienti RunTime di linguaggi logici funzionali e non}
 \begin{itemize}
 	\item Richiami di nozioni di architettura e programmazione
-	\item Per eseguire un programma di qualsiasi linguaggio il sistema operativo deve mettere a disposizione l'ambiente runtime che dia almeno due funzioni
+	\item Per eseguire un programma di qualsiasi linguaggio il sistema operativo
+	 deve mettere a disposizione l'ambiente runtime che dia almeno due funzioni
 	\begin{itemize}
 		\item Mantenimento dello stato della computazione(pc, limiti di memoria)
 		\item Gestione memoria disponibile (fisica e virtuale)
