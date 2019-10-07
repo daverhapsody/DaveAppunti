@@ -153,6 +153,8 @@ Lo spostamento è vettoriale, la distanza percorsa è uno scalare
 \section{La velocità}
 E' la quantità di spazio(s) percorsa da un corpo in un determinato tempo(t),
 specificando che ci sia la distanza percorsa e lo spostamento.
+\paragraph{Dati due punti} Lo spostamento non è altro che un vettore che parte
+dal primo al secondo punto, quindi che va da $p_{0}$ a $p_{1}$.
 \\ \\
 Attenzione, prima c'è da tenere conto della differenza dei tempi, che chiameremo 
 $\Delta t ~ = ~ t_{Finale} ~ - ~ t_{Iniziale}$
@@ -257,5 +259,102 @@ istantanea. Come si trova? Come prima si usano i limiti.
 \\ \\
 Per $\Delta t \to 0$ abbiamo che $\vec{a(t)} = \lim{\Delta t \to 0} 
 \frac{\vec{\Delta v}}{\Delta t} = \frac{dv}{dt} $
+\\ \\
+Data la velocità istantanea v(t) possiamo ricavare che l'accelerazione: 
+$$a = a(t) = \frac{d x(t)}{dt} = \frac{d^{2}x}{dt^{2}}$$
+Quindi di conseguenza ne segue che 
+$$v(t) = v(t_{0}) + \int_{t_{0}}^{t}a(t)~dt ~~~~~ (Con ~ t\geq t_{0}) $$ e
+di conseguenza: $$x(t) = x(t_{0}) + \int_{t_{0}}^{t}v(t)~dt  $$
+Considerando la velodità media si sta ovviamente considerando una velocità costante, 
+graficamente, se v = $\frac{Spazio}{Tempo}$, allora v rappresenta il coefficiente
+angolare della nostra retta.
+\\ \\
+Se per ipotesi avessimo l'accelerazione costante invece avremmo non più 
+$\frac{\Delta x}{\Delta t}$ MA $\frac{\Delta v}{\Delta t}$, che rappresenta 
+l'accelerazione media mantenendo per ovvio che
+\begin{itemize}
+	\item $\Delta t = t_{1} - t_{0}$
+	\item $\Delta v = \Delta t \cdot a_{Media}$ 
+	\item $\Delta v = v_{1} - v_{0}$
+\end{itemize}
+Si riesce a ricavare lo spostamento che a questo punto diventa 
+$$\Delta x = v_{0}\Delta t +(\Delta v) \cdot \frac{\Delta t}{2} =
+\Delta t \cdot \frac{v_{1}+v_{0}}{2} = \Delta t(v_{media})$$
+A questo punto proviamo a ricavare la posizione $x_{1}$:
+$$x_{1} = x_{0} + \frac{v_{1}}{v_{0}}{2}\cdot \Delta t$$
+Dove in pratica $v_{1} = v_{0} + a_{Media} \cdot \Delta t$, sostituendo vien fuori
+$$x_{1} = x_{0} \frac{v_{0}+a_{Media}\cdot\Delta t + v_{0}}{2} \cdot \Delta t$$
+Se generalizziamo:
+$$x(t) = x_{0} + v_{0}(t-t_{0})+\frac{a_{Media}}{2}(t-t_{0})^{2}$$
+Successivamente, per finire, noteremo che:
+$$x(t) = x_{0}+\int_{0}^{t}v_{0} dt + \int_{0}^{t} a_{media}t\cdot dt =$$
+$$= x_{0} + v_{0}t + \frac{1}{2}at^{2}$$
+\chapter{Moto rettilineo uniformemente accelerato}
+Dato qualsiasi piano inclinato, se un corpo parte dall'alto da un punto $x_{0}$
+se esso rotola (con attrito volvente che è trascurabile), noteremo che con il
+quadrato del tempo ($t^{2}$) la sua velocità si incrementerà
+$x = x_{0} + v_{0}t + \frac{1}{2}at^{2}$, in cui possiamo giocare di nuovo a 
+modificare le cose belle, tipo la t vi $v_{0}\cdot t$ può diventare 
+$\frac{v-v_{0}}{a}$, da cui consegue che $a = \frac{v-v_{0}}{t}$ e quindi 
+$x = x_{0} + \frac{1}{2}(v_{0}+v)\cdot t$.
+\section{Accelerazione di gravità}
+Escludendo le forze di attrito con l'aria quando un corpo cade in caduta libera
+si ottiene che esso (sul nostro pianeta) cada accelerando di 9,8 $\frac{m}{s^{2}}$.
+Questi corpi prendono il nome di Gravi, e non importa che massa abbiano SE 
+consideriamo l'assenza di aria che faccia attrito.
+\\ \\
+Poniamo caso di lanciare un sasso verso l'alto, o anche un mattone, MacBook, il
+proprio gatto, quel che volete, noterete che questo salirà, e poi dopo un breve
+periodo inizierà a tornare giù, questo è per via del fatto che l'accelerazione
+gravitazionale è costante, ma all'oggetto che lanciamo cosa accade?
+\\ \\
+Noi sappiamo che $v = v_{0} + a\cdot t$, il grafico sarà una parabola che va
+verso l'alto e poi ad un certo punto smetterà di crescere e inizierà a 
+decrescere, e nel momento in cui il corpo scende l'accelerazione noteremo che
+sarà $\leq$ 0 (Vettorialmente).
+\paragraph{ATTENZIONE} L'accelerazione non si annulla MA sul punto di massimo
+locale dove cambia il verso dell'accelerazione si avrà una velocità = 0
+\chapter{Sistema cartesiano}
+Il grafico di un qualsiasi sistema cartesiano è composto da due assi, uno x ed
+uno y, perpendicolari tra essi, ed ogni punto sul grafico è composto da due
+coordinate (x, y) tali che $P = (x_{P}, y_{P})$
+\section{Coordinate polari} 
+Ogni punto ha una distanza dall'origine, quella distanze si chiama R, e l'angolo
+che si forma tra l'asse x e R si chiama $\phi$, di conseguenza ricaviamo che:
+\begin{itemize}
+	\item $\frac{y}{R} = \sin(\phi)$
+	\item $\frac{x}{R} = \cos(\phi)$
+	\item $y = R \cos(\phi)$
+	\item $x = R \cos(\phi)$
+	\item $\frac{y}{x} = \tan(\phi)$
+	\item $\phi = \arctan(\frac{y}{x})$
+	\item $R = \sqrt{x^{2}+y^{2}}$
+\end{itemize}
+Tutto ciò rimanendo comunque nel secondo quadrante, nel primo chiaramente c'è
+da dire che rimane tutto cambiato di segno e viene indicato con le stesse lettere
+del primo ma aggiungendoci un \' dopo.
+\section{Somma tra vettori}
+Dati due vettori è possibile individuarne la somma tramote la regola del 
+parallelogramma che consiste nel tracciare due semirette parallele ai due 
+vettori che abbiamo, e vanno aggiunte al termine del segmento del vettore
+già presente, l'incrocio tra queste due semirette sarà il punto da cui puoi
+calcolarti la somma (Non si capisce, ok, senza grafici è impossibile ma 
+come già detto, li aggiungerò.) \\ \\
+Se ragioniamo nelle due dimensioni la questione del nostro moto si complica, 
+perchè abbiamo:
+$$\overrightarrow{r} = \widehat{i}\cdot x + \widehat{j} y$$ e quindi
+$$\frac{d \overrightarrow{v} (t)}{dt} = \widehat{i} \cdot \frac{dx}{dt}+ 
+\widehat{j} \cdot \frac{dy}{dt}$$
+Scritto più easy: $\widehat{i} v_{x} + \widehat{y} = \overrightarrow{v}$
+
+$$\overrightarrow{v_{Media}}= \Delta \frac{\overrightarrow{x}}{\Delta t} = 
+\frac{\overrightarrow{r}}{\Delta t} $$ dove $\Delta r = r_{1} - r_{0}$ e sarebbe
+la distanza vettoriale.  \\ 
+$\overrightarrow{v}(t) = \frac{\Delta \overrightarrow{r}}{\Delta t}$ con 
+$\Delta t \to 0$
+\\ \\ 
+L'obbiettivo è quello di passare dal livello 1D al 2D, e la trigonometria entra
+in gioco per via del fatto che vengono a formarsi dei triangoli
+    
 
 \end{document}
