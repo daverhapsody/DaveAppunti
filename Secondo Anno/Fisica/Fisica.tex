@@ -4,6 +4,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath} 
 \usepackage{xcolor}
+\usepackage{hyperref}
 \usepackage[margin=1in]{geometry} 
 %usepackage[latin1]{inputenc}
 \begin{document}
@@ -94,8 +95,8 @@ cosa
 Definiamo la differenza tra grandezza scalare e vettoriale
 \begin{itemize}
 	\item Le grandezze vettoriali hanno con sè una direzione, un verso, ed un
-	 modulo definito anche intensità. L'esempio per eccellenza è lo spostamento 
-	 e la velocità.
+	modulo definito anche intensità. L'esempio per eccellenza è lo spostamento 
+	e la velocità.
 	\item Le grandezze scalari sono valori precisi fissi, dei valori che indicano 
 	qualcosa di quantitativo più che qualitativo.
 \end{itemize}
@@ -207,7 +208,7 @@ Possiamo ricavare dalla nostra formula con il $\Delta x$ e $\Delta t$ che quindi
 la posizione che si assume in un determinato istante sia:
 $$x_{1} = x_{0} + v_{media} \Delta t$$
 La velocità media però non indica praticamente nulla del moto, se mi servono dati
- precisi (es contachilometri) su una determinata velocitá prendo intervalli sempre minori.
+precisi (es contachilometri) su una determinata velocitá prendo intervalli sempre minori.
 Quando il $\Delta t$ tende a 0, notiamo che la funzione non tenderà ad $\infty$ 
 perchè c'è corrispondenza negli ordini di infinito.
 Quindi chiamo questo limite con t che tende a 0 della velocità vettoriale fratto 
@@ -230,7 +231,7 @@ formula.
 Prendiamo ora in esame un grafico che ha sulle ascisse il tempo e sulle ordinate 
 le velocità istantanee registrate. Come nel caso precedente immaginiamo di avere 
 un grafico con una funzione monotona crescente. Prendo due punti del grafico e
- calcolo la velocità media tra essi 
+calcolo la velocità media tra essi 
 $$\frac{v_{1} + v_{2}}{2}$$
 sappiamo anche che la velocità media è definita come $\frac{\Delta x_{n}}{\Delta t_{n}}$
 da cui ricaviamo $\Delta x_{n} = v_{med} \Delta t_{n}$.
@@ -245,8 +246,18 @@ $A_{n}$ dove $A_{n} \sim \Delta x$. \\ \\
 Se $\Delta t_{n} \to 0$ allora $\Delta x = \int v(t) dt$ \\
 Per un punto specifico (sempre facendo tendere $\Delta t a 0$) ad esempio avremmo che 
 $$x_{1} = x_{0} + \int_{t_{0}}^{t_{1}} v(t) dt $$
+\\
+{\color{black} \rule{\linewidth}{0.mm} }
+\\
+\paragraph{Precisazione di } \href{https://github.com/LiaBell47}{Giulia}:
+La velocità va in funzione del tempo, MA gli estremi di integrazione vedendo il
+grafico sono anch'essi dei tempi.
+\\
+{\color{black} \rule{\linewidth}{0.mm} }
+\\
 quindi per conoscere la posizione è sufficiente passare per un integrale definito della velocità.
-Per esempio, se la funzione posizione nel tempo è $x_{t} = at^2 la v_{t} sará v_{t} = 2at$
+Per esempio, se la funzione posizione nel tempo è $x_{t} ~ = ~ at^2 ~ la ~ v_{t}
+~ sara' ~ v_{t} ~ =~  2at$
 \paragraph{Piccola osservazione} Quando diciamo che $\lim{\Delta t \to 0}$ 
 $\frac{\Delta x}{\Delta t} = v_{istantanea}$, stiamo dando per assodato che
 diminuendo l'intervallo di tempo, diminuirà il relativo spostamento, pertanto
@@ -355,6 +366,6 @@ $\Delta t \to 0$
 \\ \\ 
 L'obbiettivo è quello di passare dal livello 1D al 2D, e la trigonometria entra
 in gioco per via del fatto che vengono a formarsi dei triangoli
-    
+
 
 \end{document}
