@@ -7,12 +7,14 @@
 \usepackage{listings}
 \usepackage{hyperref}
 \usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\graphicspath{{./img/}}
 \definecolor{britishracinggreen}{rgb}{0.0, 0.26, 0.15}
 \newcommand\tab[1][1cm]{\hspace*{#1}}
 %usepackage[latin1]{inputenc}
 \begin{document}
 %\pagestyle{plain}
-\author{DaveRhapsody \and Jacopo De Angelis \and DlcGold}
+\author{\href{https://github.com/daverhapsody}{DaveRhapsody} \and Jacopo De Angelis \and DlcGold}
 \title{Linguaggi di Programmazione}
 \color{blue}
 \date{30 Settembre 2019}
@@ -736,7 +738,10 @@ di programmazione.
 \section{Cos'è ProLog}
 Nel titolo di questa sezione la L maiuscola non è a caso, perchè Pro-Log sarebbe
 acronimo di \textbf{PRO}gramming \textbf{LOG}ic, ed è un linguaggio che si basa
-su una restrizione della logica del primo ordine.
+su una restrizione della logica del primo ordine (FOL).
+\subsection{Ambiti di applicazione}
+Generalmente prolog è utilizzato come linguaggio per gestire i Database, 
+tendenzialmente alcuni DBMS (Database Management System) sono programmati 
 \subsection{Caratteristiche di Prolog}
 \begin{itemize}
 	\item Si basa su una restrizione della logica del primo ordine
@@ -745,7 +750,7 @@ su una restrizione della logica del primo ordine.
 	abbiano fatto da discriminante tipo i vincoli sui valori da dare alle 
 	variabili che han generato la risposta
 \end{itemize}
-\section{Formule Ben Formate e Forma Normale}
+\section{Formule Ben Formate e Forma Normale a clausole}
 Qualsiasi formula ben formata può essere riscritta in forma normale a clausole.
 Esistono due forme normali a clausole:
 \begin{enumerate}
@@ -761,9 +766,17 @@ Esistono due forme normali a clausole:
 \subsection{Forma normale congiuntiva}
 La clausole che hanno al più un solo letterale positivo (sia con che senza 
 letterali negativi) si chiamano cause di \color{red} \textbf{Horn} \color{black}
+\\ \\
+Spiegato meglio, perchè così non è chiaro in effetti, in pratica prendete una 
+clausola a caso: $A \wedge B \vee \neg C $, è una clausola di Horn perchè c'è
+UN SOLO TERMINE (Letterale) che NON è \textbf{Negativo}. (O \textbf{Negato})
+\\ \\
+\paragraph{Precisazione: } Se abbiamo un solo letterale positivo, esso è clausola
+di Horn pure non c'è nemmeno un letterale negativo,  ne basta uno solo positivo.
+\\ \\
 Però occhio:
 Non tutte le formula ben formate si riescono a far diventare un insieme di 
-, che per la cronaca compongono i programmi Prolog o meglio, 
+clausole di Horn, che per la cronaca compongono i programmi Prolog o meglio, 
 \color{blue} \textbf{I programmi prolog son collezioni di clausole di Horn} 
 \color{black}
 \subsection{Linguaggio dichiarativo}
@@ -789,12 +802,22 @@ Quali sono le possibili domande da fargli? Ad esempio:
 	\color{black} o \color{red}0, \color{britishracinggreen}"Si broh" \color{black} o 
 	\color{red}"No frate".
 \end{itemize}
+Più precisamente questo sì sarebbe un "Sì, ho dimostrato il mio teorema per 
+assurdo", perchè appunto ricordiamo che qua si sta parlando comunque di 
+dimostrazione di teoremi
 \section{Sintassi Prolog}
 \begin{itemize}
 	\item Fatto/Asserzione: *nomefatto*. 
 	\item Regole: c :- $b_{1}, ..., b_{n}$.
 	\item Goal/Query: ?-$q_{1}, ..., q_{n}$.
+	\paragraph{Inciso: }Queste vanno scritte nel terminale, non nel programma.
+	Sono tipo richieste che noi facciamo in base al momento per intenderci. 
 \end{itemize}
+Quando l'interprete prolog si trova di fronte una query (o goal) esegue in 
+sequenza la unit resolution andando in sequenza sulle sue clausole, dalla prima
+all'ultima, e le valuta tutte perchè potrei avere parecchie differenti soluzioni, 
+posso dimostrare più teoremi.
+\\ \\
 Ogni lettera avente un pedice tipo $p_{\lambda}$ o $q_{\kappa}$ sono tutti 
 termini composti, notare che in molte implementazioni il prompt Prolog è anche 
 un operatore che chiede al sistema di valutare il \color{blue} goal \color{black}
@@ -807,11 +830,114 @@ Ogni espressione Prolog diventa \textbf{TERMINE}, ne abbiamo diversi esempi:
 	\item Variabili
 	\item COmposizioni di altri termini (Da qui termine composto)
 \end{itemize}
+NB. Tutto ciò riguarda la sintassi, questo elenco è legato al "Come si scrive 
+questa determinata cosa in Prolog" 
 \paragraph{Precisazione}
 Ogni istruzione finisce con il punto, avete presente quando la vostra fidanzata
 capite che è innervosita con voi e alla fine delle frasi ci mette un '.' che vi
 fa gelare il sangue? Ecco, se qui non mettete il punto dopo ogni istruzione, 
 vedrete come vi gireranno i *\textit{Censura}* ;))))
-
-
+\\ \\
+Eccovi esempi di comandi corretti:
+\\
+{\color{black} \rule{\linewidth}{0.3mm} }
+\\
+\textbf{Ecco un esempio di comandi validi} \\ \\
+$$\includegraphics[width=0.75\textwidth]{validi}$$
+Come si nota sono un po' di comandi a caso, ma privi di errori sintattici \\
+{\color{black} \rule{\linewidth}{0.3mm} }
+\\
+Vediamo ora invece un esempio di comandi NON validi 
+\\ \\
+\textbf{Non validi} \\ \\
+$$\includegraphics[width=0.75\textwidth]{nonvalidi}$$
+In questo caso come vedete sono errori che tendenzialmente era possibile fare 
+pure su Java, non è che si tratti di chissà che di complesso. \\
+{\color{black} \rule{\linewidth}{0.3mm} }
+\\
+\\ \\
+\subsection{Le variabili (logiche)}
+La variabile logica è una sequenza alfanumerica che però inizia con un carattere
+maiuscolo (oppure con l'Underscore \_), e se son composte solo dal simbolo \_ 
+prendono il nome di Indifferenza o anonime.
+\\ \\
+Vengono instanziate (legate ad un valore) con il procedere del programma 
+(Nella dimostrazione del teorema)
+\subsection{Termini Composti}
+In cosa consiste una composizione di termini? In un \color{red} funtore
+\color{black} (Simbolo funzione, o predicato definito come atom) +
+una sequenza di termini racchiusi tra parentesi tonde e separati da virgole.
+Questi ultimi sono come gli argomenti dei metodi che facevamo in java, stesso
+identico concetto. \\ \\
+Non serve nemmeno essere uno spazio tra funtore e parentesi di sinistra, per 
+via di caratteristiche del sistema di parsing di prolog
+\section{Le Regole}
+Sono utilizzabili per esprimere definizioni:
+\begin{itemize}
+	\item Se X è un animale ed X ha le squame, X è un pesce
+\end{itemize}
+Ms in modo informale una regola alla fine è una formula ben formata, ed è composta
+da una testa e da un corpo (collegate da un operatore) quindi per ipotesi, una 
+possibile regola potrebbe essere A :- B, concettualmente si legge A è 
+implicata da B.
+\\ \\
+La testa di una regola è il conseguente di una implicazione logica, cioè quello 
+che consegue dal corpo, che è appunto l'antecedente.
+\begin{lstlisting}[language = Prolog]
+A :- B
+\end{lstlisting} 
+si può tradurre in $B \to A$, ora proviamo a ritradurre il nostro
+esempio del pesce:
+\begin{lstlisting}[language = Prolog]
+pesce(X) :- animale(x), ha_le_squame(X)
+\end{lstlisting} 
+In cui la virgola ovviamente è un and ($\wedge$) \\ \\
+\paragraph{Attenzione: } già questo esempio presenta una vulnerabilità, nel senso
+che per intenderci, essere un pesce implica di aver le squame, MA essere un 
+animale ed avere le squame non implica essere un pesce.
+\section{Regole di ricorsione}
+Proviamo a definire il concetto di un antenato, che è l'esempio più semplice 
+per capire come funzionano le formule ricorsive. Ci conviene ancora ragionare 
+sulle nostre definizioni
+\begin{lstlisting}[language = Prolog]
+antenato(X, Y) :- genitore(X, Y).
+antenato(X, Y) :- genitore(Z, Y), antenato(X, Z).
+\end{lstlisting}
+Traducendolo: \\
+La prima riga si legge: \textbf{SE}~~~~ X è \color{red}genitore \color{black} di Y
+\textbf{ALLORA} X è \color{red}antenato \color{black} di X. \\ \\
+La seconda riga invece è appena appena più complessa, merita un ritorno a capo 
+solo per lei: \\ \\
+\textbf{SE}~~~~ X è \color{red}antenato \color{black} di Z \textbf{E} Z 
+è \color{red}genitore \color{black} di Y \textbf{ALLORA} X è \color{red}antenato
+ \color{black} di Y
+\section{L'interprete prolog: Interrogazioni}
+Come detto in precedenza possiamo chiamarle interrogazioni, query, goal, non sono
+altro che comunicazioni dirette all'interprete che una volta fatto partire ci 
+presenterà true o false. \\ \\
+Un esempio di query:\\ 
+\begin{lstlisting}[language = Prolog]
+?- libro(kowalski, prolog).
+\end{lstlisting}
+\\
+Prolog ti restituirà come abbian detto prima true o false, yes o no, insomma ci
+siamo capiti.
+\\ \\
+Volendo io posso interrogare anche il programma usando delle variabili esistenziali.
+In pratica tutte le variabili Prolog le instanzia quando prova a darti una risposta,
+e queste vengono mostrate nella tua risposta, per esempio:\\
+libro(AUTORE, prolog) si legge come: CHI E' L'AUTORE DI PROLOG? 
+(Un folle di sicuro, ma va be'.) \\ \\
+\section{Unificazione: introduzione}
+L'operazione di instanziazione di variabili durante la prova di un predicato è il 
+risultato di una procedura particolare detta \textbf{Unificazione} \\ \\
+Dati due termini, la procedura di unificazione crea un insieme di sostituzioni 
+delle variabili, e questo insieme permette di rendere uguali i due termini. \\
+\\ 
+Tradizionalmente la procedura di unificazione costruisce un insieme di sostituzioni
+che prende il nome di "Most general unifier (indicato con MgU" (No, fan della F1
+non c'entra nulla con l'MGU-K o H :C)
+\\ \\ 
+Noi non faremo unificazioni, ci pensa l'interprete Prolog, che usa le 
+unificazioni appunto.
 \end{document}
