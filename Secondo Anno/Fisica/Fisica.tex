@@ -11,7 +11,7 @@
 %usepackage[latin1]{inputenc}
 \begin{document}
 \pagestyle{headings}
-\author{DaveRhapsody}
+\author{\href{https://github.com/daverhapsody}{DaveRhapsody}}
 \title{Fisica}
 \date{30 Settembre 2019}
 \maketitle
@@ -383,7 +383,14 @@ come già detto, li aggiungerò.) \\ \\ \\ \\
 \\
 \textbf{Letizia ci salva un'altra volta con un grafico} \\ \\
 $$\includegraphics[width=0.75\textwidth]{sommaVettoriale}$$
-Graficamente si verifica quello che ho scritto qui sopra. \\
+%DESCRIZIONE DELL'IMMAGINE
+Graficamente si verifica quello che ho scritto qui sopra. Si noti che tra l'altro
+la velocità media
+$\overrightarrow{v_{m}} è parallela (||) a \Delta \overrightarrow{r}$\\
+e $\overrightarrow{v}=\frac{ds}{dt} \widehat{u}t $ (con u che sarebbe un 
+versiore, ed s lo spazio), mentre per quanto concerne l'accelerazione 
+$\overrightarrow{v}=\frac{dv}{dt} \widehat{u}t $ (Non c'è più s ma v che sarà
+la velocità)
 {\color{black} \rule{\linewidth}{0.3mm} }
 \\
 Se ragioniamo nelle due dimensioni la questione del nostro moto si complica, 
@@ -393,7 +400,7 @@ $$\frac{d \overrightarrow{v} (t)}{dt} = \widehat{i} \cdot \frac{dx}{dt}+
 \widehat{j} \cdot \frac{dy}{dt}$$
 Scritto più easy: $\widehat{i} v_{x} + \widehat{y} = \overrightarrow{v}$
 
-$$\overrightarrow{v_{Media}}= \Delta \frac{\overrightarrow{x}}{\Delta t} = 
+$$\overrightarrow{v_{Media}}= \frac{\Delta \overrightarrow{x}}{\Delta t} = 
 \frac{\overrightarrow{r}}{\Delta t} $$ dove $\Delta r = r_{1} - r_{0}$ e sarebbe
 la distanza vettoriale.  \\ 
 $\overrightarrow{v}(t) = \frac{\Delta \overrightarrow{r}}{\Delta t}$ con 
@@ -401,6 +408,75 @@ $\Delta t \to 0$
 \\ \\ 
 L'obbiettivo è quello di passare dal livello 1D al 2D, e la trigonometria entra
 in gioco per via del fatto che vengono a formarsi dei triangoli
-
-
+\\ \\
+\section{Moto Circolare}
+Consideriamo una circonferenza di raggio r, ed un punto materiale che si muove
+lungo la suddetta circonferenza, che con l'asse x forma un angolo $\theta$. \\
+\\
+Supponiamo che il moto della velocità istantanea lungo la circonferenza sia 
+costante, o meglio, diciamolo in modo figo: $\frac{dv}{dt} ~ costante$, se calcolo
+l'accelerazione vettoriale, anche se il modulo è costante ma la direzione cambia
+allora l'accelerazione non potrò mai esser nulla. 
+$$\overrightarrow{a} = \frac{\overrightarrow{v}}{dt} \neq 0$$
+\subsection{I vantaggi delle coordinate polari}
+Introduciamo il concetto di radiante, ovvero date l, $\theta$ ed r,
+\begin{itemize}
+	\item Con r Raggio
+	\item $\theta$ che è l'amgolo
+	\item l che è la distanza NON vettoriale, cioè l'arco insomma tra due punti
+\end{itemize}
+Con $\theta = \frac{l}{r} = \frac{2 \pi r}{r} = 2 \pi$, pertanto si ottiene che
+la velocità angolare $\omega$ sia = a $\omega = \frac{d \theta}{dt}$, e ricordiamo
+che prima si era detto di essere in velocità costante, pertanto se moltiplichiamo
+la velocità angolare per il raggio cosa otteniamo? Esatto, la velocità a cui
+ci stiamo spostando, ovvero:
+$$\omega R = \frac{dl}{dt} = v$$
+Inoltre definiamo il concetto di PERIODO (t) che è il tempo impiegato per fare
+tutto un giro della circonferenza: $T = \frac{2 \pi}{\omega}$, analizziamo
+ora le leggi orarie
+$$s(t) = s_{0} + v\cdot t$$ Oppure
+$$\theta(t) = \theta _{0} + \omega t$$ a questo punto ragioniamo su quella
+che è l'accelerazione vettoriale:\\ 
+Sappiamo che $\overrightarrow{v_{m}} = \frac{\Delta \overrightarrow{r}}{\Delta t}$,
+quindi ne deriva che $\overrightarrow{a_{m}} =
+ \frac{\Delta \overrightarrow{v}}{\Delta t}$ oppure in modo anche più preciso
+ $$\overrightarrow{a} = \lim \limits_{\Delta t \to 0} 
+ \frac{\Delta \overrightarrow{v}}{\Delta t} = a_{c} \widehat{u}_{n}$$ in cui la
+ n specifica che è perpendicolare e non tangente, altrimenti sarebbe $\widehat{u}_{t}$, 
+ quindi si può concludere che l'accelerazione centripeta $$\overrightarrow{a_{c}}
+ = \frac{v^{2}}{r} \cdot \widehat{u}_{n}$$ in cui ricordiamo che n indica che il 
+ versore sia PERPENDICOLARE, infatti la n sta per versore NORMALE.
+ Tutto questo se la velocità è costante.
+ \section{Moto circolare non uniforme}
+ Oltre all'accelerazione centripeta servirà l'accelerazione tangente o tangenziale
+ che è l'accelerazione lungo l'arco PERO' tangente alla circonferenza.
+$$\overrightarrow{a_{t}} = \frac{d^{2}l}{dt^{2}}\cdot \widehat{u}_{t}$$, e 
+si ricava che quindi $\overrightarrow{a} = \overrightarrow{a_{t}} + 
+\overrightarrow{a_{c}}$, di conseguenza se è uniformemente accelerato, possiamo
+anche stabilirne la legge oraria, che è simile a prima: 
+$$l(t) = l_{0} + v_{0}t + \frac{1}{2} \cdot a_{t}t^{2}$$, che è di base, mentre
+nel caso andiamo a considerare le velocità angolari.
+$$\theta(t) = \theta _{0} + \omega _{0}t + \frac{1}{2} a_{\omega}t^{2}$$
+ Se prima si è considerata la velocità normale ora consideremo quella tangenziale, 
+ ma alla fine, in un caso vedavamo quanto ci si era spostati, nel secondo caso
+ si vede quanto si è allargata o ristretta la circonferenza. Perchè? 
+ Perchè \textbf{la circonferenza è l'insieme di tutti i punti equidistanti da un punto
+ detto centro}.
+ \section{La circonferenza}
+ Prendendo una qualsiasi circonferenza ed un punto P su di essa, è possibile 
+ tracciare sull'asse x ed y i punti relativi a P, e ne consegue che
+ $$x = R\cos \theta = R\cos(\omega t) e \\
+ y = R\sin \theta = R\sin(\omega t) $$ 
+ E quindi 
+$$\frac{dx}{dt} = \omega R \cdot \sin(\omega t) $$ e
+$$\frac{dy}{dt} = \omega R \cdot \cos(\omega t) $$
+Inoltre $$v = \sqrt{\frac{dx^{2}}{dt} + \frac{dy^{2}}{dt}} $$
+Finalmente si può rispondere alla domanda che ci si è fatti all'inizio: ovvero,
+come posso calcolare la traiettoria di un corpo BASANDOMI sulle forze che 
+agiscono su di esso?\\ \\ 
+Introduciamo pertanto il concetto di trasformazione Galileiana
+\section{Trasformazione Galileiana} 
+Il primo passo è sempre avere un sistema di riferimento a coordinate, ma di 
+questi ne esistono infiniti, pertanto sarà importante rimanere nello stesso 
+sistema di riferimento
 \end{document}

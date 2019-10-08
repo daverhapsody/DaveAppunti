@@ -919,7 +919,6 @@ Un esempio di query:\\
 \begin{lstlisting}[language = Prolog]
 ?- libro(kowalski, prolog).
 \end{lstlisting}
-\\
 Prolog ti restituirà come abbian detto prima true o false, yes o no, insomma ci
 siamo capiti.
 \\ \\
@@ -939,5 +938,16 @@ che prende il nome di "Most general unifier (indicato con MgU" (No, fan della F1
 non c'entra nulla con l'MGU-K o H :C)
 \\ \\ 
 Noi non faremo unificazioni, ci pensa l'interprete Prolog, che usa le 
-unificazioni appunto.
+unificazioni appunto. L'interprete Prolog stupido, che esegue algoritmicamente
+operazioni semplici, deve tenere traccia di tutte le unificazioni, quindi rinomina
+le variabili che userà durante il processo,
+\\ \\
+Come testiamo questa cosa? Prendiamo le due espressioni che vogliamo testare, le
+poniamo con il simbolo uguale in mezzo, e ci darà il risultato. Possiamo chiedergli
+42 = 42? e 42=x e ci dà yes in entrambi questi casi
+\subsection{Most General Unifier} 
+E' il risultato finale della procedura di valutazione, o meglio, di prova del 
+Prolog. \\
+Il modo più comodo per vedere appunto come la procedura di unificazione funziona 
+è di usare l'=
 \end{document}
