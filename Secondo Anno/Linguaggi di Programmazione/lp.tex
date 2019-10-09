@@ -705,6 +705,14 @@ allora non esiste alcun x per cui si verifica
 "non tutte le x", mentre è molto più semplice per l'$\exists$ in cui si dice
 "non esiste", lo specifico perchè io mi ci confondevo spesso.
 \chapter{Prolog}
+\paragraph{Prima ancora di cominciare: } Siccome mi seccava scaricarmi tutto 
+l'ambiente di sviluppo Swi-Prolog, vi lascio qui sotto il link per avere il 
+compilatore direttamente online che OVVIAMENTE non è utilizzabile all'esame, 
+però fa comodo, ve lo assicuro. \href{https://swish.swi-prolog.org/}
+{Link al magico sito}
+\\
+ {\color{black} \rule{\linewidth}{0.3mm} }
+ \\ 
 Data questa confusissima introduzione giungiamo a trattare più nello specifico
 il linguaggio Prolog. Quando parliamo di Prolog, infatti, smettiamo di ragionare
 in modo \color{red} \textbf{imperativo} \color{black} per passare al paradigma 
@@ -779,6 +787,9 @@ Non tutte le formula ben formate si riescono a far diventare un insieme di
 clausole di Horn, che per la cronaca compongono i programmi Prolog o meglio, 
 \color{blue} \textbf{I programmi prolog son collezioni di clausole di Horn} 
 \color{black}
+\\ \\
+Le suddette clausole rappresentano (lo si analizzerà successivamente) fatti, 
+regole o interrogazioni (query/goals).
 \subsection{Linguaggio dichiarativo}
 Uno dei punti di forza di Prolog è il fatto che sia un linguaggio dichiarativo,
 quindi è pressochè esente dall'avere istruzioni, contiene solo fatti e regole,
@@ -910,7 +921,7 @@ La seconda riga invece è appena appena più complessa, merita un ritorno a capo
 solo per lei: \\ \\
 \textbf{SE}~~~~ X è \color{red}antenato \color{black} di Z \textbf{E} Z 
 è \color{red}genitore \color{black} di Y \textbf{ALLORA} X è \color{red}antenato
- \color{black} di Y
+\color{black} di Y
 \section{L'interprete prolog: Interrogazioni}
 Come detto in precedenza possiamo chiamarle interrogazioni, query, goal, non sono
 altro che comunicazioni dirette all'interprete che una volta fatto partire ci 
@@ -951,13 +962,112 @@ Prolog. \\
 Il modo più comodo per vedere appunto come la procedura di unificazione funziona 
 è di usare l'=
 \section{Le Liste in Prolog: }
-Si definisce una lista in Prolog racchiudendo gli elementi (termini e/o variabili logiche) della lista tra parentesi quadre 
-‘[’ e ‘]’ e separandoli da virgole.
-Gli elementi di una lista in Prolog possono essere termini qualsiasi o liste
-[] indica la lista vuota.
+Si definisce una lista in Prolog racchiudendo gli elementi (termini e/o variabili
+logiche) della lista tra parentesi quadre e si separano con le virgole.
+Gli elementi di una lista in Prolog possono essere termini qualsiasi o liste. \\
+$[]$ indica la lista vuota.
 \\ \\
 Ogni lista non vuota può essere divisa in due parti, la testa e la coda, che sono
 rispettivamente il primo elemento e "tutti gli altri". Un po' come in F1, la 
 testa è la Mercedes, la coda son tutte le altre squadre (O la Juve in Serie A
 negli ultimi anni).
+\section{L'operatore | }
+Si usa per separare e distinguere tra inizio e la coda di una lista. BONI, NON 
+TRA LA TESTA E LA COSA, ma tra alcuni elementi e la nostra lista
+\paragraph{Prolog lavora su strutture ad albero }, infatti i programmi sono delle
+vere e proprie strutture per i dati, e sono manipolabili (mediante predicati
+extra-logici, cioè che vanno oltre a quelli del programma stesso)
+\\ \\
+Inoltre, già detto varie volte, Prolog è un linguaggio che sfrutta la 
+\textbf{Ricorsione}, in cui manca una nozione semplice di assegnamento.
+\\ \\
+Se con gli algoritmi si studiava il metodo di soluzione di una serie di problemi,
+in questo caso ci si concentra direttamente sulla specifica del problema.
+\section{La differenza tra Clausola semplice e Clausola di \color{red} Horn
+\color{black}}
+Una possibile clausola può essere l'implicazione: $A \to B$, che è traducibile
+in $\neg(A \vee B)$ ed è leggibile in diversi modi, tutti coincidenti.
+\begin{itemize}
+	\item B è \textbf{implicato} da A
+	\item \textbf{Se} A \textbf{allora} B
+	\item A \textbf{implica} B
+\end{itemize}
+Se invece di esserci A e B ci fossero due insiemi di $\kappa$ e $\lambda$ 
+termini avremo che:
+\[
+(A_{1}, A_{2}, ... ,A_{\kappa}) \wedge \neg(B_{1}, B_{2}, ... ,B_{\lambda})
+\]
+A e B assumono nome di \color{red} letterali \color{black}, e son positivi 
+quando non presentano la negazione ($\neg$).
+\\ \\
+La clausola di Horn oggettivamente non è altro che una di queste clausole MA 
+che ha MASSIMO, AL PIU', NON PIU' DI UN letterale positivo.
+\\ 
+In Prolog alla fine quel che si verifica è questo:
+\begin{itemize}
+	\item \color{red} Fatti:  \color{black} A.
+	\item \color{red} Regole: \color{black} A :- $B_{1}, ..., B_{n}$
+	\item \color{red} Goals/Query/Interrogazioni:  \color{black} :- $B_{1}, ..., B_{n}$
+	\item \color{red} Contraddizioni: \color{black} fail
+\end{itemize}
+\section{Un programma logico}
+Sì, ok, ma con questo fantasmagorico linguaggio ci si può fare almeno c = a + b?
+\\ \\
+Sì, si può, (ed è più semplice farlo in assembly), e si deve ragionare pensando
+alla funzione "successore", che è una funzione in $N$, che consentirà di 
+sviluppare un programma di questo tipo:
+\begin{lstlisting}[language=prolog]
+ 	sum(0, X, X).
+ 	sum(s(X), Y, s(Z)) :- sum (X, Y, Z).
+ \end{lstlisting} 
+'s' sta per \textbf{successore}, proviamo a leggerlo (ricorsivamente): \\ \\
+Il programma verrà interrogato in questo modo: \\
+$\exists X$ sum(s(0), 0, X) \{X / s(0)\}
+$\exists X$ sum(s(s(0)), s(0), W) \{W / s(s(s(0)))\} MA
+Scritto in Prolog divente 
+\begin{lstlisting}[language=prolog]
+	:- sum(s(0), 0, N)  {N s(0)}
+	:- sum(s(s(0)), 0, N)  {W s(s(s(0)))}
+\end{lstlisting}
+\section{Sostituzioni}
+Già dall'esempio qui sopra si nota che {W / s(s(s(0)))} e {N / s(0)} sono due
+sostituzioni, ma in che senso? Praticamente ci dicono con quali valori (che 
+potrebbero pure essere altre variabili) possiamo sostituire le variabili in un 
+termine. \\ \\
+Di solito si denota una sostituzione con questo formalismo:
+\[
+	\sigma = \{ X_{1} / v_{1}, X_{2}, / v_{2}, ... , X_{\kappa} / v_{\kappa}\}
+\]
+Più nello specifico una sostituzione può essere considerata anche come 
+\textit{funzione} applicabile ad un termine: $\sigma : T \to T$ dove T è l'insieme
+di termini. \\ 
+\paragraph{No, non è l'unico modo, è un possibile modo, di fatto basta un comando
+del tipo sum(X,Y):- S is X+Y e ti fa la somma. }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \end{document}
