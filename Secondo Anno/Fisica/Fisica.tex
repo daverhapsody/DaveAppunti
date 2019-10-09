@@ -439,35 +439,37 @@ $$\theta(t) = \theta _{0} + \omega t$$ a questo punto ragioniamo su quella
 che è l'accelerazione vettoriale:\\ 
 Sappiamo che $\overrightarrow{v_{m}} = \frac{\Delta \overrightarrow{r}}{\Delta t}$,
 quindi ne deriva che $\overrightarrow{a_{m}} =
- \frac{\Delta \overrightarrow{v}}{\Delta t}$ oppure in modo anche più preciso
- $$\overrightarrow{a} = \lim \limits_{\Delta t \to 0} 
- \frac{\Delta \overrightarrow{v}}{\Delta t} = a_{c} \widehat{u}_{n}$$ in cui la
- n specifica che è perpendicolare e non tangente, altrimenti sarebbe $\widehat{u}_{t}$, 
- quindi si può concludere che l'accelerazione centripeta $$\overrightarrow{a_{c}}
- = \frac{v^{2}}{r} \cdot \widehat{u}_{n}$$ in cui ricordiamo che n indica che il 
- versore sia PERPENDICOLARE, infatti la n sta per versore NORMALE.
- Tutto questo se la velocità è costante.
- \section{Moto circolare non uniforme}
- Oltre all'accelerazione centripeta servirà l'accelerazione tangente o tangenziale
- che è l'accelerazione lungo l'arco PERO' tangente alla circonferenza.
-$$\overrightarrow{a_{t}} = \frac{d^{2}l}{dt^{2}}\cdot \widehat{u}_{t}$$, e 
-si ricava che quindi $\overrightarrow{a} = \overrightarrow{a_{t}} + 
-\overrightarrow{a_{c}}$, di conseguenza se è uniformemente accelerato, possiamo
+\frac{\Delta \overrightarrow{v}}{\Delta t}$ oppure in modo anche più preciso
+$$\overrightarrow{a} = \lim \limits_{\Delta t \to 0} 
+\frac{\Delta \overrightarrow{v}}{\Delta t} = a_{c} \widehat{u}_{n}$$ in cui la
+n specifica che è perpendicolare e non tangente, altrimenti sarebbe $\widehat{u}_{t}$, 
+quindi si può concludere che l'accelerazione centripeta $$\overrightarrow{a_{c}}
+= \frac{v^{2}}{r} \cdot \widehat{u}_{n}$$ in cui ricordiamo che n indica che il 
+versore sia PERPENDICOLARE, infatti la n sta per versore NORMALE.
+Tutto questo se la velocità è costante.
+\section{Moto circolare non uniforme}
+Oltre all'accelerazione centripeta servirà l'accelerazione tangente o tangenziale
+che è l'accelerazione lungo l'arco PERO' tangente alla circonferenza.
+$$\overrightarrow{a_{t}} = \frac{d^{2}l}{dt^{2}}\cdot \widehat{u}_{t}$$ E
+si ricava che quindi $\overrightarrow{a} = \overrightarrow{a_{t}} \vee 
+\overrightarrow{a_{c}}$, nel senso che è la stessa accelerazione ma considerata
+da due sistemi di riferimento diversi. \\
+Di conseguenza se è uniformemente accelerato, possiamo
 anche stabilirne la legge oraria, che è simile a prima: 
 $$l(t) = l_{0} + v_{0}t + \frac{1}{2} \cdot a_{t}t^{2}$$, che è di base, mentre
 nel caso andiamo a considerare le velocità angolari.
 $$\theta(t) = \theta _{0} + \omega _{0}t + \frac{1}{2} a_{\omega}t^{2}$$
- Se prima si è considerata la velocità normale ora consideremo quella tangenziale, 
- ma alla fine, in un caso vedavamo quanto ci si era spostati, nel secondo caso
- si vede quanto si è allargata o ristretta la circonferenza. Perchè? 
- Perchè \textbf{la circonferenza è l'insieme di tutti i punti equidistanti da un punto
- detto centro}.
- \section{La circonferenza}
- Prendendo una qualsiasi circonferenza ed un punto P su di essa, è possibile 
- tracciare sull'asse x ed y i punti relativi a P, e ne consegue che
- $$x = R\cos \theta = R\cos(\omega t) e \\
- y = R\sin \theta = R\sin(\omega t) $$ 
- E quindi 
+Se prima si è considerata la velocità normale ora consideremo quella tangenziale, 
+ma alla fine, in un caso vedavamo quanto ci si era spostati, nel secondo caso
+si vede quanto si è allargata o ristretta la circonferenza. Perchè? 
+Perchè \textbf{la circonferenza è l'insieme di tutti i punti equidistanti da un punto
+detto centro}.
+\section{La circonferenza}
+Prendendo una qualsiasi circonferenza ed un punto P su di essa, è possibile 
+tracciare sull'asse x ed y i punti relativi a P, e ne consegue che
+$$x = R\cos \theta = R\cos(\omega t) e \\
+y = R\sin \theta = R\sin(\omega t) $$ 
+E quindi 
 $$\frac{dx}{dt} = \omega R \cdot \sin(\omega t) $$ e
 $$\frac{dy}{dt} = \omega R \cdot \cos(\omega t) $$
 Inoltre $$v = \sqrt{\frac{dx^{2}}{dt} + \frac{dy^{2}}{dt}} $$
@@ -478,5 +480,97 @@ Introduciamo pertanto il concetto di trasformazione Galileiana
 \section{Trasformazione Galileiana} 
 Il primo passo è sempre avere un sistema di riferimento a coordinate, ma di 
 questi ne esistono infiniti, pertanto sarà importante rimanere nello stesso 
-sistema di riferimento
+sistema di riferimento, nel senso che tutto varia in base a quello. \\ \\
+Ad esempio, supponiamo di avere 3 posizioni di 3 corpi diversi. 
+\begin{itemize}
+	\item A: Un'automobile
+	\item P: Un pedone
+	\item B: Una bicicletta
+\end{itemize}
+E di conseguenza le distanze tra essi $\overrightarrow{X_{BA}}, 
+\overrightarrow{X_{PA}}, \overrightarrow{X_{PB}}$, noi possiamo dedurre che:
+$v_{PB} = \frac{dx_{PB}}{dt} = v_{AP} + v_{AB}$. \\ \\
+Se queste sono velocità da considerarsi vettoriali ($\overrightarrow{v_{PA}}$), 
+siccome i punti sono in serie sullo stesso piano, allora basta fare semplicemente
+la somma. 
+\paragraph{Detto in modo più umano: } Siete in macchina, andate a 70$\frac{km}{h}$,
+vi supera una macchina che va a 130$\frac{km}{h}$, ecco, dal punto di vista
+della velocità abbiamo appena detto che è come essere fermi, e una macchina va
+a 60$\frac{km}{h}$, dipende dal vostro sistema di riferimento.
+\\ \\
+\chapter{La Forza}
+Finora abbiam descritto le accelerazioni per esempio di un corpo in caduta 
+libera, abbiam descritto COME un oggetto cade, ma nessuno ha risposto al perchè
+l'oggetto cade. Prima ci si chiedeva perchè c'è movimento? \\ \\
+Perchè alcuni oggetti si muovono senza una causa? Esempio lampante: La Luna,
+si muove (da un pochino di tempo anche) da sola, senza nessuno che spinge.
+\paragraph{Consiglio: } Guardatevi questo spettacolo a teatro di Paolini che 
+parla di Galileo, io l'ho adorato, anche se mi rendo conto che in sessione non
+avrete per nulla voglia di guardare qualcosa di questo genere ->
+\href{https://www.youtube.com/watch?v=8alJ9eFl634}{This}
+\\
+{\color{black} \rule{\linewidth}{0.3mm} }
+\\
+Ora, da una parte abbiamo le forza che sono descrivibili con delle formule, 
+e dall'altro abbiamo la meccanica che vuole sapere cosa fanno le nostre forze
+al punto materiale che le subisce. Ammesso che capisco quanto valga una forza, 
+cos'è una forza?
+\paragraph{Definizione: }Da \href{https://it.wikipedia.org/wiki/Forza}{Wikipedia}: 
+Una forza è una grandezza fisica 
+vettoriale che si manifesta nell'interazione reciproca di due o più corpi, sia 
+a livello macroscopico, sia a livello delle particelle elementari. Quantifica il 
+fenomeno di induzione di una variazione dello stato di quiete o di moto dei corpi 
+stessi; in presenza di più forze, è la risultante della loro composizione vettoriale
+a determinare la variazione del moto. La forza è descritta classicamente dalla 
+seconda legge di Newton come derivata temporale della quantità di moto di un
+corpo rispetto al tempo \\ \\
+All'atto pratico una forza è quella che causa il movivmento, di fatto se si 
+applica una forza, o comunque ci sono delle forze che agiscono su di esso, allora
+quest'ultimo si muoverà, o per esser più preciso Accelera. Essendo una grandezza
+vettoriale, se la somma algebrica delle forza applicate su un corpo è = 0 allora
+il corpo avrà accelerazione 0. \\ \\ \\
+\footnote{Lamentela personale}Credo di volermi rifiutare di fare menzione della 
+definizione dataci a lezione con l'esempio della molla. Ditemi voi se è ammissibile 
+una definzione del tipo "Una forza è quella esercitata da una molla quando la tiri 
+o comprimi". 
+\\ \\
+Detto in modo più matematico, primo principio della dinamica (\textbf{principio di inerzia}:
+\[
+	Se~~\overrightarrow{F} = \sum_{\kappa=1}^\infty \overrightarrow{F_{\kappa}} = 0
+	~~ allora ~~ a = 0
+\]
+Se su un corpo non agisce alcuna forza viene mantenuta costante la propria 
+velocità, pertanto essa può essere anche $\geq 0$, ma rimarrebbe costante per
+via dell'assenza di forze che si oppongono al movimento.
+\\ \\
+Esatto, perchè potrebbe accadere che esistano forza che non agiscono direttamente
+come quella centripeta, quella di gravità, quella centrifuga, è pieno di forze
+che agiscono indirettamente. Sono forze che compaiono nel sistema di riferimento
+non inerziale.
+\\ \\
+\section{Secondo principio della dinamica}
+Dato un corpo fermo, in base al suo peso dovremo applicare una forza maggiore o
+minore, per ottenere una determinata velocità. Cioè se devo spingere una penna, 
+e farla viaggiare a una velocità $\lambda$, è ben diverso far raggiungere la
+stessa velocità $\lambda$ ad un camion. (Ponendo $\lambda \geq 0$) \\ \\
+Da questo consegue che la massa influenza sia l'accelerazione che la forza.
+Infatti il secondo principio della dinamica dice che:
+\[
+	F = m\cdot A
+\]
+Provocare dell'accelerazione in un corpo richiederà più o meno forza in base
+alla massa del corpo da spingere. Ne consegue che:
+\[
+	m_{x} = m_{0} \cdot \frac{a_{0}}{a_{x}}
+\]	
+Chiaramente c'è da dire che un qualsiasi corpo, se è fermo necessiterà di 
+applicare più forza per produrre un determinato movimento, se spingiamo un corpo
+che già si muove ci vorrà meno forza.
+\\ \\
+\paragraph{La Massa: } Anche se la si dà per scontata, non l'abbiamo definita in
+modo specifico, è considerabile al momento come quantità di materia, pertanto
+mi raccomando da ora non confondiamo più massa e peso.
+\paragraph{Il Peso: } Il peso è una forza, che è esercitata dal campo gravitazionale
+terrestre ed è di circa 9,8 N (dove N sarebbe Newton). Il peso è una forza, è una
+grandezza vettoriale, ha una direzione, un verso, ed un modulo o intensità.
 \end{document}

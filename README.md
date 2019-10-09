@@ -6,6 +6,8 @@
 
 2) Gli appunti del primo anno li ho presi conscio del fatto che sarei stato io stesso ad utilizzarli, pertanto questi ultimi sono incompleti, mi rendo conto che effettivamente manchino un po' di cose, altre sono scritte male, MA in caso di necessità prendo e mi metto a cambiare o aggiungere roba. Gli appunti del secondo sono presi pensando che verranno letti da terzi, e non solo dal sottoscritto
 
+3) Siccome ho messo in alcuni file anche dei riferimenti con link a YouTube o anche altri siti, per poterli aprire dovrete avere aperto il pdf con un programma per aprire pdf. Se aprite gli appunti direttamente da GitHub purtroppo non vi fa cliccare.
+
 ------
 
 ### Cosa potrete trovare in questa repo:
