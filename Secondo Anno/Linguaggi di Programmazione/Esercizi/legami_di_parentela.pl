@@ -9,6 +9,8 @@ genitore(a,b). %B è genitore di A
 
 antenato(X, Y) :- genitore(X, Y).
 antenato(X, Z) :- genitore(Y, Z), antenato(X, Y).
+nonno(X, Y) :- genitore(X, Z), genitore(Z, Y).
+
 
 %Domande:
 %1) E' B antenato di A? 
