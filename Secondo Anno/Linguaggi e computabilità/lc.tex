@@ -371,9 +371,76 @@ S \implies ^{*}\alpha ~sse~ \alpha ~ e' ~ ottenibile ~ tramite ~ procedura ~ di
 inferenza ~ ricorsiva$
 \subsection{Th. 2}
 Sia G = (V, T, P, S) una CFG, e $\alpha \in (VUT)^{*} allora S \implies ^{*} \alpha$
-se e solo se $S \implies _{rm} ^{*} \alpha$ OPPURE $S \implies _{lm} ^{*} \alpha$
+se e solo se $S \implies_{rm}^{*} \alpha$ OPPURE $S \implies _{lm} ^{*} \alpha$
+\section{Le Relazioni $\implies$}
+Sia G = (V, T, P, S) una CFG e sia $\alpha A \beta$ t.c. $\alpha , \beta \in
+ (v\cup T)^{\star}$ e A $\in$ V. \\
+ Sia $A \to \gamma \in P$ allora $\alpha A \beta \implies \alpha \gamma \beta$
+\section{Le Relazioni $\implies^{*}$}
+$\alpha \implies^{*} \beta ,$ con $\alpha, \beta \in (V \cup T)^{*}$ se e solo se
+$\exists \gamma_{1}, \gamma_{2}, ... , \gamma_{n} \in (V \cup T)^{*}$ t.c.
+$\alpha = \gamma_{1} \implies \gamma_{2} \implies ... \implies \gamma_{n} = \beta$
+Con $n \geq 1$
+\paragraph{Esercizio 1: }Formare una CFG per il linguaggio \\
+$$L = \{0^{n} 1^{n} | n \geq 1 \}$$
+L = (01,0011,000111,00001111, $\to$)
+\\ Proviamo a scrivere la grammatica: \\
+G = (V, T, P, S), dove T = \{0, 1\} \\
+$S \to 0S1 | 01$, ricordiamoci che non possiamo metterci $\epsilon$ perchè si è
+specificatop che dobbiamo avere $n \geq 1$ (ricordandoci che n è il 
+numero di 0 e 1), quindi 
+\\ \\
+Se $L = \{0^{n} 1^{n} | n \geq 1 \}$ \\
+S $\to 0S1 | \epsilon$ \\
+L = {$\epsilon$, 01, 0011, 000111, ...}
 
+\paragraph{Esercizio 2: }Formare una CFG per il linguaggio \\
+$$L = \{a^{n} | n \geq 1 \}$$
+L = (aS,aaS,aaaS,aaaaS,aaaaa, ..., $\to$)
+\\ Proviamo a scrivere la grammatica: \\
+$S \to aS | a$, \href{https://www.youtube.com/watch?v=ATNolrWTYuU}
+{ecco un esempio di applicazione di questo esercizio} 
+\\ \\
+Nel caso di questo esercizio è indifferente se la 'a' vien messa prima o dopo
+la S
 
+\paragraph{Esercizio 3: }Formare una CFG per il linguaggio \\
+$$L = \{ (ab)^{n} | n \geq 1 \}$$
+L = (ab, abab, ababab, abababab, ..., $\to$) (Rap Futuristico abababababab)
+\\ Scriviamo la grammatica
+$S \to abS | ab$ OPPURE, $S \to Sab | ab$
+\\ \\
+$S \implies Sab \vee abS \implies ... $ Non è sbagliato scriverli entrambi, ma
+sarebbe auspicabile costruire due insiemi S in cui hai uno con la prima regola
+ed uno in cui usi la seconda regola. Quindi si ha che: \\ \\
+$S \implies Sab \implies Sabab ... $
+$S \implies abS \implies  ababS ... $
+Introduciamo le regole $A \to b$, $A \to bS$, $S \to aA$
+
+\paragraph{Esercizio 4: }Formare una CFG per il linguaggio \\
+$$L = \{ (a)^{n}cb^{n} | n \geq 1 \}$$
+L = $\{S \implies aSb \implies aaSbb \implies aaaSbbb ...\}$
+\\ Scriviamo la grammatica
+$S \to aSb | acb$
+\\ \\
+Riassumendo: 
+V = \{S\} \\
+T = \{a,b,c\} \\
+P = \{S $\to$ aSb, S $\to$ acb\}
+
+\paragraph{Esercizio 5: }Formare una CFG per il linguaggio \\
+$$L = \{ w\in \{a,b,c,d\}^{\star} | w = a^{n}, b^{n}, c^{\kappa}, d^{\kappa} \}
+ | con n, \kappa \geq 0 \}$$
+L = $\{\epsilon, ab, aabb, aaabbb ... \\
+cd, ccdd, cccddd ... \\
+abcd, aabbcd, aaabbbcd, ... \\
+abcd, abccdd, abcccddd, ...\}$ \\
+Si ha che X = \{a^{n}, b^{n}\} e Y=\{c^{\kappa}, d^{\kappa}\}
+\\ Scriviamo la grammatica
+$S \to XY$\\
+$X \to aXb | \epsilon $\\
+$Y \to cYd | \epsilon $
+\\ \\
 
         
   	
