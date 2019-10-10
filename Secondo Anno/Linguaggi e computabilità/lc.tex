@@ -14,6 +14,7 @@ urlcolor=cyan,
 }
 %usepackage[latin1]{inputenc}
 \begin{document}
+\fontfamily{cmss}\selectfont
 \pagestyle{plain}
 \author{DaveRhapsody}
 \title{Linguaggi e Computabilità}
@@ -56,7 +57,6 @@ letteratura esempi di sue applicazioni a contesti anche non informatici e
 addirittura non tecnologici. La BNF viene usata nella maggior parte dei testi 
 sulla teoria dei linguaggi di programmazione e in molti testi introduttivi su
 specifici linguaggi.  
-
 \section{Model checking}
 Usato per protocolli di comunicazione, per esempio per protocolli di pagamento,
 in realtà di qualsiasi tipo, chiaramente per la sicurezza questo è l'ideale, 
@@ -135,7 +135,6 @@ In pratica
 $$L_{2} = {ac, ca, acb, abc, cab, cba, ...}\\
 abc \in L_{2}?? Yes\\
 ccbb \in L_{2}?? Nope$$ 
-
 \paragraph{Detto meglio} (Problema di Membership) \\ $W \in \Sigma ^{*} \to L 
 \begin{cases}
 SI, ~ Se ~ w \in L \\
@@ -161,7 +160,6 @@ Una grammatica G è una quadrupla $\to$ G = (V, T, P, S) ~in ~cui~
 	\item P: insieme delle produzioni
 	\item $S \in V$: simbolo di start
 \end{itemize}
-
 \paragraph{I tipi di grammatiche}
 Esiste una gerarchia (Noam) Chomsky, che negli anni 50 si poneva domande su 
 cosa accade nel cervello umano quando si elabora un linguaggio. \\ \\
@@ -243,7 +241,6 @@ $$G_{pal} = (V, T, P, S), ~in ~cui $$\\
 	\item T = \{0, 1\}
 	\item P = $S \in \epsilon, S \in 0, S \in 1, S \in 0S0, S \in 1S1$
 \end{itemize}
-
 Più in generale
 $$G_{pal} = (\{S\},\{0, 1\}, P, S) dove P = \{S \in \epsilon, ...\}$$
 \paragraph{Derivazione}
@@ -345,8 +342,6 @@ $I \implies I0 \implies I00 \implies I000 \implies I1000 $
 L'obbiettivo è dimostrare che dato un obbiettivo si può ricavare in 0 o più passi
 una determinata stringa. \\ (E' la stringa dell'esercizio precedente: )
 Si agisce ponendo una tabella composta in questo modo 
-
-
 \begin{center}
 \begin{tabular}{ |c|c|c|c|c| } 
  \hline
@@ -381,6 +376,7 @@ $\alpha \implies^{*} \beta ,$ con $\alpha, \beta \in (V \cup T)^{*}$ se e solo s
 $\exists \gamma_{1}, \gamma_{2}, ... , \gamma_{n} \in (V \cup T)^{*}$ t.c.
 $\alpha = \gamma_{1} \implies \gamma_{2} \implies ... \implies \gamma_{n} = \beta$
 Con $n \geq 1$
+\chapter{Esercizi sulle CFG}
 \paragraph{Esercizio 1: }Formare una CFG per il linguaggio \\
 $$L = \{0^{n} 1^{n} | n \geq 1 \}$$
 L = (01,0011,000111,00001111, $\to$)
@@ -393,7 +389,6 @@ numero di 0 e 1), quindi
 Se $L = \{0^{n} 1^{n} | n \geq 1 \}$ \\
 S $\to 0S1 | \epsilon$ \\
 L = {$\epsilon$, 01, 0011, 000111, ...}
-
 \paragraph{Esercizio 2: }Formare una CFG per il linguaggio \\
 $$L = \{a^{n} | n \geq 1 \}$$
 L = (aS,aaS,aaaS,aaaaS,aaaaa, ..., $\to$)
@@ -403,7 +398,6 @@ $S \to aS | a$, \href{https://www.youtube.com/watch?v=ATNolrWTYuU}
 \\ \\
 Nel caso di questo esercizio è indifferente se la 'a' vien messa prima o dopo
 la S
-
 \paragraph{Esercizio 3: }Formare una CFG per il linguaggio \\
 $$L = \{ (ab)^{n} | n \geq 1 \}$$
 L = (ab, abab, ababab, abababab, ..., $\to$) (Rap Futuristico abababababab)
@@ -416,7 +410,6 @@ ed uno in cui usi la seconda regola. Quindi si ha che: \\ \\
 $S \implies Sab \implies Sabab ... $
 $S \implies abS \implies  ababS ... $
 Introduciamo le regole $A \to b$, $A \to bS$, $S \to aA$
-
 \paragraph{Esercizio 4: }Formare una CFG per il linguaggio \\
 $$L = \{ (a)^{n}cb^{n} | n \geq 1 \}$$
 L = $\{S \implies aSb \implies aaSbb \implies aaaSbbb ...\}$
@@ -427,7 +420,6 @@ Riassumendo:
 V = \{S\} \\
 T = \{a,b,c\} \\
 P = \{S $\to$ aSb, S $\to$ acb\}
-
 \paragraph{Esercizio 5: }Formare una CFG per il linguaggio \\
 $$L = \{ w\in \{a,b,c,d\}^{\star} | w = a^{n}, b^{n}, c^{\kappa}, d^{\kappa} \}
  | ~ con ~  n, \kappa \geq 0 \}$$
@@ -458,7 +450,6 @@ e w_{2} \in L_{2}\}$, facciamo un esempio: \\ \\
 	L_{2} = \{ ab, b \}
 	L_{1}L_{2} = \{ ab, b, 0ab, 0b, 00ab, 00b, 011ab, 011b\}
 \]
-
 \paragraph{Esercizio 6: }Formare una CFG per il linguaggio \\
 $$L = \{ w\in \{a,b,c,d\}^{\star} | w = a^{n}, c^{\kappa}, d^{\kappa}, b^{n} 
  | ~ con ~ n, \kappa \geq 0 \}$$
@@ -475,7 +466,6 @@ $S \implies X \implies \epsilon$ \\
 $S \implies aSd \implies aXd \implies abXcd \implies abcd$ \\
 $S \implies X \implies bXc \implies bc$ \\
 $S \implies aSd \implies aXd \implies ad$
-       
 \paragraph{Esercizio 7: }Formare una CFG per il linguaggio \\
 $$L = \{ w\in \{a,b,c\}^{\star} | w = a^{n}, c^{\kappa}, n^{n}
  | ~ con ~ n, \kappa \geq 0 \}$$
@@ -483,8 +473,7 @@ Consideriamo come negli esempi precedenti che $c^{\kappa} $sia una X (Ricordate
 X bestione? Quello del Dennunzio, ecco), per cui: \\
 $S \to aSb | aXb$ \} \\
 $X \to cX | c$ \} (Regolare)\\
-       
-\paragraph{Esercizio 7: }Formare una CFG per il linguaggio \\
+\paragraph{Esercizio 8: }Formare una CFG per il linguaggio \\
 $$L = \{ a^{n+m} x c^{m} y d^{m} n, m \geq 0 \}$$
 In quest'ultimo caso è leggermente più complesso perchè dovremo dividere 
 il nostro $a^{m+n}$ in due sotto casi.
@@ -496,4 +485,18 @@ il nostro $a^{m+n}$ in due sotto casi.
 	$$a^{m}a^{n} x c^{n}y d^{m}$$ Se notate le n stanno dentro e le m stanno 
 	fuori, sono diciamo racchiuse, pertanto è corretto +
 \end{itemize}
+
+\paragraph{Esercizio 9: }Formare una CFG per il linguaggio \\
+$$L = \{ a^{n+m}xc^{n}yd^{m}, ~con~n,m \geq 0 \}$$
+Come possiamo notare avremo $a^{n}a^{m}xc^{n}yd^{m}$ che non va bene, non si 
+può fare. Ma possiamo anche considerarla come $a^{m}a^{n}xc^{n}yd^{m}$ \\ \\
+$S \to aSd | By$ \\
+$B \to aBc | x$ \\
+$S \implies By \implies xy$
+$S \implies aSd \implies aByd \implies aaBcyd \implies aaxcyd$
 \end{document}
+
+
+
+
+

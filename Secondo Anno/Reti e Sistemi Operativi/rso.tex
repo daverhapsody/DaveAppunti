@@ -169,7 +169,7 @@ dal livello fisico. \\
 A questo punto, immaginatevi due fette di pane che si chiudono sulla fetta di 
 prosciutto. Benissimo, il Data Link ha \textbf{INCAPSULATO} il prosciutto ed ha
 creato un panino (\color{red}Pacchetto\color{black})! \\ \\
-Il data link passerà questo panino al \color{red}Network\color{black}, e lì ci 
+Il data link passerà questo panino al \color{red}Network \color{black}, e lì ci 
 saranno altre due fette di pane che includeranno il nostro panino. 
 Ed in questo modo abbiamo ottenuto un panino dentro ad un altro panino! Ossia,
 un pacchetto incapsulato in un pacchetto che semplicemente aggiunge un header 
@@ -339,4 +339,217 @@ l'SR?
 Ci sono dei casi in cui ci sono interazioni tra numero di pacchetto e dimensione
 finestra, ma sono problematiche di cui non approfondiamo perchè non ci interessa
 siccome non può praticamente mai capitare
+\section{Formato del pacchetto}
+\begin{itemize}
+	\item 20 byte
+	\begin{itemize}
+		\item 16 bit Source + 16 bit destination port
+		\item 32 bit Sequence Number\\
+		Se i numeri di sequenza contassero il numero di segmenti, pensate averne 
+		$2^{32}$ E INFATTI, vengono contati in Byte, quindi il numero di sequenza fa 
+		riferimento al byte
+		\item 32 bit ACK Number
+		\item 8 bit di cui 4 indicano l'header length e gli altri 4 son inutilizzati \\
+		16 bit di recive window, ovvero quanti bit posso accettare 
+		\item 16 bit di checksum + urgent data (in seguito vedremo le funzioni dei 
+		vari flag)
+	\end{itemize}
+	\item Payload ($\chi$ Byte, perchè la dimensione è variabile, dipende
+	dal carico di dati che trasporta)
+\end{itemize}
+Diventa ragionevole contare i Byte e non i segmenti perchè nel periodo in cui è 
+nato TCP il costo per la banda di rete era elevato, quindi il singolo byte 
+faceva la differenza in una trasmissione.
+\subsection{Le Flag}
+\begin{itemize}
+	\item CWR: Congestion window reduced
+	\item ECE: End to End congestion 
+	\item U: Urgent Data
+	\item P: Push\\
+	Trasmetti senza far funzionare i tuoi algoritmi che assemblano un tot di dati.
+	\item ACK: Ti dice se è un ACK
+	\item RST: Reset della connessione per via di un problema nella sequenza\\
+	oppure il ricevitore ti chiude la porta e non apre la connessione
+	\item SYN: Sincronizzazione, semplicemente apre la connessione
+	\item FIN: Chiude la connessione
+\end{itemize}
+\subsection{Gestione dei riscontri}
+Devo inviare dei pacchetti, e quindi devo riscontrarli, come si gestisce il 
+valore dei puntatori? \\ \\
+A invia un messaggio con Seq = 10, ACK = 57, [ciao] stiamo intendendo un messaggio
+avente questi 3 parametri principali, li possiamo mettere pure a sistema così, 
+per intenderci meglio:
+\[
+	messaggio =
+	\begin{cases}
+		Seq = 10 \\
+		ACK = 57 \\
+		[ciao]
+	\end{cases}
+\]	
+Cosa mi aspetto come risposta? Beh io sto comunicando che siamo al $57_{esimo}$
+ACK e al 10 byte di sequenza, pertanto tu mi aspetto che mi si dica UEH sono
+arrivato a 57 e mi risponde:
+\[
+	messaggio =
+	\begin{cases}
+		Seq = 57 \\
+		ACK = 14 \\
+		[bella]
+	\end{cases}
+\]	
+Il concetto è che la sequenza della risposta coincide con l'ack della "domanda",
+sembra sbagliato, no? Bene, se ti comunico che sono a $\lambda$ mi aspetto che
+tu mi risponda che sei arrivato alla sequenza $\lambda$. Pertanto in risposta
+accadrà che la sequenza dovrà coincidere con l'ack precedente. \\ \\
+Se all'inizio si era al segmeto 10, verrà risposto che si è al segmento 57 MA
+quando verrà inviato di nuovo si riscambia, diciamolo in modo più sensato:
+\[
+	EstimatedRTT = (I - \alpha) \cdot EstimatedRTT + \alpha \cdot SampleRTT 
+\]
+Con $\alpha$ = 0,125 nella maggior parte dei casi (E' il valore tipico).
+ Ed rtt che sarebbe il rounded
+trasmission time, cioè in parole povere il tempo che ci si impiega a trasmettere.
+\\ \\
+Tutto va in funzione di come cambia l'RTT nel tempo, conviene avere un RTT che 
+nel tempo rimane lo stesso, non conviene avere un RTT troppo ballerino
+\[
+	DevRTT = (1 - \beta) \cdot DevRTT + \beta \cdot | SampleRTT - EstimatedRTT
+\]
+Dove dev sta per deviazione (O margine di sicurezza) e tipicamente $\beta$=0,25\\
+Infine definiamo quello che è il $Timeout = EstimatedRTT + 4\cdot DevRTT$
+\subsection{Passo 2: Ritrasmissione}
+Quando non va tutto bene potrei dovere ritrasmettere dei segmenti, perchè? 
+Generalmente per via di o timeout oppure ack duplicati.
+\\ \\
+Il nostro trasmettitore fondamentalmente trasmette segmenti, nel caso il 
+ricevitore non riceve allora questo ritrasmette, e nelle puntate precedenti si è
+visto cosa può accadere (Timer e ACK duplicati), ed infine resetta il timer.
+\\ \\
+\paragraph{ATTENZIONE} NON esiste un preciso modo per cui possano verificarsi dei
+problemi di ricezione, possono accadere miliardi di differenti inconvenienti, 
+per dire anche il fatto che ti arriva un segmento a metà, l'altro solo inizio e 
+fine
+\\ \\
+\subsection{La perdita dei pacchetti}
+Se il trasmettitore invia un pacchetto che però non arriva, il ricevitore manderà
+l'ack precedenti dicendo che manca un pezzo, possono esserci diverse situazioni.
+(Si ok, perchè manda un altro ACK? Semplicemente perchè potrebbe essersi perso 
+pure quello, non funziona una s**a in questa rete.).
+\subsection{Pacchetti che arrivano non in sequenza}
+Abbiamo visto il selective Repeat, ma c'è anche un altro modo un po' diverso che
+ha un unico timer (soluzione che impiega più ram che processore) perchè sul 
+trasmittente avremo un array di ack che dice dove e cosa è stato ricevuto. Esempio:
+\\ \\
+Io invio da 1 fino a 5, mi rispondi 4, io ti mando poi 6, 7, 8, allora in base a
+quale elemento dell'array non risulta true io ti mando quella zona. Ad esempio ho 
+true gli ack da 1 a 8 MA manca proprio il 5. Allora semplicemente mando il 5. 
+OVVIAMENTE ricordiamoci che il timer è utilizzato anche in questo caso.
+\\ \\
+Potrebbe anche accadere di avere dei riscontri cumulativi o duplicati. Il cumulativo
+è quando tu mi invii 1, 2 e 3 e io rispondo solo 3, tu dai per scontato che io abbia
+ricevuto i precedenti.
+\subsection{La receive Window}
+In un meccanismo a finestra ho una.. Finestra in cui posso trasmettere. Cosa determina
+la suddetta? In pratica controllo la quantità di dati che posso trasmettere. 
+Se in capo mi entrano 3 parole al minuto durante le lezioni, e i prof ne dicono
+500 leggendo le slide, ne perdo un patrimonio in una lezione, stessa cosa per 
+le reti. \\ \\
+Siccome in una rete è meglio evitare questo problema si implementano la ReceiveWindow
+e la CongestionWindow (Finestra di ricezione e congestione), e il valore che 
+dovremo assumere sarà $W = min\{CongWindow, RcWindow\} $, ricordando sempre la
+formula che la dimensione dei pacchetti da trasmettere è $\frac{W}{RTT}$
+\\ \\ 
+\section{Inizio della connessione: HandShake a 3 vie}
+Handshake vuol dire letteralmente stretta di mano, tipo saluto, prendiamo
+per presupposto di avere due host che chiamiamo A e B \\ \\
+Questi non si conoscono, pertanto A manda a B un messaggio con
+\[
+	A scrive: \begin{cases}
+		SYN \\
+		Seq = \kappa \\
+		[]
+	\end{cases}
+\]
+\[
+	B risponde: \begin{cases}
+		SYN \\
+		Seq = \psi \\
+		ACK = \kappa + 1
+		[] 
+	\end{cases}
+\]
+Che tradotto in termini pratici è tipo:	\\
+A: OH INIZIO A $\kappa$
+B: OH HO RICEVUTO $\kappa + 1$, IO SONO A $\psi$
+\[
+	A replica: \begin{cases}
+		SYN \\
+		ACK = \psi + 1
+		[] 
+	\end{cases}
+\]
+Che è traducibile in "OK HO RICEVUTO $\psi + 1$"
+\section{Fine della connessione}
+\[
+	A scrive: \begin{cases}
+		FIN \\
+		Seq = \kappa \\
+		[]
+	\end{cases}
+\]
+\[
+	B risponde: \begin{cases}
+		FIN \\
+		ACK = \kappa + 1
+		[] 
+	\end{cases}
+\]
+Se però B non ha ancora finito, allora gli manda solo un ACK, mentre
+se ha finito anche lui, semplicemente si chiude la connessione
+\section{Congestione di rete}
+Avviene nel momento in cui viene inviata una quantità di pacchetti SUPERIORE a 
+quella che normalmente può essere ricevuta, che è come quando ad Analisi venivano
+scritte troppe cose alla lavagna e non si riusciva a starci dietro, prima o poi 
+avvengono perdite di dati. \\ \\
+Per evitare le congestioni ci sono una serie di meccanismi. Perciò iniziamo a 
+definire una nuova quantità: MSS = Maximum segment Size, ovvero dimensione massima
+di un segmento.
+\subsection{AIDM: Additive Increase Mult. Decrease}
+Invio un messaggio, tu rispondi ok, poi ne mando due, rispondi due, poi tre e 
+rispondi tre. Progressivamente cresce la finestra, arriverò ad un valore $\lambda$
+per cui non riesci a rispondere e c'è una perdita, ma può esser di due tipi:
+\begin{enumerate}
+	\item Loss: Perdita
+	\item Timeout: Ci impiego troppo tempo a passare tutto
+\end{enumerate}
+Il peggio tra i due è il timeout, perchè manca proprio una risposta, mentre 
+se ho delle perdite almeno c'è comuniazione! Perciò cosa succede, appena c'è una
+perdita viene dimezzato il numero di dati che invio. Se la prima perdita si verifica
+a $\delta$ allora ripartirò da $\frac{\delta}{2}$.
+\\ \\
+Notiamo subito che questo metodo è estremamente lento, perciò c'è un secondo 
+metodo che fa la stessa cosa ma invece di incrementarsi di uno si incrementa 
+esponenzialmente (1, 2, 4, 8 ,16, 2$^{n}$)
+\\ \\
+Questo meccanismo esponenziale si chiama Slow Start e funziona allo stesso modo
+poi per quando si dimezza tutto.
+\\
+Quello che abbiamo visto è come fare per trovare la quantità di dati massima 
+che è possibile trasmettere SENZA PERDITE.
+\paragraph{Come si gestisce il timeout?} 
+In questo caso va abbassata di tanto la finestra, perchè in questo caso non 
+viene nemmeno ricevuto il pacchetto, scade il timeout ancor prima di aver 
+rimandato indietro il pacchetto perciò come si agisce? \\ \\
+Il funzionamento è identicop a quello per la perdita di pacchetti, si ragiona
+incrementando esponenzialmente il numero di pacchetti, poi si arriva al timeout,
+si dimezza, e si riparte da lì MA questa volta incrementando di 1 alla volta.
+\\ \\
+Questo incremento di un'unità per volta viene chiamata Congestion Avoidance, e
+(come da nome) va a risolvere le congestioni.
+\paragraph{Ok, ma perchè non fare direttamente 1 alla volta?} Perchè il tempo
+è una risorsa essenziale, e ragionare di pacchetto in pacchetto richiederebbe
+troppe risorse, semplicemente in questo modo si risparmia tempo, tutto lì.
+\paragraph{In co} In condizioni normali si ha che il trasmettitore
+
 \end{document}

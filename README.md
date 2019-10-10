@@ -41,6 +41,12 @@ consiglio davvero personale ;) ma ad ogni modo se vi va potete direttamente aggi
 mia repo (Sì, sempre con la pull request spiegata qui sopra). OVVIAMENTE verrà segnato che i file sono di 
 vostra proprietà. Aprite la mia cartella di 'fisica', il Formulario è prodotto da [DlcGold](https://github.com/dlcgold))
 
+### Vietata la vendita di questo materiale.
+
+Se questo materiale vi dovesse venire fornito a pagamento, con il nome cambiato (essendo che ho i sorgenti ti basta
+cambiare una stringa, ci voglion due secondi), E/O messo a disposizione in generale in cambio di denaro DIFFIDATE.
+I miei sono appunti e contenuti OPEN SOURCE, è tutto lì disponibile, venderlo renderebbe coloro che lo fanno 
+degli inetti, mi raccomando N O N  C O M P R A T E questo materiale, è tutto libero e disponibile qui.
 
 
 
