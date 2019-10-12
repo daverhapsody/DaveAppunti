@@ -6,6 +6,9 @@
 \usepackage{xcolor}
 \usepackage[margin=1in]{geometry}
 \usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{graphicx}
+\graphicspath{{./img/}}
 \hypersetup{
 colorlinks=true,
 linkcolor=blue,
@@ -500,6 +503,35 @@ della lezione successiva a questi esercizi ho lasciato nella cartella "Esercizi
 preAlberi" tutto ciò che è stato fatto prima del prossimo argomento. \textbf{
 Ringrazio di cuore Gaia per avere preso gli appunti di questa parte :)}
 \chapter{Alberi Sintattici}
+Un albero è una rappresentazione grafica che aiuta a comprendere in che modo una
+certa forma sentenziale con simboli terminali o variabili è stata ottenuta con 
+la derivazione
+\paragraph{Definizione: }Dato G = (V, T, P, S), l'albero sintattico è t.c.
+\begin{itemize}
+	\item Ogni nodo interno è etichettato da una variabile
+	\item Ogni foglia è etichettata da una variabile oppure un simbolo terminale,
+	oppure anche $\epsilon$
+\end{itemize}
+Però se è etichettata con $\epsilon$ significa che è l'unico figlio del padre.
+Inoltre, se un nodo interno è etichettato con A(variabile) e i figli sono
+etichettati da Sx verso Dx con $x_{1}, x_{2}, ..., x_{\kappa}$ allora 
+$A \to x_{1}, x_{2}, ..., x_{\kappa}$ e P.
+\paragraph{Esempio CFG: } 
+Dato $E \to I | E + E | E * E | (E)$ e \\
+$I \to a | b | Ia | Ib | I0 | I1$ \\ \\ 
+Forma Sentenziale I + E: \\
+$$
+\begin{tikzpicture}
+	\node (is-root) {E}
+		[sibling distance = 3cm]
+		child{ 
+			child{node{I}}
+			node{E}}
+		child{ node{+}}
+		child{ node{E}};
+\end{tikzpicture}$$
+Perciò se avessimo: $S \to aSb|\epsilon$ verrebbe fuori: \\
+$$\includegraphics[width=0.75\textwidth]{1}$$
 
 \end{document}
 
