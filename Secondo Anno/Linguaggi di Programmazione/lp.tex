@@ -712,8 +712,8 @@ compilatore direttamente online che OVVIAMENTE non è utilizzabile all'esame,
 però fa comodo, ve lo assicuro. \href{https://swish.swi-prolog.org/}
 {Link al magico sito}
 \\
- {\color{black} \rule{\linewidth}{0.3mm} }
- \\ 
+{\color{black} \rule{\linewidth}{0.3mm} }
+\\ 
 Data questa confusissima introduzione giungiamo a trattare più nello specifico
 il linguaggio Prolog. Quando parliamo di Prolog, infatti, smettiamo di ragionare
 in modo \color{red} \textbf{imperativo} \color{black} per passare al paradigma 
@@ -946,7 +946,7 @@ Dati due termini, la procedura di unificazione crea un insieme di sostituzioni
 delle variabili, e questo insieme permette di rendere uguali i due termini. \\
 \\ 
 Tradizionalmente la procedura di unificazione costruisce un insieme di sostituzioni
-che prende il nome di "Most general unifier (indicato con MgU" (No, fan della F1
+che prende il nome di "Most general unifier (indicato con MgU)" (No, fan della F1
 non c'entra nulla con l'MGU-K o H :C)
 \\ \\ 
 Noi non faremo unificazioni, ci pensa l'interprete Prolog, che usa le 
@@ -1006,9 +1006,13 @@ che ha MASSIMO, AL PIU', NON PIU' DI UN letterale positivo.
 \\ 
 In Prolog alla fine quel che si verifica è questo:
 \begin{itemize}
-	\item \color{red} Fatti:  \color{black} A.
+	\item \color{red} Fatti:  \color{black} A. (E' il caso limite in pratica)
 	\item \color{red} Regole: \color{black} A :- $B_{1}, ..., B_{n}$
-	\item \color{red} Goals/Query/Interrogazioni:  \color{black} :- $B_{1}, ..., B_{n}$
+	\item \color{red} Goals/Query/Interrogazioni:  \color{black} :- $B_{1}, ..., B_{n}$ \\
+	Nella trasformazione di DeMorgan viene negato perchè è una clausola da 
+	aggiungere, per questo si presenta con questa notazione, ma noi
+	programmatori scriveremo un letterale positivo od una congiunzione di 
+	letterali positivi
 	\item \color{red} Contraddizioni: \color{black} fail
 \end{itemize}
 \section{Un programma logico}
@@ -1018,18 +1022,28 @@ Sì, si può, (ed è più semplice farlo in assembly), e si deve ragionare pensa
 alla funzione "successore", che è una funzione in $N$, che consentirà di 
 sviluppare un programma di questo tipo:
 \begin{lstlisting}[language=prolog]
- 	sum(0, X, X).
- 	sum(s(X), Y, s(Z)) :- sum (X, Y, Z).
- \end{lstlisting} 
+sum(0, X, X).
+sum(s(X), Y, s(Z)) :- sum (X, Y, Z).
+\end{lstlisting} 
 's' sta per \textbf{successore}, proviamo a leggerlo (ricorsivamente): \\ \\
 Il programma verrà interrogato in questo modo: \\
 $\exists X$ sum(s(0), 0, X) \{X / s(0)\}
 $\exists X$ sum(s(s(0)), s(0), W) \{W / s(s(s(0)))\} MA
 Scritto in Prolog divente 
 \begin{lstlisting}[language=prolog]
-	:- sum(s(0), 0, N)  {N s(0)}
-	:- sum(s(s(0)), 0, N)  {W s(s(s(0)))}
+:- sum(s(0), 0, N)  {N s(0)}
+:- sum(s(s(0)), 0, N)  {W s(s(s(0)))}
 \end{lstlisting}
+\paragraph{Spiegazione: } Il modo in cui va ragionato è ricorsivo, nel senso, 
+siccome si è nel campo dei naturali si ha uno 0, un centro, ed il nostro caso
+base chi è? L'elemento neutro rispetto alla somma (0). 
+$\forall x \in N sum(0, X) = X$ \\ \\
+Perchè ha 3 argomenti e non solo due? Semplicemente i primi due sono addendi ed 
+il terzo è un risultato, nulla di che. Si legge così: \\
+La somma di X + Y è uguale a Z SE la somma del successore di X + Y dà il successore di Z.
+Quindi? Se ho 3 + 4 = 7, allora 4 + 4 = 8. Cioè all'atto pratico richiami per Y
+volte il successore di X, che quindi chiamerà Y volte il successore di Z, e Z
+diventerà la somma effettiva dei nostri X + Y.
 \section{Sostituzioni}
 Già dall'esempio qui sopra si nota che {W / s(s(s(0)))} e {N / s(0)} sono due
 sostituzioni, ma in che senso? Praticamente ci dicono con quali valori (che 
@@ -1037,13 +1051,13 @@ potrebbero pure essere altre variabili) possiamo sostituire le variabili in un
 termine. \\ \\
 Di solito si denota una sostituzione con questo formalismo:
 \[
-	\sigma = \{ X_{1} / v_{1}, X_{2}, / v_{2}, ... , X_{\kappa} / v_{\kappa}\}
+\sigma = \{ X_{1} / v_{1}, X_{2}, / v_{2}, ... , X_{\kappa} / v_{\kappa}\}
 \]
 Più nello specifico una sostituzione può essere considerata anche come 
 \textit{funzione} applicabile ad un termine: $\sigma : T \to T$ dove T è l'insieme
 di termini. \\ 
-\paragraph{No, non è l'unico modo, è un possibile modo, di fatto basta un comando
-del tipo sum(X,Y):- S is X+Y e ti fa la somma. }
+\paragraph{No, non è l'unico modo} è un possibile modo, di fatto basta un comando
+del tipo sum(X,Y):- S is X+Y e ti fa la somma.
 \\ \\
 \section{Esecuzione di un programma}
 Una computazione all'atto pratico è una dimostrazione (tramite le regole di 
@@ -1051,23 +1065,130 @@ risoluzione) del fatto che una formula sia verificabile (e che quindi sia un
 teorema).
 \\ \\
 Va determinata una sostituzione per le variabili della query per cui la query
-segue logicamente dal programma
+segue logicamente dal programma.
+Per esempio, se ho un programma \textbf{P} ed una query "$:- ~~ p(t_{1}, t_{2}, ..., t_{m}$"
+(Ricordandoci sempre che la query NON è dentro al programma, o comunque non è
+nel file sorgente del programma) allora: \\ \\
+$$\begin{cases}
+Se ~ X_{1}, X_{2}, ..., X_{n} ~ sono ~ variabili ~ che ~ compaiono ~ in
+~ t_{1}, t_{2}, ..., t_{m} ~ ALLORA ~ \exists X_{1}, X_{2}, ..., X_{n} . 
+p(t_{1}, t_{2}, ..., t_{m}) \\	
+\end{cases}$$
 
+Ed il nostro obbiettivo sarà quello di trovare una sostituzione del tipo:
+$$s = \{X_{1}/s_{1}, X_{2}/s_{2}, ..., X_{n}/s_{n}\}$$
+Da dove cicciano fuori queste s? Sono dei termini, per cui si ottiene che
+$$P \vdash s[p(t_{1}, t_{2}, ..., t_{m})]$$
+E P cos'è? Un programma. E un programma cos'è? Un'insieme di clausole di Horn.
+Ed una clausola di Horn cos'è? E' una formula avente al più UN letterale positivo.
+\\ \\
+\begin{itemize}
+	\item Dato un certo insieme di clausle di Horn è possibile derivare la clausola vuota
+	SE ce n'è almeno senza testa. \textbf{Tradotto: } Se abbiamo una query $Q_{0}$ da
+	provare
+	\item Si deve dimostrare che da $P \cup {Q_{0}}$ si possa derivare la
+	clausola vuota $\implies$ Sì, come al solito, mediante dimostrazioni per
+	assurdo applicando il \color{red} \textbf{\textit{Magico principio di risoluzione
+	}} \color{black}
+\end{itemize}
 
+Sì, ok, ma come?\\
+C'è un problema di fondo: Se provassi tutte le risoluzioni possibili per ogni passo
+e aggiungessi le clausole inferite all'insieme di partenza avresti un'\textbf{
+ESPLOSIONE 
+} combinatoria. \\ \\
+Per evitarsi questo problema va adottata una strategia di soluzione che sia 
+opportuna (No, ci sarà sempre tra le palle il \color{red} \textbf{\textit{Magico principio di risoluzione
+}} \color{black}, solo più vincolato. \\
+\section{Risoluzione ad INPUT LINEARE (SLD)}
+Prolog dimostra la veridicità o meno di una query con una sequenza di passi di
+risoluzione (Sì, sequenza di passi, algoritmo, efficienza, $\Theta nLogn$) 
+\\ \\
+Infatti in Prolog la risoluzione avviene se,pre tra l'ultima query derivata in 
+ciascun passo e una una \textbf{clausola di programma}, ma non accade MAI tra
+due clausole di programma o fra una clausola ed un goal derivato precedentemente.
+\\ \\
+\paragraph{Riassumendo: } Quello che si è appena descritto è definita \textbf{Definizione
+SLD} (Selection funzion for Linear and Definitie sentences Resolution; in cui
+le "frasi lineari" sono essenzialmente delle clausole di Horn).
+\\ \\
+\paragraph{Esempio di risoluzione SLD}: \\
+\begin{itemize}
+	\item Partendo dalla Query $Q_{i} \equiv ~~ ?- A_{i,1}, A_{i,2}, ..., A_{i,m}$
+	\item e dalla regola: $A_{r} :- ~~ B_{r,1}, B_{r,2}, ..., B_{r,m}$
+	\item se esiste un unificatore $\sigma$ tale che $\sigma[A_{r}] = 
+	\sigma[A_{i,1}]$ \\
+	Allora si otterrà una nuova query $G_{i+1}$ tale che: 
+\end{itemize}
+$$G_{i+1} \equiv ~~ ?- B_{e,1}^{'}, B_{e,1}^{'}, ..., B_{e,1}^{'}, A_{e,1}^{'}, 
+A_{e,1}^{'}, ..., A_{e,1}^{'} $$
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+E questo è solo \textbf{uno} dei passi di risoluzione eseguiti dal sistema Prolog,
+in cui \begin{itemize}
+\item Le $A^{'}$ e le $B^{'}$ sono risultati $\sigma[A] = A^{'}$ e 
+$\sigma[B] = B^{'}$
+\end{itemize}
+\paragraph{Attenzione: } La scelta di unificare la \textbf{prima} sottoQuery 
+$Q_{i}$ E' arbitraria (anche se comoda); Scegliere $A_{i,m} \vee A_{i,c}$ con 
+$c \in [1,m]$ casuale sarebbe comunque accettato.
+\paragraph{Se partissi invece dalla query} 
+$Q_{i} \equiv ?- ~~ A_{i,1}, A_{i,2}, ..., A_{i,m}$ e dalla regola (dal fatto) 
+$A_{r}$, se esiste un unificatore $\sigma$ tale che $\sigma [A_{r}] = \sigma [A_{i,1}]$,
+allora ottieni una nuova query $G_{i+1} \equiv ~~ ?- A_{e,1}^{'}, A_{e,1}^{'}, 
+..., A_{e,1}^{'} $, ovvero, la nuova query ha dimensioni minori rispetto alla 
+precedente, avendo m-1 sotto-query.
+\\ \\
+Come già detto infatti nella risoluzione SLD , il passo di risoluzione avviene 
+tra l'ultima query e una clausola di programma. 
+\paragraph{Osservazione: } Per coloro che usano anche le slide noteranno che 
+questa parte non è altro che una riscrittura delle suddette a parole di uno che
+le sta studiando, per dirvi, quello che nelle slide si chiama Goal lo chiamo query,
+ma quando una spiega con le slide, un velo di copiatura ci sarà sempre.\\
+Che si chiami goal query o interrogazione, è sempre e comunque un teorema.
+\\ \\
+Come può essere il risultato finale? \\
+\begin{itemize}
+	\item Successo\\
+	Viene generata la clausola vuota, ovvero se per n finito $Q_{n}$ è uguale 
+	alla clausola vuota $Q_{n} \equiv $ :- 
+	\item insuccesso finito
+	se per n finito $Q_{n}$ non è uguale a :- e non è più possibile derivare un 
+	nuovo \textbf{risolvente} da $Q_{n}$ ed è una clausola di programma
+	\item insuccesso infinito
+	Se è sempre possibile derivare nuovi risolventi tutti diversi dalla clausola
+	vuota
+\end{itemize}
+La sostituzione di risposta è la sequenza di unificatori usati; applicata alle
+variabili nei termini del goal iniziale dà la risposta finale.
+\\ \\
+Durante il processo di generazione di query intermedie si costituiscono delle 
+varianti dei letterali e delle clausole coinvolte mediante la rinominazione di
+variabili
+\\ \\
+Una variante per una clausola C è la clausola $C^{'}$ ottenuta semplicemente 
+rinominando le variabili di C (Renaming).
+\paragraph{Esempio: } 
+p(X) :- q(X, g(Z)).
+è equivalente alla clausola con variabili con nomi diversi: \\
+p(A) :- q(A, q(B)). $\to$ Cambiando il nome delle variabili non ottieni nulla
+di diverso (a meno che esse nel programma sono più volte usate, come in Java eh)
+MA il codice potrebbe fare schifo da leggere.
+\\ \\
+Infatti possono esserci più clausole utilizzabili per applicare la risoluzione
+della query corrente, nello specifico ci sono due strategie di ricerca diverse
+che si possono adottare.
+\begin{itemize}
+	\item Depth first: (In profondità) Si sceglie una clausola e la si mantiene fissa 
+	finchè non si arriva alla clausola vuota o all'impossibilità di nuove risoluzioni,
+	ed in quest'ultimo caso si riconsiderano le scelte fatte in precedenza.
+	\item Breadth First: (In ampiezza) Si considerano in parallelo tutte le alternative
+\end{itemize}
+Prolog adotta una strategia di risoluzione in profondità con \textbf{Backtracing}
+cioè in pratica 
+\begin{itemize}
+	\item Permette risparmio di memoria MA
+	\item NON è \textbf{completa} per le clausole di Horn
+\end{itemize}
 
 
 \end{document}

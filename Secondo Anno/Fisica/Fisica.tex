@@ -409,6 +409,16 @@ $\Delta t \to 0$
 L'obbiettivo è quello di passare dal livello 1D al 2D, e la trigonometria entra
 in gioco per via del fatto che vengono a formarsi dei triangoli
 \\ \\
+\\
+{\color{black} \rule{\linewidth}{0.3mm} }
+\\
+\textbf{Illustrazione a cura di Simona} \\ \\
+$$\includegraphics[width=0.75\textwidth]{mruvettoriale}$$
+Da questo grafico è possibile notare in che modo interagiscono graficamente 
+(considerando il punto di vista vettoriale) le velocità. 
+\\
+{\color{black} \rule{\linewidth}{0.3mm} }
+\\
 \section{Moto Circolare}
 Consideriamo una circonferenza di raggio r, ed un punto materiale che si muove
 lungo la suddetta circonferenza, che con l'asse x forma un angolo $\theta$. \\
@@ -464,7 +474,7 @@ ma alla fine, in un caso vedavamo quanto ci si era spostati, nel secondo caso
 si vede quanto si è allargata o ristretta la circonferenza. Perchè? 
 Perchè \textbf{la circonferenza è l'insieme di tutti i punti equidistanti da un punto
 detto centro}.
-\section{La circonferenza}
+\section{Circonferenza e Moto Armonico}
 Prendendo una qualsiasi circonferenza ed un punto P su di essa, è possibile 
 tracciare sull'asse x ed y i punti relativi a P, e ne consegue che
 $$x = R\cos \theta = R\cos(\omega t) e \\
@@ -473,6 +483,15 @@ E quindi
 $$\frac{dx}{dt} = \omega R \cdot \sin(\omega t) $$ e
 $$\frac{dy}{dt} = \omega R \cdot \cos(\omega t) $$
 Inoltre $$v = \sqrt{\frac{dx^{2}}{dt} + \frac{dy^{2}}{dt}} $$
+\\
+{\color{black} \rule{\linewidth}{0.3mm} }
+\\
+\textbf{Illustrazione a cura di Simona} \\ \\
+$$\includegraphics[width=0.75\textwidth]{motoarmonico}$$
+In quest'illustrazione si vede riassunto graficamente quello che ho menzionato
+nel paragrafo superiore \\
+{\color{black} \rule{\linewidth}{0.3mm} }
+\\
 Finalmente si può rispondere alla domanda che ci si è fatti all'inizio: ovvero,
 come posso calcolare la traiettoria di un corpo BASANDOMI sulle forze che 
 agiscono su di esso?\\ \\ 
@@ -536,8 +555,8 @@ o comprimi".
 \\ \\
 Detto in modo più matematico, primo principio della dinamica (\textbf{principio di inerzia}:
 \[
-	Se~~\overrightarrow{F} = \sum_{\kappa=1}^\infty \overrightarrow{F_{\kappa}} = 0
-	~~ allora ~~ a = 0
+Se~~\overrightarrow{F} = \sum_{\kappa=1}^\infty \overrightarrow{F_{\kappa}} = 0
+~~ allora ~~ a = 0
 \]
 Se su un corpo non agisce alcuna forza viene mantenuta costante la propria 
 velocità, pertanto essa può essere anche $\geq 0$, ma rimarrebbe costante per
@@ -556,21 +575,110 @@ stessa velocità $\lambda$ ad un camion. (Ponendo $\lambda > 0$) \\ \\
 Da questo consegue che la massa influenza sia l'accelerazione che la forza.
 Infatti il secondo principio della dinamica dice che:
 \[
-	F = m\cdot A
+F = m\cdot A
 \]
 Provocare dell'accelerazione in un corpo richiederà più o meno forza in base
 alla massa del corpo da spingere. Ne consegue che:
 \[
-	m_{x} = m_{0} \cdot \frac{a_{0}}{a_{x}}
+m_{x} = m_{0} \cdot \frac{a_{0}}{a_{x}}
 \]	
 Chiaramente c'è da dire che un qualsiasi corpo, se è fermo necessiterà di 
 applicare più forza per produrre un determinato movimento, se spingiamo un corpo
 che già si muove ci vorrà meno forza.
-\\ \\
 \paragraph{La Massa: } Anche se la si dà per scontata, non l'abbiamo definita in
 modo specifico, è considerabile al momento come quantità di materia, pertanto
 mi raccomando da ora non confondiamo più massa e peso.
 \paragraph{Il Peso: } Il peso è una forza, che è esercitata dal campo gravitazionale
 terrestre ed è di circa 9,8 N (dove N sarebbe Newton). Il peso è una forza, è una
 grandezza vettoriale, ha una direzione, un verso, ed un modulo o intensità.
+\paragraph{Precisazione: } Nella meccanica classica tendenzialmente una forza è
+realizzabile/applicabile/esistente SE son presenti due corpi, pertanto ci si può
+anche esprimere dicendo che: Presenza di forze $\to$ presenza di più corpi. \\ \\
+In assenza di forza non si ha accelerazione, pertanto lo stato di moto di un
+punto materiale è o a 0 o velocità costante, di fatto nel mondo in cui viviamo,
+in quello reale ci sono sempre delle forze che agiscono, e appare che i corpi
+non abbiano velocità costante. \\ \\
+Questo è dovuto per esempio alle forze di attrito che ci sono sempre, cose
+di questo tipo. \\ 
+Per tastare con mano quello che è un moto perfettamente (o quasi) costante, si 
+può osservare il movimento della luna, che ok, non è perfettamente nel vuoto 
+anche perchè il vuoto assoluto non esiste, però non ha degli attriti così consistenti.
+\\ \\
+Il principio (detto principio di inerzia) si basa sul concetto del "In assenza
+di forte il corpo conserva il suo moto", o meglio, se non ci sono corpi vicini
+che influenzino un corpo allora la sua accelerazione sarà = 0 .
+\section{Quantificare una forza}
+L'unità di misura di una forza è il Newton (N), \\
+Se il corpo pesa 1kg si ha che: 1 N = $1m/s^{2}\cdot kg$ pertanto $F(t) \alpha a(t)$,
+cioè la forza applicata in un tempo è proporzionale all'accelerazione in quel
+determinato tempo. 
+\begin{itemize}
+	\item [m] = kg
+	\item [a] = $\frac{m}{s^{2}}$
+	\item [F] = kg $\frac{m}{s^{2}}$ = N 
+\end{itemize}
+Ovviamente (come specificato prima) anche $\sum_{i=1}^\infty 
+\overrightarrow{F_{i}} = 0 \to \overrightarrow{a} = 0$, e quindi ad esempio:
+\[
+	\begin{cases}
+		m_{0} = 1kg \to a_{0}\\
+		m_{1} = \lambda kg \to a_{1}
+	\end{cases}
+\]
+$\frac{m_{0}}{m_{1}} = \frac{a_{0}}{a_{1}}$, e quindi questo significa che 
+ragionando per formule inverse $m_{1} = m_{0}\cdot \frac{a_{1}}{a_{0}} \forall F$
+\\ \\
+Non si è specificato, MA la somma di due masse è fattibile, cioè se prendo 
+una mela e una pera e le incollo, la loro massa sarà $mela + pera + colla$, 
+pertanto l'accelerazione seguira questa somma, nel senso, se ho calcolato
+l'accelerazione prima che avrebbe la mela, poi la pera, la loro somma avrà un 
+valore approssimativativamente proporzionale alla somma delle masse (circa perchè
+c'è la colla ma è diciamo trascurabile.)
+\\ \\
+\paragraph{Riprendendo il secondo principio della dinamica: }
+Ricordiamoci la difficilissima formula $F = m \cdot a $, e quindi 
+$\overrightarrow{F} = m \cdot \overrightarrow{a}$. \\ \\
+Il problema è che io data una forza posso concludere di avere una massa per un'accelerazione MA
+non posso concludere data una massa ed accelerazione che ci sia quella forza.
+Non mi sta definendo la forza, è una sua espressione. Ti serve una teoria sulla
+forza per lavorarci su. In termini più semplici: Da sinistra verso destra l'equazione 
+$\overrightarrow{F} = m \cdot \overrightarrow{a}$ va bene MA da destra verso
+sinistra no. Un esempio di alternativa a questo? 
+\paragraph{Legge di Gravitazione Universale}
+$$\overrightarrow{F_{a} = G \cdot \frac{M\cdot m}{d^{2}}}$$ in cui la G è la
+costante di gravitazione universale ed è $g = \frac{G\cdot M}{R_{Terra}^{2}}$, 
+g invece è la forza g, quella che si vede di solito in F1 in curva o frenata, in
+cui letteralmente si hanno decelerazioni e accelerazioni (non necessariamente 
+rettilinee, generalmente più in curva) fino ai 5g. \\ \\
+Inoltre, siccome questa g dipende dal raggio della $terra^{2}$, quindi può 
+cambiare anche sulla terra stessa.
+\section{La Molla}
+La molla è un tipo di corpo su cui si può applicare sia una compressione che 
+un'espansione, ma attenzione, non si chiamerà più espansione ma allungamento, 
+perciò essendo un corpo, su di esso si può applicare una forza. \\ \\
+Sulla molla si può applicare una forza sia tirandola che spingendola, e questa
+forza è:
+\[
+	\overrightarrow{F_{k}} = -k \cdot (\overrightarrow{x} - \overrightarrow{x_{0}})
+\]
+In cui $\overrightarrow{x} - \overrightarrow{x_{0}}$ sui libri di fisica vien
+chiamata $\Delta l$ e sarebbe l'allungamento, o quanto s'è deformata la molla.
+\\ \\
+\section{Il peso}
+Siccome misurare il rapporto tra masse è uguale a misurare il rapporto tra forze,
+allora si conclude che si ha la stessa gravità, che sulla terra è 9,8, e quindi
+si può anche dire che per misurare una massa, bisogna tener conto della forza peso 
+e confrontarla con la gravità che si sta considerando.
+$$\overrightarrow{P} = m \overrightarrow{a} = m \overrightarrow{g} = - m\cdot 
+g \cdot \widehat \gamma$$. 
+Se una bilancia misura una forza, dato g, si ottiene che $\frac{forza}{g} = massa$,
+per cui se è vero che il peso cambia in base a dove ci troviamo, non è vero
+che lo faccia anche la massa, e infatti la massa quella è e quella rimane.
+\section{Terza legge della dinamica}
+E' anche detto principio di azione/reazione, ovvero:
+\paragraph{Definizione: } Dati due corpi, per qualsiasi forza che viene applicata 
+da un corpo all'altro (per ogni azione), corrisponderà una forza (reazione) che
+sia uguale e contraria $\to azione(corpo_{a}, corpo_{b}) = 
+reazione(corpo_{a}, corpo_{b}) = azione(corpo_{b}, corpo_{a})$ \\ \\
+
 \end{document}
