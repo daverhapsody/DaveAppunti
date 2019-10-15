@@ -15,7 +15,7 @@
 \begin{document}
 %\pagestyle{plain}
 \fontfamily{cmss}\selectfont
-\author{\href{https://github.com/daverhapsody}{DaveRhapsody}
+\author{\href{https://github.com/daverhapsody}{DaveRhapsody}}
 \title{Linguaggi di Programmazione}
 \color{blue}
 \date{30 Settembre 2019}
@@ -1074,7 +1074,6 @@ Se ~ X_{1}, X_{2}, ..., X_{n} ~ sono ~ variabili ~ che ~ compaiono ~ in
 ~ t_{1}, t_{2}, ..., t_{m} ~ ALLORA ~ \exists X_{1}, X_{2}, ..., X_{n} . 
 p(t_{1}, t_{2}, ..., t_{m}) \\	
 \end{cases}$$
-
 Ed il nostro obbiettivo sarà quello di trovare una sostituzione del tipo:
 $$s = \{X_{1}/s_{1}, X_{2}/s_{2}, ..., X_{n}/s_{n}\}$$
 Da dove cicciano fuori queste s? Sono dei termini, per cui si ottiene che
@@ -1091,7 +1090,6 @@ Ed una clausola di Horn cos'è? E' una formula avente al più UN letterale posit
 	assurdo applicando il \color{red} \textbf{\textit{Magico principio di risoluzione
 	}} \color{black}
 \end{itemize}
-
 Sì, ok, ma come?\\
 C'è un problema di fondo: Se provassi tutte le risoluzioni possibili per ogni passo
 e aggiungessi le clausole inferite all'insieme di partenza avresti un'\textbf{
@@ -1120,9 +1118,16 @@ le "frasi lineari" sono essenzialmente delle clausole di Horn).
 	\sigma[A_{i,1}]$ \\
 	Allora si otterrà una nuova query $G_{i+1}$ tale che: 
 \end{itemize}
+$G_{i+1}$ si genera in pratica dal principio di risoluzione:
+\begin{enumerate}
+	\item $A_{r}$
+	\item $\neg A_{i,1} \vee \neg A_{i,2}\vee ...\vee \neg A_{i,m}$ 
+	\item $A_{i,1} \vee \neg B_{1}, \neg B_{2}, ..., \neg B_{m}$
+	\item $\neg B_{1} \vee \neg B_{2} ... \vee \neg B_{n} \vee \neg A_{i,2},
+	\vee \neg A_{i,2}, ..., \vee \neg A_{i,2}$
+\end{enumerate}
 $$G_{i+1} \equiv ~~ ?- B_{e,1}^{'}, B_{e,1}^{'}, ..., B_{e,1}^{'}, A_{e,1}^{'}, 
 A_{e,1}^{'}, ..., A_{e,1}^{'} $$
-
 E questo è solo \textbf{uno} dei passi di risoluzione eseguiti dal sistema Prolog,
 in cui \begin{itemize}
 \item Le $A^{'}$ e le $B^{'}$ sono risultati $\sigma[A] = A^{'}$ e 
@@ -1232,27 +1237,37 @@ $$\includegraphics[width=0.75\textwidth]{alberoSLD}$$
 \\
 {\color{black} \rule{\linewidth}{0.3mm} }
 \\
+Cerchiamo di ragionare bene sull'albero visto nell'esempio qui sopra. Abbiamo
+una serie di clausole, sono le varie cl1, 2, 3, ..., 7. Ora, quello che accade
+è che da destra verso sinistra andiamo ad applicarle alla clausola principale.
+\\ \\
+Non so se è stato già detto, tutto questo casino è semplicemente quello che 
+effettua Prolog per quando dimostra un teorema \\ \\
+Quindi quel che si verifica è proprio che si hanno due fail, e chiudiamo 
+poi con una clausola vuota (:-) quindi quello che concludiamo è che tutto è 
+andato a buon fine.
+\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ 
+{\color{black} \rule{\linewidth}{0.3mm} }
+\\
+\textbf{Stesso esercizio MA con tecnica Right-Most fatto da 
+\href{https://github.com/LiaBell47}{Giulia}} \\ \\
+$$\includegraphics[width=0.80\textwidth]{rightmost}$$
+\\
+{\color{black} \rule{\linewidth}{0.3mm} }
+\\
 \section{La regola di calcolo}
 Per ogni ramo di un albero SLD corrisponde una derivazione SLD. In pratica ogni 
 ramo che termina con il nodo vuoto (:-) \\ \\
 La regola di calcolo influisce sulla scrittura dell'albero per quanto concerne
 sia l'ampiezza che la sua profondità \\ \\
+La cosa che va garantita è che tutti i cammini di successo siano uguali 
+concettualmente, (la parola regola si incontra per l'ennesima volta tra l'altro, 
+prima son state la regola di inferenze e la regola di Prolog) Perciò alla domanda
+"quante accezioni del concetto di regola sono state menzionate", si risponderà: 3
 Le regole di calcolo \color{red} NON \color{black} influisce su \color{red} 
 correttezza \color{black} e \color{red} completezza \color{black}, pertanto 
 qualunque sia R, il numero di cammini di successo (se finiti obv) è lo stesso
 in qualsiasi albero SLD costruibile per $P \cup \{G_{0}\}$
-\paragraph{Esempi di alberi SLD}
-
-
-
-
-
-
-
-
-
-
-
-
+\\ \\
 
 \end{document}
