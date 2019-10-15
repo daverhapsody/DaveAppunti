@@ -15,7 +15,7 @@
 \begin{document}
 %\pagestyle{plain}
 \fontfamily{cmss}\selectfont
-\author{\href{https://github.com/daverhapsody}{DaveRhapsody} \and Jacopo De Angelis \and DlcGold}
+\author{\href{https://github.com/daverhapsody}{DaveRhapsody}
 \title{Linguaggi di Programmazione}
 \color{blue}
 \date{30 Settembre 2019}
@@ -1189,6 +1189,70 @@ cioè in pratica
 	\item Permette risparmio di memoria MA
 	\item NON è \textbf{completa} per le clausole di Horn
 \end{itemize}
+\section{Alberi di derivazione SLD}
+Dato un programma logico P (Insieme di clausole), ed una query $Q_{0}$ con una 
+regola di calcolo R, un \textbf{albero SLD} per P $\cup \{Q_{0}\}$ via R, è 
+definito sulla base del processo di prova visto precedentemente
+\begin{itemize}
+	\item Ciascun nodo dell'albero è una query (Possibilmente vuota)
+	\item La \textbf{radice} dell'albero è la query $Q_{0}$.
+	\item Dato il nodo: :- $A_{1}, A_{2}, ..., A_{m-1}, A_{m}, A_{m+1}, ...,
+	 A_{\kappa}$, se $A_{m}$ è il sottogoal \textbf{selezionato} dalla regola di
+	 calcolo \textbf{R}, allora questo nodo (genitore) ha un nodo figlio per 
+	 ciascuna clausola del tipo: \\
+	 \begin{itemize}
+	 	\item $C_{i} \equiv A_{i}$ :- $B_{i,1}, ..., B_{i,q}$
+	 	\item $C_{\kappa} \equiv A_{\kappa}$
+	 \end{itemize}
+	 Di P tale che $A_{i}$ e $A_{m}$ ($A_{\kappa} e A_{m}$) sono unificabili 
+	 attraverso la sostituzione più generale $\sigma$
+	 \item Il nodo figlio è etichettato con la clausola goal \\
+	 :- $\sigma[A_{1}, ..., A_{m-1}, B_{i,1}, ..., B_{i,q}, A_{m+1}, ..., A_{\kappa}]$
+	 :- $\sigma[A_{1}, ..., A_{m-1}, A_{m+1}, ..., A_{\kappa}]$ \\
+	 E il ramo dal nodo padre al figlio si etichetta sostituendo $\sigma$ dalla
+	 clausola selezionata $C_{i}, C_{\kappa}$
+	 \item Il nodo vuoto indicato da :- non ha figli
+\end{itemize}
+\paragraph{Just a remainder: }La regola \textbf{R} è variabile:
+\begin{itemize}
+	\item Può essere scelta dalla sottoquery più a sinistra (se c'è) $\to$ Left - most
+	\item Può essere scelta dalla sottoquery più a destra (se c'è) $\to$ Right - most
+	\item Oppure può anche essere scelta da una sottoquery a caso
+	\item Infine può essere scelta dalla sottoquet migliore
+\end{itemize}
+Prolog in pratica adotta la regola del Left Most, quindi considera la sottoquery
+più a sinistra e l'albero SLD (implicito) generato dal sistema Prolog ordina i 
+figli di un nodo secondo l'ordine dall'alto verso il basso delle regole e dei 
+fatti del programma \textbf{P}.
+\\
+{\color{black} \rule{\linewidth}{0.3mm} }
+\\
+\textbf{Illustrazione presa dalle slide} \\ \\
+$$\includegraphics[width=0.75\textwidth]{alberoSLD}$$
+\\
+{\color{black} \rule{\linewidth}{0.3mm} }
+\\
+\section{La regola di calcolo}
+Per ogni ramo di un albero SLD corrisponde una derivazione SLD. In pratica ogni 
+ramo che termina con il nodo vuoto (:-) \\ \\
+La regola di calcolo influisce sulla scrittura dell'albero per quanto concerne
+sia l'ampiezza che la sua profondità \\ \\
+Le regole di calcolo \color{red} NON \color{black} influisce su \color{red} 
+correttezza \color{black} e \color{red} completezza \color{black}, pertanto 
+qualunque sia R, il numero di cammini di successo (se finiti obv) è lo stesso
+in qualsiasi albero SLD costruibile per $P \cup \{G_{0}\}$
+\paragraph{Esempi di alberi SLD}
+
+
+
+
+
+
+
+
+
+
+
 
 
 \end{document}

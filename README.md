@@ -1,14 +1,24 @@
 # Benvenuti nel magico mondo di Dave
 
-### Avvertenze:
+## Avvertenze:
 
-1) I miei appunti sono stati presi tutti a lezione, quindi c'è scritto quello che durante le lezioni viene erogato agli studenti, ma **CIÒ CHE C'È NEGLI APPUNTI NON È LEGGE**. Non prendete i miei appunti per buoni a prescindere, anzi! Se ci sono correzioni da proporre, qualcosa che non è chiaro, qualcosa che vi può tornare utile cambiare, inviate un **ISSUE**, oppure una **PULL REQUEST** con la modifica che intendete fare!
+1) I miei appunti sono stati presi tutti a lezione, quindi c'è scritto quello che durante le lezioni viene erogato agli studenti, ma **CIÒ CHE C'È NEGLI APPUNTI NON È LEGGE**. Non prendete i miei appunti per buoni a prescindere, anzi! 
 
-2) Gli appunti del primo anno li ho presi conscio del fatto che sarei stato io stesso ad utilizzarli, pertanto questi ultimi sono incompleti, mi rendo conto che effettivamente manchino un po' di cose, altre sono scritte male, MA in caso di necessità prendo e mi metto a cambiare o aggiungere roba. Gli appunti del secondo sono presi pensando che verranno letti da terzi, e non solo dal sottoscritto
+Se ci sono correzioni da proporre, qualcosa che non è chiaro, qualcosa che vi può tornare utile cambiare, inviate un **ISSUE**, oppure una **PULL REQUEST** con la modifica che intendete fare!
+
+2) Gli appunti del primo anno li ho presi conscio del fatto che sarei stato io stesso ad utilizzarli, pertanto questi ultimi sono incompleti, mi rendo conto che effettivamente manchino un po' di cose, altre sono scritte male,
+
+ MA in caso di necessità prendo e mi metto a cambiare o aggiungere roba. Gli appunti del secondo sono presi pensando che verranno letti da terzi, e non solo dal sottoscritto
 
 3) Siccome ho messo in alcuni file anche dei riferimenti con link a YouTube o anche altri siti, per poterli aprire dovrete avere aperto il pdf con un programma per aprire pdf. Se aprite gli appunti direttamente da GitHub purtroppo non vi fa cliccare.
 
 ------
+
+### Ringraziamenti:
+
+La prima di queste sezioni la dedico interamente a coloro che hanno deciso di collaborare
+con me per questo progetto, davvero, grazie infinite per i vostri grafici, suggerimenti,
+correzioni, o anche solo pareri generali. 
 
 ### Cosa potrete trovare in questa repo:
 
@@ -45,6 +55,7 @@ vostra proprietà. Aprite la mia cartella di 'fisica', il Formulario è prodotto
 
 Se questo materiale vi dovesse venire fornito a pagamento, con il nome cambiato (essendo che ho i sorgenti ti basta
 cambiare una stringa, ci voglion due secondi), E/O messo a disposizione in generale in cambio di denaro DIFFIDATE.
+
 I miei sono appunti e contenuti OPEN SOURCE, è tutto lì disponibile, venderlo renderebbe coloro che lo fanno 
 degli inetti, mi raccomando N O N  C O M P R A T E questo materiale, è tutto libero e disponibile qui.
 
