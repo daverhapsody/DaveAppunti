@@ -632,6 +632,52 @@ un altro
 L'I/O viene spostato in un buffer in autonomia dal processore, perchè appunto
 il processore interagirà con il buffer (si fa prima) anzichè con la periferica.
 (Le code di stampa sono un ottimo esempio)
+\section{Time Sharing}
+Ad ogni persona veniva fornito un terminale ed una stampante, in cui il terminale
+è rimasto, era una shell su cui tendenzialmente poteva essere eseguito bash, ma
+non necessariamente, potrebbe essere stata qualsiasi shell. \\ \\
+La figata sta nel fatto che con lo stesso hardware tu avevi più terminali, che
+ti facevano sembrare di avere il computer solo per te ma invece era un solo
+computer con più terminali. \\ \\ 
+Però attenzione, poniamo di avere 10 terminali, se uno di questi fa crashare
+la macchina, tutti gli altri 9 crashano, e infine se le periferiche devono
+essere gestite in maniera che quando la periferica opera il processore non 
+aspetta, nasce il concetto di interrupt \\ \\
+L'interrupt è un messaggio della periferica che letteralmente prende la cpu, la
+ferma e dice "Fermo, parlo io".
+\section{La varietà di esigenze}
+Esistono vari tipi di computer:
+\begin{enumerate}
+	\item Laptop, pc, tablet: Mi rifiuto di spiegarvi cosa sono, tenete solo
+	a mente che in teoria è massimo una persona per volta (prendetevi una 
+	qualsiasi Distro di linux, installateci l'ssh server e vedete che anche un 
+	laptop diventa server)
+	\item Server, mainframe, sono delle macchine con capacità di calcolo elevate
+	(No, nel caso di un server non è obbligatorio) che rendono equa la 
+	condivisione delle risorse tra molti utenti
+	\item Dispositivi mobili: Avete presente i computer grandi una stanza? Ecco
+	quelli sono CHIARAMENTE dei dispositivi TASCABILI mobili, no? Va beh, 
+	semplicemente hanno bassi consumi energetici e buona connettività.
+	\item Sistemi embedded: Funzionano senza (o con minimo) intervento umano, e
+	soprattutto in tempo reale (Arduino, sì, quello è un sistema embdedded per 
+	intenderci)
+	\begin{itemize}
+		\item ATTENZIONE, in tempo reale significa che ci son dei tempi massimi
+		entro cui bisogna fare le cose, e non si può sforare quei tempi, non è
+		che lavorano necessariamente velocemente.
+	\end{itemize}
+\end{enumerate}
+\section{Composizione del Sistema Operativo}
+Un sistema operativo non è un singolo programma ma è composto da una serie di 
+parti:
+\begin{itemize}
+	\item Kernel: Software sempre in esecuzione che fornisce tutti i software
+	di gestione dell'hardware (cpu ram hdd ecc)
+	\item Programmi di sistema: E' una serie di software di gestione di processi
+	jobs, interfacce grafiche, cose così
+	\item Middleware: Servizi di alto livello per programmare applicazioni 
+	(Framework grafici, sonori, etc)
+\end{itemize}
 
     
 \end{document}
