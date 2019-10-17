@@ -653,16 +653,16 @@ Le produzioni hanno i seguenti vincoli:
 	\item $\epsilon$ può comparire solo in $S \to \epsilon$ (S sta per start eh)
 	\item Le produzioni sono tutte lineari a dx oppure tutte lineari a sx
 	\item \begin{enumerate}
-	\item lim a dx: $A \to aB$, oppure A$\to$a con A,B$\in$V e a$\in$T
-	\item lim a sx: $A \to Ba$, oppure A$\to$a con A,B$\in$V e a$\in$T
+	\item lin a dx: $A \to aB$, oppure A$\to$a con A,B$\in$V e a$\in$T
+	\item lin a sx: $A \to Ba$, oppure A$\to$a con A,B$\in$V e a$\in$T
 \end{enumerate}
 \end{enumerate}
 Vediamo subito un esempio:\\
-$I \to a|b|Ia|Ib|I0|I1$ lim sx\\
+$I \to a|b|Ia|Ib|I0|I1$ lin sx\\
 Si vuole rappresentare "b01" da destra verso sinistra\\
 $I \implies I1 \implies I01 \implies b01$ \\
 In pochi passaggi si è ottenuta subito la nostra stringa \\
-Ora invece vediamo il lim dx\\
+Ora invece vediamo il lin dx\\
 Ovvero si vuole rappresentare "b01" \\
 $I \to a|b|aI|bI|0I|1I$ \\
 $I \implies bI \implies b01 \implies b01I ... $ ? \\
@@ -675,20 +675,108 @@ $$\begin{cases}
 \end{cases}$$
 Vediamo subito un esempio per capirci meglio: \\
 G = (\{S\},\{0,1\},P,S) \\
-lim dx: $S \to \epsilon|0|1|0S|1S$ \\
+lin dx: $S \to \epsilon|0|1|0S|1S$ \\
 Da qui vediamo che dobbiamo escludere 0 ed 1 poichè
 $L(G) = \{0,1\}^{\star}$\\ \\
-Ora proviamo a produrre con lim sx 01101: \\
-lim sx: $S \implies \epsilon | S0 | S1$
-\paragraph{Esercizio} Si forniscano due grammatiche regolari lim dx ed sx per $L
+Ora proviamo a produrre con lin sx 01101: \\
+lin sx: $S \implies \epsilon | S0 | S1$
+\paragraph{Esercizio} Si forniscano due grammatiche regolari lin dx ed sx per $L
 = \{a^{n}b^{n}| n,m \geq 0\}$ \\
 \begin{enumerate}
-	\item lim dx: G=(\{S,B\}, \{a,b\},P,S)\\
+	\item lin dx: G=(\{S,B\}, \{a,b\},P,S)\\
 	$S \to \epsilon | aS | bB$\\
 	$B \to bB | b$, però così c'è un problema, nel senso che arriva alla B in cui
 	può produrre soltando per l'appunto delle b, o comunque arriva che esce con b.
-	\\ 
+	\\  \\
 	Come si risolve questo problema? Aggiungendo la b singola alla prima espressione 
 	con S: $S \to \epsilon | aS | bB | \color{red} b \color{black}$
+	\item lin sx: G=(\{S,B\}, \{a,b\},P,S)\\
+	$S \to \epsilon | Sb | A0| a$ \\
+	Con $A \to Aa | a$
 \end{enumerate}
+\paragraph{Esercizio: } Grammatica lin dx e sx per: \\
+L = $\{ab^{n}cd^{m}e | n \geq 0, m \> 0 \}$ \\
+\begin{enumerate}
+	\item lin dx: \\
+	$\begin{cases}
+	S \to aA \\
+	A \to bA|cB \\
+	B \to dB | dE \\
+	E \to e 
+	\end{cases}$
+	\item lin sx: \\
+	$\begin{cases}
+		S \to Xe\\
+		X \to Xd | Yd\\
+		Y \to Zc \\
+		Z \to Zb | a 
+	\end{cases}$
+	\item lin dx: (modo equivalente)
+	$A \to aB$\\
+	$A \to w$\\
+	$w\in T^{+}$ \\
+	Per esempio: \\
+	$A \to ciao \to \begin{cases}
+		A \to cB \\
+		B \to iC \\
+		C \to aD \\
+		D \to o
+	\end{cases} $
+	\item lin sx: \\
+	$\begin{cases}
+		A \to Bo \\
+		B \to Ca \\
+		C \to Di \\
+		D \to c
+	\end{cases}$
+	\end{enumerate}
+\paragraph{Esercizio: } Data G = (\{S,T\},\{0,1\},P,S)\\
+$\begin{cases}
+	S \to \epsilon | 0S | 1T\\
+	T \to 0T | 1S \\
+\end{cases}$
+L(G) =$\{w \in {0,1}^{\star} | ~ w ~ contiene~  un~  n ~ pari~  di~  1\}$
+\paragraph{Altro esercizio: } Grammatica lin dx ed sx per:\\
+L = -$\{w\in \{0,1\}^{\star}-$ | contiene almeno uno 0 oppure almeno un 1\}\\
+L = $\{0,1\}^{+}$
+\begin{enumerate}
+	\item lin dx: G(\{S\},\{0,1\},P,S)\\
+	$\begin{cases}
+		S \to 0|1|0S|1S
+	\end{cases}$
+	\item lin sx: G(\{S\},\{0,1\},P,S)\\
+	$\begin{cases}
+		S \to 0|1|S0|S1
+	\end{cases}$
+\end{enumerate}
+\section{Espressioni Regolari}
+Esistono linguaggi regolari (Di tipo 3) che possono generare grammatiche regolari(
+lin dx oppure lin sx) e rappresentare (\underline{dimostrare}) espressioni 
+regolari.\\
+Tramite espressioni regolari puoi dimostrare che una stringa fa parte di un 
+linguaggio.\\
+Inoltre puoi riconoscerle (\underline{accettare}) automi a stati finiti (DFA, 
+NFA, $\epsilon$-NFA)
+\section{Operazioni sui linguaggi.}
+\begin{enumerate}
+	\item Unione: $L \cup M$ (Unione tra sistemi)\\
+	Esempio:\\
+	L = \{001,10,111\}
+	M =$ \{\epsilon,001\}$
+	$L \cup M$ = \{$\epsilon$, 10, 001, 111\}
+	\item Concatenazione ($L\cdot M$)\\
+	Esempio: \\
+	L = \{001,10,111\}
+	M = $\{\epsilon,001\}$
+	$L \cdot M$ = \{001, 10, 111, 001001, 10001, 111001\}	 
+	\item Chiusura di Kleene: $L^{\star}$ \\
+	L =$ \bigcup \limits _{i=1} L^{1} = \bigcup \limits _{i=1}^{\infty} L^{1}$\\
+	Dove: $L^{0} = \{\epsilon\}, L^{1} = L$, fino ad arrivare a $L^{i}$ =
+	 $\underbrace{LLLLL...L}_{i~volte} $	i volte (per i $\geq$ 1)\\
+	Esempio: \\
+	L = \{0,11\} \\
+	$L^{\star} = \{\epsilon\} \cup \{0,11\} \cup \{00,011,110,1111\} \cup 
+	\{000,0011,01111,1100,11011,11110,111111\} \cup$ ...
+\end{enumerate}
+
 \end{document}
