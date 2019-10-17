@@ -88,6 +88,13 @@ posso approssimarlo in $1,23457$. \\ \\
 \paragraph{ATTENZIONE} Nel caso della \textbf{NOTAZIONE SCIENTIFICA} si tiene
 in considerazione la parte numerica $\neq$ 0. tipo $123.000.000$ ha 3 cifre che 
 sono proprio 123
+\paragraph{Siccome all'esame c'è una domanda su questa cosa, lo riassumo: } Dato
+un qualsiasi numero $\alpha$ che per ipotesi consideriamo 123.000, si considerano
+cifre significative tutte quelle che sono diverse da zero, MA potrebbero anche
+essere 0 nel caso in cui gli zeri sian racchiusi tra cifre diverse da 0. \\ \\
+Sì, faccio un esempio: \\ \\
+4.003.000 (quattro milioni, non 4, cose) avrà quattro cifre, che sono 4, 0, 0, 3,
+per cui in notazione scientifica avremmo 4,003 x $10^{6}$.
 \chapter{Cinematica}
 E' la branca della fisica che si occupa di descrivere la traiettoria di un 
 corpo, dovremo predirla, calcolarla, basandosi su un campo di forza, uno spazio
@@ -555,7 +562,7 @@ o comprimi".
 \\ \\
 Detto in modo più matematico, primo principio della dinamica (\textbf{principio di inerzia}:
 \[
-Se~~\overrightarrow{F} = \sum_{\kappa=1}^\infty \overrightarrow{F_{\kappa}} = 0
+Se~~\overrightarrow{F} = \sum_{\kappa=1}^{n} \overrightarrow{F_{\kappa}} = 0
 ~~ allora ~~ a = 0
 \]
 Se su un corpo non agisce alcuna forza viene mantenuta costante la propria 
@@ -617,13 +624,13 @@ determinato tempo.
 	\item [a] = $\frac{m}{s^{2}}$
 	\item [F] = kg $\frac{m}{s^{2}}$ = N 
 \end{itemize}
-Ovviamente (come specificato prima) anche $\sum_{i=1}^\infty 
+Ovviamente (come specificato prima) anche $\sum_{i=1}^{n}
 \overrightarrow{F_{i}} = 0 \to \overrightarrow{a} = 0$, e quindi ad esempio:
 \[
-	\begin{cases}
-		m_{0} = 1kg \to a_{0}\\
-		m_{1} = \lambda kg \to a_{1}
-	\end{cases}
+\begin{cases}
+m_{0} = 1kg \to a_{0}\\
+m_{1} = \lambda kg \to a_{1}
+\end{cases}
 \]
 $\frac{m_{0}}{m_{1}} = \frac{a_{0}}{a_{1}}$, e quindi questo significa che 
 ragionando per formule inverse $m_{1} = m_{0}\cdot \frac{a_{1}}{a_{0}} \forall F$
@@ -659,7 +666,7 @@ perciò essendo un corpo, su di esso si può applicare una forza. \\ \\
 Sulla molla si può applicare una forza sia tirandola che spingendola, e questa
 forza è:
 \[
-	\overrightarrow{F_{k}} = -k \cdot (\overrightarrow{x} - \overrightarrow{x_{0}})
+\overrightarrow{F_{k}} = -k \cdot (\overrightarrow{x} - \overrightarrow{x_{0}})
 \]
 In cui $\overrightarrow{x} - \overrightarrow{x_{0}}$ sui libri di fisica vien
 chiamata $\Delta l$ e sarebbe l'allungamento, o quanto s'è deformata la molla.
@@ -680,5 +687,117 @@ E' anche detto principio di azione/reazione, ovvero:
 da un corpo all'altro (per ogni azione), corrisponderà una forza (reazione) che
 sia uguale e contraria $\to azione(corpo_{a}, corpo_{b}) = 
 reazione(corpo_{a}, corpo_{b}) = azione(corpo_{b}, corpo_{a})$ \\ \\
+Questo principio è diretto derivante dall'interazione tra due oggetti, due corpi,
+e con questa consapevolezza si deduce che (oltre al discorso della presenza di
+più corpi) si avranno anche delle ulteriori forze dovute ad attriti etc. \\ \\
+L'azione e reazione sono chiaramente esercitate dipendentemente da chi applica
+forza su chi. Nel senso, se io pesto un pugno sul tavolo, io agisco, il tavolo
+reagisce, io perisco la reazione del tavolo e sento dolore.\\ \\
+La somma di tutte le forze che agiscono su un corpo è $$\overrightarrow{F_{A}}
+= \sum_{i=1}^{n} \overrightarrow{F_{A_{i}}} = m \cdot \frac{d^{2}
+\overrightarrow{x_{A}} (t)}{dt^{2}} = m\cdot \overrightarrow{a_{A}}$$ In cui, 
+per non confonderci specifico che in questa formula 
+\begin{itemize}
+	\item A = nome del corpo
+	\item a = accelerazione
+	\item $d^{2}$ = derivata alla seconda
+	\item $t^{2}$ = letteralmente t al quadrato
+\end{itemize}
+\paragraph{Forza normale}
+Supponiamo di avere un tavolo T ed un corpo di massa M, un cubo, per intenderci.
+E ricordiamo che il tavolo sta al di sopra della terra, che chiameremo TE. 
+(Mantenendo per ovvio che in questo caso la gravità si possa considerare 
+costante $\to F_{G} = G \cdot \frac{M_{Terra \cdot M}}{R_{Terra}^{2}}$)
+\\
+{\color{black} \rule{\linewidth}{0.3mm} }
+\\
+$$\includegraphics[width=0.75\textwidth]{forzanormale}$$
+In breve, sulla massa agiscono ben due vettori, e pure sul tavolo agiscono più
+vettori, in quanti agiscono sia l'azione della forza peso che la reazione del 
+cubo. \\ \\
+In italiano: Sul tavolo c'è il peso del cubo, il tavolo esercita peso sulla terra,
+ed esercita azione su cubo. \\ \\
+La domanda è: Perchè questi corpi rimangono fermi? La somma di tutte le forze
+è uguale a zero, quindi l'accelerazione è 0, quindi stanno fermi.
+\paragraph{Precisazione:} La massa non esercità forza peso, ma è la forza peso
+che viene esercitata sulla massa.
+\\
+{\color{black} \rule{\linewidth}{0.3mm} }
+\\
+Il concetto di azione e reazione funziona perfettamente, ma bisogna sempre
+ricordarsi del fatto che le forze vengano applicate da due corpi distinti.
+\section{Il lavoro di una forza}
+Il lavoro è il legame tra lo spostamento di un corpo per la quantità di energia
+spesa per muoverlo. Attenzione, non è in generale quanto è lo sforzo, MA è quanto
+movimento viene prodotto grazie ad una determinata forza. \\ \\
+Più semplicemente, se tendo di spostare un pallone da calcio, applico una forza,
+si muove, ergo compio del \textbf{lavoro}. \\ \\
+Se tento di spostare l'Empire State Building, oltre a far la figura del deficiente,
+ottengo che quest'ultimo malgrado applico l'incredibile forza dei miei muscoli,
+non si muove, sta fermo, quindi il lavoro sarà 0.
+\\  \\
+Più precisamente:
+$$L = F \cdot \Delta x$$
+Forza x spostamento, molto semplicemente, ma occhio a non confondersi, poichè
+spostamento e forza sono grandezze vettoriali ($\overrightarrow{F}, 
+\overrightarrow{\Delta x}$)
+\\ \\
+L'unità di misura del lavoro è il Joule (J), che coincide con $N\cdot M$, e come
+è possibile notare questo è uno \textbf{scalare} nel senso che (Raga, in algebra
+io 'sta roba non l'avevo ancora capita.) il prodotto di due vettori è uno scalare.
+\\
+{\color{black} \rule{\linewidth}{0.3mm} }
+\\
+$$\includegraphics[width=0.75\textwidth]{graficoLavoro}$$
+\\
+{\color{black} \rule{\linewidth}{0.3mm} }
+\\
+Avendo definito il lavoro, con questa definizione abbiamo una quantità che 
+consente di definire il quantitativo di energia trasferito in un sistema
+dall'esterno verso l'interno di un sistema. \\ \\
+E se invece fossero più forze a generare uno spostamento? Cioè molto semplicemente,
+se spostiamo un tavolo in due invece che da solo? Beh cambia molto lo 
+spostamento, e infatti $$L = \sum_{i=1}^{n} \overrightarrow{F_{i}} \cdot \overrightarrow{S}$$
+Ah ovviamente $L_{i} = \sum_{i=1}^{n} \overrightarrow{F_{i}} \cdot \overrightarrow{S}$,
+da questa prospettiva si conclude anche che $L_{tot} = \sum_{i=1}^{n} L_{i}$.
+\\ \\
+\\
+{\color{black} \rule{\linewidth}{0.3mm} }
+\\
+$$\includegraphics[width=0.75\textwidth]{velocitalavoro}$$
+In questo caso cosa si osserva? La velocità al quadrato che avremo sarà coincidente
+con la velocità iniziale alquadrato, che si somma con la velocità generata
+dall'accelerazione provocata dalla applicazione della forza in questione.\\ \\
+Quel K si chiama ENERGIA CINETICA, ossia l'energia associata al moto. Mi raccomando,
+contate sempre che ci sono altre energie in questione che agiscono su un corpo
+in movimento, allora tutto prende senso.
+{\color{black} \rule{\linewidth}{0.3mm} }
+\\
+\chapter{Principio di conservazione dell'energia}
+E' il classico esempio del modo di pensare dei fisici, cioè osservi un fenomeno,
+noti qualcosa di anomalo, lo testi, trai delle conclusioni, ma in questo caso
+addirittura vengono inventate delle unità di misura.
+\\ \\
+Il concetto di Energia è risultante da calcoli che effettuiamo MA NON ESISTE, 
+l'energia NON è fisica, non è qualcosa di tangibile, è CALCOLABILE, e rimane
+nel tempo sempre uguale a se stessa in determinate situazioni. \\ \\
+Se nel caso della meccanica e dinamica si aveva qualcosa di misurabile, tangibile,
+per quanto riguarda la conservazione dell'energia si dovrà capire il concetto di
+sistema.
+\paragraph{Cos'è un sistema: } E' un insieme di punti materiali (può essere 
+pure uno solo), può essere contenuto in un sistema, ovviamente.
+\\ \\
+Alla fine si ha una quantità di Energia, che viene associata al sistema, è
+una serie di formule che vedremo, ma prima di applicarle devo capire bene quale
+è il mio sistema di riferimento.\\ \\
+Neanche a dirlo ci sono diversi tipi di energia, diciamo infinite forme da questo
+punto di vista ad esempio:
+\begin{itemize}
+	\item Calore
+	\item Cinetica
+	\item Nucleare
+	\item Chimica
+\end{itemize}
 
+    
 \end{document}

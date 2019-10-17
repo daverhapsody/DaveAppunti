@@ -1,5 +1,6 @@
 # Benvenuti nel magico mondo di Dave
 
+
 ## Avvertenze:
 
 1) I miei appunti sono stati presi tutti a lezione, quindi c'è scritto quello che durante le lezioni viene erogato agli studenti, ma **CIÒ CHE C'È NEGLI APPUNTI NON È LEGGE**. Non prendete i miei appunti per buoni a prescindere, anzi! 
@@ -12,6 +13,11 @@ Se ci sono correzioni da proporre, qualcosa che non è chiaro, qualcosa che vi p
 
 3) Siccome ho messo in alcuni file anche dei riferimenti con link a YouTube o anche altri siti, per poterli aprire dovrete avere aperto il pdf con un programma per aprire pdf. Se aprite gli appunti direttamente da GitHub purtroppo non vi fa cliccare.
 
+## Contatti:
+Per qualsiasi info, chiarimento, segnalazione, contattatemi su [Telegram](https://t.me/cicciobistecca),
+stavo pensando se valesse la pena di aprire un canale in cui pubblicare roba ogni volta che c'è un 
+update, o muoio, o devo aggiornare i file e non sono morto ma tipo "Hey sono nel magico mondo del
+work in progress ;)))". Fatemi sapere :3
 ------
 
 ### Ringraziamenti:
