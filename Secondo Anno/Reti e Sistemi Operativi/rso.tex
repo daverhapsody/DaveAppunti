@@ -380,23 +380,23 @@ A invia un messaggio con Seq = 10, ACK = 57, [ciao] stiamo intendendo un messagg
 avente questi 3 parametri principali, li possiamo mettere pure a sistema così, 
 per intenderci meglio:
 \[
-	messaggio =
-	\begin{cases}
-		Seq = 10 \\
-		ACK = 57 \\
-		[ciao]
-	\end{cases}
+messaggio =
+\begin{cases}
+Seq = 10 \\
+ACK = 57 \\
+[ciao]
+\end{cases}
 \]	
 Cosa mi aspetto come risposta? Beh io sto comunicando che siamo al $57_{esimo}$
 ACK e al 10 byte di sequenza, pertanto tu mi aspetto che mi si dica UEH sono
 arrivato a 57 e mi risponde:
 \[
-	messaggio =
-	\begin{cases}
-		Seq = 57 \\
-		ACK = 14 \\
-		[bella]
-	\end{cases}
+messaggio =
+\begin{cases}
+Seq = 57 \\
+ACK = 14 \\
+[bella]
+\end{cases}
 \]	
 Il concetto è che la sequenza della risposta coincide con l'ack della "domanda",
 sembra sbagliato, no? Bene, se ti comunico che sono a $\lambda$ mi aspetto che
@@ -405,16 +405,16 @@ accadrà che la sequenza dovrà coincidere con l'ack precedente. \\ \\
 Se all'inizio si era al segmeto 10, verrà risposto che si è al segmento 57 MA
 quando verrà inviato di nuovo si riscambia, diciamolo in modo più sensato:
 \[
-	EstimatedRTT = (I - \alpha) \cdot EstimatedRTT + \alpha \cdot SampleRTT 
+EstimatedRTT = (I - \alpha) \cdot EstimatedRTT + \alpha \cdot SampleRTT 
 \]
 Con $\alpha$ = 0,125 nella maggior parte dei casi (E' il valore tipico).
- Ed rtt che sarebbe il rounded
+Ed rtt che sarebbe il rounded
 trasmission time, cioè in parole povere il tempo che ci si impiega a trasmettere.
 \\ \\
 Tutto va in funzione di come cambia l'RTT nel tempo, conviene avere un RTT che 
 nel tempo rimane lo stesso, non conviene avere un RTT troppo ballerino
 \[
-	DevRTT = (1 - \beta) \cdot DevRTT + \beta \cdot | SampleRTT - EstimatedRTT
+DevRTT = (1 - \beta) \cdot DevRTT + \beta \cdot | SampleRTT - EstimatedRTT
 \]
 Dove dev sta per deviazione (O margine di sicurezza) e tipicamente $\beta$=0,25\\
 Infine definiamo quello che è il $Timeout = EstimatedRTT + 4\cdot DevRTT$
@@ -465,45 +465,45 @@ Handshake vuol dire letteralmente stretta di mano, tipo saluto, prendiamo
 per presupposto di avere due host che chiamiamo A e B \\ \\
 Questi non si conoscono, pertanto A manda a B un messaggio con
 \[
-	A scrive: \begin{cases}
-		SYN \\
-		Seq = \kappa \\
-		[]
-	\end{cases}
+A scrive: \begin{cases}
+SYN \\
+Seq = \kappa \\
+[]
+\end{cases}
 \]
 \[
-	B risponde: \begin{cases}
-		SYN \\
-		Seq = \psi \\
-		ACK = \kappa + 1
-		[] 
-	\end{cases}
+B risponde: \begin{cases}
+SYN \\
+Seq = \psi \\
+ACK = \kappa + 1
+[] 
+\end{cases}
 \]
 Che tradotto in termini pratici è tipo:	\\
 A: OH INIZIO A $\kappa$
 B: OH HO RICEVUTO $\kappa + 1$, IO SONO A $\psi$
 \[
-	A replica: \begin{cases}
-		SYN \\
-		ACK = \psi + 1
-		[] 
-	\end{cases}
+A replica: \begin{cases}
+SYN \\
+ACK = \psi + 1
+[] 
+\end{cases}
 \]
 Che è traducibile in "OK HO RICEVUTO $\psi + 1$"
 \section{Fine della connessione}
 \[
-	A scrive: \begin{cases}
-		FIN \\
-		Seq = \kappa \\
-		[]
-	\end{cases}
+A scrive: \begin{cases}
+FIN \\
+Seq = \kappa \\
+[]
+\end{cases}
 \]
 \[
-	B risponde: \begin{cases}
-		FIN \\
-		ACK = \kappa + 1
-		[] 
-	\end{cases}
+B risponde: \begin{cases}
+FIN \\
+ACK = \kappa + 1
+[] 
+\end{cases}
 \]
 Se però B non ha ancora finito, allora gli manda solo un ACK, mentre
 se ha finito anche lui, semplicemente si chiude la connessione
@@ -550,6 +550,88 @@ Questo incremento di un'unità per volta viene chiamata Congestion Avoidance, e
 \paragraph{Ok, ma perchè non fare direttamente 1 alla volta?} Perchè il tempo
 è una risorsa essenziale, e ragionare di pacchetto in pacchetto richiederebbe
 troppe risorse, semplicemente in questo modo si risparmia tempo, tutto lì.
-\paragraph{In co} In condizioni normali si ha che il trasmettitore
+\chapter{Sistemi operativi}
+Un sistema operativo è un software, un programma, che agisce da intermediario
+tra l'utente ed il suo computer.\\ \\
+Molto semplicemente anche solo per scrivere questi appunti, e voi per visualizzarli
+stiamo usando un sistema operativo. Ma andiamo per livelli
+\begin{enumerate}
+	\item Utente: Esseri umani, OPPURE anche altri computer, l'utente può essere
+	qualcuno o qualcosa che necessità l'intervento del computer fondamentalmente.
+	\item Applicativi/Application programs: Sono il software applicativo, nel 
+	senso che si applicano per risolvere un problema pratico, ad esempio per dire
+	programmi di editing foto, oppure il browser, cioè fondamentalmente estendono
+	le funzioni fattibili dalla macchina
+	\item \color{red} Sistema operativo  \color{black}: Controlla e gestisce
+	l'hardware al servizio dei nostri applicativi, fa appunto come si diceva da 
+	intermediario
+	\item Hardware: Ci si rifà al modello di Von Neumann, CPU Ram e I/O, sempre
+	lì si ritorna, tutte li risorse messe a disposizione dalla ferraglia per 
+	intenderci 
+\end{enumerate} 
+Perchè non vogliamo che gli applicativi usino direttamente l'hardware ma ci 
+spariamo sopra un OS che gestisca? Per due aspetti.
+\begin{enumerate}
+	\item Da un lato astrae le risorse hardware, presentando una macchina estesa
+	più facile da programmare (Files invece di blocchi di dati)
+	\item Dall'altro, gestisce le risorse hardware del computer, assegnandole ai 
+	programmi in maniera equa ed efficiente e controllando che questi le usino
+	correttamente
+	\begin{itemize}
+		\item Nasce dalla necessità di eseguire più programmi per più utenti
+		sulla stessa macchina
+	\end{itemize}
+\end{enumerate}
+\section{Storicamente}
+Per quanto concerne l'hardware rimangono buone tutte le varie nozioni ricevute
+ad Architettura degli Elaboratori, lì sono state approfondite meglio da questo
+punto di vista (giustamente.)\\ \\
+Il sistema operativo oggettivamente fa in modo che le risorse dell'hardware
+siano gestibili per eseguire più di un software alla volta sul pc, perchè di fatto
+alla volta si esegue un solo programma MA ci vien data l'impressione che siano
+più di uno alla volta. \\ \\
+L'esigenza di gestire le risorse è nata assieme ai primi computer fondamentalmente,
+quelli a valvole termoioniche, CIOE' OH SON DELLE LAMPADINE UN PO' PARTICOLARI.\\
+Come già avrete sentito almeno 200 volte, i primi computer, aventi un miliardesimo
+della potenza di calcolo di un nostro smartphone, eran grandi quanto una stanza,
+e venivano programmati direttamente staccando e attaccando i cavi in base a cosa
+si dovesse fare... Immaginatevi me a prendere gli appunti saltando da una parte
+all'altra per attaccare e staccare spine. Altro che jogging e palestra.
+\\ \\
+Solo che le valvole si guastavano, era più il tempo per ripararli che quello per
+usarli MA eran 20000 mila volte più veloce di fare i calcoli su C A R T A. 
+(Computer's rules)
+\\ \\
+Dopo l'invenzione dei transistor i computer diventano più affidabili, inoltre,
+i transistor non si fulminano, son più rapidi, 10 volte più piccini delle valvole.
+Insomma, progressivamente i computer son diventati più piccini, veloci, e meno
+costosi (pensate agli smartwatch tipo MiBand per intenderci).
+\\ \\
+In seguito all'aver capito che programmare usando spine è un po' difficoltoso, 
+tipo mezza giornata per fare a = c + b, per intenderci, allora si è iniziato
+a programmare con l'elaborazione \textbf{batch}, con programmi monitor per il 
+caricamento ed esecuzione dei job (job control languages), (qua già si usavano
+le schede perforate), e qui nascevano i linguaggi ad alto livello.
+\\ \\ 
+Progressivamente poi c'è stato il passaggio ai circuiti integrati, infatti
+IBM con la magica linea 360 cerca di avere un'unica linea di computer adatta 
+sia per ditte commerciali che per calcoli scientifici E NON SOLO perchè avevan
+creato dei computer che potessero essere compatibili tra loro ma differivano
+per la capacità di calcolo \\ \\
+Ci son due problemi
+\begin{enumerate}
+	\item Lo stesso software doveva funzionare su tutti i computer della linea
+	\item Occorreva gestire le risorse della macchina in maniera efficiente in 
+	tutti gli scenari applicativi
+\end{enumerate}
+\section{Tecnica Multiprogrammativa}
+Molti programmi caricati in memoria contemporaneamente, che tradotto significa 
+che quando un programma è impegnato nell'i/o il processore passa ad eseguirne
+un altro
+\section{Spooling}
+L'I/O viene spostato in un buffer in autonomia dal processore, perchè appunto
+il processore interagirà con il buffer (si fa prima) anzichè con la periferica.
+(Le code di stampa sono un ottimo esempio)
 
+    
 \end{document}
