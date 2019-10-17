@@ -270,9 +270,9 @@ Se W $\in L_{pal}$, allora (W) $\in L_{pal}$ esattamente come WW$\in L_{pal}$
 \paragraph{Ex 5.19 p 182}
 $\epsilon$ ()  ()() (w) $\L_{pal}$
 $$\begin{cases}
-	\underline{base}: \epsilon	\\
-	\underline{Passo}: Se~w\in L_{pal} ~ allora ~ ww\in L_{pal} 
-	 ~AND~ (w)\in L_{pal} 
+\underline{base}: \epsilon	\\
+\underline{Passo}: Se~w\in L_{pal} ~ allora ~ ww\in L_{pal} 
+~AND~ (w)\in L_{pal} 
 \end{cases}$$
 Dato G=(V, T, P, B) \\
 B $\to$ BB | (B) | $\epsilon$, \\ \\
@@ -326,10 +326,10 @@ $\implies _{rm}$ Nel caso sia più a destra
 \section{Definizione di $\implies ^{*}$}
 Per induzione: \\ \\
 $$\begin{cases}
-	Base: ~\forall \alpha \in (V U T)^{*}, \alpha \implies ^{*} \alpha
-	Passo: ~Se~ \alpha \implies ^{*} \beta e \beta \implies \gamma \\
-			allora~ \alpha \implies ^{*} \gamma ~ dove ~ \alpha, \beta, \gamma 
-			\in (V U T)*
+Base: ~\forall \alpha \in (V U T)^{*}, \alpha \implies ^{*} \alpha
+Passo: ~Se~ \alpha \implies ^{*} \beta e \beta \implies \gamma \\
+allora~ \alpha \implies ^{*} \gamma ~ dove ~ \alpha, \beta, \gamma 
+\in (V U T)*
 \end{cases}$$
 Pertanto $\alpha \implies ^{*} \beta$ sse $\exists \gamma _{1}, \gamma _{2}, 
 ..., \gamma _{n} \in (VUT)^{*}$ con n$\geq$ t.c
@@ -348,19 +348,19 @@ una determinata stringa. \\ (E' la stringa dell'esercizio precedente: )
 Si agisce ponendo una tabella composta in questo modo 
 \begin{center}
 \begin{tabular}{ |c|c|c|c|c| } 
- \hline
- / & Stringa ricavata & Variabile & N proof & Stringhe impiegate\\
- \hline
- (1) & a & I & 5 & - \\
- (2) & b & I & 6 & -  \\
- (3) & b0 & I & 9 & (2)\\
- (4) & b00 & I & 9 & (3)\\
- (5) & a & E & 1 & (1)\\
- (6) & b00 & E & 1 & (6)\\
- (7) & a+b00 & E & 2 & (5),(6)\\
- (8) & (a+b00) & E & 4 & (7)\\
- (9) & a*(a+b00) & E & 3 & (5),(8)\\
- \hline
+\hline
+/ & Stringa ricavata & Variabile & N proof & Stringhe impiegate\\
+\hline
+(1) & a & I & 5 & - \\
+(2) & b & I & 6 & -  \\
+(3) & b0 & I & 9 & (2)\\
+(4) & b00 & I & 9 & (3)\\
+(5) & a & E & 1 & (1)\\
+(6) & b00 & E & 1 & (6)\\
+(7) & a+b00 & E & 2 & (5),(6)\\
+(8) & (a+b00) & E & 4 & (7)\\
+(9) & a*(a+b00) & E & 3 & (5),(8)\\
+\hline
 \end{tabular}
 \end{center}
 \section{Due teoremi importanti}
@@ -373,8 +373,8 @@ Sia G = (V, T, P, S) una CFG, e $\alpha \in (VUT)^{*} allora S \implies ^{*} \al
 se e solo se $S \implies_{rm}^{*} \alpha$ OPPURE $S \implies _{lm} ^{*} \alpha$
 \section{Le Relazioni $\implies$}
 Sia G = (V, T, P, S) una CFG e sia $\alpha A \beta$ t.c. $\alpha , \beta \in
- (v\cup T)^{\star}$ e A $\in$ V. \\
- Sia $A \to \gamma \in P$ allora $\alpha A \beta \implies \alpha \gamma \beta$
+(v\cup T)^{\star}$ e A $\in$ V. \\
+Sia $A \to \gamma \in P$ allora $\alpha A \beta \implies \alpha \gamma \beta$
 \section{Le Relazioni $\implies^{*}$}
 $\alpha \implies^{*} \beta ,$ con $\alpha, \beta \in (V \cup T)^{*}$ se e solo se
 $\exists \gamma_{1}, \gamma_{2}, ... , \gamma_{n} \in (V \cup T)^{*}$ t.c.
@@ -426,7 +426,7 @@ T = \{a,b,c\} \\
 P = \{S $\to$ aSb, S $\to$ acb\}
 \paragraph{Esercizio 5: }Formare una CFG per il linguaggio \\
 $$L = \{ w\in \{a,b,c,d\}^{\star} | w = a^{n}, b^{n}, c^{\kappa}, d^{\kappa} \}
- | ~ con ~  n, \kappa \geq 0 \}$$
+| ~ con ~  n, \kappa \geq 0 \}$$
 L = $\{\epsilon, ab, aabb, aaabbb ... \\
 cd, ccdd, cccddd ... \\
 abcd, aabbcd, aaabbbcd, ... \\
@@ -449,14 +449,14 @@ Dati due linguaggi $L_{1} ed L_{2} \subseteq \Sigma^{\star}$, \\
 $L_{1} \circ L_{2} = L_{1}L_{2} = \{ W | w = w_{1}w_{2}, con w_{1} \in L_{1}
 e w_{2} \in L_{2}\}$, facciamo un esempio: \\ \\
 \[
-	\Sigma^{\star} = \{0,1,a,b\}
-	L_{1} = \{ \epsilon, 0, 00, 011 \}
-	L_{2} = \{ ab, b \}
-	L_{1}L_{2} = \{ ab, b, 0ab, 0b, 00ab, 00b, 011ab, 011b\}
+\Sigma^{\star} = \{0,1,a,b\}
+L_{1} = \{ \epsilon, 0, 00, 011 \}
+L_{2} = \{ ab, b \}
+L_{1}L_{2} = \{ ab, b, 0ab, 0b, 00ab, 00b, 011ab, 011b\}
 \]
 \paragraph{Esercizio 6: }Formare una CFG per il linguaggio \\
 $$L = \{ w\in \{a,b,c,d\}^{\star} | w = a^{n}, c^{\kappa}, d^{\kappa}, b^{n} 
- | ~ con ~ n, \kappa \geq 0 \}$$
+| ~ con ~ n, \kappa \geq 0 \}$$
 Si ha che X = $\{b^{\kappa}, b^{\kappa}\}$ e notiamo che l'esercizio è praticamente
 come il precedente ma invece di concatenare andiamo ad inglobare uno dentro 
 l'altro i linguaggi
@@ -472,7 +472,7 @@ $S \implies X \implies bXc \implies bc$ \\
 $S \implies aSd \implies aXd \implies ad$
 \paragraph{Esercizio 7: }Formare una CFG per il linguaggio \\
 $$L = \{ w\in \{a,b,c\}^{\star} | w = a^{n}, c^{\kappa}, n^{n}
- | ~ con ~ n, \kappa \geq 0 \}$$
+| ~ con ~ n, \kappa \geq 0 \}$$
 Consideriamo come negli esempi precedenti che $c^{\kappa} $sia una X (Ricordate 
 X bestione? Quello del Dennunzio, ecco), per cui: \\
 $S \to aSb | aXb$ \} \\
@@ -524,13 +524,13 @@ $I \to a | b | Ia | Ib | I0 | I1$ \\ \\
 Forma Sentenziale I + E: \\
 $$
 \begin{tikzpicture}
-	\node (is-root) {E}
-		[sibling distance = 3cm]
-		child{ 
-			child{node{I}}
-			node{E}}
-		child{ node{+}}
-		child{ node{E}};
+\node (is-root) {E}
+[sibling distance = 3cm]
+child{ 
+child{node{I}}
+node{E}}
+child{ node{+}}
+child{ node{E}};
 \end{tikzpicture}$$
 Perciò se avessimo: $S \to aSb|\epsilon$ verrebbe fuori: \\
 $$\includegraphics[width=0.75\textwidth]{1}$$
@@ -559,9 +559,9 @@ $$\includegraphics[width=0.75\textwidth]{derivazioneAlbero}$$
 Nel caso dell'inferenza ricorsiva, si dimostra per induzione ($1 \to 5$) il numero
 di passi (righe) dalla inferenza ricorsiva: 
 $\begin{cases}
-	base: ~ A \to w \in P \\
-	passo~induttivo: ~ Inferenza ~ ricorsiva ~  di ~  n+1  ~ righe, ~  ultima \\ 
-	 ~ riga ~  A ~ \underbrace{\to w_{1}, w_{2}, ..., w_{\kappa}}_{w} \leq n ~righe
+base: ~ A \to w \in P \\
+passo~induttivo: ~ Inferenza ~ ricorsiva ~  di ~  n+1  ~ righe, ~  ultima \\ 
+~ riga ~  A ~ \underbrace{\to w_{1}, w_{2}, ..., w_{\kappa}}_{w} \leq n ~righe
 \end{cases}$
 \\
 {\color{black} \rule{\linewidth}{0.3mm} }
@@ -573,7 +573,7 @@ $$\includegraphics[width=0.75\textwidth]{dimoAlberoInferenza}$$
 $$E \implies I \implies Ib \implies ab \\
 \forall \alpha, \beta \in (V \cup T)^{*} ~vale~ che \\
 \alpha E \beta \implies \alpha I \beta \implies \alpha I b \beta \implies
- \alpha a ~ b \beta$$
+\alpha a ~ b \beta$$
 Per induzione sull'altezza dell'albero: \\
 $$\includegraphics[width=0.75\textwidth]{dimoAltezzaAlbero}$$
 \section{Ambiguità}
@@ -623,6 +623,72 @@ Esempio:\\
 \implies a + a * E \implies a + a * I \implies a + a * a $ \\ \\ 
 Vediamo ora un esempio di linguaggio inerentemente ambiguo: \\
 $\nexists$ CFG non ambigua, cioè: \\
-L = $\{a^{n} b^{n} c^{m} d^{m} | n, m \geq 1\} \cup \\
-\{a^{n} b^{n} c^{m} d^{m} | n, m \geq 1\}$
+L = $\{a^{n} b^{n} c^{m} d^{m} | n, m \geq 1\} \cup 
+\{a^{n} b^{n} c^{m} d^{m} | n, m \geq 1\}$ \\
+Definiamo le regole di inferenza: \\
+$$\begin{cases}
+S \to AB|C \\
+A \to aAb|ab \\
+B \to cBd|cd \\
+C \to aCd|aDd \\
+D \to bDc|bc 
+\end{cases}$$
+
+Ora vediamo come derivare la seguente stringa: "aabbccdd": (n = m - 2) TUTTO LEFT-MOST\\
+1) $S \implies AB \implies aAbB \implies aabbB \implies aabbcBd \implies aabbccdd$ \\
+2) $S \implies C \implies aCd \implies aaDdd \implies aabDcdd \implies aabbccdd$ \\
+\\
+
+Tutti i nodi vanno trasformati in questo, non si può trovare una grammatica 
+fondamentalmente. Per non essere inerentemente ambiguo dovrebbe esserci una 
+intersezione tra le due, e invece abbiamo ben due derivazioni sinistre diverse.
+\\ \\
+Per dimostrare davvero che sia inerentemente ambigue bisognerebbe fare una 
+dimostrazione vera e propria ma diventa davvero complesso
+\section{Grammatiche regolari}
+Generano linguaggi di tipo 3 che si chiamano (Regolari) \\
+G = (V, T, P, S): Analizziamo le Produzioni (P)\\ \\
+Le produzioni hanno i seguenti vincoli:
+\begin{enumerate}
+	\item $\epsilon$ può comparire solo in $S \to \epsilon$ (S sta per start eh)
+	\item Le produzioni sono tutte lineari a dx oppure tutte lineari a sx
+	\item \begin{enumerate}
+	\item lim a dx: $A \to aB$, oppure A$\to$a con A,B$\in$V e a$\in$T
+	\item lim a sx: $A \to Ba$, oppure A$\to$a con A,B$\in$V e a$\in$T
+\end{enumerate}
+\end{enumerate}
+Vediamo subito un esempio:\\
+$I \to a|b|Ia|Ib|I0|I1$ lim sx\\
+Si vuole rappresentare "b01" da destra verso sinistra\\
+$I \implies I1 \implies I01 \implies b01$ \\
+In pochi passaggi si è ottenuta subito la nostra stringa \\
+Ora invece vediamo il lim dx\\
+Ovvero si vuole rappresentare "b01" \\
+$I \to a|b|aI|bI|0I|1I$ \\
+$I \implies bI \implies b01 \implies b01I ... $ ? \\
+Come vediamo non si risolve in questo caso, non esce la stringa, vediamo come fare.
+\\ \\
+Imponiamoci la regola che:
+$$\begin{cases}
+	I \to aJ|bJ|a|b \\
+	J \to a|b|aJ|bJ|0J|1J|0|1
+\end{cases}$$
+Vediamo subito un esempio per capirci meglio: \\
+G = (\{S\},\{0,1\},P,S) \\
+lim dx: $S \to \epsilon|0|1|0S|1S$ \\
+Da qui vediamo che dobbiamo escludere 0 ed 1 poichè
+$L(G) = \{0,1\}^{\star}$\\ \\
+Ora proviamo a produrre con lim sx 01101: \\
+lim sx: $S \implies \epsilon | S0 | S1$
+\paragraph{Esercizio} Si forniscano due grammatiche regolari lim dx ed sx per $L
+= \{a^{n}b^{n}| n,m \geq 0\}$ \\
+\begin{enumerate}
+	\item lim dx: G=(\{S,B\}, \{a,b\},P,S)\\
+	$S \to \epsilon | aS | bB$\\
+	$B \to bB | b$, però così c'è un problema, nel senso che arriva alla B in cui
+	può produrre soltando per l'appunto delle b, o comunque arriva che esce con b.
+	\\ 
+	Come si risolve questo problema? Aggiungendo la b singola alla prima espressione 
+	con S: $S \to \epsilon | aS | bB | \color{red} b \color{black}$
+\end{enumerate}
 \end{document}
