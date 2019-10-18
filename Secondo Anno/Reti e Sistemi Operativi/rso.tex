@@ -465,14 +465,14 @@ Handshake vuol dire letteralmente stretta di mano, tipo saluto, prendiamo
 per presupposto di avere due host che chiamiamo A e B \\ \\
 Questi non si conoscono, pertanto A manda a B un messaggio con
 \[
-A scrive: \begin{cases}
+A ~ scrive: \begin{cases}
 SYN \\
 Seq = \kappa \\
 []
 \end{cases}
 \]
 \[
-B risponde: \begin{cases}
+B ~ risponde: \begin{cases}
 SYN \\
 Seq = \psi \\
 ACK = \kappa + 1
@@ -483,7 +483,7 @@ Che tradotto in termini pratici è tipo:	\\
 A: OH INIZIO A $\kappa$
 B: OH HO RICEVUTO $\kappa + 1$, IO SONO A $\psi$
 \[
-A replica: \begin{cases}
+A ~ replica: \begin{cases}
 SYN \\
 ACK = \psi + 1
 [] 
@@ -492,14 +492,14 @@ ACK = \psi + 1
 Che è traducibile in "OK HO RICEVUTO $\psi + 1$"
 \section{Fine della connessione}
 \[
-A scrive: \begin{cases}
+A ~ scrive: \begin{cases}
 FIN \\
 Seq = \kappa \\
 []
 \end{cases}
 \]
 \[
-B risponde: \begin{cases}
+B ~ risponde: \begin{cases}
 FIN \\
 ACK = \kappa + 1
 [] 
@@ -678,6 +678,169 @@ parti:
 	\item Middleware: Servizi di alto livello per programmare applicazioni 
 	(Framework grafici, sonori, etc)
 \end{itemize}
+\chapter{I processi}
+\begin{itemize}
+	\item Cos'è un processo
+	\item Come vengono schedulati?
+	\item Che operazioni si possono effettuare sui processi?
+	\item IPC (Memoria condivisa, message passing)
+	\item Comunicazione in sistemi client-server
+\end{itemize}
+I più attuali OS sono in grado di eseguire più software in concorrenza, allo 
+stesso momento, per intenderci. Ma iniziamo a definire meglio questo software,
+che da quando va in esecuzione prenderà il nome di \textbf{processo}.
+\\ \\
+Come si compone un processo? 
+\begin{itemize}
+	\item Stato dei registri del processore, compreso il PC
+	\item Codice del programma (Segmento text) \\
+	Sarebbe quello che buttavamo nel text di Assembly su QTSpim, cioè 
+	l'insieme di istruzioni che vengono eseguite
+	\item Stack delle chiamate, contenente parametri, variabili locali ed il
+	return address
+	\item La \textbf{Data Section} contiene le variabili globali, quelle statiche
+	che vengono allocate prima dell'esecuzione dei programmi
+	\item L'heap, che contiene la memoria allocata dinamicamente durante
+	l'esecuzione, quella che in Java si usava quando venivano instanziati gli
+	oggetti, o i vettori.\\ 
+	\item Altre risorse acquisite dall'OS, come socket oppure file contenuti sull'OS.
+\end{itemize}   
+\paragraph{ATTENZIONE: }
+Finora si è sempre menzionato il concetto di programma, sappiamo cos'è, no? 
+Un programma è un insieme finito di istruzioni, fondamentalmente, ma quando
+queste vengono eseguite diventano un PROCESSO.\\ \\ Il file eseguibile è un 
+programma, non un processo, mentre l'applicativo che state usando ora per
+leggere queste righe (Perchè son certo che non ve le stamperete su carta come
+me ;) ) è un processo che avete in memoria da qualche parte. 
+\\ \\
+\paragraph{Come è organizzata la memoria di un processo?}
+\[
+\begin{cases}
+stack \\
+\downarrow \\
+... \\
+... \\
+\uparrow \\
+heap \\
+data \\
+text
+\end{cases}
+\]
 
-    
+Tra stack ed heap perchè ci sono i puntini? E le frecce? Stack ed heap 
+condividono lo stesso spazio di memoria, MA cambia il verso di allocazione
+dei dati. \\ \\
+Lo stack inizia dall'ultima locazione di memoria, e prosegue verso il basso,
+mentre l'heap inizia da dopo il segmento data. Per cui siccome condividono
+memoria, nel caso se ne avesse poca, bisognerebbe prestare bene attenzione
+a come questa viene usata. \\ \\
+\section{Gli stati di un processo}
+I processi sono in esecuzione, fin qui ci siamo, ma dove? Sull'OS. Pertanto,
+la gestione dei processi è tutta opera dell'OS, e questa gestione fa la 
+differenza tra un OS valido ed uno meno valido, insieme ad altri fattori.\\ 
+\\
+Gli stati di un processo sono:
+\begin{itemize}
+	\item New: Il processo è in attesa di essere ammesso (admitted) dallo
+	scheduler
+	\item Ready: Il processo è stato schedulato ed è pronto per essere 
+	eseguito 
+	\item Running: Il processo entra in fase di esecuzione
+	\item Waiting: Il processo è in attesa di ricevere un valore, un dato, 
+	qualsiasi cosa, in generale in attesa di un evento (L'I/O è la causa
+	di attesa più totale, se si esclude l'utente scemo.
+	\item Terminated: Il processo ha finito la sua esecuzione, ha fatto 
+	quello che doveva fare MA ancora non è killato.
+\end{itemize}
+Il sistema operativo può anche interrompere un processo e rimetterlo allo stato
+di ready, con un interrupt, cioè scade il tempo dedicato a quel processo, passa
+agli altri che ci son dopo.
+\\ \\
+Dal punto di vista della sequenza: \\
+$$New \implies Ready \implies Running \implies Terminated$$
+Con gli accorgimenti poi su Waiting e ritorno a ready per gli interrupt. 
+\section{Process Control Block (PCB)}
+Ha anche il nome di Task Control Block, ma PCB ci tornerà migliore. \\
+Cos'è? \\
+E' una struttura per i dati del sistema operativo in grado di riconoscere, 
+identificare e tenere traccia di un processo.
+Cosa contiene?\\ 
+\begin{itemize}
+	\item Process State: Indica lo steto (Ready running blabla)
+	\item Process Number (PID), identifica il processo (Chi è)
+	\item Program counter: Contenuto del registro \color{red} \textbf{Dell'istruzione
+	successiva} \color{black}
+	\item Registers: Il contenuto dei registri
+	\item Informazioni di Scheduling: Priorità, puntatori a code di scheduling
+	\item Informazioni relative alla gestione della memoria (quella allocata al processo)
+	\item Lista di file aperti
+	\item Lista dei processi figlio
+\end{itemize}
+\section{Threads}
+Finora si è considerato il processo come un unico flusso di roba sequenziale,
+ma in realtà è possibile avere più program counter per lo stesso processo, cioè
+più istruzioni possono essere eseguite assieme, e più percorsi di esecuzione.
+\\ \\
+Questi flussi di esecuzione prendono proprio il nome di thread, ed in questo caso
+il \textbf{PCB} Conterrà informazioni ulteriori per ogni thread  
+\section{Scheduling dei processi}
+Schedulare significa scegliere il prossimo processo da eseguire tra quelli che 
+son lì pronti, quelli che son ready, ma perchè? Perchè l'obbiettivo è quello di 
+far lavorare al massimo la cpu, sfruttare al meglio le risorse che si hanno. \\
+\\ 
+Lo scheduler analizza tutti i PCB, in delle vere e proprie code. Ci sono due code,
+una ready queue in cui ci son tutti i processi in stato ready, e poi c'è una 
+wait (in realtà son più di una) che è una coda per i processi in stato di waiting.
+Inutile dire che un processo rimbalza da una parte all'altra costantemente.
+\\ \\
+Quando il sistema operativo passa da un processo all'altro esegue un cambio
+di contesto 
+\section{La commutazione del contesto}
+Il sistema operativo a tutti gli effetti congela il processo attuale per andare
+poi a eseguirne un altro che in precedenza era stato congelato. Cosa accade
+quando si congela un processo? Semplicemente si vanno a copiare tutti i dettagli
+del PCB, vengono sovrascritti con i più aggiornati. \\ \\
+Un processo congelato si dice processo in "idle", che è una condizione che viene
+spesso usata quando si menziona la durata delle batterie sui vari device. \\ \\
+\paragraph{Esempio}
+"Il mio telefono in idle non consuma niente, ma basta aprire app come il 
+blocco note, ed esplode" cit. utente medio di Windows Phone. Concettualmente,
+in idle è letteralmente come quando noi usiamo il concetto del "senza far 
+niente".\\ \\
+Quando prima si diceva di "far lavorare il processore" si intendeva che non 
+si deve mai avere del tempo morto, perchè ognuno di questi momenti morti, è 
+perdita di tempo, il processore deve lavorare il più possibile. \\ \\
+C'è un problema, se io tengo il processore però a manetta, la batteria ne risentirà
+moltissimo. Di conseguenza con i dispositivi mobili si ragionò al contrario, 
+ovvero, meno lavora la cpu, più risparmio. \\ \\
+\section{Background e Foreground}
+I processi attivi e visibili su schermo si dicono in Foreground, per intenderci
+una volta chiusi, ciao, fine, non rimangono in ram, mentre il background parla
+da sè, implementato da Android (ce lo ricordiamo bene com'era veloce agli inizi,
+no?), e importato anche da Apple con iOS4. \\ \\
+(Parlo di dispositivi mobile sui pc e mac c'era da sempre).
+Oggi non si hanno problemi, potete tenere aperte 
+assieme Whatsapp e Telegram. Arriveremo un giorno ad avere abbastanza ram da 
+tenere aperta Facebook Whatsapp e il blocco note.
+\\ \\ \\
+Teniamo a mente che l'OS fornisce delle funzionalità per eseguire processi, tipo
+con le API (E PI AI si legge) che sono delle librerie, che ha anche Google, 
+che fa da tramite, da interfaccia,
+\section{Creazione dei processi}
+Dato un processo, se esso avrà un figlio, quest'ultimo eredita risorse? Non c'è
+una regola, dipende da cosa decide il programmatore di turno, potrebbe ereditarne
+solo alcune, tutte, una sia e una no, dipende.
+\\ \\
+Nella filosofia Unix, se un processo padre crea un figlio, in realtà esso
+sarà un duplicato del padre, ATTENZIONE è una copia, non è la stessa cosa, non è
+il padre, è un doppione. (Il motivo nasce dalla storia di Unix, che è nato con
+la filosofia Kiss, keep it simple stupid, deve funzionare e fare il suo mestiere
+bene.).\\ \\
+In un sistema Unix, un padre può interagire in 3 modi con il proprio figlio:
+\begin{enumerate}
+ 	\item Fork(): Crea la copia precisa del padre ed avrà pid=0 (rispetto al padre eh)
+ 	\item Exec(): Esegue suo figlio, in tutti i sensi, perchè lo ucciderà anche se necessario
+ 	\item Wait(): Quando lancia il figlio, si mette in attesa che quest'ultimo finisca
+ \end{enumerate} 
+
 \end{document}
