@@ -1,3 +1,6 @@
+
+## Alcune tip sui comandi che userai
+
 help. Si spiega da sè, ti dà le indicazioni e l'help di come funziona Prolog
 
 working_directory(CWD, '/Users/*utente*/*' in cui CWD è Current Working Directory
