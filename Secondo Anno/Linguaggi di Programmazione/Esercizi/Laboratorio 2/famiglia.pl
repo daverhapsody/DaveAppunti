@@ -4,7 +4,7 @@
 %%%% Esempio di un albero genealogico da "Art of Prolog" più "Mahabharata".
 
 %%%% maschi e femmine.
-
+padre(X,dio).
 maschio(terach).
 maschio(abraham).
 maschio(nachor).
@@ -78,7 +78,7 @@ padre(terach, haran).
 padre(abraham, isaac).
 padre(haran, lot).
 padre(haran, milcah).
-padre(haran, yiscah).m
+padre(haran, yiscah).
 padre(nachor, bethuel).
 padre(isaac, esau).
 padre(isaac, jacob).
