@@ -1269,5 +1269,141 @@ correttezza \color{black} e \color{red} completezza \color{black}, pertanto
 qualunque sia R, il numero di cammini di successo (se finiti obv) è lo stesso
 in qualsiasi albero SLD costruibile per $P \cup \{G_{0}\}$
 \\ \\
+%-------------------------------------------------------------------------------
+\chapter{Modello di esecuzione Prolog}
+Prendiamo ora per esempio $$p~:-~q,~r.$$(E rispettiamo questi spazi, quindi 
+graficamente dovrà proprio essere considerata così) E' possibile dare più di una
+interpretazione a questa formula:
+\begin{enumerate}
+	\item Interpretazione dichiarativa\\
+	p è \color{red}vera se  \color{black}sono veri q ed r
+	\item Interpretazione procedurale\\
+	p è scomponibile in due sottoproblemi (q ed r)
+	\\
+	 {\color{black} \rule{\linewidth}{0.3mm} }
+	 \\
+	 \textbf{Immagine tratta dalle slides} \\ \\
+	 $$\includegraphics[width=0.75\textwidth]{2}$$
+	 Da quest'immagine possiamo definire alcune cose: \\
+	 \begin{enumerate}
+	 	\item Un goal può essere visto come una chiamata ad una procedura
+	 	\item Una regola può essere vista come definizione di una procedura in
+	 	cui la testa è l'intestazione mentre la parte di destra è il corpo.
+	 \end{enumerate}
+	 {\color{black} \rule{\linewidth}{0.3mm} }
+	 \\ 
+\end{enumerate}
+\section{Le Estensioni}
+Per rendere Prolog un linguaggio che abbia senso essere usato si aggiungono le
+notazioni per le liste e meccanismi per il caricamento del codice Prolog,
+\color{red} \textbf{MA NON SOLO} \color{black}, si introducono anche le seguenti
+funzioni da "vedere":
+\begin{itemize}
+	\item Meccanismi di controllo del backtracking
+	\item Operazioni aritmetiche ($+~-~*~/$)
+	\item Trattamento della negazione
+	\item Possibilità di manipolare e confrontare le strutture dei termini
+	\item Predicati meta ed extra-logici
+	\item Predicati di I/O
+	\item Meccanismi per modificare/accedere alla base di conoscenza
+\end{itemize}
+\section{Il controllo di flusso}
+Se un sottoGoal fallisce, il dimostratore di Prolog sceglie un'alternativa 
+procedendo in sequenza dall'alto verso il basso della lista O MEGLIO, dalla 
+testa alla coda della lista delle clausole. 
+\\ \\
+Però Prolog mette a disposizione il "\textbf{cut}", che non è altro che un 
+taglio, che si indica con un '\textbf{!}', che serve per controllare questa
+megaEnormeListona di scelte.
+\subsection{Caratteristiche del Cut}
+Ha un problema di fondo, ovvero il fatto che è complesso da interpretare, perchè
+non ha un'interpretazione logica, ma procedurale. \\ \\
+Inoltre per capire come funziona serve conoscere meglio il funzionamento del 
+dimostratore Prolog, che esegue su una macchina virtuale (SI'! Proprio come Java!)
+\\ \\
+Neanche a dirlo, la sua importanza non è sottovalutabile, se no che lo 
+studieremmo a fare?
+\section{Il predicato '!' (Cut)}
+Per capire meglio il funzionamento di questo predicato serve scriverci una
+clausola generica (avente il cut, e grazie al.. No, non mi abbasserò a tal
+livello da dire "cut"). 
+\[
+ 	C = a :- b_{1}, b_{2}, ..., b_{\kappa} !, b_{\kappa + 1}, ..., b_{n}.
+ \] 
+ Cerchiamo di procedere con ordine, cosa fa questo cut?\\
+ In pratica se il goal corrente G unifica con a e $b_{1}, b_{2}, ..., b_{\kappa}$
+ hanno successo ALLORA il dimostratore 
+si impegna inderogabilmente alla scelta di C per dimostrare G \\ \\
+Ogni clausola alternativa (sì, quelle che si scorrono dall'alto verso il basso, 
+quindi sarà quella dopo) per a che unifica con G viene ignorata\\ \\
+\paragraph{ATTENZIONE: } Per un qualche $b_{j}$ con $j > \kappa$ fallisse, 
+allora il backtracking si fermerebbe ai cut
+(Le altre scelte per i $b_{i}$ con $i \leq \kappa$ vengono rimosse, cancellate,
+e rimosse dall'albero di derivazione). \\ \\
+Inoltre, se il backtracking raggiunge il cut, automaticamente lui fallisce, e la
+ricerca procede dall'ultimo punto di scelta prima che G scegliesse C.
+\paragraph{Ragioniamo sul seguente codice:}
+\begin{center}
+	cl1: a ~ :- ~ p,~ b. \\
+ 	cl2: a ~ :- ~ p,~ b. \\
+ 	cl3: p.
+\end{center}
+In cui cl indica la clausola, e considereremo la query "?- a.", Questo sarà
+lo stato interno di Prolog
+\\
+{\color{black} \rule{\linewidth}{0.3mm} }
+\\
+\textbf{Immagine tratta dalle slide} \\ \\
+$$\includegraphics[width=0.75\textwidth]{3}$$
+\\
+{\color{black} \rule{\linewidth}{0.3mm} }
+\\
+ 	
+In pratica quello che accade è che p viene messa in cima allo stack, 
+\\
+{\color{black} \rule{\linewidth}{0.3mm} }
+\\
+$$\includegraphics[width=0.75\textwidth]{4}$$
+Se per ipotesi p ha successo, si inserisce b in cima allo stack\\
+Se in questo caso la valutazione di b fallisce, si attiva il meccanismo magico
+del \color{red} backtracking \color{black} e quindi per proseguire si passa a
+considerare la seconda clausola, e lo stato interno di prolog cambia. \\
+Come cambia?\\
+$$\includegraphics[width=0.75\textwidth]{5}$$
+{\color{black} \rule{\linewidth}{0.3mm} }
+\\
+Quello che accade ora è che p si mette in cima allo stack, ha successo, MA
+la valutazione di c fallisce, perciò di nuovo backtracking, però attenzione,
+siccome non ci sono più clausole allora anche a fallisce, e lo stack si svuota.
+\\ \\
+Analizziamo meglio però questi stack (queste pile)
+\begin{itemize}
+	\item Pila di esecuzione: \\
+	Contiene tutti i record di attivazione delle varie procedure (sostituzioni
+	per unificare le varie regole)
+	\item Pila di \color{red}\textbf{backtracking} \color{black} che contiene 
+	l'insieme dei "punti di scelta". Ad ogni fase della valutazione semplicemente
+	contiene dei puntatori alle scelte "aperte" nelle fasi precedenti della
+	dimostrazione.
+\end{itemize}
+\paragraph{Cosa succede alle queries con il Cut?}
+\section{I tipi di Cut}
+Sono fondamentalmente 2, o meglio, sono due \textbf{USI} diversi, del predicato
+cut, il predicato rimane lo stesso:
+\begin{itemize}
+	\item \color{green}\textbf{Green Cut: }\color{black} Utile per eseprimere 
+	"determinismo" (e quindi pre rendere più efficiente il programma)
+	\item \color{red}\textbf{Red Cut: }\color{black} Usati solo per efficienza,
+	perchè i pratica omettono alcune condizioni esplicite e modificano la 
+	semantica del programma equivalente senza i cuts (Sono indesiderabili anche
+	se una volta ogni 10 anni, utili.. forse.)
+\end{itemize}
+
+
+ 
+
+
+
+
 
 \end{document}
