@@ -670,8 +670,8 @@ Come vediamo non si risolve in questo caso, non esce la stringa, vediamo come fa
 \\ \\
 Imponiamoci la regola che:
 $$\begin{cases}
-	I \to aJ|bJ|a|b \\
-	J \to a|b|aJ|bJ|0J|1J|0|1
+I \to aJ|bJ|a|b \\
+J \to a|b|aJ|bJ|0J|1J|0|1
 \end{cases}$$
 Vediamo subito un esempio per capirci meglio: \\
 G = (\{S\},\{0,1\},P,S) \\
@@ -706,10 +706,10 @@ L = $\{ab^{n}cd^{m}e | n \geq 0, m \> 0 \}$ \\
 	\end{cases}$
 	\item lin sx: \\
 	$\begin{cases}
-		S \to Xe\\
-		X \to Xd | Yd\\
-		Y \to Zc \\
-		Z \to Zb | a 
+	S \to Xe\\
+	X \to Xd | Yd\\
+	Y \to Zc \\
+	Z \to Zb | a 
 	\end{cases}$
 	\item lin dx: (modo equivalente)
 	$A \to aB$\\
@@ -717,23 +717,23 @@ L = $\{ab^{n}cd^{m}e | n \geq 0, m \> 0 \}$ \\
 	$w\in T^{+}$ \\
 	Per esempio: \\
 	$A \to ciao \to \begin{cases}
-		A \to cB \\
-		B \to iC \\
-		C \to aD \\
-		D \to o
+	A \to cB \\
+	B \to iC \\
+	C \to aD \\
+	D \to o
 	\end{cases} $
 	\item lin sx: \\
 	$\begin{cases}
-		A \to Bo \\
-		B \to Ca \\
-		C \to Di \\
-		D \to c
+	A \to Bo \\
+	B \to Ca \\
+	C \to Di \\
+	D \to c
 	\end{cases}$
-	\end{enumerate}
+\end{enumerate}
 \paragraph{Esercizio: } Data G = (\{S,T\},\{0,1\},P,S)\\
 $\begin{cases}
-	S \to \epsilon | 0S | 1T\\
-	T \to 0T | 1S \\
+S \to \epsilon | 0S | 1T\\
+T \to 0T | 1S \\
 \end{cases}$
 L(G) =$\{w \in {0,1}^{\star} | ~ w ~ contiene~  un~  n ~ pari~  di~  1\}$
 \paragraph{Altro esercizio: } Grammatica lin dx ed sx per:\\
@@ -742,11 +742,11 @@ L = $\{0,1\}^{+}$
 \begin{enumerate}
 	\item lin dx: G(\{S\},\{0,1\},P,S)\\
 	$\begin{cases}
-		S \to 0|1|0S|1S
+	S \to 0|1|0S|1S
 	\end{cases}$
 	\item lin sx: G(\{S\},\{0,1\},P,S)\\
 	$\begin{cases}
-		S \to 0|1|S0|S1
+	S \to 0|1|S0|S1
 	\end{cases}$
 \end{enumerate}
 \section{Espressioni Regolari}
@@ -757,7 +757,7 @@ Tramite espressioni regolari puoi dimostrare che una stringa fa parte di un
 linguaggio.\\
 Inoltre puoi riconoscerle (\underline{accettare}) automi a stati finiti (DFA, 
 NFA, $\epsilon$-NFA)
-\section{Operazioni sui linguaggi.}
+\section{Operazioni sui linguaggi}
 \begin{enumerate}
 	\item Unione: $L \cup M$ (Unione tra sistemi)\\
 	Esempio:\\
@@ -768,15 +768,89 @@ NFA, $\epsilon$-NFA)
 	Esempio: \\
 	L = \{001,10,111\}
 	M = $\{\epsilon,001\}$
-	$L \cdot M$ = \{001, 10, 111, 001001, 10001, 111001\}	 
+	$L \cdot M$ = \{$\epsilon$001, $\epsilon$10, $\epsilon$111, 001001, 10001, 111001\}	 
 	\item Chiusura di Kleene: $L^{\star}$ \\
 	L =$ \bigcup \limits _{i=1} L^{1} = \bigcup \limits _{i=1}^{\infty} L^{1}$\\
 	Dove: $L^{0} = \{\epsilon\}, L^{1} = L$, fino ad arrivare a $L^{i}$ =
-	 $\underbrace{LLLLL...L}_{i~volte} $	i volte (per i $\geq$ 1)\\
+	$\underbrace{LLLLL...L}_{i~volte} $	i volte (per i $\geq$ 1)\\
 	Esempio: \\
 	L = \{0,11\} \\
 	$L^{\star} = \{\epsilon\} \cup \{0,11\} \cup \{00,011,110,1111\} \cup 
 	\{000,0011,01111,1100,11011,11110,111111\} \cup$ ...
 \end{enumerate}
+Ci sono dei casi particolari 
+\begin{enumerate}
+	\item $L = \varnothing $ (Non contiene stringhe)
+	\item $L = \{\epsilon\} $(Cotiene solo la stringa vuota)
+	\item $\varnothing = {\epsilon}$
+	\item$ \varnothing^{i} = \varnothing ~~~ \forall i\geq1$
+	\item $\varnothing^{\star} = \varnothing^{0}, \varnothing^{1}, ..., 
+	\varnothing^{n}$
+	\item $\{\epsilon\}^{\star} = \{\epsilon\}^{1}, \{\epsilon\}^{2}, ...,
+	 \{\epsilon\}^{n}$  = $\{\epsilon\}$
+	 \item Qualunque insieme se non vuoto, e non avente solo la stringa vuota,
+	 è in grado di generare qualsiasi stringa, di lunghezza che può estendersi
+	 fino ad $\infty$
+\end{enumerate}
+Tornando alle epsressioni regolari: \\
+Si dice che esse denotino linguaggi regolari, dice come sono fatte le stringhe, 
+in maniera più esplicita e compatta di una grammatica, e si definiscono 
+in modo ricorsivo,(matematicamente per induzione, sempre lì si torna).\\ \\
+Ci saranno dei casi base e una serie di passi, vediamo i 3 casi base:
+\begin{enumerate}
+	\item $\epsilon, \varnothing$ sono espressioni regolari, perciò $\epsilon$ ha 
+	già più di un significato, di solito si indica in grassetto, per comodità
+	in questo contesto sappiamo che indica un'espressione regolare (\textbf{$\epsilon$})\\
+	L($\epsilon)$ = $\{\epsilon\}, L(\varnothing) = \varnothing$
+	\item Se a $\in \Sigma$, a è una espressione regolare \\
+	L(a) = \{a\}
+	\item Variabili che rappresentano linguaggi: (L per esempio) sono espressioni
+	regolari
+\end{enumerate}
+Vediamo ora i seguenti passi induttivi:
+\begin{enumerate}
+	\item Unione: Se E, F sono ER, allora E+F è una ER (E+F = L(E) $\cup$ L(F))
+	\item Concatenazione: Se E, F sono ER, allora EF è una ER (L(EF) = L(E)L(F))
+	\\ Ad esempio \\
+	$\Sigma^{1} = \{0,1\}$, E = 0, F = 1 EF=01
+	\item Chiusura: Se E è una ER, allora $E^{\star}$ è una ER $(E^{\star}=(L(E))^{\star})$
+	\item Parentesi: Se E è una ER, allora (E) è una ER (  L((E))=L(E)  ) \\
+	Vedrete lisp, a proposito di parentesi..
+\end{enumerate}
+\section{Precedenza operatori}
+\begin{enumerate}
+	\item Chiusura di Kleene ($\star$)
+	\item Concatenazione A $\circ$ B
+	\item Associativa, commutativa (l'unione) 
+\end{enumerate}
+\section{Esercizi}
+\paragraph{Es. 1}
+Data la seguente ER = $(0+1)^{\star} 0^{\star} (01)^{\star}$ \\
+Dire se 001 è reaizzabile con il suddetto insieme: \\
+$(0+1)^{\star}$ = 1 0 1 0\\
+$L((0+1)^{\star}) = (L(0+1))^{\star} = (L(0)\cup L(1))^{\star} = (\{0\} \cup \{1\})
+= (\{0,1\})^{*}$, quindi è possibile realizzarlo
+\paragraph{Es. 2}
+Data la seguente ER = $0^{\star} (01)^{\star}$ \\
+Dire se 001 è reaizzabile con il suddetto insieme: \\
+001 Si'
+1001 NO \\
+0101 Si' \\
+\section{Identità ed annichilatori}
+\subsection{L'identità} E' un valore tale per cui la somma con esso (identità +
+valore) darà il valore stesso (a+x = x+a $\forall x \in$ ESISTENZA)\\
+$\varnothing$ è un'identità per +: $\varnothing + E = E + \varnothing = E$ \\
+$\epsilon$ è identità per$ \circ: \epsilon E = E\epsilon = E$ \\
+\subsection{Annichilatore}
+$\varnothing $è annichilatore per$ \circ: \varnothing E = E \varnothing = \varnothing$
+\paragraph{Esercizio tipo esame}
+Data ER = $((01)^{\star}10(0+1)^{\star})^{\star}$
+E' possibile realizzare 0101? Nope\\
+01000? Nemmeno \\
+01011 Nemmeno \\
+10111 SI PUO' FARE WOOOOO (Perdonatemi, lo svolgimento lo aggiungerò successivamente
+quando ci studierò sopra, perchè al momento mi è troppo lungo scriverlo)
+
+
 
 \end{document}
