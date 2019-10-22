@@ -376,8 +376,8 @@ Si agisce ponendo una tabella composta in questo modo
 \section{Due teoremi importanti}
 \subsection{Th. 1}
 Sia G = (V, T, P, S) una CFG, e sia $\alpha \in (VUT)^{*} allora 
-S \implies ^{*}\alpha ~sse~ \alpha ~ e' ~ ottenibile ~ tramite ~ procedura ~ di  ~
-inferenza ~ ricorsiva$
+S \implies ^{*}\alpha ~sse~ \alpha ~ e' ~ ottenibile ~ tramite ~ procedura ~
+\\ di  ~ inferenza ~ ricorsiva$
 \subsection{Th. 2}
 Sia G = (V, T, P, S) una CFG, e $\alpha \in (VUT)^{*} allora S \implies ^{*} \alpha$
 se e solo se $S \implies_{rm}^{*} \alpha$ OPPURE $S \implies _{lm} ^{*} \alpha$
@@ -532,7 +532,7 @@ Dato $E \to I | E + E | E * E | (E)$ in cui la E sta per Espressione e la I
 indica un identificatore. E \\
 $I \to a | b | Ia | Ib | I0 | I1$ \\ \\ 
 Forma Sentenziale I + E: \\
-$$
+\[
 \begin{tikzpicture}
 \node (is-root) {E}
 [sibling distance = 3cm]
@@ -541,9 +541,11 @@ child{node{I}}
 node{E}}
 child{ node{+}}
 child{ node{E}};
-\end{tikzpicture}$$
+\end{tikzpicture}\]
 Perciò se avessimo: $S \to aSb|\epsilon$ verrebbe fuori: \\
-$$\includegraphics[width=0.75\textwidth]{1}$$
+\begin{center}
+\includegraphics[width=0.75\textwidth]{1}
+\end{center}
 La computazione di prolog non è altro che una visita di un albero in modo left
 most, a seconda di come si visita l'albero infatti cambia ma il prodotto finale
 rimane quello.
@@ -562,8 +564,9 @@ Data una CFG (Grammatica context free) G i seguenti enunciati si equivalgono:
 \end{enumerate}
 Per esempio: 
 \paragraph{fig 5.7 p 175}
-$$\includegraphics[width=0.75\textwidth]{derivazioneAlbero}$$
-\\
+\begin{center}
+\includegraphics[width=0.75\textwidth]{derivazioneAlbero}
+\end{center}
 {\color{black} \rule{\linewidth}{0.3mm} }
 \\
 Nel caso dell'inferenza ricorsiva, si dimostra per induzione ($1 \to 5$) il numero
@@ -575,17 +578,18 @@ passo~induttivo: ~ Inferenza ~ ricorsiva ~  di ~  n+1  ~ righe, ~  ultima \
 \end{cases}$
 \\
 {\color{black} \rule{\linewidth}{0.3mm} }
-\\
-$$\includegraphics[width=0.75\textwidth]{dimoAlberoInferenza}$$
-\\
+\begin{center}
+\includegraphics[width=0.75\textwidth]{dimoAlberoInferenza}
+\end{center}
 {\color{black} \rule{\linewidth}{0.3mm} }
-\\
-$$E \implies I \implies Ib \implies ab \\
+\[E \implies I \implies Ib \implies ab \\
 \forall \alpha, \beta \in (V \cup T)^{*} ~vale~ che \\
 \alpha E \beta \implies \alpha I \beta \implies \alpha I b \beta \implies
-\alpha a ~ b \beta$$
-Per induzione sull'altezza dell'albero: \\
-$$\includegraphics[width=0.75\textwidth]{dimoAltezzaAlbero}$$
+\alpha a ~ b \beta\]
+Per induzione sull'altezza dell'albero: 
+\begin{center}
+\includegraphics[width=0.75\textwidth]{dimoAltezzaAlbero}
+\end{center}
 \section{Ambiguità}
 E + E * E \\
 $E \to E + E | E * E$
@@ -593,16 +597,18 @@ $E \to E + E | E * E$
 2) $E \implies E * E \implies E + E * E$
 \\
 {\color{black} \rule{\linewidth}{0.3mm} }
-\\
-$$\includegraphics[width=0.75\textwidth]{iSeS}$$
-\\
+\begin{center}
+\includegraphics[width=0.75\textwidth]{iSeS}
+\end{center}
 {\color{black} \rule{\linewidth}{0.3mm} }
 \\
 \paragraph{Data la seguente CFG: } $S \to \epsilon|SS|iS|iSeS$ \\
 Dobbiamo ottenere iie: \\
 1) $S \implies iSeS \implies iiSeS \implies iieS \implies iie$ \\
 2) $S \implies iS \implies iiSeS \implies iieS \implies iie$
-$$\includegraphics[width=0.75\textwidth]{iSeS}$$
+\begin{center}
+\includegraphics[width=0.75\textwidth]{iSeS}
+\end{center}
 Se per una stringa ci sono più di un albero sintattico allora essa è ambigua, 
 invece non c'è problema se lo stesso albero dia più derivazioni è easy. Ma
 perchè è un problema se è ambigua? Perchè non si sa come è cicciata fuori 
@@ -679,10 +685,10 @@ $I \implies bI \implies b01 \implies b01I ... $ ? \\
 Come vediamo non si risolve in questo caso, non esce la stringa, vediamo come fare.
 \\ \\
 Imponiamoci la regola che:
-$$\begin{cases}
+\[\begin{cases}
 I \to aJ|bJ|a|b \\
 J \to a|b|aJ|bJ|0J|1J|0|1
-\end{cases}$$
+\end{cases}\]
 Vediamo subito un esempio per capirci meglio: \\
 G = (\{S\},\{0,1\},P,S) \\
 lin dx: $S \to \epsilon|0|1|0S|1S$ \\
