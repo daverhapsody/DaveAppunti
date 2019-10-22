@@ -283,6 +283,15 @@ B $\implies _{1}$ BB $\implies _{2}$ B(B) $\implies _{2}$ (B)(B) $\implies _{3}$
 ()(B) $\implies _{2}$ ()((B)) $\implies _{3}$ ()(()) \\
 Quindi questa stringa è possibile generarla.
 \section{Produzioni Context - Free}
+\paragraph{DISCLAIMER: } D'ora in poi vedrete qualcosa di questo genere: 
+$\implies^{*}_{lm/rm}$,
+dovete considerare tutte le volte in cui si presenteranno come se fossero 
+$=>^{*}_{lm/rm}$, appena ho tempo poi li cambio tutti. cosa indicano rm lm e *
+E' scritto tranquilli \\
+\\
+{\color{black} \rule{\linewidth}{0.3mm} }
+\\
+\\
 A $\to$ $\gamma$ dove A $\in$ V e $\gamma \in (V\vee T)^{*}$ \\ \\
 Agendo come prima:	\\
 B $\implies _{1}$ BB $\implies _{2}$ (B)B $\implies _{3}$ ()B $\implies _{2}$ 
@@ -301,6 +310,7 @@ T = \{+, *, (, ), a, b, 0, 1\} \\ \\ \\
 La E diventa identificatore quindi $E \implies I \implies a$ (stessa roba per b)
 quindi $E \implies I \implies Ia \implies I0a \implies Ib0a \implies I1b0a 
 \implies b1b0a$ 
+\\ \\
 %\implies I1b0a  \implies b1b0a \implies D10b01a$
 \\ \\
 Proviamo a generare a * (a+b00) (metodo Left-Most) \\
