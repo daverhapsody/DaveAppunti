@@ -848,25 +848,23 @@ questa determinata cosa in Prolog"
 Ogni istruzione finisce con il punto, avete presente quando la vostra fidanzata
 capite che è innervosita con voi e alla fine delle frasi ci mette un '.' che vi
 fa gelare il sangue? Ecco, se qui non mettete il punto dopo ogni istruzione, 
-vedrete come vi gireranno i *\textit{Censura}* ;))))
-\\ \\
-Eccovi esempi di comandi corretti:
-\\
-{\color{black} \rule{\linewidth}{0.3mm} }
-\\
-\textbf{Ecco un esempio di comandi validi} \\ \\
-$$\includegraphics[width=0.75\textwidth]{validi}$$
+vedrete come vi gireranno i *\textit{Censura}* ;))))\\ 
+\paragraph{Ecco un esempio di comandi validi (\LaTeX ~ le metterà nella prossima 
+pagina)}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{validi}
+\end{center}
 Come si nota sono un po' di comandi a caso, ma privi di errori sintattici \\
 {\color{black} \rule{\linewidth}{0.3mm} }
 \\
 Vediamo ora invece un esempio di comandi NON validi 
-\\ \\
-\textbf{Non validi} \\ \\
-$$\includegraphics[width=0.75\textwidth]{nonvalidi}$$
+\paragraph{Non validi}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{nonvalidi}
+\end{center}
 In questo caso come vedete sono errori che tendenzialmente era possibile fare 
 pure su Java, non è che si tratti di chissà che di complesso. \\
 {\color{black} \rule{\linewidth}{0.3mm} }
-\\
 \\ \\
 \subsection{Le variabili (logiche)}
 La variabile logica è una sequenza alfanumerica che però inizia con un carattere
@@ -1070,8 +1068,8 @@ Per esempio, se ho un programma \textbf{P} ed una query "$:- ~~ p(t_{1}, t_{2}, 
 (Ricordandoci sempre che la query NON è dentro al programma, o comunque non è
 nel file sorgente del programma) allora: \\ \\
 $$\begin{cases}
-Se ~ X_{1}, X_{2}, ..., X_{n} ~ sono ~ variabili ~ che ~ compaiono ~ in
-~ t_{1}, t_{2}, ..., t_{m} ~ ALLORA ~ \exists X_{1}, X_{2}, ..., X_{n} . 
+Se ~ X_{1}, X_{2}, ..., X_{n} ~ sono ~ variabili ~ che ~ compaiono ~ in 
+~ t_{1}, t_{2}, ..., t_{m} ~ \\ALLORA ~ \exists X_{1}, X_{2}, ..., X_{n} .
 p(t_{1}, t_{2}, ..., t_{m}) \\	
 \end{cases}$$
 Ed il nostro obbiettivo sarà quello di trovare una sostituzione del tipo:
@@ -1136,13 +1134,12 @@ $\sigma[B] = B^{'}$
 \paragraph{Attenzione: } La scelta di unificare la \textbf{prima} sottoQuery 
 $Q_{i}$ E' arbitraria (anche se comoda); Scegliere $A_{i,m} \vee A_{i,c}$ con 
 $c \in [1,m]$ casuale sarebbe comunque accettato.
-\paragraph{Se partissi invece dalla query} 
+\paragraph{Se partissi invece dalla query}
 $Q_{i} \equiv ?- ~~ A_{i,1}, A_{i,2}, ..., A_{i,m}$ e dalla regola (dal fatto) 
 $A_{r}$, se esiste un unificatore $\sigma$ tale che $\sigma [A_{r}] = \sigma [A_{i,1}]$,
 allora ottieni una nuova query $G_{i+1} \equiv ~~ ?- A_{e,1}^{'}, A_{e,1}^{'}, 
 ..., A_{e,1}^{'} $, ovvero, la nuova query ha dimensioni minori rispetto alla 
-precedente, avendo m-1 sotto-query.
-\\ \\
+precedente, avendo m-1 sotto-query. \\ \\
 Come già detto infatti nella risoluzione SLD , il passo di risoluzione avviene 
 tra l'ultima query e una clausola di programma. 
 \paragraph{Osservazione: } Per coloro che usano anche le slide noteranno che 
@@ -1151,6 +1148,8 @@ le sta studiando, per dirvi, quello che nelle slide si chiama Goal lo chiamo que
 ma quando una spiega con le slide, un velo di copiatura ci sarà sempre.\\
 Che si chiami goal query o interrogazione, è sempre e comunque un teorema.
 \\ \\
+{\color{black} \rule{\linewidth}{0.3mm} }
+\\
 Come può essere il risultato finale? \\
 \begin{itemize}
 	\item Successo\\
@@ -1218,7 +1217,7 @@ definito sulla base del processo di prova visto precedentemente
 	clausola selezionata $C_{i}, C_{\kappa}$
 	\item Il nodo vuoto indicato da :- non ha figli
 \end{itemize}
-\paragraph{Just a remainder: }La regola \textbf{R} è variabile:
+\paragraph{Just a reminder: }La regola \textbf{R} è variabile:
 \begin{itemize}
 	\item Può essere scelta dalla sottoquery più a sinistra (se c'è) $\to$ Left - most
 	\item Può essere scelta dalla sottoquery più a destra (se c'è) $\to$ Right - most
@@ -1232,9 +1231,10 @@ fatti del programma \textbf{P}.
 \\
 {\color{black} \rule{\linewidth}{0.3mm} }
 \\
-\textbf{Illustrazione presa dalle slide} \\ \\
-$$\includegraphics[width=0.75\textwidth]{alberoSLD}$$
-\\
+\paragraph{Illustrazione presa dalle slide}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{alberoSLD}
+\end{center}
 {\color{black} \rule{\linewidth}{0.3mm} }
 \\
 Cerchiamo di ragionare bene sull'albero visto nell'esempio qui sopra. Abbiamo
@@ -1246,15 +1246,30 @@ effettua Prolog per quando dimostra un teorema \\ \\
 Quindi quel che si verifica è proprio che si hanno due fail, e chiudiamo 
 poi con una clausola vuota (:-) quindi quello che concludiamo è che tutto è 
 andato a buon fine.
-\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ 
+\\ \\ \\ \\
+\paragraph{Stesso esercizio MA con tecnica Right-Most fatto da} 
+\href{https://github.com/LiaBell47}{Giulia}
+\begin{center}
+\includegraphics[width=0.80\textwidth]{rightmost}
+\end{center}
+{\color{black} \rule{\linewidth}{0.3mm}}
+\\
+\paragraph{Immagine tratta dalle slides}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{8}
+\end{center}
+L'esercizio è giusto se per ogni passaggio si specifica quale clausola si usa,
+con i dati ad essa collegati come in questo esempio. \\  \\
+Nel primo passaggio usiamo solo la clausola 1 perchè la clausola 2 non era 
+applicabile. 
+\\
 {\color{black} \rule{\linewidth}{0.3mm} }
-\\
-\textbf{Stesso esercizio MA con tecnica Right-Most fatto da 
-\href{https://github.com/LiaBell47}{Giulia}} \\ \\
-$$\includegraphics[width=0.80\textwidth]{rightmost}$$
-\\
-{\color{black} \rule{\linewidth}{0.3mm} }
-\\
+\begin{center}
+\includegraphics[width=0.75\textwidth]{9}
+\end{center}
+In questo caso abbiamo costruito prima da sinistra poi da destra, MA c'è da
+considerare che Prolog ragiona Left-Most, ANCHE SE al compitino è possibile
+comunque decidere il metodo di lavoro.
 \section{La regola di calcolo}
 Per ogni ramo di un albero SLD corrisponde una derivazione SLD. In pratica ogni 
 ramo che termina con il nodo vuoto (:-) \\ \\
@@ -1262,8 +1277,9 @@ La regola di calcolo influisce sulla scrittura dell'albero per quanto concerne
 sia l'ampiezza che la sua profondità \\ \\
 La cosa che va garantita è che tutti i cammini di successo siano uguali 
 concettualmente, (la parola regola si incontra per l'ennesima volta tra l'altro, 
-prima son state la regola di inferenze e la regola di Prolog) Perciò alla domanda
-"quante accezioni del concetto di regola sono state menzionate", si risponderà: 3
+prima son state la regola di inferenze e la regola di Prolog) \\ \\
+Perciò alla domanda "quante accezioni del concetto di regola sono state 
+menzionate", si risponderà: 3
 Le regole di calcolo \color{red} NON \color{black} influisce su \color{red} 
 correttezza \color{black} e \color{red} completezza \color{black}, pertanto 
 qualunque sia R, il numero di cammini di successo (se finiti obv) è lo stesso
@@ -1271,7 +1287,7 @@ in qualsiasi albero SLD costruibile per $P \cup \{G_{0}\}$
 \\ \\
 %-------------------------------------------------------------------------------
 \chapter{Modello di esecuzione Prolog}
-Prendiamo ora per esempio $$p~:-~q,~r.$$(E rispettiamo questi spazi, quindi 
+Prendiamo ora per esempio \[p~:-~q,~r.\](E rispettiamo questi spazi, quindi 
 graficamente dovrà proprio essere considerata così) E' possibile dare più di una
 interpretazione a questa formula:
 \begin{enumerate}
@@ -1282,16 +1298,17 @@ interpretazione a questa formula:
 	\\
 	{\color{black} \rule{\linewidth}{0.3mm} }
 	\\
-	\textbf{Immagine tratta dalle slides} \\ \\
-	$$\includegraphics[width=0.75\textwidth]{2}$$
-	Da quest'immagine possiamo definire alcune cose: \\
+	\paragraph{Immagine tratta dalle slides}
+	\begin{center}
+	\includegraphics[width=0.75\textwidth]{2}
+	\end{center}
+	Da quest'immagine possiamo definire alcune cose:
 	\begin{enumerate}
 		\item Un goal può essere visto come una chiamata ad una procedura
 		\item Una regola può essere vista come definizione di una procedura in
 		cui la testa è l'intestazione mentre la parte di destra è il corpo.
 	\end{enumerate}
-	{\color{black} \rule{\linewidth}{0.3mm} }
-	\\ 
+	{\color{black} \rule{\linewidth}{0.3mm}}
 \end{enumerate}
 \section{Le Estensioni}
 Per rendere Prolog un linguaggio che abbia senso essere usato si aggiungono le
@@ -1353,23 +1370,27 @@ lo stato interno di Prolog
 \\
 {\color{black} \rule{\linewidth}{0.3mm} }
 \\
-\textbf{Immagine tratta dalle slide} \\ \\
-$$\includegraphics[width=0.75\textwidth]{3}$$
-\\
+\paragraph{Immagine tratta dalle slide}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{3}
+\end{center}
 {\color{black} \rule{\linewidth}{0.3mm} }
 \\
-
 In pratica quello che accade è che p viene messa in cima allo stack, 
 \\
 {\color{black} \rule{\linewidth}{0.3mm} }
 \\
-$$\includegraphics[width=0.75\textwidth]{4}$$
+\begin{center}
+\includegraphics[width=0.75\textwidth]{4}
+\end{center}
 Se per ipotesi p ha successo, si inserisce b in cima allo stack\\
 Se in questo caso la valutazione di b fallisce, si attiva il meccanismo magico
 del \color{red} backtracking \color{black} e quindi per proseguire si passa a
 considerare la seconda clausola, e lo stato interno di prolog cambia. \\
 Come cambia?\\
-$$\includegraphics[width=0.75\textwidth]{5}$$
+\begin{center}
+\includegraphics[width=0.75\textwidth]{5}
+\end{center}
 {\color{black} \rule{\linewidth}{0.3mm} }
 \\
 Quello che accade ora è che p si mette in cima allo stack, ha successo, MA
@@ -1430,7 +1451,9 @@ Tutto ciò è inseribile nel corpo delle nostre regole, è quello il motivo del
 perchè i predicati metalogici assumono molta importanza.
 \\ \\
 Riprendendo l'esempio di prima:
-$$\includegraphics[width=0.75\textwidth]{6}$$
+\begin{center}
+\includegraphics[width=0.75\textwidth]{6}
+\end{center}
 L'uso di var(X) permette di capire quale clausola usare! Cosa se ne ricava? Che
 l'uso di questi predicati magici consente di scrivere dei programmi efficienti 
 ED allo stesso tempo corretti semanticamente. \\ \\
@@ -1521,12 +1544,15 @@ parte di questi funziona grazie al meccanismo delle meta-variabili, ovvero
 variabili interpretabili come query\\ \\
 Un esempio tipico è il predicato \textbf{chiama} che si può pensare essere
 definito come: \color{red} \textbf{chiama}  \color{black}(G) :- G \\
-In \href{https://swish.swi-prolog.org/}{Swi-Prolog} esiste un predicato che si chiama \textbf{call}, che fa 
+In \href{https://swish.swi-prolog.org/}{Swi-Prolog} esiste un predicato che si
+chiama \textbf{call}, che fa 
 questo 
 \\ \\
-Grazie a queste meta-variabili, possiamo definire il predicato \textbf{Applcia}
+Grazie a queste meta-variabili, possiamo definire il predicato \textbf{Applica}
 che valuta una query composta da un funtore e da una lista di argomenti
-$$\includegraphics[width=0.75\textwidth]{7}$$
+\begin{center}
+\includegraphics[width=0.75\textwidth]{7}
+\end{center}
 \section{Manipolazione della base}  
 Dato un programma Prolog, sappiamo che questo è praticamente costituioto da un
 database (per favore, chiamatelo knowledge base, basi di dati è al prossimo 
@@ -1542,11 +1568,4 @@ I suddetti predicati sarebbero:
 	\item retract
 	\item abolish
 \end{enumerate}
- 
-
-
-
-
-
-
 \end{document}
