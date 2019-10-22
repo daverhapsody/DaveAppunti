@@ -1202,21 +1202,21 @@ definito sulla base del processo di prova visto precedentemente
 	\item Ciascun nodo dell'albero è una query (Possibilmente vuota)
 	\item La \textbf{radice} dell'albero è la query $Q_{0}$.
 	\item Dato il nodo: :- $A_{1}, A_{2}, ..., A_{m-1}, A_{m}, A_{m+1}, ...,
-	 A_{\kappa}$, se $A_{m}$ è il sottogoal \textbf{selezionato} dalla regola di
-	 calcolo \textbf{R}, allora questo nodo (genitore) ha un nodo figlio per 
-	 ciascuna clausola del tipo: \\
-	 \begin{itemize}
-	 	\item $C_{i} \equiv A_{i}$ :- $B_{i,1}, ..., B_{i,q}$
-	 	\item $C_{\kappa} \equiv A_{\kappa}$
-	 \end{itemize}
-	 Di P tale che $A_{i}$ e $A_{m}$ ($A_{\kappa} e A_{m}$) sono unificabili 
-	 attraverso la sostituzione più generale $\sigma$
-	 \item Il nodo figlio è etichettato con la clausola goal \\
-	 :- $\sigma[A_{1}, ..., A_{m-1}, B_{i,1}, ..., B_{i,q}, A_{m+1}, ..., A_{\kappa}]$
-	 :- $\sigma[A_{1}, ..., A_{m-1}, A_{m+1}, ..., A_{\kappa}]$ \\
-	 E il ramo dal nodo padre al figlio si etichetta sostituendo $\sigma$ dalla
-	 clausola selezionata $C_{i}, C_{\kappa}$
-	 \item Il nodo vuoto indicato da :- non ha figli
+	A_{\kappa}$, se $A_{m}$ è il sottogoal \textbf{selezionato} dalla regola di
+	calcolo \textbf{R}, allora questo nodo (genitore) ha un nodo figlio per 
+	ciascuna clausola del tipo: \\
+	\begin{itemize}
+		\item $C_{i} \equiv A_{i}$ :- $B_{i,1}, ..., B_{i,q}$
+		\item $C_{\kappa} \equiv A_{\kappa}$
+	\end{itemize}
+	Di P tale che $A_{i}$ e $A_{m}$ ($A_{\kappa} e A_{m}$) sono unificabili 
+	attraverso la sostituzione più generale $\sigma$
+	\item Il nodo figlio è etichettato con la clausola goal \\
+	:- $\sigma[A_{1}, ..., A_{m-1}, B_{i,1}, ..., B_{i,q}, A_{m+1}, ..., A_{\kappa}]$
+	:- $\sigma[A_{1}, ..., A_{m-1}, A_{m+1}, ..., A_{\kappa}]$ \\
+	E il ramo dal nodo padre al figlio si etichetta sostituendo $\sigma$ dalla
+	clausola selezionata $C_{i}, C_{\kappa}$
+	\item Il nodo vuoto indicato da :- non ha figli
 \end{itemize}
 \paragraph{Just a remainder: }La regola \textbf{R} è variabile:
 \begin{itemize}
@@ -1280,18 +1280,18 @@ interpretazione a questa formula:
 	\item Interpretazione procedurale\\
 	p è scomponibile in due sottoproblemi (q ed r)
 	\\
-	 {\color{black} \rule{\linewidth}{0.3mm} }
-	 \\
-	 \textbf{Immagine tratta dalle slides} \\ \\
-	 $$\includegraphics[width=0.75\textwidth]{2}$$
-	 Da quest'immagine possiamo definire alcune cose: \\
-	 \begin{enumerate}
-	 	\item Un goal può essere visto come una chiamata ad una procedura
-	 	\item Una regola può essere vista come definizione di una procedura in
-	 	cui la testa è l'intestazione mentre la parte di destra è il corpo.
-	 \end{enumerate}
-	 {\color{black} \rule{\linewidth}{0.3mm} }
-	 \\ 
+	{\color{black} \rule{\linewidth}{0.3mm} }
+	\\
+	\textbf{Immagine tratta dalle slides} \\ \\
+	$$\includegraphics[width=0.75\textwidth]{2}$$
+	Da quest'immagine possiamo definire alcune cose: \\
+	\begin{enumerate}
+		\item Un goal può essere visto come una chiamata ad una procedura
+		\item Una regola può essere vista come definizione di una procedura in
+		cui la testa è l'intestazione mentre la parte di destra è il corpo.
+	\end{enumerate}
+	{\color{black} \rule{\linewidth}{0.3mm} }
+	\\ 
 \end{enumerate}
 \section{Le Estensioni}
 Per rendere Prolog un linguaggio che abbia senso essere usato si aggiungono le
@@ -1328,11 +1328,11 @@ Per capire meglio il funzionamento di questo predicato serve scriverci una
 clausola generica (avente il cut, e grazie al.. No, non mi abbasserò a tal
 livello da dire "cut"). 
 \[
- 	C = a :- b_{1}, b_{2}, ..., b_{\kappa} !, b_{\kappa + 1}, ..., b_{n}.
- \] 
- Cerchiamo di procedere con ordine, cosa fa questo cut?\\
- In pratica se il goal corrente G unifica con a e $b_{1}, b_{2}, ..., b_{\kappa}$
- hanno successo ALLORA il dimostratore 
+C = a :- b_{1}, b_{2}, ..., b_{\kappa} !, b_{\kappa + 1}, ..., b_{n}.
+\] 
+Cerchiamo di procedere con ordine, cosa fa questo cut?\\
+In pratica se il goal corrente G unifica con a e $b_{1}, b_{2}, ..., b_{\kappa}$
+hanno successo ALLORA il dimostratore 
 si impegna inderogabilmente alla scelta di C per dimostrare G \\ \\
 Ogni clausola alternativa (sì, quelle che si scorrono dall'alto verso il basso, 
 quindi sarà quella dopo) per a che unifica con G viene ignorata\\ \\
@@ -1344,9 +1344,9 @@ Inoltre, se il backtracking raggiunge il cut, automaticamente lui fallisce, e la
 ricerca procede dall'ultimo punto di scelta prima che G scegliesse C.
 \paragraph{Ragioniamo sul seguente codice:}
 \begin{center}
-	cl1: a ~ :- ~ p,~ b. \\
- 	cl2: a ~ :- ~ p,~ b. \\
- 	cl3: p.
+cl1: a ~ :- ~ p,~ b. \\
+cl2: a ~ :- ~ p,~ b. \\
+cl3: p.
 \end{center}
 In cui cl indica la clausola, e considereremo la query "?- a.", Questo sarà
 lo stato interno di Prolog
@@ -1358,7 +1358,7 @@ $$\includegraphics[width=0.75\textwidth]{3}$$
 \\
 {\color{black} \rule{\linewidth}{0.3mm} }
 \\
- 	
+
 In pratica quello che accade è che p viene messa in cima allo stack, 
 \\
 {\color{black} \rule{\linewidth}{0.3mm} }
@@ -1398,9 +1398,152 @@ cut, il predicato rimane lo stesso:
 	semantica del programma equivalente senza i cuts (Sono indesiderabili anche
 	se una volta ogni 10 anni, utili.. forse.)
 \end{itemize}
-
-
+\chapter{Altri elementi di Prolog}
+\section{Predicati Meta-Logici}
+La domanda è: Perchè?\\
+Consideriamo il seguente predicato:
+\begin{center}
+celsius\_fahrenheit(C, F) :- C is 5/9 * (F - 32).
+\end{center}
+Non è \color{red}invertibile  \color{black} ed introdurre la seconda clausola
+\begin{center}
+celsius\_fahrenheit(C, F) :- F is (9/5 * C) + 32.
+\end{center}
+non aiuta, perchè il sistema già sulla prima clausola si blocca.\\ \\
+Il problema sta nel decidere chi fa l'\textbf{inout} e chi invece l'\textbf{output}
+del calcolo. \\ \\
+Qua non è che ti dà il \textit{fail} ma letteralmente ti dà errore. E quindi
+che si può fare? La risposta è nel titolo di questa sezione, ovvero, usare
+i predicati meta-logici. \\ \\
+Più precisamente però, cosa sono? Allora, abbiamo alcuni predicati NON 
+invertibili (minimo, celsius\_fahrenheit), e questo accade a causa dell'uso che
+abbiamo applicato dei predicati aritmetici dei predicati (>, <, $\leq$, 
+\textbf{is}, etc). \\ \\
+I meta-logici sono predicati che danno un valore agli elementi delle nostre forme,
+fondamentalmente prendono le variabili, e le usano come oggetti del linguaggio,
+in modo da effettuare alcune scritture che aiutano a comprendere la semantica.
+\\ \\
+\paragraph{Mi spiego peggio: } Prendete un'espressione del tipo variabile(X), 
+che tradotto è "X è una variabile", bene, il predicato meta-logico è quello 
+che definisce per esempio notVariabile(X)\\ \\
+Tutto ciò è inseribile nel corpo delle nostre regole, è quello il motivo del
+perchè i predicati metalogici assumono molta importanza.
+\\ \\
+Riprendendo l'esempio di prima:
+$$\includegraphics[width=0.75\textwidth]{6}$$
+L'uso di var(X) permette di capire quale clausola usare! Cosa se ne ricava? Che
+l'uso di questi predicati magici consente di scrivere dei programmi efficienti 
+ED allo stesso tempo corretti semanticamente. \\ \\
+Bene, ma se C ed F fossero entrambe variabili? Scritto così il programma ragiona
+che SE C è variabile esegue il primo blocco ALTRIMENTI il secondo, ma se fossero
+entrambe delle variabili? \\ \\ 
+\paragraph{Risposta: } I due "if" sono se una è variabile e l'altra no, ALLORA 
+fai cose, ma non è implementato SE entrambe son variabili o costanti, darebbe
+errore. Per intenderci, è uno XOR\\ \\
+Nel senso: Se la query fosse: celsius\_fahrenheit(X, Y)? Possiamo usare dei cut
+per scrivere un programma più completo??
+\section{Ispezione di termini}
+Finora abbiamo visto come si usano dei termini per rappresentare strutture per i
+dati, ed abbiamo inoltre intuito che esistono termini atomici e composti, ed 
+ora vedremo come implementare tutto ciò in Prolog:
+\begin{itemize}
+	\item atomic(X): SE x è un numero od una costante ALLORA true
+	\item compound(X): SE non atomic(X) ALLORA true
+\end{itemize}
+A questo punto, consideriamo un termine \textbf{Term}, ci saranno ben tre
+predicati che tornano utili per manipolarlo:
+\begin{enumerate}
+	\item \color{red}functor \color{black} (Term, F, Arity)\\
+	vero se Term è un termine, con Arity argomenti, il cui funtore (simbolo di 
+	funzione o di predicato) è F
+	\item \color{red}arg \color{black} (N, Term, Arg)\\
+	Ritorna l'ennesimo argomento del termine, o meglio, è vero SE l'ennesimo 
+	argomento di \textbf{Term} è \textbf{Arg}
+	\item Term =.. L\\
+	Questo è il più complesso, bisogna capirci bene a fondo, perchè qua si ha 
+	un predicato che è "=..", è un predicato binario di cui uno è termine ed
+	uno è la lista. \\ \\
+	Nei termini del linguaggio universale si chiama anche \textbf{univ}. \\ 
+	\paragraph{Ma cosa fa questo predicato?} Prende un termine e lo trasforma
+	in una lista, ed il primo elemento sarà il funtore, e tutti gli altri 
+	saranno semplici argomenti, in questo modo si appiattisce tutto. Diventa 
+	Lista = $argomento_{1}, argomento_{2}, ..., argomento_{\lambda}$
+\end{enumerate}
+\section{Predicati di ordine superiore}
+Quando si formula una domanda a Prolog, ci si aspetta una risposta (che poi
+alla fine non è altro che istanza individuale derivabile).
+Di fatto il backtracking come abbiamo visto ci permette di estrarre tutte le 
+istanza derivabili una alla volta.\\ \\
+Ma se volessimo come risultato l'insieme di tutte le istanze che soddisfano una
+certa query?\\ \\
+Questa non è una richiesta associabile alla logica del primo ordine, noi ora
+si sta facendo una domanda in cui X si associa ad un insieme, e quest'idea di 
+assegnare ad una variabile un insieme è quello che distingue la logica del secondo
+ordine dal primo.\\ \\
+Nella logica del primo ordine un elemento va ad un elemento, nel secondo ordine 
+una variabile va ad un insieme, è un po' diverso insomma.
+\textbf{Prolog} mette a disposizione una serie di \textbf{Predicati su Insiemi}
+che \textbf{estendono} il \color{red}modello  \color{black} computazionale
+del linguaggio di base.
+\section{Predicati su Insiemi}
+Sono fondamentalmente 3:
+\begin{enumerate}
+	\item \color{red}\textbf{findall} \color{black} (Template, Goal, Set):\\
+	E' un predicato di arità 3, forse non è chiaro da questa sintassi, ma l'idea
+	di fondo è: \\ \\
+	Noi abbiamo un template, che è una variabile, ma può essere pure qualcosa di 
+	più complesso, una lista di oggetti, un oggetto, e come funziona? 
+	\begin{itemize}
+		\item SE \textbf{set} contiene \color{red}tutte \color{black} le istanze
+		di \textbf{Template} che soddisfano \textbf{Goal} ALLORA vero
+		\item Le istanze di \textbf{Template} vengono ottenute tramite 
+		\color{red}\textbf{Backtracking}  \color{black}
+	\end{itemize}
+	\item \color{red}\textbf{bagof} \color{black} (Template, Goal, Bag):\\
+	Ha una semantica che matematicamente si chiama BagSemantic, non è un insieme
+	ma un multi-insieme, e funziona così:
+	\begin{itemize}
+		\item SE \textbf{bag} contiene tutte le alternative di \textbf{Template}
+		che soddisfano il \textbf{Goal} ALLORA restituisce true
+	\end{itemize}
+	Le alternative fondamentalmente vengono costruite facendo backtracking, solo se
+	vi sono delle variabili libere nel \textbf{Goal}, che non appaiono in
+	\textbf{Template}\\ \\
+	Inoltre si pulò pure dichiarare QUALI variabili non vanno considerate libere 
+	per dire che non si vuole fare backtracking rispetto a queste ultime, 
+	variabili di tipo esistenziale (si indicano con $var^{G}$)
+	\item \color{red}\textbf{setof} \color{black} (Template, Goal, Set):\\
+	Si comporta esattamente come \textbf{bagof} MA \textbf{set} non contiene 
+	soluzioni duplicate, semplicemente
+\end{enumerate}
+Prolog ci mette a disposizione anche altri predicati di ordine superiore, buona
+parte di questi funziona grazie al meccanismo delle meta-variabili, ovvero 
+variabili interpretabili come query\\ \\
+Un esempio tipico è il predicato \textbf{chiama} che si può pensare essere
+definito come: \color{red} \textbf{chiama}  \color{black}(G) :- G \\
+In \href{https://swish.swi-prolog.org/}{Swi-Prolog} esiste un predicato che si chiama \textbf{call}, che fa 
+questo 
+\\ \\
+Grazie a queste meta-variabili, possiamo definire il predicato \textbf{Applcia}
+che valuta una query composta da un funtore e da una lista di argomenti
+$$\includegraphics[width=0.75\textwidth]{7}$$
+\section{Manipolazione della base}  
+Dato un programma Prolog, sappiamo che questo è praticamente costituioto da un
+database (per favore, chiamatelo knowledge base, basi di dati è al prossimo 
+semestre) contenente fatti e regole\\ \\
+Il Prolog però mette a disposizione anche altri predicati che servono a 
+manipolare direttamente la base di dati. Ovviamente, questi predicati vanno 
+usati con molta attenzione, dato che modificano dinamicamente lo stato del 
+programma.\\ \\
+I suddetti predicati sarebbero:
+\begin{enumerate}
+	\item Listing
+	\item Assert, asserta, assertz
+	\item retract
+	\item abolish
+\end{enumerate}
  
+
 
 
 
