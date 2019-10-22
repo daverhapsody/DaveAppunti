@@ -61,7 +61,7 @@ significhi quantificare senza unità di misura. (Per dire Galileo usava i
 battiti del cuore.)
 \\ \\
 \subsection{Dal punto di vista numerico}
-Si ha che in qualsiasi campo si ha un ordine di grandezza, ogni fenomeno ha la
+In qualsiasi campo si ha un ordine di grandezza, ogni fenomeno ha la
 propria scala da usare, ci saranno i coefficienti di riferimento, i prefissi
 ($\mu,~ mm, ~ n$), c'è un vero e proprio intervallo di grandezze ($10^{n}$).
 \section{Notazione scientifica}
@@ -93,8 +93,8 @@ un qualsiasi numero $\alpha$ che per ipotesi consideriamo 123.000, si consideran
 cifre significative tutte quelle che sono diverse da zero, MA potrebbero anche
 essere 0 nel caso in cui gli zeri sian racchiusi tra cifre diverse da 0. \\ \\
 Sì, faccio un esempio: \\ \\
-4.003.000 (quattro milioni, non 4, cose) avrà quattro cifre, che sono 4, 0, 0, 3,
-per cui in notazione scientifica avremmo 4,003 x $10^{6}$.
+4.003.000 (quattro milioni, non '4 virgola... cose') avrà quattro cifre, che sono 
+4, 0, 0, 3, per cui in notazione scientifica avremmo 4,003 x $10^{6}$.
 \chapter{Cinematica}
 E' la branca della fisica che si occupa di descrivere la traiettoria di un 
 corpo, dovremo predirla, calcolarla, basandosi su un campo di forza, uno spazio
@@ -111,7 +111,7 @@ Definiamo la differenza tra grandezza scalare e vettoriale
 \end{itemize}
 \subsection{Esempio di grandezza vettoriale}
 Supponiamo di avere due punti $x_{0} ~ e ~ x_{1}$ ponendoli distanti $\lambda$ tra 
-loro. $\lambda$ sarà coincidente con $x_{0} ~ - ~ x_{1}$. Per definire il verso
+loro. $\lambda$ sarà coincidente con $x_{1} ~ - ~ x_{0}$. Per definire il verso
 basta osservare chi è il minimo tra $x_{0} ~ e ~ x_{1}$, lo si vede graficamente,
 oppure osservando chi dei due è il maggiore. 
 \\ \\
@@ -169,7 +169,7 @@ dal primo al secondo punto, quindi che va da $p_{0}$ a $p_{1}$.
 Attenzione, prima c'è da tenere conto della differenza dei tempi, che chiameremo 
 $\Delta t ~ = ~ t_{Finale} ~ - ~ t_{Iniziale}$
 \\
-Abbiamo 3 velocità:
+Abbiamo più tipi di velocità:
 \begin{itemize}
 	\item {Velocità media scalare: $v_{media} = \frac{distanza~percorsa}{\Delta
 	t}$ che è la distanza percorsa sul tempo passato da quando son partito a 
@@ -219,9 +219,9 @@ la posizione che si assume in un determinato istante sia:
 La velocità media però non indica praticamente nulla del moto, se mi servono dati
 precisi (es contachilometri) su una determinata velocitá prendo intervalli sempre minori.
 Quando il $\Delta t$ tende a 0, notiamo che la funzione non tenderà ad $\infty$ 
-perchè c'è corrispondenza negli ordini di infinito.
-Quindi chiamo questo limite con t che tende a 0 della velocità vettoriale fratto 
-delta t = v $\lim_{\Delta t \to 0} \frac{\Delta \vec{x}}{\Delta t} = v_{istantanea}$
+perchè c'è corrispondenza negli ordini di infinito.\\ \\
+Quindi chiamo questo limite con $t \to 0$ di $\frac{Velocita'~vettoriale}{\Delta t}$ 
+\[\lim_{\Delta t \to 0} \frac{\Delta \vec{x}}{\Delta t} = v_{istantanea}\]
 velocità istantanea, che non è altro che la velocità in un determinato istante.
 %perchè in ognuno degli istanti ho una velocità v(t). \\ \\
 Per ogni istante, per definizione di derivata, io calcolo alla fine 
@@ -244,7 +244,7 @@ calcolo la velocità media tra essi
 \[\frac{v_{1} + v_{2}}{2}\]
 sappiamo anche che la velocità media è definita come $\frac{\Delta x_{n}}{\Delta t_{n}}$
 da cui ricaviamo $\Delta x_{n} = v_{med} \Delta t_{n}$.
-Se ripetiamo questo procedimento per tutti i $\Delta$ t avremo:
+Se ripetiamo questo procedimento per tutti i $\Delta t$ avremo:
 %Dati due punti $p_{0}$ e $p_{1}$ in una curva, essi avranno quindi i corrispettivi 
 %istantanei, quindi otteniamo un $\Delta x$ ed un $\Delta t$, prendendo questi 
 %ultimi si avrà che $$\Delta x_{n} = v_{m_{n}} \Delta t_{n}$$ e quindi in 
@@ -565,9 +565,9 @@ definizione dataci a lezione con l'esempio della molla. Ditemi voi se è ammissi
 una definzione del tipo "Una forza è quella esercitata da una molla quando la tiri 
 o comprimi". 
 \\ \\
-Detto in modo più matematico, primo principio della dinamica (\textbf{principio di inerzia}:
+Detto in modo più matematico, primo principio della dinamica (\textbf{principio di inerzia}):
 \[
-Se~~\overrightarrow{F} = \sum_{\kappa=1}^{n} \overrightarrow{F_{\kappa}} = 0
+Se~~\overrightarrow{F} = \sum_{\kappa=1}^n \overrightarrow{F_{\kappa}} = 0
 ~~ allora ~~ a = 0
 \]
 Se su un corpo non agisce alcuna forza viene mantenuta costante la propria 
@@ -629,7 +629,7 @@ determinato tempo.
 	\item [a] = $\frac{m}{s^{2}}$
 	\item [F] = kg $\frac{m}{s^{2}}$ = N 
 \end{itemize}
-Ovviamente (come specificato prima) anche $\sum_{i=1}^{n}
+Ovviamente (come specificato prima) anche $\sum_{i=1}^n
 \overrightarrow{F_{i}} = 0 \to \overrightarrow{a} = 0$, e quindi ad esempio:
 \[
 \begin{cases}
@@ -657,7 +657,7 @@ forza per lavorarci su. In termini più semplici: Da sinistra verso destra l'equ
 $\overrightarrow{F} = m \cdot \overrightarrow{a}$ va bene MA da destra verso
 sinistra no. Un esempio di alternativa a questo? 
 \paragraph{Legge di Gravitazione Universale}
-\[\overrightarrow{F_{a} = G \cdot \frac{M\cdot m}{d^{2}}}\] in cui la G è la
+\[\overrightarrow{F_{a}} = G \cdot \frac{M\cdot m}{d^{2}}\] in cui la G è la
 costante di gravitazione universale ed è $g = \frac{G\cdot M}{R_{Terra}^{2}}$, 
 g invece è la forza g, quella che si vede di solito in F1 in curva o frenata, in
 cui letteralmente si hanno decelerazioni e accelerazioni (non necessariamente 
@@ -826,8 +826,10 @@ meglio l'energia che ha un corpo in movimento. Diciamoci subito le formule utili
 	\overrightarrow{x} (Spostamento)$
 \end{itemize}
 Lavoro ed energia cinetica sono strettamente legati per via del fatto che 
-appunto il lavoro è il prodotto di una forza per una massa. Per cui \\
-\[L = \int_{x_{iniziale}}^{x_{finale}} F(x) dx = \in t_{x_{iniziale}}^{x_{finale}} ma ~ dx
+appunto il lavoro è il prodotto di una forza per uno spostamento. Per cui \\
+\[
+L = \int_{x_{iniziale}}^{x_{finale}} F(x) dx = 
+\int_{x_{iniziale}}^{x_{finale}} m\cdot a ~ dx
 \]
 A questo punto osserviamo che l'accelerazione è: $a = \frac{dv}{dt}$, quindi 
 la formula è riscrivibile come \[L = \int_{x_{iniziale}}^{x_{finale}} m\cdot v 
