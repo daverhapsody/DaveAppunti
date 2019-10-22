@@ -11,9 +11,7 @@
 \graphicspath{{./img/}}
 \definecolor{britishracinggreen}{rgb}{0.0, 0.26, 0.15}
 \newcommand\tab[1][1cm]{\hspace*{#1}}
-%usepackage[latin1]{inputenc}
 \begin{document}
-%\pagestyle{plain}
 \fontfamily{cmss}\selectfont
 \author{\href{https://github.com/daverhapsody}{DaveRhapsody}}
 \title{Linguaggi di Programmazione}
@@ -29,7 +27,7 @@ Il corso è volto ad insegnare dei paradigmi di programmazione dei seguenti tipi
 Termini, fatti(predicati), regole, unificazione, procedura di risoluzione
 \subsection{Linguaggi funzionali e Lisp (et al.)}
 Atomi, liste, funzioni e ricorsione
-\subsection{Linguaggi imperativi} % (fold)
+\subsection{Linguaggi imperativi}
 \label{sub:linguaggi_imperativi}
 Memoria, stato, assegnamenti, puntatori
 \\ 
@@ -135,7 +133,8 @@ ma la struttura di un programma consiste in
 \begin{itemize}
 	\item Una parte dichiarativa in cui son presenti le dichiarazioni di tutte
 	le variabili del programma e del loro tipo
-	\item Una parte che descrive l'algoritmo risolutivo utilizzato, mediante istruzioni del linguaggio	
+	\item Una parte che descrive l'algoritmo risolutivo utilizzato, mediante 
+	istruzioni del linguaggio	
 \end{itemize}
 \section{Perchè utilizzare paradigmi diversi?}
 Per esempio l'intelligenza artificiale si sviluppa su linguaggi di 
@@ -216,12 +215,13 @@ fatti),
 	\\
 	Il programmatore deve specificare le istruzioni che generano la sequenza 
 	di permutazioni della lista L
-	$
+	\[
 	\begin{cases}
-	$il risultato dell'ordinamento di una lista vuota è la lista vuota $\\
-	$Il risultato dell'ordinamento di una lista L e $L_{1} 
+	il ~ risultato ~ dell'ordinamento ~ di ~ una ~ lista ~ vuota ~ è ~ la ~ 
+	lista ~ vuota \\
+	Il ~ risultato ~ dell'ordinamento ~ di ~ una ~ lista ~ L ~ e ~ L_{1} 
 	\end{cases}
-	$
+	\]
 	Quindi, lo stile prescrittivo presuppone che OGNI SINGOLO CASO venga considerato
 	e programmato. non esiste il "ma è ovvio che debba fare questo", ogni singolo
 	caso è tua responsabilità. Sì, tua, proprio tu che stai leggendo. Prolog si
@@ -1108,7 +1108,7 @@ due clausole di programma o fra una clausola ed un goal derivato precedentemente
 SLD} (Selection funzion for Linear and Definitie sentences Resolution; in cui
 le "frasi lineari" sono essenzialmente delle clausole di Horn).
 \\ \\
-\paragraph{Esempio di risoluzione SLD}: \\
+\paragraph{Esempio di risoluzione SLD}:
 \begin{itemize}
 	\item Partendo dalla Query $Q_{i} \equiv ~~ ?- A_{i,1}, A_{i,2}, ..., A_{i,m}$
 	\item e dalla regola: $A_{r} :- ~~ B_{r,1}, B_{r,2}, ..., B_{r,m}$
@@ -1142,10 +1142,10 @@ allora ottieni una nuova query $G_{i+1} \equiv ~~ ?- A_{e,1}^{'}, A_{e,1}^{'},
 precedente, avendo m-1 sotto-query. \\ \\
 Come già detto infatti nella risoluzione SLD , il passo di risoluzione avviene 
 tra l'ultima query e una clausola di programma. 
-\paragraph{Osservazione: } Per coloro che usano anche le slide noteranno che 
+\paragraph{Osservazione: } Per coloro che usano anche le slides noteranno che 
 questa parte non è altro che una riscrittura delle suddette a parole di uno che
-le sta studiando, per dirvi, quello che nelle slide si chiama Goal lo chiamo query,
-ma quando una spiega con le slide, un velo di copiatura ci sarà sempre.\\
+le sta studiando, per dirvi, quello che nelle slides si chiama Goal lo chiamo query,
+ma quando una spiega con le slides, un velo di copiatura ci sarà sempre.\\
 Che si chiami goal query o interrogazione, è sempre e comunque un teorema.
 \\ \\
 {\color{black} \rule{\linewidth}{0.3mm} }
@@ -1231,7 +1231,7 @@ fatti del programma \textbf{P}.
 \\
 {\color{black} \rule{\linewidth}{0.3mm} }
 \\
-\paragraph{Illustrazione presa dalle slide}
+\paragraph{Illustrazione presa dalle slides}
 \begin{center}
 \includegraphics[width=0.75\textwidth]{alberoSLD}
 \end{center}
@@ -1284,9 +1284,10 @@ Le regole di calcolo \color{red} NON \color{black} influisce su \color{red}
 correttezza \color{black} e \color{red} completezza \color{black}, pertanto 
 qualunque sia R, il numero di cammini di successo (se finiti obv) è lo stesso
 in qualsiasi albero SLD costruibile per $P \cup \{G_{0}\}$
-\\ \\
 %-------------------------------------------------------------------------------
 \chapter{Modello di esecuzione Prolog}
+Come lavora effettivamente Prolog con le dimostrazioni?\\
+
 Prendiamo ora per esempio \[p~:-~q,~r.\](E rispettiamo questi spazi, quindi 
 graficamente dovrà proprio essere considerata così) E' possibile dare più di una
 interpretazione a questa formula:
@@ -1294,10 +1295,8 @@ interpretazione a questa formula:
 	\item Interpretazione dichiarativa\\
 	p è \color{red}vera se  \color{black}sono veri q ed r
 	\item Interpretazione procedurale\\
-	p è scomponibile in due sottoproblemi (q ed r)
-	\\
-	{\color{black} \rule{\linewidth}{0.3mm} }
-	\\
+	p è scomponibile in due sottoproblemi (q ed r)\\
+	{\color{black} \rule{\linewidth}{0.3mm}}
 	\paragraph{Immagine tratta dalle slides}
 	\begin{center}
 	\includegraphics[width=0.75\textwidth]{2}
@@ -1327,11 +1326,10 @@ funzioni da "vedere":
 \section{Il controllo di flusso}
 Se un sottoGoal fallisce, il dimostratore di Prolog sceglie un'alternativa 
 procedendo in sequenza dall'alto verso il basso della lista O MEGLIO, dalla 
-testa alla coda della lista delle clausole. 
-\\ \\
+testa alla coda della lista delle clausole. \\ \\
 Però Prolog mette a disposizione il "\textbf{cut}", che non è altro che un 
 taglio, che si indica con un '\textbf{!}', che serve per controllare questa
-megaEnormeListona di scelte.
+megaEnormeListona di scelte.\\ \\
 \subsection{Caratteristiche del Cut}
 Ha un problema di fondo, ovvero il fatto che è complesso da interpretare, perchè
 non ha un'interpretazione logica, ma procedurale. \\ \\
@@ -1368,18 +1366,15 @@ cl3: p.
 In cui cl indica la clausola, e considereremo la query "?- a.", Questo sarà
 lo stato interno di Prolog
 \\
-{\color{black} \rule{\linewidth}{0.3mm} }
-\\
-\paragraph{Immagine tratta dalle slide}
+{\color{black} \rule{\linewidth}{0.3mm}}
+\paragraph{Immagini tratte dalle slides}
 \begin{center}
 \includegraphics[width=0.75\textwidth]{3}
 \end{center}
-{\color{black} \rule{\linewidth}{0.3mm} }
-\\
-In pratica quello che accade è che p viene messa in cima allo stack, 
-\\
-{\color{black} \rule{\linewidth}{0.3mm} }
-\\
+Nel momento in cui chiedo di dimostrare il seguente problema Prolog mi genera
+due stack, uno di esecuzione in cui si memorizza il goal corrente, mentre 
+l'altro contiene le clausole unificanti \\
+In pratica quello che accade è che p viene messa in cima allo stack
 \begin{center}
 \includegraphics[width=0.75\textwidth]{4}
 \end{center}
@@ -1387,12 +1382,10 @@ Se per ipotesi p ha successo, si inserisce b in cima allo stack\\
 Se in questo caso la valutazione di b fallisce, si attiva il meccanismo magico
 del \color{red} backtracking \color{black} e quindi per proseguire si passa a
 considerare la seconda clausola, e lo stato interno di prolog cambia. \\
-Come cambia?\\
+Come cambia?
 \begin{center}
 \includegraphics[width=0.75\textwidth]{5}
 \end{center}
-{\color{black} \rule{\linewidth}{0.3mm} }
-\\
 Quello che accade ora è che p si mette in cima allo stack, ha successo, MA
 la valutazione di c fallisce, perciò di nuovo backtracking, però attenzione,
 siccome non ci sono più clausole allora anche a fallisce, e lo stack si svuota.
@@ -1443,14 +1436,13 @@ abbiamo applicato dei predicati aritmetici dei predicati (>, <, $\leq$,
 I meta-logici sono predicati che danno un valore agli elementi delle nostre forme,
 fondamentalmente prendono le variabili, e le usano come oggetti del linguaggio,
 in modo da effettuare alcune scritture che aiutano a comprendere la semantica.
-\\ \\
+%
 \paragraph{Mi spiego peggio: } Prendete un'espressione del tipo variabile(X), 
 che tradotto è "X è una variabile", bene, il predicato meta-logico è quello 
 che definisce per esempio notVariabile(X)\\ \\
 Tutto ciò è inseribile nel corpo delle nostre regole, è quello il motivo del
 perchè i predicati metalogici assumono molta importanza.
-\\ \\
-Riprendendo l'esempio di prima:
+\paragraph{Riprendendo l'esempio di prima:}
 \begin{center}
 \includegraphics[width=0.75\textwidth]{6}
 \end{center}
@@ -1545,9 +1537,7 @@ variabili interpretabili come query\\ \\
 Un esempio tipico è il predicato \textbf{chiama} che si può pensare essere
 definito come: \color{red} \textbf{chiama}  \color{black}(G) :- G \\
 In \href{https://swish.swi-prolog.org/}{Swi-Prolog} esiste un predicato che si
-chiama \textbf{call}, che fa 
-questo 
-\\ \\
+chiama \textbf{call}, che fa questo \\ \\
 Grazie a queste meta-variabili, possiamo definire il predicato \textbf{Applica}
 che valuta una query composta da un funtore e da una lista di argomenti
 \begin{center}
