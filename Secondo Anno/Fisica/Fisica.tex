@@ -140,12 +140,12 @@ una serie di tempi passati dall'istante 0 che si chiameranno $t_{1,2,3,4}$ etc.
 \\
 Per descrivere questo bisogna trovare una legge che sia in grado di esprimere
 per qualsiasi istante quali possano essere le condizioni. 
-$$
+\[
 \begin{cases}
 t_{\lambda} = tempo ~ richiesto ~ per ~ arrivare ~ dalla ~ posizione ~ p_{0} ~ a
 ~ p_{\lambda}  \\
 \end{cases}
-$$ 
+\]
 \subsection{Alcune precisazioni}
 \begin{itemize}
 	\item Lo spostamento è la distanza in linea d'aria
@@ -183,15 +183,15 @@ Ragionando per formule inverse, se voglio capire quanto ho percorso mi basta
 fare $d = \Delta t \cdot v_{media}$ , ma in realtà non è propriamente corretto. 
 \\ \\
 Se per esempio avessi qualcosa del tipo
-$$
+\[
 \begin{cases}
 SE ~ t_{1} = 1 ~ E ~ x_{1} = 1  \\ 
 SE ~ t_{2} = 2 ~ E ~ x_{2} = 4  \\ 
 SE ~ t_{3} = 3 ~ E ~ x_{3} = 9  \\
 SE ~ t_{4} = 4 ~ E ~ x_{4} = 16 
-\end{cases}$$
+\end{cases}\]
 Posso osservare che lo spazio percorso x(t) corrisponda all'accelerazione A*$t^{2}$
-$$x(t) = At^{2}$$
+\[x(t) = At^{2}\]
 Queste quantità sono vicine alle nostre esigenze quotidiane, oggettivamente lo
 spostamento vettoriale non dice nulla, non ci permette di dire assolutamente
 nulla durante uno spostamento. Ok, sì, la velocità media, ma in fisica non è che
@@ -215,7 +215,7 @@ di questi due picchi
 \\ \\
 Possiamo ricavare dalla nostra formula con il $\Delta x$ e $\Delta t$ che quindi
 la posizione che si assume in un determinato istante sia:
-$$x_{1} = x_{0} + v_{media} \Delta t$$
+\[x_{1} = x_{0} + v_{media} \Delta t\]
 La velocità media però non indica praticamente nulla del moto, se mi servono dati
 precisi (es contachilometri) su una determinata velocitá prendo intervalli sempre minori.
 Quando il $\Delta t$ tende a 0, notiamo che la funzione non tenderà ad $\infty$ 
@@ -225,14 +225,14 @@ delta t = v $\lim_{\Delta t \to 0} \frac{\Delta \vec{x}}{\Delta t} = v_{istantan
 velocità istantanea, che non è altro che la velocità in un determinato istante.
 %perchè in ognuno degli istanti ho una velocità v(t). \\ \\
 Per ogni istante, per definizione di derivata, io calcolo alla fine 
-$$v(t) = \frac{dx(t)}{dt}$$
+\[v(t) = \frac{dx(t)}{dt}\]
 Quindi in pratica otteniamo che la velocità istantanea è letteralmente la 
 derivata della posizione, in cui la t è la "discriminante" della velocità istantanea che si 
 aveva in un determinato istante (perdonate la ripetizione).
 \\ \\ 
 Con questa velocità istantanea possiamo (se applichiamo la legge oraria), 
 calcolare in modo più preciso la posizione in un determinato istante! Come?
-$$x_{t} = x_{0} + v_{t_{0}} dt$$
+\[x_{t} = x_{0} + v_{t_{0}} dt\]
 Cioè siamo arrivati che abbiamo la posizione iniziale e l'istante iniziale, più
 la velocità istantanea (che è una derivata), ora ci basta solo applicare la 
 formula. 
@@ -241,7 +241,7 @@ Prendiamo ora in esame un grafico che ha sulle ascisse il tempo e sulle ordinate
 le velocità istantanee registrate. Come nel caso precedente immaginiamo di avere 
 un grafico con una funzione monotona crescente. Prendo due punti del grafico e
 calcolo la velocità media tra essi 
-$$\frac{v_{1} + v_{2}}{2}$$
+\[\frac{v_{1} + v_{2}}{2}\]
 sappiamo anche che la velocità media è definita come $\frac{\Delta x_{n}}{\Delta t_{n}}$
 da cui ricaviamo $\Delta x_{n} = v_{med} \Delta t_{n}$.
 Se ripetiamo questo procedimento per tutti i $\Delta$ t avremo:
@@ -249,12 +249,12 @@ Se ripetiamo questo procedimento per tutti i $\Delta$ t avremo:
 %istantanei, quindi otteniamo un $\Delta x$ ed un $\Delta t$, prendendo questi 
 %ultimi si avrà che $$\Delta x_{n} = v_{m_{n}} \Delta t_{n}$$ e quindi in 
 %pratica per finire avremmo
-$$\Delta x = \sum_{k=1}^n \Delta n = \sum_{k=1}^n v_{m_{n}} \cdot \Delta t_{n}$$
+\[\Delta x = \sum_{k=1}^n \Delta n = \sum_{k=1}^n v_{m_{n}} \cdot \Delta t_{n}\]
 La somma dei $\Delta x$ ennesimi, è coincidente con la somma di tutte le aree
 $A_{n}$ dove $A_{n} \sim \Delta x$. \\ \\
 Se $\Delta t_{n} \to 0$ allora $\Delta x = \int v(t) dt$ \\
 Per un punto specifico (sempre facendo tendere $\Delta t a 0$) ad esempio avremmo che 
-$$x_{1} = x_{0} + \int_{t_{0}}^{t_{1}} v(t) dt $$
+\[x_{1} = x_{0} + \int_{t_{0}}^{t_{1}} v(t) dt \]
 \\
 {\color{black} \rule{\linewidth}{0.mm} }
 \\
@@ -281,18 +281,19 @@ Per $\Delta t \to 0$ abbiamo che $\vec{a(t)} = \lim{\Delta t \to 0}
 \frac{\vec{\Delta v}}{\Delta t} = \frac{dv}{dt} $
 \\ \\
 Data la velocità istantanea v(t) possiamo ricavare che l'accelerazione: 
-$$a = a(t) = \frac{d x(t)}{dt} = \frac{d^{2}x}{dt^{2}}$$
+\[a = a(t) = \frac{d x(t)}{dt} = \frac{d^{2}x}{dt^{2}}\]
 Quindi di conseguenza ne segue che 
-$$v(t) = v(t_{0}) + \int_{t_{0}}^{t}a(t)~dt ~~~~~ (Con ~ t\geq t_{0}) $$ e
-di conseguenza: $$x(t) = x(t_{0}) + \int_{t_{0}}^{t}v(t)~dt  $$
+\[v(t) = v(t_{0}) + \int_{t_{0}}^{t}a(t)~dt ~~~~~ (Con ~ t\geq t_{0}) \] e
+di conseguenza: \[x(t) = x(t_{0}) + \int_{t_{0}}^{t}v(t)~dt  \]
 Considerando la velodità media si sta ovviamente considerando una velocità costante, 
 graficamente, se v = $\frac{Spazio}{Tempo}$, allora v rappresenta il coefficiente
 angolare della nostra retta.\\ \\ 
 \\
-{\color{black} \rule{\linewidth}{0.3mm} }
-\\
-\textbf{Illustrazione a cura di Letizia} \\ \\
-$$\includegraphics[width=0.50\textwidth]{1}$$
+{\color{black} \rule{\linewidth}{0.3mm}}
+\paragraph{Illustrazione a cura di Letizia}
+\begin{center}
+\includegraphics[width=0.50\textwidth]{1}
+\end{center}
 In questo grafico si osserva che quando si parla di accelerazione si fa riferimento
 a quella istantanea \\
 {\color{black} \rule{\linewidth}{0.3mm} }
@@ -306,26 +307,26 @@ l'accelerazione media mantenendo per ovvio che
 	\item $\Delta v = v_{1} - v_{0}$
 \end{itemize}
 Si riesce a ricavare lo spostamento che a questo punto diventa 
-$$\Delta x = v_{0}\Delta t +(\Delta v) \cdot \frac{\Delta t}{2} =
-\Delta t \cdot \frac{v_{1}+v_{0}}{2} = \Delta t(v_{media})$$
+\[\Delta x = v_{0}\Delta t +(\Delta v) \cdot \frac{\Delta t}{2} =
+\Delta t \cdot \frac{v_{1}+v_{0}}{2} = \Delta t(v_{media})\]
 A questo punto proviamo a ricavare la posizione $x_{1}$:
-$$x_{1} = x_{0} + \frac{v_{1}}{v_{0}}{2}\cdot \Delta t$$
+\[x_{1} = x_{0} + \frac{v_{1}}{v_{0}}{2}\cdot \Delta t\]
 Dove in pratica $v_{1} = v_{0} + a_{Media} \cdot \Delta t$, sostituendo vien fuori
-$$x_{1} = x_{0} \frac{v_{0}+a_{Media}\cdot\Delta t + v_{0}}{2} \cdot \Delta t$$
+\[x_{1} = x_{0} \frac{v_{0}+a_{Media}\cdot\Delta t + v_{0}}{2} \cdot \Delta t\]
 Se generalizziamo:
-$$x(t) = x_{0} + v_{0}(t-t_{0})+\frac{a_{Media}}{2}(t-t_{0})^{2}$$
+\[x(t) = x_{0} + v_{0}(t-t_{0})+\frac{a_{Media}}{2}(t-t_{0})^{2}\]
 Successivamente, per finire, noteremo che:
-$$x(t) = x_{0}+\int_{0}^{t}v_{0} dt + \int_{0}^{t} a_{media}t\cdot dt =$$
-$$= x_{0} + v_{0}t + \frac{1}{2}at^{2}$$
+\[x(t) = x_{0}+\int_{0}^{t}v_{0} dt + \int_{0}^{t} a_{media}t\cdot dt =\]
+\[= x_{0} + v_{0}t + \frac{1}{2}at^{2}\]
 \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\
 {\color{black} \rule{\linewidth}{0.3mm} }
-\\
-\textbf{Illustrazione a cura di Letizia} \\ \\
-$$\includegraphics[width=0.75\textwidth]{vcostante}$$
+\paragraph{Illustrazione a cura di Letizia}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{vcostante}
+\end{center}
 In questo grafico si può osservare graficamente cosa accade quando si considera 
 la velocità media come costante\\
 {\color{black} \rule{\linewidth}{0.3mm} }
-\\
 \chapter{Moto rettilineo uniformemente accelerato}
 Dato qualsiasi piano inclinato, se un corpo parte dall'alto da un punto $x_{0}$
 se esso rotola (con attrito volvente che è trascurabile), noteremo che con il
@@ -335,13 +336,13 @@ modificare le cose belle, tipo la t vi $v_{0}\cdot t$ può diventare
 $\frac{v-v_{0}}{a}$, da cui consegue che $a = \frac{v-v_{0}}{t}$ e quindi 
 $x = x_{0} + \frac{1}{2}(v_{0}+v)\cdot t$.\newline
 {\color{black} \rule{\linewidth}{0.3mm}}
-\\
-\textbf{Grafico dell'accelerazione costante} \\ \\
-$$\includegraphics[width=0.75\textwidth]{acostante}$$
+\paragraph{Grafico dell'accelerazione costante}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{acostante}
+\end{center}
 In questo grafico si nota che la variazione della velocità è coincidente con
 la variazione del tempo per l'accelerazione media \\
-{\color{black} \rule{\linewidth}{0.3mm} }
-\\
+{\color{black} \rule{\linewidth}{0.3mm}}
 \section{Accelerazione di gravità}
 Escludendo le forze di attrito con l'aria quando un corpo cade in caduta libera
 si ottiene che esso (sul nostro pianeta) cada accelerando di 9,8 $\frac{m}{s^{2}}$.
@@ -387,9 +388,10 @@ calcolarti la somma (Non si capisce, ok, senza grafici è impossibile ma
 come già detto, li aggiungerò.) \\ \\ \\ \\
 \\
 {\color{black} \rule{\linewidth}{0.3mm} }
-\\
-\textbf{Letizia ci salva un'altra volta con un grafico} \\ \\
-$$\includegraphics[width=0.75\textwidth]{sommaVettoriale}$$
+\paragraph{Letizia ci salva un'altra volta con un grafico}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{sommaVettoriale}
+\end{center}
 %DESCRIZIONE DELL'IMMAGINE
 Graficamente si verifica quello che ho scritto qui sopra. Si noti che tra l'altro
 la velocità media
@@ -402,13 +404,13 @@ la velocità)
 \\
 Se ragioniamo nelle due dimensioni la questione del nostro moto si complica, 
 perchè abbiamo:
-$$\overrightarrow{r} = \widehat{i}\cdot x + \widehat{j} y$$ e quindi
-$$\frac{d \overrightarrow{v} (t)}{dt} = \widehat{i} \cdot \frac{dx}{dt}+ 
-\widehat{j} \cdot \frac{dy}{dt}$$
+\[\overrightarrow{r} = \widehat{i}\cdot x + \widehat{j} y\] e quindi
+\[\frac{d \overrightarrow{v} (t)}{dt} = \widehat{i} \cdot \frac{dx}{dt}+ 
+\widehat{j} \cdot \frac{dy}{dt}\]
 Scritto più easy: $\widehat{i} v_{x} + \widehat{y} = \overrightarrow{v}$
 
-$$\overrightarrow{v_{Media}}= \frac{\Delta \overrightarrow{x}}{\Delta t} = 
-\frac{\overrightarrow{r}}{\Delta t} $$ dove $\Delta r = r_{1} - r_{0}$ e sarebbe
+\[\overrightarrow{v_{Media}}= \frac{\Delta \overrightarrow{x}}{\Delta t} = 
+\frac{\overrightarrow{r}}{\Delta t} \] dove $\Delta r = r_{1} - r_{0}$ e sarebbe
 la distanza vettoriale.  \\ 
 $\overrightarrow{v}(t) = \frac{\Delta \overrightarrow{r}}{\Delta t}$ con 
 $\Delta t \to 0$
@@ -418,9 +420,10 @@ in gioco per via del fatto che vengono a formarsi dei triangoli
 \\ \\
 \\
 {\color{black} \rule{\linewidth}{0.3mm} }
-\\
-\textbf{Illustrazione a cura di Simona} \\ \\
-$$\includegraphics[width=0.75\textwidth]{mruvettoriale}$$
+\paragraph{Illustrazione a cura di Simona}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{mruvettoriale}
+\end{center}
 Da questo grafico è possibile notare in che modo interagiscono graficamente 
 (considerando il punto di vista vettoriale) le velocità. 
 \\
@@ -434,7 +437,7 @@ Supponiamo che il moto della velocità istantanea lungo la circonferenza sia
 costante, o meglio, diciamolo in modo figo: $\frac{dv}{dt} ~ costante$, se calcolo
 l'accelerazione vettoriale, anche se il modulo è costante ma la direzione cambia
 allora l'accelerazione non potrò mai esser nulla. 
-$$\overrightarrow{a} = \frac{\overrightarrow{v}}{dt} \neq 0$$
+\[\overrightarrow{a} = \frac{\overrightarrow{v}}{dt} \neq 0\]
 \subsection{I vantaggi delle coordinate polari}
 Introduciamo il concetto di radiante, ovvero date l, $\theta$ ed r,
 \begin{itemize}
@@ -447,35 +450,35 @@ la velocità angolare $\omega$ sia = a $\omega = \frac{d \theta}{dt}$, e ricordi
 che prima si era detto di essere in velocità costante, pertanto se moltiplichiamo
 la velocità angolare per il raggio cosa otteniamo? Esatto, la velocità a cui
 ci stiamo spostando, ovvero:
-$$\omega R = \frac{dl}{dt} = v$$
+\[\omega R = \frac{dl}{dt} = v\]
 Inoltre definiamo il concetto di PERIODO (t) che è il tempo impiegato per fare
 tutto un giro della circonferenza: $T = \frac{2 \pi}{\omega}$, analizziamo
 ora le leggi orarie
-$$s(t) = s_{0} + v\cdot t$$ Oppure
-$$\theta(t) = \theta _{0} + \omega t$$ a questo punto ragioniamo su quella
+\[s(t) = s_{0} + v\cdot t\] Oppure
+\[\theta(t) = \theta _{0} + \omega t\] a questo punto ragioniamo su quella
 che è l'accelerazione vettoriale:\\ 
 Sappiamo che $\overrightarrow{v_{m}} = \frac{\Delta \overrightarrow{r}}{\Delta t}$,
 quindi ne deriva che $\overrightarrow{a_{m}} =
 \frac{\Delta \overrightarrow{v}}{\Delta t}$ oppure in modo anche più preciso
-$$\overrightarrow{a} = \lim \limits_{\Delta t \to 0} 
-\frac{\Delta \overrightarrow{v}}{\Delta t} = a_{c} \widehat{u}_{n}$$ in cui la
+\[\overrightarrow{a} = \lim \limits_{\Delta t \to 0} 
+\frac{\Delta \overrightarrow{v}}{\Delta t} = a_{c} \widehat{u}_{n}\] in cui la
 n specifica che è perpendicolare e non tangente, altrimenti sarebbe $\widehat{u}_{t}$, 
-quindi si può concludere che l'accelerazione centripeta $$\overrightarrow{a_{c}}
-= \frac{v^{2}}{r} \cdot \widehat{u}_{n}$$ in cui ricordiamo che n indica che il 
+quindi si può concludere che l'accelerazione centripeta \[\overrightarrow{a_{c}}
+= \frac{v^{2}}{r} \cdot \widehat{u}_{n}\] in cui ricordiamo che n indica che il 
 versore sia PERPENDICOLARE, infatti la n sta per versore NORMALE.
 Tutto questo se la velocità è costante.
 \section{Moto circolare non uniforme}
 Oltre all'accelerazione centripeta servirà l'accelerazione tangente o tangenziale
 che è l'accelerazione lungo l'arco PERO' tangente alla circonferenza.
-$$\overrightarrow{a_{t}} = \frac{d^{2}l}{dt^{2}}\cdot \widehat{u}_{t}$$ E
+\[\overrightarrow{a_{t}} = \frac{d^{2}l}{dt^{2}}\cdot \widehat{u}_{t}\] E
 si ricava che quindi $\overrightarrow{a} = \overrightarrow{a_{t}} \vee 
 \overrightarrow{a_{c}}$, nel senso che è la stessa accelerazione ma considerata
 da due sistemi di riferimento diversi. \\
 Di conseguenza se è uniformemente accelerato, possiamo
 anche stabilirne la legge oraria, che è simile a prima: 
-$$l(t) = l_{0} + v_{0}t + \frac{1}{2} \cdot a_{t}t^{2}$$, che è di base, mentre
+\[l(t) = l_{0} + v_{0}t + \frac{1}{2} \cdot a_{t}t^{2}\], che è di base, mentre
 nel caso andiamo a considerare le velocità angolari.
-$$\theta(t) = \theta _{0} + \omega _{0}t + \frac{1}{2} a_{\omega}t^{2}$$
+\[\theta(t) = \theta _{0} + \omega _{0}t + \frac{1}{2} a_{\omega}t^{2}\]
 Se prima si è considerata la velocità normale ora consideremo quella tangenziale, 
 ma alla fine, in un caso vedavamo quanto ci si era spostati, nel secondo caso
 si vede quanto si è allargata o ristretta la circonferenza. Perchè? 
@@ -484,17 +487,19 @@ detto centro}.
 \section{Circonferenza e Moto Armonico}
 Prendendo una qualsiasi circonferenza ed un punto P su di essa, è possibile 
 tracciare sull'asse x ed y i punti relativi a P, e ne consegue che
-$$x = R\cos \theta = R\cos(\omega t) e \\
-y = R\sin \theta = R\sin(\omega t) $$ 
+\[x = R\cos \theta = R\cos(\omega t) e \\
+y = R\sin \theta = R\sin(\omega t) \] 
 E quindi 
-$$\frac{dx}{dt} = \omega R \cdot \sin(\omega t) $$ e
-$$\frac{dy}{dt} = \omega R \cdot \cos(\omega t) $$
-Inoltre $$v = \sqrt{\frac{dx^{2}}{dt} + \frac{dy^{2}}{dt}} $$
+\[\frac{dx}{dt} = \omega R \cdot \sin(\omega t) \] e
+\[\frac{dy}{dt} = \omega R \cdot \cos(\omega t) \]
+Inoltre \[v = \sqrt{\frac{dx^{2}}{dt} + \frac{dy^{2}}{dt}} \]
 \\
 {\color{black} \rule{\linewidth}{0.3mm} }
 \\
-\textbf{Illustrazione a cura di Simona} \\ \\
-$$\includegraphics[width=0.75\textwidth]{motoarmonico}$$
+\paragraph{Illustrazione a cura di Simona}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{motoarmonico}
+\end{center}
 In quest'illustrazione si vede riassunto graficamente quello che ho menzionato
 nel paragrafo superiore \\
 {\color{black} \rule{\linewidth}{0.3mm} }
@@ -652,7 +657,7 @@ forza per lavorarci su. In termini più semplici: Da sinistra verso destra l'equ
 $\overrightarrow{F} = m \cdot \overrightarrow{a}$ va bene MA da destra verso
 sinistra no. Un esempio di alternativa a questo? 
 \paragraph{Legge di Gravitazione Universale}
-$$\overrightarrow{F_{a} = G \cdot \frac{M\cdot m}{d^{2}}}$$ in cui la G è la
+\[\overrightarrow{F_{a} = G \cdot \frac{M\cdot m}{d^{2}}}\] in cui la G è la
 costante di gravitazione universale ed è $g = \frac{G\cdot M}{R_{Terra}^{2}}$, 
 g invece è la forza g, quella che si vede di solito in F1 in curva o frenata, in
 cui letteralmente si hanno decelerazioni e accelerazioni (non necessariamente 
@@ -676,8 +681,8 @@ Siccome misurare il rapporto tra masse è uguale a misurare il rapporto tra forz
 allora si conclude che si ha la stessa gravità, che sulla terra è 9,8, e quindi
 si può anche dire che per misurare una massa, bisogna tener conto della forza peso 
 e confrontarla con la gravità che si sta considerando.
-$$\overrightarrow{P} = m \overrightarrow{a} = m \overrightarrow{g} = - m\cdot 
-g \cdot \widehat \gamma$$. 
+\[\overrightarrow{P} = m \overrightarrow{a} = m \overrightarrow{g} = - m\cdot 
+g \cdot \widehat \gamma\]. 
 Se una bilancia misura una forza, dato g, si ottiene che $\frac{forza}{g} = massa$,
 per cui se è vero che il peso cambia in base a dove ci troviamo, non è vero
 che lo faccia anche la massa, e infatti la massa quella è e quella rimane.
@@ -710,8 +715,9 @@ E ricordiamo che il tavolo sta al di sopra della terra, che chiameremo TE.
 costante $\to F_{G} = G \cdot \frac{M_{Terra \cdot M}}{R_{Terra}^{2}}$)
 \\
 {\color{black} \rule{\linewidth}{0.3mm} }
-\\
-$$\includegraphics[width=0.75\textwidth]{forzanormale}$$
+\begin{center}
+\includegraphics[width=0.75\textwidth]{forzanormale}
+\end{center}
 In breve, sulla massa agiscono ben due vettori, e pure sul tavolo agiscono più
 vettori, in quanti agiscono sia l'azione della forza peso che la reazione del 
 cubo. \\ \\
@@ -737,7 +743,7 @@ ottengo che quest'ultimo malgrado applico l'incredibile forza dei miei muscoli,
 non si muove, sta fermo, quindi il lavoro sarà 0.
 \\  \\
 Più precisamente:
-$$L = F \cdot \Delta x$$
+\[L = F \cdot \Delta x\]
 Forza x spostamento, molto semplicemente, ma occhio a non confondersi, poichè
 spostamento e forza sono grandezze vettoriali ($\overrightarrow{F}, 
 \overrightarrow{\Delta x}$)
@@ -747,9 +753,9 @@ L'unità di misura del lavoro è il Joule (J), che coincide con $N\cdot M$, e co
 io 'sta roba non l'avevo ancora capita.) il prodotto di due vettori è uno scalare.
 \\
 {\color{black} \rule{\linewidth}{0.3mm} }
-\\
-$$\includegraphics[width=0.75\textwidth]{graficoLavoro}$$
-\\
+\begin{center}
+\includegraphics[width=0.75\textwidth]{graficoLavoro}
+\end{center}
 {\color{black} \rule{\linewidth}{0.3mm} }
 \\
 Avendo definito il lavoro, con questa definizione abbiamo una quantità che 
@@ -757,22 +763,32 @@ consente di definire il quantitativo di energia trasferito in un sistema
 dall'esterno verso l'interno di un sistema. \\ \\
 E se invece fossero più forze a generare uno spostamento? Cioè molto semplicemente,
 se spostiamo un tavolo in due invece che da solo? Beh cambia molto lo 
-spostamento, e infatti $$L = \sum_{i=1}^{n} \overrightarrow{F_{i}} \cdot \overrightarrow{S}$$
+spostamento, e infatti \[L = \sum_{i=1}^{n} \overrightarrow{F_{i}} \cdot \overrightarrow{S}\]
 Ah ovviamente $L_{i} = \sum_{i=1}^{n} \overrightarrow{F_{i}} \cdot \overrightarrow{S}$,
 da questa prospettiva si conclude anche che $L_{tot} = \sum_{i=1}^{n} L_{i}$.
 \\ \\
-\\
+Infine, altro modo di esprimere il lavoro:
+\[L_{\kappa} = \int_{a}^{b} F_{\kappa}dx  \]
+Quindi chiaramente è possibile dire che:
+\[L = \int_{a}^{b} F(x) dx\]
+Ossia, nel caso prima semplicemente abbiamo specificato un punto preciso MA,
+se ragionassimo con $\overrightarrow{F}$ per ottenere il lavoro totale manca un
+piccolo passaggio:
+\[L = \int F(x) dx + \int F(y) dy + \int F(z) dz = \int \overrightarrow{F}\cdot 
+d \overrightarrow{s}\]
 {\color{black} \rule{\linewidth}{0.3mm} }
-\\
-$$\includegraphics[width=0.75\textwidth]{velocitalavoro}$$
+\begin{center}
+\includegraphics[width=0.75\textwidth]{velocitalavoro}
+\end{center}
 In questo caso cosa si osserva? La velocità al quadrato che avremo sarà coincidente
 con la velocità iniziale alquadrato, che si somma con la velocità generata
 dall'accelerazione provocata dalla applicazione della forza in questione.\\ \\
-Quel K si chiama ENERGIA CINETICA, ossia l'energia associata al moto. Mi raccomando,
+Quel K si chiama \textbf{ENERGIA CINETICA}, ossia l'energia associata al moto. Mi raccomando,
 contate sempre che ci sono altre energie in questione che agiscono su un corpo
-in movimento, allora tutto prende senso.
-{\color{black} \rule{\linewidth}{0.3mm} }
+in movimento, allora tutto prende senso. (in seguito sarà approfondita nello
+specifico)
 \\
+{\color{black} \rule{\linewidth}{0.3mm} }
 \chapter{Principio di conservazione dell'energia}
 E' il classico esempio del modo di pensare dei fisici, cioè osservi un fenomeno,
 noti qualcosa di anomalo, lo testi, trai delle conclusioni, ma in questo caso
@@ -798,6 +814,49 @@ punto di vista ad esempio:
 	\item Nucleare
 	\item Chimica
 \end{itemize}
-
-    
+Quello di cui ci occuperemo nello specifico per ora è l'energia cinetica.
+\section{Energia Cinetica}
+L'energia cinetica è (come detto sopra) l'energia che si associa al moto, o 
+meglio l'energia che ha un corpo in movimento. Diciamoci subito le formule utili:
+\begin{itemize}
+	\item $L = \Delta \kappa$
+	\item $\kappa = \frac{1}{2}m\cdot v^{2}$
+	\item $L = \sum_{i=1}^{n} L_{i}$
+	\item $L = \sum_{i=1}^{n} \overrightarrow{F_{i}} \cdot \Delta
+	\overrightarrow{x} (Spostamento)$
+\end{itemize}
+Lavoro ed energia cinetica sono strettamente legati per via del fatto che 
+appunto il lavoro è il prodotto di una forza per una massa. Per cui \\
+\[L = \int_{x_{iniziale}}^{x_{finale}} F(x) dx = \in t_{x_{iniziale}}^{x_{finale}} ma ~ dx
+\]
+A questo punto osserviamo che l'accelerazione è: $a = \frac{dv}{dt}$, quindi 
+la formula è riscrivibile come \[L = \int_{x_{iniziale}}^{x_{finale}} m\cdot v 
+\cdot \frac{dv}{dt} dx\] 
+Ora le cose iniziano un po' a complicarsi, perchè se per ipotesi noi considerassimo
+soltanto la velocità si avrebbe: $L = \int_{x_{iniziale}}^{x_{finale}} m\cdot v 
+= \frac{1}{2}m\cdot v^{2}$\\ \\
+Tutto sto casino è per arrivare a dire che: 
+\[\frac{1}{2}m\cdot v_{finale}^{2} - \frac{1}{2}m\cdot v_{iniziale}^{2} = 
+\Delta\kappa\]
+Ecco, questo $\Delta\kappa$ è la variazione dell'energia che c'è stata da un 
+punto iniziale ad un punto finale. \\ \\
+Ora la domanda è: se ho compiuto un lavoro, perchè $\Delta\kappa$ è = 0? Perchè
+non stiamo considerando tutte le altre forze! \\
+\\Se io prendo il mio telefono e lo
+striscio sul tavolo da un punto A ad un punto B, questo si ferma, MA per via
+della forza di attrito. \\ 
+\\
+{\color{black} \rule{\linewidth}{0.3mm}}
+\\
+Da un punto di vista "Telemetrico" l'azione delle forze sul telefono che ho 
+strisciato sul tavolo è di questo tipo:
+\begin{center}
+\includegraphics[width=0.75\textwidth]{telefonoStriscia}
+\end{center}
+Il primo grafico indica l'energia cinetica del telefono (che poraccio lo stiamo
+massacrando a furia di sballottarlo in giro), mentre invece il grafico di sotto
+indica come si comporta l'attrito che lo frenerà.\\ \\
+(Per capire meglio cosa succede in un contesto del vuoto, ai videogiocatori 
+consiglio di giocare \href{https://store.steampowered.com/app/244850/Space_Engineers/}
+{Space Engineers}. E' bello, fidatevi.) \\ \\
 \end{document}
