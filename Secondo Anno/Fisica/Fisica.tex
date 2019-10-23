@@ -408,7 +408,6 @@ perchè abbiamo:
 \[\frac{d \overrightarrow{v} (t)}{dt} = \widehat{i} \cdot \frac{dx}{dt}+ 
 \widehat{j} \cdot \frac{dy}{dt}\]
 Scritto più easy: $\widehat{i} v_{x} + \widehat{y} = \overrightarrow{v}$
-
 \[\overrightarrow{v_{Media}}= \frac{\Delta \overrightarrow{x}}{\Delta t} = 
 \frac{\overrightarrow{r}}{\Delta t} \] dove $\Delta r = r_{1} - r_{0}$ e sarebbe
 la distanza vettoriale.  \\ 
@@ -860,5 +859,106 @@ massacrando a furia di sballottarlo in giro), mentre invece il grafico di sotto
 indica come si comporta l'attrito che lo frenerà.\\ \\
 (Per capire meglio cosa succede in un contesto del vuoto, ai videogiocatori 
 consiglio di giocare \href{https://store.steampowered.com/app/244850/Space_Engineers/}
-{Space Engineers}. E' bello, fidatevi.) \\ \\
+{Space Engineers}. E' bello, fidatevi.)
+\section{La forza d'attrito}
+\subsection{Cos'è}
+Dal punto di vista pratico non è altro che la forza in grado di frenare un corpo
+in movimento (Perchè? Perchè essendo una forza, essa si applica da un corpo
+ad un altro, per questo è certo che si opponga al moto).\\ \\
+E' \underline{sempre} \textbf{Opposta} alla \textbf{Direzione} dello spostamento,
+o detto meglio: \textbf{Compie sempre lavoro \underline{negativo}} 
+\subsection{Come si esprime?}
+La chiameremo $F_{a}$, e si esprime in:
+\[
+F_{a} = \mu_{a}\cdot N
+\]
+Mentre invece per quanto riguarda l'effettivo suo \textbf{lavoro}:
+\[
+L_{a} = -\mu_{a}\cdot N \cdot \Delta x
+\]
+Date queste due nuove formule, possiamo concludere che un corpo si sposta SE
+il lavoro dell'attrito è \textbf{minore} del lavoro che ha generato il moto:
+\[
+L = L_{\kappa_{i}} + L_{a} < 0 
+\]
+SE si verifica questa condizione ALLORA esiste il moto, in alternativa il corpo
+sta fermo. 
+\paragraph{Precisazione: } Come vedete c'è un `+` in mezzo, e non solo. C'è 
+anche segnato una i sul nostro lavoro del corpo che consideriamo, cosa significa?
+\paragraph{Risposta: } La forza d'attrito rimane la stessa (\textbf{A parità
+di materiale/corpo/superficie}) MA progressivamente potrebbe cambiare nel tempo
+il lavoro del corpo in questione. Come? Se smettete di dare gas, la macchina
+diminuirà la propria velocità, e più andavate forte, più scenderà di botto 
+all'inizio (La richiesta energetica rimane sempre proporzionale a $v^{2}$),
+\section{L'energia potenziale}
+\paragraph{Da} \href{https://www.wikiwand.com/it/Energia_potenziale}{Wikipedia}:
+~In fisica, l'energia potenziale di un oggetto è l'energia che esso possiede a 
+causa della sua posizione o del suo orientamento rispetto a un campo di forze.
+Nel caso si tratti di un sistema, l'energia potenziale può dipendere dalla 
+disposizione degli elementi che lo compongono.\\ \\ Si può vedere l'energia 
+potenziale anche come la capacità di un oggetto (o sistema) di trasformare la 
+propria energia in un'altra forma di energia, come ad esempio l'energia cinetica. 
+\\ \\
+\paragraph{Ragioniamo con un esempio: }
+Prendiamo un corpo ed una molla, sappiamo che se il corpo si muove allora:
+\[
+L = \Delta \kappa
+\]
+Ecco, una volta detto questo, il lavoro che invece farà la molla per fermare 
+il corpo che le arriva contro sarà:
+\[
+-L = \Delta U
+\]
+Quella U è l'energia potenziale, che per come è definita ($\Delta U = -L$) sarà
+possibile definirla anche $\Delta U = \frac{1}{2}\kappa \cdot \Delta x^{2}$,
+e quindi
+\[
+\Delta U = f(\Delta x)
+\]
+Data una forza $\mathbf{F}$, il lavoro W lungo una curva C è dato in generale
+dalla relazione: 
+\[
+W = \int_{C} \mathbf{F}\cdot dx
+\]
+\paragraph{Precisazione sulle forze conservative: } A noi ci importa poco 
+in questo caso di cosa succeda in mezzo tra un punto A ed un punto B, per capire
+il lavoro fa testo solo il punto iniziale ed il punto finale, \textbf{INVECE},
+nel caso dell'attrito si ragiona in modo diverso, perchè fa testo quello che
+succede nel tragitto che separa A da B ($\Delta x$). Detto più scientifico:
+\[L = \Delta\kappa = -\Delta U ~ con ~ A\to B \]
+\[L = L(A,B) \]
+\[L = L(x) \]
+\[\Delta U = -L(x) = - \int_{A}^{B}  F(x)\cdot dx\]
+Un esempio di forza NON conservativa è il magnetismo, ma lo vedremo più avanti.
+Tornano all'energia potenziale, bisogna specificare che \textbf{Non esiste 
+una energia potenziale assoluta}, dipende dal sistema di riferimento. In che senso?
+Se calcolo l'energia potenziale di una bottiglia su un tavolo, rispetto al tavolo
+è 0, MA rispetto al pavimento? Quindi attenzione, bisogna capire quale \textbf{punto
+di riferimento} si usa per fare i confronti
+\section{Energia potenziale in un determinato tempo}
+Definiamo ora U(x), che ha diversi modi per essere definito, ovvero:
+\begin{enumerate}
+	\item \[
+	U(x) = -L(x) = - \int_{x_{0}}^{x}  F(x) \cdot dx
+	\]
+	\item \[
+	U(x) = - \int_{x_{0}}^{x}  F(x) \cdot dx + U(x_{0})
+	\]
+\end{enumerate}
+Se ho un potenziale, allora esiste una forza conservativa, che è coincidente
+con $- \frac{d(U(x))}{dx} = F(x)$, e qui c'è una doppia implicazione perchè SE
+ho una forza conservativa allora si ha anche dell'energia potenziale.
+\paragraph{Una forza conservativa } è una forza che dipende SOLO da istante 
+iniziale e finale.
+\subsection{Variazione dell'energia potenziale della forza peso}
+Incominciamo dal ridefinire la forza peso:
+\[
+F_{p} = -m\cdot g
+\]
+Ragionando sulle definizioni menzionate qui sopra (Non ho ragionato mai nella
+vita forever, sto copiando brutalmente dalla lavagna perchè i miei livelli
+di comprensione son lievemente... Circa calati, circa..) si ha che:
+\[
+\Delta U = -L_{p} = m\cdot g \cdot \Delta y
+\]
 \end{document}

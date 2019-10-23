@@ -499,7 +499,6 @@ il nostro $a^{m+n}$ in due sotto casi.
 	\[a^{m}a^{n} x c^{n}y d^{m}\] Se notate le n stanno dentro e le m stanno 
 	fuori, sono diciamo racchiuse, pertanto è corretto +
 \end{itemize}
-
 \paragraph{Esercizio 9: }Formare una CFG per il linguaggio \\
 $$L = \{ a^{n+m}xc^{n}yd^{m}, ~con~n,m \geq 0 \}$$
 Come possiamo notare avremo $a^{n}a^{m}xc^{n}yd^{m}$ che non va bene, non si 
@@ -508,7 +507,6 @@ $S \to aSd | By$ \\
 $B \to aBc | x$ \\
 $S \implies By \implies xy$
 $S \implies aSd \implies aByd \implies aaBcyd \implies aaxcyd$
-
 \paragraph{Precisazione: } Poichè sono stato assente per prendere gli appunti
 della lezione successiva a questi esercizi ho lasciato nella cartella "Esercizi
 preAlberi" tutto ciò che è stato fatto prima del prossimo argomento. \textbf{
@@ -651,12 +649,10 @@ B \to cBd|cd \\
 C \to aCd|aDd \\
 D \to bDc|bc 
 \end{cases}\]
-
 Ora vediamo come derivare la seguente stringa: "aabbccdd": (n = m - 2) TUTTO LEFT-MOST\\
 1) $S \implies AB \implies aAbB \implies aabbB \implies aabbcBd \implies aabbccdd$ \\
 2) $S \implies C \implies aCd \implies aaDdd \implies aabDcdd \implies aabbccdd$ \\
 \\
-
 Tutti i nodi vanno trasformati in questo, non si può trovare una grammatica 
 fondamentalmente. Per non essere inerentemente ambiguo dovrebbe esserci una 
 intersezione tra le due, e invece abbiamo ben due derivazioni sinistre diverse.
@@ -767,7 +763,7 @@ L = $\{0,1\}^{+}$
 	S \to 0|1|S0|S1
 	\end{cases}$
 \end{enumerate}
-\section{Espressioni Regolari}
+\chapter{Espressioni Regolari}
 Esistono linguaggi regolari (Di tipo 3) che possono generare grammatiche regolari(
 lin dx oppure lin sx) e rappresentare (\underline{dimostrare}) espressioni 
 regolari.\\
@@ -868,7 +864,79 @@ E' possibile realizzare 0101? Nope\\
 01011 Nemmeno \\
 10111 SI PUO' FARE WOOOOO (Perdonatemi, lo svolgimento lo aggiungerò successivamente
 quando ci studierò sopra, perchè al momento mi è troppo lungo scriverlo)
-
-
-
+\section{Distributività}
+Aritmeticamente se ho $x(y+z)$, posso riscriverlo come $xy+xz$.
+Consideriamo due tipi di distributività:
+\begin{itemize}
+	\item Distributività SX della concatenazione rispetto all'unione: \\
+	$L(M+N) = LM + LN$
+	\item Distributività DX: $(M+N)L = ML + NL$
+\end{itemize}
+\paragraph{Vediamo subito un esempio: } Data una ER `$0+01^{\star}$`
+\[
+	L(0+01^{\star}) = L(0) + L(01^{\star}) = \{0\} \cup L(0)L(1^{\star}) =
+\]
+\[
+	= \{0\} \cup \{0\} (L(1))^{\star}) = \{0\} \cup \{0\} \{1\}^{\star} = 
+\]
+\[
+	\{0,01,011,0111, 01111, ...\}
+\]
+Con:
+\[
+\begin{cases}
+	\{1\}^{\star} = \epsilon, 1, 11, 111, 1111, ... \\
+	\{0\} \{1\}^{\star} = \epsilon, 01, 011, 0111, 01111, ...
+\end{cases}
+\]
+A questo punto passiamo a considerare `$0+01^{\star}$`:
+\[
+	0+01^{\star} = 0\epsilon + 01^{\star} = 0(\epsilon + 1^{\star}) = 01^{\star}
+\]
+\[
+	= (0(\epsilon + 1^{*})) = L(0) L(\epsilon + 1^{*}) = 
+\]
+\[
+	= \{0\} (\{\epsilon\} \cup L(1))^{*}) ...
+\]
+\section{Idempotenza}
+Dal punto di vista dell'unione si ha che L + L = L, ma se visto aritmeticamente
+viene leggermente più chiaro da capire, infatti:
+\[x+x\neq x\]
+La somma non gode dell'indepotenza
+\[x\cdot x\neq x\]
+Ed allo stesso modo non ne gode nemmeno il prodotto
+\section{Proprietà chiusura}
+\[
+	(L^{\star})^{\star} = L^{\star}
+\]
+\[
+	(L^{\star})^{\star} = \bigcup \limits _{i \geq 0} {(L^{\star})^{i}}
+\]
+Da questo si deriva che $\varnothing^{\star}=\epsilon$ e $\epsilon^{\star}=\epsilon$,
+ora passiamo ad $L^{+}$
+\[
+	L^{+} = LL^{*} = L^{*}L = L + LL + LLL + LLL = L\epsilon + LL * LLL =
+\]	
+\[
+	L(\epsilon + L + LL + LLL * ....) = LL^{*}
+\]	
+\paragraph{Esercizio 1: } Data ER = $(00^{*}1^{*})^{*}$\\ 
+Fin da subito osserviamo che avremo una serie di blocchi tutti inizianti per
+0 di questo tipo: $0xxxx0xxxx0xxxx$, potrebbero capitare blocchi aventi una
+serie di 0 ed una serie di 1. 
+\begin{itemize}
+	\item Posso avere una stringa tutta di 1? No
+	\item Una stringa avente uno 0 e tutti 1? Sì
+\end{itemize}
+Non l'ho specificato ma $\epsilon \in L$ \\
+Quello che si nota è che quindi ogni stringa che avrò inizia per 0, perciò potrò
+scrivere qualcosa del tipo $0(0+1)^{*} + \epsilon$
+\paragraph{Esercizio 2: } Quale linguaggoo si denota da questa ER: $a(a+b)^{*}b$?\\
+L = $\{w \in \{a,b\}^{*} |$ w inizia con a e termina con b\}, spiegato peggio 
+sarebbero tutte le strinche che iniziano con a e b, ed all'interno hanno 
+qualsiasi combinazione
+\paragraph{Esercizio 3: } Quale linguaggoo si denota da questa ER: $(0^{*}1^{*})000(0+1)^{*}$?\\
+E' in pratica come dire, qualsiasi insieme di 0 ed 1 (zeri ed uni) che in mezzo
+da qualche parte avranno un punto in cui ci sarà una sequenza di 3 zeri
 \end{document}
