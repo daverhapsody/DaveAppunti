@@ -356,7 +356,7 @@ Partiamo con le cose semplici, bisogna passare da quello che è un linguaggio
 parlato a una stesura di condizioni \\
 Prendiamo un triangolo, vogliamo dimostrare che se due triangoli hanno i due
 lati uguali allora è isoscele \\
-$$AB = BC \vdash \angle A \angle C$$ 
+\[AB = BC \vdash \angle A \angle C\]
 \begin{enumerate}
 	\item AB = BC per ipotesi
 	\item ABH = HBC per (3)
@@ -434,12 +434,11 @@ positivi e negativi, e qui si richiamano i concetti di fondamenti della tabella
 di verità
 \\ \\
 Negli esercizi potremo usare 
-$$
-\frac{F_{1}, F_{2}, ... , F_{K}}{R}$$ 
+\[\frac{F_{1}, F_{2}, ... , F_{K}}{R}\]
 E' la forma generale di una regola, sopra hai l'insieme delle formule vere tra 
 le formule ben formate e R è la formula generata da “inserire” in FBF. \\ \\
 L'esempio di inferenza che si usa di solito è il Modus Ponens: 
-$$\frac{p \to q, p}{p} $$
+\[\frac{p \to q, p}{p} \]
 Se il conseguente appare come formula negata, si negherà anche la formula originaria
 \subsubsection{Esempio:}
 $\frac{p \vee \neg q}{vero} $ Terzo escluso \\ \\
@@ -460,11 +459,11 @@ Da un lato ho una formula ben formata disgiuntiva e dall'altro ho un letterale
 (o asserito), e una di queste formule è costituita da un solo letterale, per 
 questo si chiama unit, è sintassi, non ci sto capendo più un cazzo pure. 
 io, non so davvero che dirvi.. \\ \\ 
-\paragraph{Spiegazione fornita da} \href{https://github.com/JacopoDeAngelis}
+\paragraph{Spiegazione fornita da } \href{https://github.com/JacopoDeAngelis}
 {Jacopo De Angelis} \\ \\
 Eccomi, arrivo da autore esterno a spiegare: prendiamo prima lo schemino semplice
 semplice \\
-$ P <-- A \wedge B \wedge C \wedge D ...$ \\
+$ P \leftarrow A \wedge B \wedge C \wedge D ...$ \\
 Questo vuol dire che P è vera solo se tutte A, B, C e D sono vere. Ora, prendiamo 
 nuovamente il codice prolog visto all'inizio: \\
 \color{red}
@@ -634,10 +633,10 @@ Con la logica di primo ordina si ragiona diversamente, infatti il linguaggio
 \subsection{Le Formule Ben Formate nella logica del primo ordine}
 Qui si fa menzione della definizione \textbf{Ricorsiva} di Formula Ben Formata
 cioè:
-$$FBF = \{t_{j}, r_{t_{1}, ... ,t_{k}}\}$$
+\[FBF = \{t_{j}, r_{t_{1}, ... ,t_{k}}\}\]
 Dove $t_{j}$ è un termine elemento di C, di V, oppure un'applicazione di una
 funzione f($t_{1}, ... ,t_{s}$)\\ mentre
-$$r(t_{1}, ... ,t_{k})$$ 
+\[r(t_{1}, ... ,t_{k})\]
 Che sarebbe un termine costituito da un predicato (dove le t derivano dai termini
 appartenenti alle FBF) \\ \\
 Contiamo che diversi elementi di FBF connessi dai connettivi $\forall , \exists
@@ -666,7 +665,7 @@ Per ottenere il risultato è necessario che si utilizzino delle regole di
 calcolo %%(Soprattutto quelle legate al $\forall$ ed $\exists$ 
 \subsubsection{Regola di eliminazione del quantificatore universale}
 Il discorso è: Come si risolve il $\forall$?
-$$\frac{\forall x, T(..., x, ...), c\in C}{T(..., c, ...)} $$
+\[\frac{\forall x, T(..., x, ...), c\in C}{T(..., c, ...)} \]
 Si ok, ma come lo realizziamo?  \\ 
 Con questa super mega iper formula possiamo finalmente derivare la nostra
 conclusione a partire dalle asserzioni iniziali. 
@@ -676,12 +675,12 @@ conclusione a partire dalle asserzioni iniziali.
 	\item mortale(Socrate)
 \end{enumerate}
 Andiamo a scrivercela sostituendo alla formula $\to$
-$$\frac{(\forall x, uomo(x) \to mortale(x)), Socrate\in C}{uomo(Socrate)\to 
-mortale(Socrate)}$$
+\[\frac{(\forall x, uomo(x) \to mortale(x)), Socrate\in C}{uomo(Socrate)\to 
+mortale(Socrate)}\]
 Ora andiamo a togliere il quantificatore universale ($\forall$ detto in modo figo)
-$$frac{uomo(Socrate), uomo(Socrate) \to mortale(Socrate)}{mortale(Socrate)}$$
+\[frac{uomo(Socrate), uomo(Socrate) \to mortale(Socrate)}{mortale(Socrate)}\]
 Cosa notiamo? Il "denominatore" della prima formula è diventato il "numeratore"
-della seconda, infatti vedete come abbiamo uomo(Socrate) -> mortale(Socrate)?
+della seconda, infatti vedete come abbiamo uomo(Socrate) $\to$ mortale(Socrate)?
 \\ \\
 A questo punto bisogna togliere anche l'implicazione, o meglio risolverla. 
 Riflettendoci $A \to B$ a cosa è uguale? $\neg A \wedge \neg B$, in questo
@@ -689,13 +688,16 @@ modo abbiamo risolto l'implicazione.
 \section{Altre regole in Logica del Primo Ordine}
 Abbiamo risolto il $\forall$, ok, ma l'$\exists$?
 Introduciamo quindi il quantificatore esistenziale:
-$$\frac{T(..., c, ...), c\in C}{\exists x, T(..., x, ...)}$$
+\[
+\frac{T(..., c, ...), c\in C}{\exists x, T(..., x, ...)} 
+\]
 Per completezza possiamo dedurre il fatto che 
-$$
+\[
 \begin{cases}
 Se ~ \exists x, \neg T(..., x, ...) = \neg \forall x, T(..., x, ...) \\
 Se ~ \forall x, \neg T(..., x, ...) = \neg \exists x, T(..., x, ...)
-\end{cases}$$
+\end{cases} 
+\]
 Spiegato peggio, se dico che esiste un elemento, per cui non si verifica una 
 proprietà, allora non per ogni elemento essa si verifica. \\ 
 Spiegato ancora peggio, se uno solo non si verifica, allora significa che non 
@@ -766,11 +768,11 @@ Esistono due forme normali a clausole:
 	\item Forma congiunta: \\
 	La formula è una congiunzione di disgiunzioni di predicati o negazioni di 
 	predicati (letterali positivi e letterali negativi) \\ 
-	$$\bigwedge \limits_{i} (\bigvee \limits_{j} L_{ij})$$
+	\[\bigwedge \limits_{i} (\bigvee \limits_{j} L_{ij})\]
 	\item Forma disgiunta: \\
 	E' una disgiunzione di congiunzioni di predicati o negazioni di predicati
 	(letterali positivi e letterali negativi)
-	$$\bigvee \limits _{j} (\bigwedge \limits _{i} L_{ij})$$
+	\[\bigvee \limits _{j} (\bigwedge \limits _{i} L_{ij})\]
 \end{enumerate}
 \subsection{Forma normale congiuntiva}
 La clausole che hanno al più un solo letterale positivo (sia con che senza 
@@ -1067,15 +1069,21 @@ segue logicamente dal programma.
 Per esempio, se ho un programma \textbf{P} ed una query "$:- ~~ p(t_{1}, t_{2}, ..., t_{m}$"
 (Ricordandoci sempre che la query NON è dentro al programma, o comunque non è
 nel file sorgente del programma) allora: \\ \\
-$$\begin{cases}
+\[
+\begin{cases}
 Se ~ X_{1}, X_{2}, ..., X_{n} ~ sono ~ variabili ~ che ~ compaiono ~ in 
 ~ t_{1}, t_{2}, ..., t_{m} ~ \\ALLORA ~ \exists X_{1}, X_{2}, ..., X_{n} .
 p(t_{1}, t_{2}, ..., t_{m}) \\	
-\end{cases}$$
+\end{cases}
+\]
 Ed il nostro obbiettivo sarà quello di trovare una sostituzione del tipo:
-$$s = \{X_{1}/s_{1}, X_{2}/s_{2}, ..., X_{n}/s_{n}\}$$
+\[
+s = \{X_{1}/s_{1}, X_{2}/s_{2}, ..., X_{n}/s_{n}\}
+\]
 Da dove cicciano fuori queste s? Sono dei termini, per cui si ottiene che
-$$P \vdash s[p(t_{1}, t_{2}, ..., t_{m})]$$
+\[
+P \vdash s[p(t_{1}, t_{2}, ..., t_{m})]
+\]
 E P cos'è? Un programma. E un programma cos'è? Un'insieme di clausole di Horn.
 Ed una clausola di Horn cos'è? E' una formula avente al più UN letterale positivo.
 \\ \\
@@ -1094,8 +1102,8 @@ e aggiungessi le clausole inferite all'insieme di partenza avresti un'\textbf{
 ESPLOSIONE 
 } combinatoria. \\ \\
 Per evitarsi questo problema va adottata una strategia di soluzione che sia 
-opportuna (No, ci sarà sempre tra le palle il \color{red} \textbf{\textit{Magico principio di risoluzione
-}} \color{black}, solo più vincolato. \\
+opportuna (No, ci sarà sempre tra le palle il \color{red} \textbf{\textit{Magico 
+principio di risoluzione}} \color{black}, solo più vincolato. \\
 \section{Risoluzione ad INPUT LINEARE (SLD)}
 Prolog dimostra la veridicità o meno di una query con una sequenza di passi di
 risoluzione (Sì, sequenza di passi, algoritmo, efficienza, $\Theta nLogn$) 
@@ -1124,8 +1132,8 @@ $G_{i+1}$ si genera in pratica dal principio di risoluzione:
 	\item $\neg B_{1} \vee \neg B_{2} ... \vee \neg B_{n} \vee \neg A_{i,2},
 	\vee \neg A_{i,2}, ..., \vee \neg A_{i,2}$
 \end{enumerate}
-$$G_{i+1} \equiv ~~ ?- B_{e,1}^{'}, B_{e,1}^{'}, ..., B_{e,1}^{'}, A_{e,1}^{'}, 
-A_{e,1}^{'}, ..., A_{e,1}^{'} $$
+\[G_{i+1} \equiv ~~ ?- B_{e,1}^{'}, B_{e,1}^{'}, ..., B_{e,1}^{'}, A_{e,1}^{'}, 
+A_{e,1}^{'}, ..., A_{e,1}^{'} \]
 E questo è solo \textbf{uno} dei passi di risoluzione eseguiti dal sistema Prolog,
 in cui \begin{itemize}
 \item Le $A^{'}$ e le $B^{'}$ sono risultati $\sigma[A] = A^{'}$ e 
@@ -1246,7 +1254,6 @@ effettua Prolog per quando dimostra un teorema \\ \\
 Quindi quel che si verifica è proprio che si hanno due fail, e chiudiamo 
 poi con una clausola vuota (:-) quindi quello che concludiamo è che tutto è 
 andato a buon fine.
-\\ \\ \\ \\
 \paragraph{Stesso esercizio MA con tecnica Right-Most fatto da} 
 \href{https://github.com/LiaBell47}{Giulia}
 \begin{center}
@@ -1451,7 +1458,7 @@ l'uso di questi predicati magici consente di scrivere dei programmi efficienti
 ED allo stesso tempo corretti semanticamente. \\ \\
 Bene, ma se C ed F fossero entrambe variabili? Scritto così il programma ragiona
 che SE C è variabile esegue il primo blocco ALTRIMENTI il secondo, ma se fossero
-entrambe delle variabili? \\ \\ 
+entrambe delle variabili?  
 \paragraph{Risposta: } I due "if" sono se una è variabile e l'altra no, ALLORA 
 fai cose, ma non è implementato SE entrambe son variabili o costanti, darebbe
 errore. Per intenderci, è uno XOR\\ \\
@@ -1478,7 +1485,7 @@ predicati che tornano utili per manipolarlo:
 	Questo è il più complesso, bisogna capirci bene a fondo, perchè qua si ha 
 	un predicato che è "=..", è un predicato binario di cui uno è termine ed
 	uno è la lista. \\ \\
-	Nei termini del linguaggio universale si chiama anche \textbf{univ}. \\ 
+	Nei termini del linguaggio universale si chiama anche \textbf{univ}. 
 	\paragraph{Ma cosa fa questo predicato?} Prende un termine e lo trasforma
 	in una lista, ed il primo elemento sarà il funtore, e tutti gli altri 
 	saranno semplici argomenti, in questo modo si appiattisce tutto. Diventa 
