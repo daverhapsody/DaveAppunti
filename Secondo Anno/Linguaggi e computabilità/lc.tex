@@ -932,11 +932,105 @@ serie di 0 ed una serie di 1.
 Non l'ho specificato ma $\epsilon \in L$ \\
 Quello che si nota è che quindi ogni stringa che avrò inizia per 0, perciò potrò
 scrivere qualcosa del tipo $0(0+1)^{*} + \epsilon$
-\paragraph{Esercizio 2: } Quale linguaggoo si denota da questa ER: $a(a+b)^{*}b$?\\
+\paragraph{Esercizio 2: } Quale linguaggio si denota da questa ER: $a(a+b)^{*}b$?\\
 L = $\{w \in \{a,b\}^{*} |$ w inizia con a e termina con b\}, spiegato peggio 
 sarebbero tutte le strinche che iniziano con a e b, ed all'interno hanno 
 qualsiasi combinazione
-\paragraph{Esercizio 3: } Quale linguaggoo si denota da questa ER: $(0^{*}1^{*})000(0+1)^{*}$?\\
+\paragraph{Esercizio 3: } Quale linguaggio si denota da questa ER: $(0^{*}1^{*})000(0+1)^{*}$?\\
 E' in pratica come dire, qualsiasi insieme di 0 ed 1 (zeri ed uni) che in mezzo
 da qualche parte avranno un punto in cui ci sarà una sequenza di 3 zeri
+\paragraph{Esercizio 4: } Quale linguaggio si denota da questa ER: $a(a+b)^{*}c(a+b)^{*}c(a+b)^{*}b$?\\
+L = \{$w\in \{a,b,c\}$ | w inizia con a, termina con b, e contiene esattamente DUE c\}
+\paragraph{Esercizio 5: } Scrivere un'ER per questo linguaggio: 
+L = $\{w\in \{0,1\}\}$ | in w, tutte le coppie 11 seguono tutte le coppie 00, 
+nel senso:
+\[
+	L = L_{11}L_{00} 
+\]
+Attenzione, tutte le coppie 11 SEGUONO tutte le coppie 00, quindi da un lato
+si hanno tutti gli 00 e dall'altra 11: 0011, 00001111, 0000000011111111 
+\subparagraph{Proviamo a scrivere le ER } 
+\begin{itemize}
+	\item Per $L_{11}$: $(10+0)^{*}(\epsilon + 1)$
+	\item Per $L_{00}$: $(01+0)^{*}(\epsilon + 0)$
+\end{itemize}
+Ed infine proviamo a scrivere l'ER per L:
+\[
+	(10+0)^{*} (\epsilon + 1) (01+1)^{*} (\epsilon + 0)
+\]
+Si può addirittura elidere $(\epsilon + 1)$ poichè comparirebbe nella parentesi
+dopo.
+\chapter{Automi a stati finiti deterministici (DFA)}
+Sono insiemi di stati legati da una serie di archi di transizione, e sono 
+strettamente legati ai linguaggi regolari, perchè sono generati da grammatiche 
+regolari, cioè di tipo 3, ed accettati da DFA. \\ \\
+O meglio, le stringhe generate dalla grammatica regolare posso darli in pasto
+al mio automa in grado di leggere la stringa carattere per carattere, e 
+quest'ultimo sarà in grado di dirmi se codesta stringa è generabile. \\ \\
+Inoltre sono denotati da espressioni regolari
+\section{Come sono fatti}
+Ecco un esempio di DFA
+\begin{center}
+\includegraphics[width=0.75\textwidth]{dfa}
+\end{center}
+Però bisogna anche adesso includere alcune cose: 
+Ogni automa ha una casellina in cui si può inserire un carattere, pertanto avremo
+un alfabeto $\Sigma$.\\ \\
+Perciò si ha un insieme di stati (\textbf{Q}), un sotto insieme di \textbf{Q} che
+son stati finali $F\subseteq Q$ \\
+Dato un linguaggio regolare si ha un automa che entra in stato finale SE esaminata
+carattere per carattere la stringa si arriva fino alla fine.
+\\
+{\color{black} \rule{\linewidth}{0.3mm}}
+\paragraph{Rappresentazione di Gaia più accurata}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{rappreDFA}
+\end{center}
+{\color{black} \rule{\linewidth}{0.3mm}}
+\\
+\paragraph{Osservazione: } Una volta letto un simbolo, viene consumato, essa
+sparisce, non viene più ripresa. In aula è stato fatto l'esempio di un mitra, che
+spara i colpi uno dopo l'altro ed una volta sparato non c'è modo di recuperare
+un colpo.
+\section{Definizione formale}
+E' una quintupla in cui:
+\begin{itemize}
+	\item Q è l'insieme finito degli stati
+	\item $\Sigma$ è l'alfabeto delle stringhe date in input
+	\item $\delta$ è la funzione di transizione degli stati
+	\item $q_{0}\in Q$ è lo stato iniziale
+	\item $F \subseteq Q$ è l'insieme degli stati finali
+\end{itemize}
+In pratica $\delta:Qx\Sigma \to Q$ che riassunto vuoldire, prendo uno stato, 
+una lettera dell'alfabeto, e rimango nello stato. E $\delta(q,a) = p$
+\paragraph{Esercizio 1: } Generare un DFA che accetti w$\in \{0,1\}^{*}$ | w
+contiene un numero pari di 1 \\ \\
+A = $(\{q_{p}, q_{d}\}, \{0,1\}, \delta, q_{p}, \{q_{p}\}) $(La p sta per pari,
+la d per dispari)
+\begin{itemize}
+	\item $\delta(q_{p}, 0) = q_{p}$
+	\item $\delta(q_{d}, 0) = q_{d}$
+	\item $\delta(q_{p}, 1) = q_{p}$
+	\item $\delta(q_{d}, 1) = q_{d}$
+\end{itemize}
+A questo punto è necessario fare la nostra tabella 2 x 2 
+\begin{center}
+\begin{tabular}{ | c | c | c }
+ / &  0 & 1 \\ 
+ $q_{p}$ & $q_{p}$  &  $q_{d}$ \\  
+ $q_{d}$ &  $q_{d}$ & $q_{p}$     
+\end{tabular}
+\end{center}
+Il disegno dell'automa non l'ho fatto io, ringrazio Gaia (ormai son più suoi
+che miei questi magici appunti)
+\begin{center}
+\includegraphics[width=0.75\textwidth]{2}
+\end{center}
+\paragraph{Esercizio 2: } Definire una ER per L = \{w$\in \{0,1\}^{*}$ | w
+contiene un numero pari di 1\} \\ \\
+In pratica prima abbiamo generato l'automa, a questo punto proviamo a definire
+una ER $\to (0^{*},1,0^{*},1)^{*}0^{*}$
+
+
+
 \end{document}
