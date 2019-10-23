@@ -133,10 +133,10 @@ AUTONOMA che verifica la stringa in questione
 \paragraph{Linguaggio L su $\Sigma$}
 E' un sotto insieme di $\Sigma ^{*}$, o meglio L  $\subseteq \Sigma ^{*}$ 
 Ad esempio:
-$$\Sigma = {a, b, c} \to L_{1}={aa, cbc}  \subseteq \Sigma ^{*} \\
-L_{2} = {w \in {a,b,c}^{*} t.c. ~ W ~ contiene ~ stesso ~ numero~di~a~e~c} $$
+\[\Sigma = {a, b, c} \to L_{1}={aa, cbc}  \subseteq \Sigma ^{*} \\
+L_{2} = {w \in {a,b,c}^{*} t.c. ~ W ~ contiene ~ stesso ~ numero~di~a~e~c} \]
 In pratica
-$$L_{2} = {ac, ca, acb, abc, cab, cba, ...}$$
+\[L_{2} = {ac, ca, acb, abc, cab, cba, ...}\]
 abc $\in L_{2}$?? Yes\\
 ccbb $\in L_{2}$?? Nope\\
 \paragraph{Detto meglio} (Problema di Membership) \\ $W \in \Sigma ^{*} \to L 
@@ -220,12 +220,12 @@ $\Sigma$ = {0, 1} es. $L_{pal} \subseteq \Sigma ^{*} \to "0110", "11011",
 \epsilon$, perchè la stringa vuota è considerata palindroma. \\ 
 Più in modo formale si può dore che w è \textbf{palindroma} quando $w = w^{R}$
 Definizione induttiva:
-$$
+\[
 \begin{cases}
 base:~\epsilon, 0, 1 \in L_{pal} \\
 passo~induttivo:~ se ~w\in ~L_{pal} ~allora ~OwO, ~1w1 ~\in ~L_{pal}
 \end{cases}
-$$
+\]
 \\
 $
 S \in \epsilon\\
@@ -392,7 +392,7 @@ $\alpha = \gamma_{1} \implies \gamma_{2} \implies ... \implies \gamma_{n} = \bet
 Con $n \geq 1$
 \chapter{Esercizi sulle CFG}
 \paragraph{Esercizio 1: }Formare una CFG per il linguaggio \\
-$$L = \{0^{n} 1^{n} | n \geq 1 \}$$
+\[L = \{0^{n} 1^{n} | n \geq 1 \}\]
 L = (01,0011,000111,00001111, $\to$)
 \\ Proviamo a scrivere la grammatica: \\
 G = (V, T, P, S), dove T = \{0, 1\} \\
@@ -404,7 +404,7 @@ Se $L = \{0^{n} 1^{n} | n \geq 1 \}$ \\
 S $\to 0S1 | \epsilon$ \\
 L = {$\epsilon$, 01, 0011, 000111, ...}
 \paragraph{Esercizio 2: }Formare una CFG per il linguaggio \\
-$$L = \{a^{n} | n \geq 1 \}$$
+\[L = \{a^{n} | n \geq 1 \}\]
 L = (aS,aaS,aaaS,aaaaS,aaaaa, ..., $\to$)
 \\ Proviamo a scrivere la grammatica: \\
 $S \to aS | a$, \href{https://www.youtube.com/watch?v=ATNolrWTYuU}
@@ -413,7 +413,7 @@ $S \to aS | a$, \href{https://www.youtube.com/watch?v=ATNolrWTYuU}
 Nel caso di questo esercizio è indifferente se la 'a' vien messa prima o dopo
 la S
 \paragraph{Esercizio 3: }Formare una CFG per il linguaggio \\
-$$L = \{ (ab)^{n} | n \geq 1 \}$$
+\[L = \{ (ab)^{n} | n \geq 1 \}\]
 L = (ab, abab, ababab, abababab, ..., $\to$) (Rap Futuristico abababababab)
 \\ Scriviamo la grammatica
 $S \to abS | ab$ OPPURE, $S \to Sab | ab$
@@ -425,7 +425,7 @@ $S \implies Sab \implies Sabab ... $
 $S \implies abS \implies  ababS ... $
 Introduciamo le regole $A \to b$, $A \to bS$, $S \to aA$
 \paragraph{Esercizio 4: }Formare una CFG per il linguaggio \\
-$$L = \{ (a)^{n}cb^{n} | n \geq 1 \}$$
+\[L = \{ (a)^{n}cb^{n} | n \geq 1 \}\]
 L = $\{S \implies aSb \implies aaSbb \implies aaaSbbb ...\}$
 \\ Scriviamo la grammatica
 $S \to aSb | acb$
@@ -435,8 +435,8 @@ V = \{S\} \\
 T = \{a,b,c\} \\
 P = \{S $\to$ aSb, S $\to$ acb\}
 \paragraph{Esercizio 5: }Formare una CFG per il linguaggio \\
-$$L = \{ w\in \{a,b,c,d\}^{\star} | w = a^{n}, b^{n}, c^{\kappa}, d^{\kappa} \}
-| ~ con ~  n, \kappa \geq 0 \}$$
+\[L = \{ w\in \{a,b,c,d\}^{\star} | w = a^{n}, b^{n}, c^{\kappa}, d^{\kappa} \}
+| ~ con ~  n, \kappa \geq 0 \}\]
 L = $\{\epsilon, ab, aabb, aaabbb ... \\
 cd, ccdd, cccddd ... \\
 abcd, aabbcd, aaabbbcd, ... \\
@@ -465,8 +465,8 @@ L_{2} = \{ ab, b \}
 L_{1}L_{2} = \{ ab, b, 0ab, 0b, 00ab, 00b, 011ab, 011b\}
 \]
 \paragraph{Esercizio 6: }Formare una CFG per il linguaggio \\
-$$L = \{ w\in \{a,b,c,d\}^{\star} | w = a^{n}, c^{\kappa}, d^{\kappa}, b^{n} 
-| ~ con ~ n, \kappa \geq 0 \}$$
+\[L = \{ w\in \{a,b,c,d\}^{\star} | w = a^{n}, c^{\kappa}, d^{\kappa}, b^{n} 
+| ~ con ~ n, \kappa \geq 0 \}\]
 Si ha che X = $\{b^{\kappa}, b^{\kappa}\}$ e notiamo che l'esercizio è praticamente
 come il precedente ma invece di concatenare andiamo ad inglobare uno dentro 
 l'altro i linguaggi
@@ -488,15 +488,15 @@ X bestione? Quello del Dennunzio, ecco), per cui: \\
 $S \to aSb | aXb$ \} \\
 $X \to cX | c$ \} (Regolare)\\
 \paragraph{Esercizio 8: }Formare una CFG per il linguaggio \\
-$$L = \{ a^{n+m} x c^{m} y d^{m} n, m \geq 0 \}$$
+\[L = \{ a^{n+m} x c^{m} y d^{m} n, m \geq 0 \}\]
 In quest'ultimo caso è leggermente più complesso perchè dovremo dividere 
 il nostro $a^{m+n}$ in due sotto casi.
 \begin{itemize}
 	\item $a^{n}a^{m}$ MA non va bene perchè se lo traduco vien fuori 
-	$$a^{n}a^{m} x c^{n}yd^{m}$$
+	\[a^{n}a^{m} x c^{n}yd^{m}\]
 	E non va bene per via del fatto che c'è l'incrocio di m ed n
 	\item $a^{m}a^{n}$ che è una soluzione accettabile perchè otteniamo:
-	$$a^{m}a^{n} x c^{n}y d^{m}$$ Se notate le n stanno dentro e le m stanno 
+	\[a^{m}a^{n} x c^{n}y d^{m}\] Se notate le n stanno dentro e le m stanno 
 	fuori, sono diciamo racchiuse, pertanto è corretto +
 \end{itemize}
 
@@ -624,7 +624,9 @@ Ci son linguaggi che sono inerentemente ambigui, ma ora vediamo anche degli esem
 $F \to I | (E)$ \\
 $T \to F | T * F$ \\
 $E \to T | E + T$\\
-$$\includegraphics[width=0.75\textwidth]{iSeSB}$$
+\begin{center}
+\includegraphics[width=0.75\textwidth]{iSeSB}
+\end{center}
 \paragraph{Teorema: } $\forall CFG$ \\
 G = (V,T,P,S) e $\forall w\in T^{\star}$, w ha due alberi sintattici distinti se e
 solo se ha due derivazioni sx distinte. \\
@@ -642,13 +644,13 @@ $\nexists$ CFG non ambigua, cioè: \\
 L = $\{a^{n} b^{n} c^{m} d^{m} | n, m \geq 1\} \cup 
 \{a^{n} b^{n} c^{m} d^{m} | n, m \geq 1\}$ \\
 Definiamo le regole di inferenza: \\
-$$\begin{cases}
+\[\begin{cases}
 S \to AB|C \\
 A \to aAb|ab \\
 B \to cBd|cd \\
 C \to aCd|aDd \\
 D \to bDc|bc 
-\end{cases}$$
+\end{cases}\]
 
 Ora vediamo come derivare la seguente stringa: "aabbccdd": (n = m - 2) TUTTO LEFT-MOST\\
 1) $S \implies AB \implies aAbB \implies aabbB \implies aabbcBd \implies aabbccdd$ \\
