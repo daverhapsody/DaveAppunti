@@ -781,8 +781,8 @@ Finora si è considerato il processo come un unico flusso di roba sequenziale,
 ma in realtà è possibile avere più program counter per lo stesso processo, cioè
 più istruzioni possono essere eseguite assieme, e più percorsi di esecuzione.
 \\ \\
-Questi flussi di esecuzione prendono proprio il nome di thread, ed in questo caso
-il \textbf{PCB} Conterrà informazioni ulteriori per ogni thread  
+Questi flussi di esecuzione prendono proprio il nome di Thread, ed in questo caso
+il \textbf{PCB} Conterrà informazioni ulteriori per ogni Thread  
 \section{Scheduling dei processi}
 Schedulare significa scegliere il prossimo processo da eseguire tra quelli che 
 son lì pronti, quelli che son ready, ma perchè? Perchè l'obbiettivo è quello di 
@@ -842,5 +842,173 @@ In un sistema Unix, un padre può interagire in 3 modi con il proprio figlio:
 	\item Exec(): Esegue suo figlio, in tutti i sensi, perchè lo ucciderà anche se necessario
 	\item Wait(): Quando lancia il figlio, si mette in attesa che quest'ultimo finisca
 \end{enumerate} 
+\chapter{Thread e concorrenza}
+Finora si è parlato di processi che NON sono concorrenti, o meglio, che vengono
+eseguiti singolarmente, ora si parlerà di Thread, si capirà la differenza tra
+un processo ed un Thread, capiremo quali sono vantaggi e svantaggi\\ \\
+Inoltre tratteremo il Threading implicito (pools, fork-join, etc.), descrivere
+come questo viene rappresentato il Thread dai vari OS E vedremo come si 
+progettano applicazioni aventi Thread, usando le API pThreads, Java e Windows
+\section{Perchè utilizzare Threads?}
+I motivi sono molteplici:
+\begin{enumerate}
+	\item E' un'estensione semplice da realizzare, ed i processi risultano più
+	difficili da creare, nel senso: Un Thread ha solo la sua cpu virtuale, mentre
+	un processo ha molta più roba da generare.
+	\begin{itemize}
+		\item Attenzione: Le applicazioni concorrenti ed i Thread non sono la 
+		stessa cosa
+		\item I Thread migliorano l'efficienza di creazione del flusso di un
+		processo, che risultava effettivamente troppo costosa in termini di
+		risorse
+	\end{itemize}
+	\item Sfruttamento dei core multipli, nelle cpu a più cores
+	\item Gestione di compiti simili tra loro, se devo fare la stessa operazione
+	su $\lambda$ dati, posso aprire $\lambda$ Threads, per esempio!
+	\item Semplifica il codice, ma in generale si aumenta l'efficienza
+	\item Per intenderci, qualsiasi kernel usa più Threads
+\end{enumerate}
+\paragraph{Per intenderci: }Avete presente il vostro telefono? Quando pigiate
+sullo schermo, a rilevare il vostro tocco c'è un Thread attivo, e allo stesso
+tempo, cosa fa visualizzare le nuove notifiche mentre giocate a qualcosa mentre
+siete in bagno? Esatto, una serie di Thread, ognuno con il suo scopo! 
+\subparagraph{In java } finora abbiamo SEMPRE sviluppato programmi monoThread,
+nel senso, una cosa alla volta. Nel senso, mentre aspetta che noi inseriamo il
+carattere da tastiera, il nostro programma non poteva fare altro, con i Thread
+è possibile implementare una roba del genere.
+\section{Parallelismo e concorrenza}
+\begin{itemize}
+	\item Concorrenza: Si verifica quando hai $\kappa$ operazioni di un processo
+	e $\lambda$ di un altro, quello che succede è che fai un po' uno e un po' 
+	l'altro. Avete presente preparare 5 esami assieme? Esatto non ne prepariamo 
+	nessuno
+	\item Parallelismo: Hai due processori separati ed indipendenti, quindi
+	i tuoi processi saranno separati o meglio, distribuiti su questi ultimi, 
+	e.. No, non avremo mai due cervelli, 4 mani e 48 ore di studio al giorno, sad.
+\end{itemize}
+A questo punto va compreso in fase di progettazione l'importanza dei vari task
+da eseguire per ogni core, e occorre bilanciare il lavoro in modo da avere
+moli di lavoro confrontabili
+\paragraph{Mi spiego peggio: }Suddividendo in modo bilanciato il lavoro allora 
+anche i dati concettualmente si ha una massimizzazione dell'accesso parallelo,
+MA il vero motivo per cui sviluppare Thread sta nel Testing e nel Debugging
+\paragraph{Perchè? }Perchè avendo più Thread, se per ipotesi crasha il Thread
+del touch del telefono, bene, avremo un errore preciso da quel Thread, sappiamo
+dove intervenire, soprattutto perchè si ha una certa riproducibilità da questo
+punto di vista.
+\section{Chiarezza sul parallelismo}
+Il parallelismo non è applicabile solo alle task che eseguiamo, ma anche ai dati
+su cui esse vanno a lavorare.
+\begin{enumerate}
+	\item Parallelismo dei dati: Si verifica quando ho operazioni tutte uguali,
+	mi basta dividere i dati in tanti pezzi, ed ogni core opera su uno di questi
+	pezzi
+	\item Questo invece consiste nel dividere un intero processo, in una serie
+	di core, quindi tutti lavorano sullo stesso processo
+\end{enumerate}
+\section{Legge di Ambdahl}
+Ma se noi aggiungiamo un processore, ci guadagnamo? quanto?
+\[
+Incremento~velocità\leq \frac{1}{S+\frac{1-S}{N}}
+\]
+S sarebbe la porzione di programma che va realizzata sequenzialmente, mentre
+N invece è il numero di core
+\paragraph{Facciamo un esempio} Se il 75\% dell'applicazione è parallelizzabile
+(S = 25\%)
+\begin{itemize}
+	\item Se ho 2 core 1,16 volte più veloce del single core
+	\item Se ho 4 core 2,28 volte più veloce del dual core
+\end{itemize}
+Idealmente l'incremento dovrebbe essere esponenziale, ma in realtà si dimostra
+che progressivamente si appiattiscono le prestazioni ed il rapporto tra costo
+e prestazione diventa meno conveniente.\\ \\
+Quindi, si dimostra che più di 4/8 core è pressochè inutile spingersi PER ORA
+\section{Modelli di supporto per Threading}
+\begin{itemize}
+	\item Thread livello utente
+	\item Thread livello Kernel\\
+\end{itemize}
+Inizialmente il kernel era monoThread, e tutto ciò che era multiThread era 
+nell'userspace, quindi questo è praticamente pseudoparallelismo, perchè se un
+Thread fa I/O allora tutti gli altri staranno in attesa, non è in grado di 
+sfruttare più core.\\ \\
+\subsection{Modello 1 a 1 } Per ogni Thread del kernel esiste un Thread 
+nell'userspace, il che significa che si può sfruttare il parallelismo MA
+attenzione.
+\\ \\
+Se ho un server avente più utenze, se ogni volta tipo 100 utenti mi aprono 
+10 Thread a testa, il kernel mi va a 1000 Thread. Per ipotesi si è posto
+un limite ai Thread che puoi aprire
+\subsection{Modello molti a molti}
+Si hanno $\kappa$ Thread del kernel $\times$ $\lambda$ Thread utente, in cui
+$\kappa < \lambda$
+\section{POSIX PThreads}
+Non è un'implementazione ma una specifica (uno standard praticamente) che
+consente a sistemi operativi Unix based o anche agli Unix like di poter 
+implementare dei Thread. (In c c'è la libreria pThread.h che serve a questo)\\ \\
+Su Windows c'è windows.h che consente di avere i Windows Thread, dovrebbero
+funzionare anche lì ma in modo più... Minuzioso (No, non dirò quella parola.).
+\\ \\
+Windows per ogni Thread crea un handle, che va creato e chiuso dal padre del 
+Thread.
+\section{Thread in Java}
+Si possono sviluppare in due modi
+\begin{itemize}
+	\item Estendendo la classe Thread e creando il metodo run
+	\item Implementando l'interfaccia Runnable e anche lì creando il metodo run
+	\item Da qui basta instanziare un oggetto di questa vostra classe, e fare
+	nomeOggetto.start(); ed il Thread partirà.
+\end{itemize}
+\section{Threading implicito}
+Delega tutto ciò che è la creazione e gestione dei Thread ai compilatori ed 
+alle librerie, perchè così gli sviluppatori non devono preoccuparsi di stare
+a gestire appunto fattori come chiusura e manutenzione del Thread aperto
+\section{Thread pools}
+All'avvio viene creato un buon numero di Thread, organizzati in un gruppo che 
+semplicemente aspettano di rispondere ad una richiesta, ed in questo modo:
+\begin{itemize}
+	\item Si accelerano i tempi
+	\item Il numero di Thread contemporaneamente aperti è limitato dalla dimensione
+	del pool
+	\item Separa il task dalla meccanica della sua creazione, avendo o meglio,
+	permettendo diverse strategie di esecuzione, con uno scheduling temporale
+	nella mia applicazione.
+\end{itemize}
+Nel POSIX queste meccaniche non ci sono, mentre ci sono su Windows e Java sono
+previste
+\section{Fork-join}
+Vi ricordate il merge sort che divideva in due l'array, no? Ecco, dividiamo
+i due array, avviamo un thread per una metà, ed un altro per l'altra metà,
+con poi il "combine" vengono riunite.
+\section{Problematiche possibile}
+Una fork dovrebbe duplicare solo il thread chiamante o tutti i thread in assoluto?
+Ecco, il magico mondo UNIX utilizza due tipid i fork per risolvere questa cosa\\ \\
+L'exec invece di solito sostituisce tutti i thread del processo
+in esecuzione
+\section{Signal Handler}
+Un segnale è un meccanismo nei sistemi Unix ed Unix like per notificare un evento
+ad un processo. \\ \\
+Banalmente sono degli interrupt MA lato utente. Ci sono tante scuole di pensiero,
+su Unix se hai un segnale verso un processo, allora l'handler viene eseguito
+una sola volta, quindi viene eseguito ad un solo thread. Sotto Unix c'è un modo
+per fare in modo che un Thread rifiuti un determinato insieme di segnali\\ \\
+Un segnale potrebbe essere ctrl+c, che non copia eh, termina l'esecuzione del
+programma corrente su terminale .\\ \\
+Su Windows non ci sono i segnali ma le APC, che son comunque simili, praticamente
+sono delle chiamate di procedura, che sono associate al thread, non al processo.
+\section{Cancellazione del thread}
+E' possibile fare in modo che un Thread termini l'esecuzione PRIMA che abbia 
+effettivamente finito di fare quel che deve fare? Si in due modi
+\begin{itemize}
+	\item Cancellazione asincrona: Il thread viene terminato di cattiveria, 
+	tipo come agli esami a tempo fatti su pc, quando finisce, finisce.
+	\item Cancellazione differita: Se thread A vuole terminare B allora B gli
+	dice "Spetta n'attimo", e appena finisce si chiude, come quei 5 minuti in 
+	più che a volte si riescono a chiedere per finire di scrivere nome cognome
+	e data in un esame.. E matricola
+\end{itemize}
+
+
+
 
 \end{document}

@@ -1030,6 +1030,79 @@ che miei questi magici appunti)
 contiene un numero pari di 1\} \\ \\
 In pratica prima abbiamo generato l'automa, a questo punto proviamo a definire
 una ER $\to (0^{*},1,0^{*},1)^{*}0^{*}$
+\paragraph{Esercizio 3: } Progettare un DFA che accetti 
+L=$\{x01y|x, y\in\{0,1\}^{\star}\}$. Per prima cosa bisogna ragionare su quali
+sono le più corte stringhe che il linguaggio accetti, e si verifica che la
+stringa più corta sia $01 \in L$\\ \\
+Consideriamo che uno stato iniziale si indica con una freccia esterna che si 
+chiami start, e lo stato finale invece sia un cerchio dentro l'altro.
+Il nostro automa risulterà: A = $(\{q_{0}, q_{1}, q_{2}\},\{0, 1\},\delta,q_{0},\{q_{1}\})$\\
+(I successivi automi sono stati fatti da \href{https://github.com/LiaBell47}{Giulia})
+\begin{center}
+\includegraphics[width=0.75\textwidth]{3}
+\end{center}
+in cui $\delta(q_{0},0)=q_{2}$
+\paragraph{Esercizio 3:} Stabilire ER per L = $\{w \in \{0, 1\}^{\star}\}$ | w
+contiene un numero di 0 divisibile per 3\}
+\subparagraph{Soluzione: } ER = $(1^{*}01^{*}01^{*}0)^{*}1^{*}$
+\paragraph{Osservazione: } Un DFA non è in grado di rappresentare delle CFG, e 
+questo perchè un automa a stati finiti ha della memoria finita. Per questa 
+ragione, non può appunto rappresentare delle Context Free
+\paragraph{Esercizio 4: } Progettare un DFA per L = $\{w\in\{0,1\}^{\star} | w = 0^{n}1^{n}\}$ con:
+\begin{itemize}
+	\item n,m $\geq$ 0
+	\begin{center}
+	\includegraphics[width=0.75\textwidth]{4}
+	\end{center}
+	A = $(\{q_{0}, q_{1}, q_{E}\},\{0, 1\},\delta,q_{0},\{q_{1}\})$
+	\item n$\geq 0, m>0$
+	\begin{center}
+	\includegraphics[width=0.75\textwidth]{5}
+	\end{center}
+	\item n > 0, m$\geq$ 0, $\epsilon \notin L, 0 \in L$
+	\begin{center}
+	\includegraphics[width=0.75\textwidth]{6}
+	\end{center}
+	\item n > 0, m > 0
+	\begin{center}
+	\includegraphics[width=0.75\textwidth]{7}
+	\end{center}
+\end{itemize}
+($q_{E}$ sarebbe lo stato di errore)
+\paragraph{Esercizio 5: }Progettare un DFA per L = $\{w\in \{a,b\}^{\star}$|\}
+w contiene un numero pari di a ed un numero dispari di b\}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{8}
+\end{center}
+Come si può osservare è un automa molto regolare, perchè in qualche modo
+si prende l'automa che riconosce le a pari, uno che riconosce le b dispari e 
+si sono accostati i due tra di loro (Ok, è informale, esiste l'automa prodotto,
+Ma lo vedremo in seguito)
+\paragraph{Esercizio 6: } Progettare un DFA per L = $\{w\in \{a,b\}^{\star}\}$|
+w contiene un numero pari di a \textbf{seguito} da un numero
+dispari di b $\implies \{a^{2n}b^{2k+1}\} | n, k \geq 0\}$
+\begin{center}
+\includegraphics[width=0.75\textwidth]{9}
+\end{center}
+\section{Estensione di $\delta$}
+Finora si è detto che $\delta:Q \times \Sigma \to Q$ e $\delta(q,a) = p$ 
+L'estensione $\widehat{\delta}:Q \times \Sigma^{\star}\to Q$ \\ \\
+Se $w\in \Sigma^{\star}, \widehat{\delta}(q,w) = p$\\ \\
+\paragraph{Torniamo all'esercizio 6} In questo caso quindi, si scriverà:
+\begin{center}
+\includegraphics[width=0.75\textwidth]{10}
+\end{center}
+\paragraph{Esercizio 7: }
+\begin{center}
+\includegraphics[width=0.75\textwidth]{11}
+\end{center}
+\paragraph{Esercizio 8: }
+\begin{center}
+\includegraphics[width=0.75\textwidth]{12}
+\end{center}
+
+
+
 
 
 
