@@ -8,6 +8,7 @@
 \usepackage{hyperref}
 \usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
+\usepackage{amssymb}
 \graphicspath{{./img/}}
 \definecolor{britishracinggreen}{rgb}{0.0, 0.26, 0.15}
 \newcommand\tab[1][1cm]{\hspace*{#1}}
@@ -1550,7 +1551,7 @@ che valuta una query composta da un funtore e da una lista di argomenti
 \begin{center}
 \includegraphics[width=0.75\textwidth]{7}
 \end{center}
-\section{Manipolazione della base}  
+\section{Manipolazione della base di dati}  
 Dato un programma Prolog, sappiamo che questo è praticamente costituioto da un
 database (per favore, chiamatelo knowledge base, basi di dati è al prossimo 
 semestre) contenente fatti e regole\\ \\
@@ -1565,4 +1566,46 @@ I suddetti predicati sarebbero:
 	\item retract
 	\item abolish
 \end{enumerate}
+Consideriamo come base il caso in cui si ha una Knowledge Base vuota 
+($ \varnothing $), se interroghiamo Prolog con listing. lui ci risponderà sì.
+\paragraph{Hey Prolog, mostrami la mia KB! }Sì! *Prolog left the server*\\
+Più o meno è quello che accade visto che non ha nulla da mostrare.
+\paragraph{Se consideriamo un assert} del tipo 
+\textbf{assert(meravigliosa(firenze))}, lui ritornerà \textit{true}, come giusto
+che sia! Scherzi a parte, l'assert è un comando che ha \textbf{SEMPRE} successo,
+però attenzione, non è per via del suo essere praticamente una masterball dei
+comandi l'importante, ma è il come può cambiare lo stato del nostro Database.
+\paragraph{Riproviamo listing: } ora verrà restituito il nostro assert di prima
+e un true:
+	\begin{lstlisting}[language=Prolog] 
+		?- listing.
+		meravigliosa(firenze).
+		true
+	\end{lstlisting} 
+Riassunto, l'assert gli ha iniettato una verità assoluta, che lui accetta a 
+prescindere, paradossalmente se gli ripassiamo due volte lo stesso assert, lui 
+lo prende di pacco, così come glielo diamo e lo riaggiunge al database.
+\paragraph{Mi spiego peggio: } Se passo a Prolog assert(bello(dave)), per due 
+volte, lui quando farò il listing mi dirà:
+	\begin{lstlisting}[language=Prolog] 
+		?- listing.
+		bello(dave).
+		bello(dave).
+		true
+	\end{lstlisting} 
+E se lo dice Prolog, allora è proprio vero!
+\subsection{Asserzione di regole}
+Ciò che abbiamo appena visto non è altro che un'asserzione di \textbf{fatti}, ma
+come da titolo di questa sezione, è possibile asserire anche \textbf{regole}.
+\paragraph{Esempio: } Supponiamo di voler inserire una regola che dica che 
+chiunque passa LP sia felice (E beati loro):
+	\begin{lstlisting}[language=Prolog] 
+		?- assert(passatoLP(X) :- felice(X)).
+		bello(dave).
+		bello(dave).
+		true
+	\end{lstlisting} 
+
+
+
 \end{document}
