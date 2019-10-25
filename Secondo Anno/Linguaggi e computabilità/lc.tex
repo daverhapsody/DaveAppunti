@@ -1100,10 +1100,116 @@ Se $w\in \Sigma^{\star}, \widehat{\delta}(q,w) = p$\\ \\
 \begin{center}
 \includegraphics[width=0.75\textwidth]{12}
 \end{center}
+\paragraph{Esercizio 8: }Produrre una ER per L =$ \{w\in \{0,1\}^{\star} $| 
+contiene al più (al massimo) una coppia di 1 consecutivi\}
+\[
+	(10+0)^{*}(11+1+\epsilon)(01+0)^{*}
+\]
+Il primo blocco non può essere ($1+0^{*}$) perchè altrimenti verrebbero fuori in 
+mezzo anche coppie di 11.
+\paragraph{Esercizio 9: }
+Produrre una ER per L = $\{w \in \{a,b,c\}^{*}$ | w contiene almeno una a e almeno
+una b\}
+\[
+	c^{*}(a(a+c)^{*}b+b(b+c)^{*}a)(a+b+c)^{*}
+\]
+\paragraph{Esercizio 10: }
+Progettare un DFA per L = $\{w \in \{0,1\}^{*} | w = x010y, ~con~x,y\in\{0,1\}^{*}\}$ 
+\begin{center}
+\includegraphics[width=0.75\textwidth]{13}
+\end{center}
+\paragraph{Esercizio 11:}
+Progettare un DFA per L = $\{w \in \{0,1\}^{*}$ | le coppie 00 precedono le 
+coppie 11\}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{14}
+\end{center}
+\paragraph{Esercizio 12:}
 
-
-
-
-
-
+Dato il seguente DFA:
+\begin{center}
+\includegraphics[width=0.75\textwidth]{15}
+\end{center}
+Consideriamo la stringa w = 0011 $\in$ L
+$\widehat{\delta}(q_{0}, 0011$ = $\widehat{\delta}(\delta(q_{0},011))$ =
+$\widehat{\delta}(q_{2},011)$ = $\widehat{\delta}(\delta(q_{2},0).11)$ = 
+$\widehat{\delta}(q_{2},11)$ = $\widehat{\delta}(\delta(q_{2},q)$ = 
+$\widehat{\delta}(q_{1},1)$ = $\widehat{\delta}(\delta(q_{1},1),\epsilon)$ = 
+$\widehat{\delta}(q_{1}, \epsilon) = q_{1}\in F \to w = 0011 \in L$
+\paragraph{Il libro usa questo metodo: }
+$\widehat{\delta}(q,xa)$ = $\delta(\widehat{\delta}(q,x),a)$ 
+ con xa$\in \Sigma^{*} e a \in \Sigma$
+\\ \\ 
+Devo capire se 0011 appartiene al linguaggio, quindi: \\ \\
+$\widehat{\delta}(q_{0},0011) = \delta(\widehat{\delta}(q_{0},001),1)$ =
+$\delta(\delta(\widehat{\delta}(q_{0},00),1),1$ =  
+$\delta(\delta(\delta(\delta(\widehat{\delta}(q_{0},00),1),1),1),1)$ con \\ \\
+$\delta(\widehat{\delta}, \epsilon) = q_{0}$ e \\ \\
+$\delta(\widehat{\delta},0) = \delta(\widehat{\delta}(q_{0},\epsilon),0)$ =
+$\delta(q_{0},0 = q_{2}$ =\\ \\
+$\delta(\widehat{\delta},00) = \delta(\widehat{\delta}(q_{0},0),0)$ =
+$\delta(q_{0},0 = q_{2}$ = \\ \\
+$\delta(\widehat{\delta},001) = \delta(\widehat{\delta}(q_{0},00),1)$ =
+$\delta(q_{2},3 = q_{1}$ = \\ \\
+$\delta(\widehat{\delta},0011) = \delta(\widehat{\delta}(q_{0},001),1)$ =
+$\delta(q_{1},1 = q_{1}$
+\paragraph{Esercizio 13: }
+Progettare un DFA per L = $\{w \in \{0,1\}^{*}$ | w contiene almeno una volta
+000\}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{16}
+\end{center}
+\paragraph{Esercizio 14: }
+Progettare un DFA per L = $\{w \in \{0,1\}^{*}$ | w \textbf{non} contiene
+000\}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{17}
+\end{center}
+Dato un linguaggio ed un automa per esso, per capire come fare il complemento (
+tutte le stringhe che NON appartengono al linguaggio) osserviamo il modo in cui
+differiscono i due esercizi precedenti 
+\paragraph{Esercizio 15: }
+Progettare un DFA per L = $\{w \in \{0,1\}^{*}$ | w contiene esattamente una volta
+000\}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{18}
+\end{center}
+\paragraph{Esercizio 16: }
+Progettare un DFA per L =$ \{w \in \{a,b,c\}^{*}$ | w finisce con b e le occorrenze
+di b sono singole o a coppie\}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{19}
+\end{center}
+\section{Automa a stati finiti NON deterministico: NFA}
+Per introdurci a questo argomento, vediamo un esercizio:
+\paragraph{Esercizio: }
+Progettare un DFA per L = \{x01 | x$\in\{0,1\}^{*}$\}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{20}
+\end{center}
+In caso di automi complicati potrebbero verificarsi sviste, problemi o errori, 
+pertanto sono stati inventati gli automi a stati finiti \textbf{NON} deterministici.
+\\ \\
+Nei DFA $\delta$ prende lo stato in cui si trova l'automa, prende l'input e dice
+cosa diventerà quello stato MENTRE nell'NFA $\delta$ guarda cosa entra e poi 
+ci indirizza ad un certo insieme di stati:
+\[
+	\delta : Q \times \Sigma \to 2^{Q}
+\]
+\begin{center}
+\includegraphics[width=0.75\textwidth]{21}
+\end{center}
+Come è possibile notare adesso $\delta$ è diventata una funzione parziale, inoltre
+il non determinismo è visibile in due modi:
+\begin{enumerate}
+	\item Trovo tutte le possibilità, cioè l'automa si trova in più stati 
+	contemporaneamenta, si spezza, si duplica, ed una parte continua con una
+	sua computazione, l'altra con la sua. 
+	\begin{center}
+	\includegraphics[width=0.75\textwidth]{22}
+	\end{center}
+	\paragraph{Cosa notiamo? }Uno dei rami farà morire la coputazione, nel senso
+	che letteralmente si blocca, non può proseguire, ma gli altri possono continuare.
+	
+\end{enumerate}
 \end{document}
