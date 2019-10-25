@@ -1007,8 +1007,143 @@ effettivamente finito di fare quel che deve fare? Si in due modi
 	più che a volte si riescono a chiedere per finire di scrivere nome cognome
 	e data in un esame.. E matricola
 \end{itemize}
-
-
+\chapter{Scheduling della CPU}
+\section{Cos'è lo scheduling?}
+Schedulare significa stabilire l'ordine e il momento dell'esecuzione delle 
+istruzioni impartite a un elaboratore: Cioè per esempio, anche la stampa
+di un file.
+\paragraph{Osservazione: }Non esiste un solo metodo per schedulare i processi,
+infatti esistono svariati algoritmi, addirittura Linux nel corso degli anni
+ha cambiato 3 volte i suoi algoritmi
+\paragraph{Esiste uno scheduling perfetto? }All'atto pratico no, nel senso, si
+deve simulare un ipotetico carico medio di lavoro, per capire come fare 
+funzionare al meglio le risorse, ma non esiste l'algoritmo perfetto. SE PERO'
+conoscessimo perfettamente il carico di lavoro, ALLORA chiaramente si può
+distribuire perfettamente il carico. (Spoiler: No, non si può conoscere 
+in modo perfetto.)
+\section{Concetti fondamentali}
+L'obbiettivo è sempre lo stesso, ovvero massimizzare l'uso della cpu, ed infatti
+gli algoritmi di scheduling sfruttano il fatto che di norma l'esecuzione di un 
+processo è una serie di \begin{itemize}
+\item Burst della CPU: Sequenza di operazioni della CPU
+\item Burst dell'I/O: Attesa del completamento dell'operazione di I/O
+\end{itemize}
+Sapersi gestire i burst della CPU è essenziale. Ma quanto dura un burst?
+In programmi normali è generalmente c'è un alto numero di burst brevi ed un 
+basso numero di burst lunghi.
+\section{Scheduler della CPU (A breve termine)}
+Seleziona un processo tra quelli nella ready queue ed alloca un intero core ad 
+esso, ma in che modo?
+\paragraph{Modo nonPreemptive} o cooperativo, senza preselezione
+\begin{enumerate}
+	\item Quando un processo passa da running a waiting
+	\item Quando un processo passa da running a ready
+	\item Quando un processo passa da waiting a ready
+	\item Quando un processo termina
+\end{enumerate}
+Questo metodo è stato praticamente mollato da Windows 95, però non è del tutto
+così. Nel senso, Windows 95 eseguiva sia software a 32 che 16 bit, e quindi
+quando eseguiva quelli a1 16 utilizzava il metodo nonPreemptive.  
+\paragraph{Modo preemptive}
+Si applica per rispondere e risolvere le seguenti domande
+\begin{enumerate}
+	\item E se due processi condividono dati?
+	\item E se un processo esegue codice in modalità kernel?
+	\item E se un processo sta eseguendo un gestore degli interrupt?
+	\item (E se sti gran $^{*}Censura^{*}$ ;) )
+\end{enumerate}
+\section{Dispatcher}
+Si occupa di passare il controllo della CPU al processo scelto dallo scheduler,
+e impiega del tempo, infatti esiste un dispatch lag, o anche latenza di dispatch,
+che in pratica si genera dalle seguenti operazioni:
+\begin{enumerate}
+	\item Effetta il cambio di contesto
+	\item Passa in modalità utente
+	\item Salta nel punto corretto del programma del processo selezionato, cioè
+	alla fine dove era stato interrotto
+\end{enumerate}
+\section{Gli algoritmi di scheduling}
+Prima di capire se un algoritmo è migliore di un altro abbiamo da tenere in 
+considerazione ci sono una serie di criteri da tenere in considerazione, cioè
+\begin{enumerate}
+	\item Utilizzo della CPU (In percentuale), quanto tengo impegnata la cpu
+	ad eseguire codice utente (Di solito si va dal 40 al 90\%) 
+	\item Throughput: Numero di processi che completano l'esecuzione in una
+	determinata unità di tempo (ad esempio $\lambda \frac{Processi}{s}$ )
+	\item Tempo di completamento: Tempo che serve per finire l'esecuzione
+	di un processo (dipende da troppi fattori, tra l'altro c'è pure l'attesa I/O,
+	cioè immaginatevi un programma che fa un input e l'utente sta li fermo
+	per 3 ore... Ed il programma finisce con print("ciao"))
+	\item Tempo di attesa: Tempo in cui il processo sta nella ready queue
+	\item Tempo di risposta: Negli ambienti time-sharing (quelli in cui si ha
+	un solo core per intenderci) è il tempo che passa da quando arriva una
+	richiesta al processo a quando effettivamente si arriva alla prima risposta
+	SENZA l'emissione di questa nell'output. %rédichiù
+\end{enumerate}
+\subsection{Scheduling in ordine d'arrivo}
+FCFS (First come, first served), il primo che arriva è il primo che se ne va, 
+come le code, sì, esatto. Proprio per questo è anche semplice da implementare,
+è una coda.. La sappiamo fare MA ha uno svantaggio, il tempo medio di attesa
+(dipendente da quanti processi si hanno) potrebbe essere lungo.
+\subsection{Scheduling per brevita}
+SJF (Shortest job first), colui che ha il burst più piccino viene preso per primo,
+in questo modo diminuisce il tempo di attesa medio.. Ok ma, come fai a sapere 
+quanto sarà lungo un burst prima di eseguirlo? Come fai a capire quanti anni ci
+avrai impiegato per laurearti PRIMA di avere fatto l'iscrizione in uni? Esatto,
+minimo 5 (per la triennale).
+\paragraph{Si ma quindi è applicabile?} Allora, fondamentalmente è utopistico ma
+applicabile in qualche strano modo, in cui si fanno delle previsioni. Per capire
+meglio si fa una stima di durata del burst ragionando sui seguenti dati:
+\begin{enumerate}
+	\item $T_{n} = $ durata dell'n-esimo burst
+	\item Scegliamo un valore $\alpha\in (0,1)$
+	\item $T_{\kappa + 1} = \alpha\cdot T_{k} + (1- \alpha)T_{k}$
+	\item La mia media esponenziale (data da) $T_{n+1}$
+\end{enumerate}
+C'è anche una versione preemptive, che si chiama shortest-remaining-time-first,
+non è buona come la SJF ma ci si avvicina comunque.
+\paragraph{E L'$\alpha$?}
+E' un valore che si ottiene confrontando la stima del burst precedente con 
+l'effettivo vero burst precedente. Generalmente si mette = 0,5 cioè random
+va o uno o l'altro. Se fosse 1 o 0:
+\begin{itemize}
+	\item 1: Non conta il burst precedente
+	\item 0: Conta solo il burst precedente %nell'arrédichiù
+\end{itemize}
+In questo caso teniamo non proprio in considerazione qual è il processo che 
+impiega effettivamente meno, ma quello a cui rimane meno roba da fare
+\subsection{Scheduling Circolare}
+E' il Round Robin, di solito viene combinato ad altri algoritmi, ma fondamentalmente
+è quello pià usato, è il classico algoritmo preemptive.
+\paragraph{Come funziona? }Ogni processo ha una quantità fissata di tempo che 
+sta tra i 10 ed i 100 millisecondi, ed è praticamente come distribuire le
+carte a Poker. \\ \\
+So con certezza qual è il limite superiore che un processo attenderà, se ci sono
+n processi nella ready queue il quanto temporale è q, ed ogni processo
+otterrà $\frac{1}{n} $ di tempo di CPU E nessuno di questi aspetterà più di
+q(n-1). 
+\subparagraph{Che performance ha?}
+\begin{itemize}
+	\item Se q è alto, tende al FCFS
+	\item Se q è basso, ottieni 
+\end{itemize}	
+Rispetto a SJF ha un tempo medio più alto dal punto di vista del completamento 
+ma allo stesso tempo riduce le latenza, ATTENZIONE, migliorando q non si 
+implica un miglioramento del tempo di completamento.
+\subsection{Scheduling con Priorità}
+Ogni processo ha un numero intero che rappresenta la sua priorità, più è basso
+il valore, più questo ha priorità appunto.
+Può pure essere preemptive, ed ha priorità sui nonPreemptive
+\paragraph{E se due processi hanno stessa proprietà? }A quel punto qualsiasi
+strategia va bene, dipende dal processo (Linux questo lo gestisce bene). 
+Viene eseguito il processo con priorità più alta per primo chiaramente
+\paragraph{Sì, ma se ho un processo di bassa priorità? }Potrebbe pure non essere 
+mai schedulato, potrebbe morire per \textbf{Stravation}, non viene mai eseguito
+\paragraph{Soluzione? }Invecchiamento (Aging), ossia diminuzione progressiva
+del valore di priorità (aumento progressivo della priorità)  
+\paragraph{CALMI, Precisiamo meglio questa cosa: }IL VALORE che si associa alla
+priorità più è alto, più il processo PERDE priorità. Esempio: Priorità 0 viene 
+eseguita PRIMA di priorità 1.
 
 
 \end{document}
