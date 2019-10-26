@@ -5,7 +5,9 @@
 \usepackage{amsmath} 
 \usepackage{xcolor}
 \usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
 \usepackage{hyperref}
+\graphicspath{{./img/}}
 \hypersetup{
 colorlinks=true,
 linkcolor=blue,
@@ -927,7 +929,8 @@ a lezione, con un grafico che aiuta a capire meglio l'andamento.
 Idealmente l'incremento dovrebbe essere esponenziale, ma in realtà si dimostra
 che progressivamente si appiattiscono le prestazioni ed il rapporto tra costo
 e prestazione diventa meno conveniente.\\ \\
-Quindi, si dimostra che più di 4/8 core è pressochè inutile spingersi PER ORA
+Quindi, si dimostra che più di 4/8 core PER ORA siano più che sufficienti per 
+quelle che sono le operazioni che facciamo noi oggi.
 \section{Modelli di supporto per Threading}
 \begin{itemize}
 	\item Thread livello utente:
