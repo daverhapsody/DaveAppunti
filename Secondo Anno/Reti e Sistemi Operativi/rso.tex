@@ -917,16 +917,26 @@ N invece è il numero di core
 (S = 25\%)
 \begin{itemize}
 	\item Se ho 2 core 1,16 volte più veloce del single core
-	\item Se ho 4 core 2,28 volte più veloce del dual core
+	\item Se ho 4 core 2,28 volte più veloce del single core
 \end{itemize}
+\paragraph{Siccome si capisce effettivamente poco} allego l'immagine riportata
+a lezione, con un grafico che aiuta a capire meglio l'andamento.
+\begin{center}
+\includegraphics[width=0.75\textwidth]{ambdahl}
+\end{center}
 Idealmente l'incremento dovrebbe essere esponenziale, ma in realtà si dimostra
 che progressivamente si appiattiscono le prestazioni ed il rapporto tra costo
 e prestazione diventa meno conveniente.\\ \\
 Quindi, si dimostra che più di 4/8 core è pressochè inutile spingersi PER ORA
 \section{Modelli di supporto per Threading}
 \begin{itemize}
-	\item Thread livello utente
-	\item Thread livello Kernel\\
+	\item Thread livello utente:
+	Ci sono una serie di librerie in grado di gestire i thread nello spazio 
+	dedicato ai processi utente. (Threads di tutto ciò che non è l'OS, per 
+	semplificare)
+	\item Thread livello Kernel: Tutto ciò che è riguardante l'OS, ad esempio
+	il Thread di gestione dell'orologio, oppure quello che serve per anche solo
+	la barra applicazioni. \\
 \end{itemize}
 Inizialmente il kernel era monoThread, e tutto ciò che era multiThread era 
 nell'userspace, quindi questo è praticamente pseudoparallelismo, perchè se un
