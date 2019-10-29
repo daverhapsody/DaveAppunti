@@ -1718,7 +1718,129 @@ la stessa clausola, perchè non elimina ricorsivamente tutte le occorrenze.
 \subparagraph{Mi spiego peggio: }Se avessimo due volte la stessa clausola 
 (felice(personaGenerica)), e volessimo rimuoverle entrambe, non sarebbe possibile.
 Se ne rimuove solo una alla volta.
+%\paragraph{Vediamo un esempio: } dato il codice:
+%\begin{lstlisting}[language=Prolog]
+%	%Versione DETERMINISTICA
+%	elemento(X, [X|_]) :- ! .
+%	elemento(X,[Y|Ys]) :- (X\=Y), el(X,Ys).
+%
+%	%Versione NON DETERMINISTICA
+%	elemento4(X, [X|_]) :- ! .
+%	elemento4(X, [X|_]).
+%	elemento4(X,[Y|Ys]) :- (X\=Y), el(X,Ys).
+%\end{lstlisting}
+\chapter{Input/Output in Prolog}
+Come ogni comando visto finora questi saranno predicati, che avranno la 
+possibilità di acquisire e stampare valori (read, write). 
+Inoltre sono presenti anche comandi di gestione di file e degli stream (open, 
+close, seek etc.)
+\section{Read \& Write}
+Con Read e Write è possibile stampare e leggere dei \textbf{termini} Prolog,
+con il write che sarebbe l'equivalente del toString() in Java, mentre read
+invoca il parser di Prolog, vediamo alcuni esempi presi dalle slides:
+\begin{center}
+\includegraphics[width=0.75\textwidth]{esempi}
+\end{center}
+Analizziamo il terzo di questi che è già abbastanza complesso: 
+read(What). praticamente cosa fa? Legge ed unifica con la variabile What. Quindi
+quando passiamo foo(42, Bar), lui farà l'unificazione con questa. Cosa fa poi?
+Praticamente Prolog ti scrive What = foo(42, \_G270). (Per i gamers, sì, anche
+io ho pensato al G27).
+\section{Open \& Close}
+Sempre dalle slides vi riporto gli esempi:
+\begin{center}
+\includegraphics[width=0.75\textwidth]{openclose}
+\end{center}
+Come notiamo, l'open ha 3 argomenti che sono il percorso file, la modalità di
+apertura e infine lo stream, che è rappresentato da Out. (Mi manca sinceramente
+l'fopen di C/C++). \\ \\Sotto di fatto gli spariamo un write in Out con su scritto
+foo(bar). Il put dopo? Niente, ci mette il punto dopo la funzione Prolog.
+nl? Niente, fa il newline, il ritorno a capo, semplicemente. Inoltre
+\begin{itemize}
+	\item Prolog usa la notazione 0’c per rappresentare i caratteri come termini
+	\item Put spara fuori SOLO un carattere, write una stringa.
+	\item Il read di un file legge tutto quanto MA vedremo un altro parametro che
+	aggiunge pure un limite di caratteri da leggere
+\end{itemize}
+\chapter{Interpreti in Prolog}
+La domanda che spesso mi sono posto: Che schifo di linguaggio è un linguaggio in
+cui per fare una somma devo soffrire ricorsivamente ogni singolo comando che 
+scrivo? Risposta provvisoria: Bravissimi, ad un emerito *\textit{censura}*
+\paragraph{Per l'appunto: }Prolog si presta ad utilizzi del tipo parsers o 
+interpreti, ma come si può costruire un interprete che (non deterministicamente)
+riconosca dei linguaggi regolari? Dalle slide spunta questo codice:
+\begin{center}
+\includegraphics[width=0.75\textwidth]{accept}
+\end{center}
+Data una stringa, questo frammento ti dice se si accetta o no la suddetta. Come
+ragiona? 
+\begin{itemize}
+	\item Se ho una transizione da S ad N con un simbolo i (delta indica le
+	transizioni) allora accetta la stringa
+\end{itemize}
+E mi rendo conto che darti un codice senza contestualizzarlo sia un po' infame
+da un certo punto di vista, perciò vediamo un automa che almeno è più 
+comprensibile
+\begin{center}
+\includegraphics[width=0.75\textwidth]{autom}
+\end{center}      
+Come va a codificarsi questo automa?
+\begin{lstlisting}[language=Prolog]
+initial(q0). final(q1).
 
-
+delta(q0, a, q1). 
+delta(q1, b, q0). 
+delta(q1, c, q1).
+\end{lstlisting}
+Per decidere se una certa sequenza di simboli è riconosciuta dall’automa 
+possiamo costruire il seguente predicato:
+\begin{center}
+\includegraphics[width=0.75\textwidth]{reco}
+\end{center}
+\section{Interprete di un CFG}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{acceptpila}
+\end{center}
+Considerando il linguaggio $L=\{wrw^{R}|w \in\{a,b,c\}^{n} \wedge n\geq0$.
+Quello che accade è che l'automa verrà codificato così
+\begin{center}
+\includegraphics[width=0.75\textwidth]{codificaauto}
+\end{center}
+\section{Meta-Interpreti}
+Il predicato call in pratica è il più semplice \textbf{meta-interprete},
+chiaramente possiamo scrivere degli interpreti pi complessi e specializzati
+se accettiamo di rappresentare i programmi con una sintassi leggermente 
+diversa.
+\paragraph{Ok, ma cosa ci possiamo fare? }Definiamo un predicato 
+\begin{lstlisting}[language=Prolog]
+solve(Goal :- solve(Goal, [])).
+solve([], []).
+solve([], [G | Goals]) :- solve(G, Goals). 
+solve([A | B], Goals) :- append(B, Goals, BGoals),
+solve(A, BGoals). 
+solve(A, Goals) :- rule(A),
+	solve(Goals, []). 
+	solve(A, Goals) :- rule(A, B), 
+	solve(B, Goals).
+\end{lstlisting}
+\textbf{solve} diventa un meta-interprete per i predicati \textbf{rule}che
+compongono il nostro sistema.
+\paragraph{Ragionando per Incertezza invece}
+\begin{lstlisting}[language=Prolog]
+solve_cf(true, 1) :- !.
+solve_cf((A, B), C) :- !, solve_cf(A, CA), solve_cf(B, CB), minimum(CA, CB, C).
+solve_cf(A, 1) :- builtin(A), !, call(A).
+solve_cf(A, C) :- rule_cf(A, B, CR), solve_cf(B, CB), C is CR * CB.
+\end{lstlisting}	
+Devo mi sa rivedermi l'indentazione, perchè ogni and aveva i ritorni a capo.. 
+Appena riesco sistemo questa cosa.
+\chapter{Conclusione di Prolog}
+Prolog non è altro che un linguaggio in grado di esprimere problemi, conoscenze
+e soluzioni in modo naturale (Eh.. 'na robba. naturalissimo guarda.). Lo stile
+è lo stile \textbf{Dichiarativo}, il suo uso è efficace nella programmazione di 
+sistemi deduttivi.\\ \\
+Lo stile di programmazione del Prolog e le idee alla sua base sono i componenti 
+principali di una serie di nozioni utili alla gestione di relazioni semantiche
+su Web (RDF)
 
 \end{document}
