@@ -1831,7 +1831,8 @@ solve_cf(true, 1) :- !.
 solve_cf((A, B), C) :- !, solve_cf(A, CA), 
 		solve_cf(B, CB),
 		minimum(CA, CB, C).
-solve_cf(A, 1) :- builtin(A), !, 
+solve_cf(A, 1) :- builtin(A), 
+		!, 
 		call(A).
 solve_cf(A, C) :- rule_cf(A, B, CR), 
 		solve_cf(B, CB), 
@@ -1839,7 +1840,7 @@ solve_cf(A, C) :- rule_cf(A, B, CR),
 \end{lstlisting}	
 Devo mi sa rivedermi l'indentazione, spero sia corretta. 
 Appena riesco sistemo questa cosa.
-\chapter{Conclusione di Prolog}
+\chapter*{Conclusione di Prolog}
 Prolog non è altro che un linguaggio in grado di esprimere problemi, conoscenze
 e soluzioni in modo naturale (Eh.. 'na robba. naturalissimo guarda.). Lo stile
 è lo stile \textbf{Dichiarativo}, il suo uso è efficace nella programmazione di 
