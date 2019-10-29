@@ -1637,6 +1637,10 @@ che valuta una query composta da un funtore e da una lista di argomenti
 \includegraphics[width=0.75\textwidth]{7}
 \end{center}
 \section{Manipolazione della base di dati}  
+\paragraph{Perchè manipolare direttamente la base di conoscenza? }E' di base 
+una cosa utile il fatto di poter manipolare un database, soprattutto se si tiene
+in mente il fatto che diventa possibile memorizzare risultati intermedi di una
+computazione. (Memorization o catching)
 Dato un programma Prolog, sappiamo che questo è praticamente costituioto da un
 database (per favore, chiamatelo knowledge base, basi di dati è al prossimo 
 semestre) contenente fatti e regole\\ \\
@@ -1690,6 +1694,30 @@ bello(dave).
 bello(dave).
 true
 \end{lstlisting} 
+\section{Varianti dell'assert}
+\subsection{Asserta}
+Sarebbe Assert-a, ovvero l'asserzione viene messa in cima alla lista delle 
+clausole
+\subsection{Assertz}
+Stesso discorso dell'assert-a ma in questo caso invece di inserire all'inizio
+te lo aggiunge alla fine in coda
+Ora indubbiamente abbiamo asserito delle verità assolute e dimostrabili, come
+la magifica bellezza di Dave MA, supponiamo che per sbaglio qualcuno asserisca
+una clausola che dopo non servirà più, come si può eliminare? 
+\section{Retract}
+Il retract è l'operatore inverso dell'assert, molto semplicemente rimuove delle
+clausole dalla lista. Per intenderci, è l'operatore PERFETTO per clausole tipo:
+\begin{center}
+carbonara(X, Y), ingredienti(parmigiano, Y). 
+\end{center}
+Che tradotto è: LA CARBONARA E' SACRA.
+\paragraph{Il listing} produrrà una lista che chiaramente sarà priva della 
+clausola che abbiamo rimosso (E grazie al *\textit{censura}*). \\ \\
+Ad ogni modo è un comando che tornerà utile se abbiamo asserito più volte
+la stessa clausola, perchè non elimina ricorsivamente tutte le occorrenze.
+\subparagraph{Mi spiego peggio: }Se avessimo due volte la stessa clausola 
+(felice(personaGenerica)), e volessimo rimuoverle entrambe, non sarebbe possibile.
+Se ne rimuove solo una alla volta.
 
 
 
