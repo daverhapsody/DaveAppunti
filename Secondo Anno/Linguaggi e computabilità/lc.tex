@@ -1496,77 +1496,53 @@ possibili sottoinsiemi MA considerare il tutto stato per stato:
 \end{tabular}
 \end{center}
 \paragraph{Altro esempio: }Dato il seguente NFA:
+
 \begin{center}
 \begin{tikzpicture}[scale=0.2]
 \tikzstyle{every node}+=[inner sep=0pt]
-\draw [black] (19.9,-22.5) circle (3);
-\draw (19.9,-22.5) node {$A$};
-\draw [black] (16.7,-32.9) circle (3);
-\draw (16.7,-32.9) node {$B$};
-\draw [black] (35.5,-33.2) circle (3);
-\draw (35.5,-33.2) node {$E$};
-\draw [black] (33,-8.7) circle (3);
-\draw (33,-8.7) node {$C$};
-\draw [black] (55.2,-8.1) circle (3);
-\draw (55.2,-8.1) node {$D$};
-\draw [black] (55.2,-8.1) circle (2.4);
-\draw [black] (58.3,-33.5) circle (3);
-\draw (58.3,-33.5) node {$F$};
-\draw [black] (58.3,-33.5) circle (2.4);
-\draw [black] (51.5,-20.5) circle (3);
-\draw (51.5,-20.5) node {$G$};
-\draw [black] (46.7,-48.6) circle (3);
-\draw (46.7,-48.6) node {$H$};
-\draw [black] (46.7,-48.6) circle (2.4);
-\draw [black] (20.703,-19.621) arc (192.15438:-95.84562:2.25);
-\draw (26.17,-16.98) node [above] {$0,1$};
-\fill [black] (22.67,-21.39) -- (23.56,-21.71) -- (23.35,-20.73);
-\draw [black] (6.1,-32.9) -- (13.7,-32.9);
-\draw (5.6,-32.9) node [left] {$Start$};
-\fill [black] (13.7,-32.9) -- (12.9,-32.4) -- (12.9,-33.4);
-\draw [black] (17.522,-35.773) arc (43.69515:-244.30485:2.25);
-\draw (15,-40.13) node [below] {$1$};
-\fill [black] (14.92,-35.3) -- (14,-35.49) -- (14.69,-36.21);
-\draw [black] (19.7,-32.95) -- (32.5,-33.15);
-\fill [black] (32.5,-33.15) -- (31.71,-32.64) -- (31.69,-33.64);
-\draw [black] (19.589,-19.525) arc (-181.60736:-265.41138:11.335);
-\fill [black] (19.59,-19.52) -- (20.11,-18.74) -- (19.11,-18.71);
-\draw (22.17,-10.57) node [left] {$0$};
-\draw [black] (52.998,-10.137) arc (-48.93661:-86.67915:50.253);
-\fill [black] (22.9,-22.42) -- (23.73,-22.87) -- (23.67,-21.87);
-\draw (40.65,-19.31) node [below] {$0,1$};
-\draw [black] (36,-8.62) -- (52.2,-8.18);
-\fill [black] (52.2,-8.18) -- (51.39,-7.7) -- (51.41,-8.7);
-\draw (44.12,-8.93) node [below] {$1$};
-\draw [black] (36.823,-35.88) arc (54:-234:2.25);
-\draw (35.5,-40.45) node [below] {$0$};
-\fill [black] (34.18,-35.88) -- (33.3,-36.23) -- (34.11,-36.82);
-\draw [black] (38.009,-31.561) arc (118.45654:60.03576:18.266);
-\fill [black] (55.84,-31.8) -- (55.39,-30.96) -- (54.89,-31.83);
-\draw (46.96,-28.84) node [above] {$1$};
-\draw [black] (55.436,-34.388) arc (-75.4292:-106.0785:32.346);
-\fill [black] (38.34,-34.16) -- (38.97,-34.87) -- (39.25,-33.9);
-\draw (46.87,-35.94) node [below] {$0$};
-\draw [black] (61.13,-34.46) arc (99:-189:2.25);
-\draw (63.6,-39.75) node [right] {$1$};
-\fill [black] (59.26,-36.33) -- (58.89,-37.2) -- (59.88,-37.04);
-\draw [black] (52.36,-17.63) -- (54.34,-10.97);
-\fill [black] (54.34,-10.97) -- (53.63,-11.6) -- (54.59,-11.88);
-\draw (54.12,-14.9) node [right] {$1$};
-\draw [black] (48.81,-21.827) arc (-66.02561:-106.73142:37.56);
-\fill [black] (22.74,-23.48) -- (23.36,-24.19) -- (23.65,-23.23);
-\draw (36,-25.55) node [below] {$0$};
-\draw [black] (44.94,-46.17) -- (37.26,-35.63);
-\fill [black] (37.26,-35.63) -- (37.33,-36.57) -- (38.14,-35.98);
-\draw (41.69,-39.52) node [right] {$0$};
-\draw [black] (48.53,-46.22) -- (56.47,-35.88);
-\fill [black] (56.47,-35.88) -- (55.59,-36.21) -- (56.38,-36.82);
-\draw (53.07,-42.46) node [right] {$1$};
+\draw [black] (16.5,-23.6) circle (3);
+\draw (16.5,-23.6) node {$q0$};
+\draw [black] (16.5,-23.6) circle (2.4);
+\draw [black] (36.6,-14.7) circle (3);
+\draw (36.6,-14.7) node {$q1$};
+\draw [black] (36.6,-14.7) circle (2.4);
+\draw [black] (52.1,-22.9) circle (3);
+\draw (52.1,-22.9) node {$q3$};
+\draw [black] (36.5,-36) circle (3);
+\draw (36.5,-36) node {$q2$};
+\draw [black] (9.3,-24.8) -- (13.54,-24.09);
+\draw (8.59,-25.03) node [left] {$start$};
+\fill [black] (13.54,-24.09) -- (12.67,-23.73) -- (12.83,-24.72);
+\draw [black] (19.24,-22.39) -- (33.86,-15.91);
+\fill [black] (33.86,-15.91) -- (32.92,-15.78) -- (33.33,-16.7);
+\draw (27.47,-19.66) node [below] {$a$};
+\draw [black] (19.05,-25.18) -- (33.95,-34.42);
+\fill [black] (33.95,-34.42) -- (33.53,-33.57) -- (33.01,-34.42);
+\draw (25.56,-30.3) node [below] {$a$};
+\draw [black] (35.098,-33.351) arc (-156.43853:-204.09946:19.82);
+\fill [black] (35.17,-17.34) -- (34.39,-17.86) -- (35.3,-18.27);
+\draw (32.94,-25.34) node [left] {$b$};
+\draw [black] (38.118,-17.284) arc (25.76586:-26.30385:18.394);
+\fill [black] (38.04,-33.43) -- (38.85,-32.94) -- (37.95,-32.49);
+\draw (40.45,-25.37) node [right] {$a$};
+\draw [black] (36.552,-11.712) arc (208.65382:-79.34618:2.25);
+\draw (40.42,-8.09) node [above] {$a$};
+\fill [black] (38.94,-12.84) -- (39.88,-12.9) -- (39.4,-12.02);
+\draw [black] (51.094,-25.722) arc (-24.48568:-75.47103:17.658);
+\fill [black] (51.09,-25.72) -- (50.31,-26.24) -- (51.22,-26.66);
+\draw (47.39,-32.42) node [below] {$b$};
+\draw [black] (49.8,-24.83) -- (38.8,-34.07);
+\fill [black] (38.8,-34.07) -- (39.73,-33.94) -- (39.09,-33.17);
+\draw (43.35,-28.96) node [above] {$a$};
+\draw [black] (49.45,-21.5) -- (39.25,-16.1);
+\fill [black] (39.25,-16.1) -- (39.73,-16.92) -- (40.19,-16.04);
+\draw (45.29,-18.3) node [above] {$a$};
 \end{tikzpicture}
 \end{center}
-
 \begin{center}
 \begin{tabular}{ |c|c|c| } 
+ \hline
+ & a & b \\
  \hline
  $\star \to \{q_{0}\}$& $\{q_{0},q_{2}\}$ & $ \varnothing$\\ 
  $\star\{q_{1},q_{2}\} $& $\{q_{1},q_{2}\} $&$ \{q_{1},q_{3}\}$ \\ 
@@ -1579,7 +1555,11 @@ Ecco il risultato della conversione in DFA:
 \begin{center}
 \includegraphics[width=0.75\textwidth]{24}
 \end{center}
-
+Come è possibile notare, è stato usato invece delle letterine dell'alfabeto tanto
+carine, la dicitura con gli insiemi, che è brutta e cattiva. E non perchè sono
+completamente incapace di fare le parentesi graffe, lo giuro.
+\subparagraph{Scherzi a parte,}	 Una scrittura, si 
+equivale all'altra
 
 
 
