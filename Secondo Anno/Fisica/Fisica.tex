@@ -656,7 +656,7 @@ forza per lavorarci su. In termini più semplici: Da sinistra verso destra l'equ
 $\overrightarrow{F} = m \cdot \overrightarrow{a}$ va bene MA da destra verso
 sinistra no. Un esempio di alternativa a questo? 
 \paragraph{Legge di Gravitazione Universale}
-(Approfondito nel capitolo 7 di questi appunti)
+(Approfondito da pagina \pageref{LeggeGrav} di questi appunti)
 \[\overrightarrow{F_{a}} = G \cdot \frac{M\cdot m}{d^{2}}\] in cui la G è la
 costante di gravitazione universale ed è $g = \frac{G\cdot M}{R_{Terra}^{2}}$, 
 g invece è la forza g, quella che si vede di solito in F1 in curva o frenata, in
@@ -963,13 +963,14 @@ di comprensione son lievemente... Circa calati, circa..) si ha che:
 \Delta U = -L_{p} = m\cdot g \cdot \Delta y
 \]
 \chapter{Legge della Gravitazione Universale}
+\label{LeggeGrav}
 Riprendiamo un concetto importante, ovvero il secondo principio della dinamica:
 \[
-	\overrightarrow{F} = m \cdot \overrightarrow{a}
+\overrightarrow{F} = m \cdot \overrightarrow{a}
 \]
 E quindi ragionando per formula inverse, Newton definì:
 \[
-	\overrightarrow{a} = \frac{\overrightarrow{F}}{m}
+\overrightarrow{a} = \frac{\overrightarrow{F}}{m}
 \]
 Successivamente occorrerà menzionare le leggi di Keplero.
 \paragraph{Storicamente: }Ciò che fece fu semplicemente analizzare una serie di
@@ -992,7 +993,7 @@ Qui si fa riferimento a diversi corpi che orbitano attorno al sole (o comunque
 ad un altro corpo). Si dimostra che il rapporto tra il $periodo^{2}$ ossia il
 tempo necessario per compiere un intero giro, ed il $raggio^{3}$ rimane costante.
 \[ 
-	\frac{T^{2}}{R^{3}} = costante
+\frac{T^{2}}{R^{3}} = costante
 \]
 E se rimane costante significa che $T^{2} = k\cdot r^{3}$, e teniamoci a mente
 questo $k = \frac{T^{2}}{r^{2}}$, servirà tra poco.
@@ -1005,49 +1006,96 @@ nulla a spingere i pianeti per farli orbitare, e ne consegue quindi che esista
 una forza centripeta (che appunto attrae i corpi a sè verso un centro).
 \paragraph{Si dimostra quindi che: }
 \[
-	\frac{dA}{dt} = \frac{|\overrightarrow{r}|\cdot |d \overrightarrow{r}|}{2\cdot dt}
+\frac{dA}{dt} = \frac{|\overrightarrow{r}|\cdot |d \overrightarrow{r}|}{2\cdot dt}
 \]	
 Con  $d \overrightarrow{r} = \overrightarrow{v}\cdot dt$ = $r\cdot d \theta$
 \[
-	\frac{dA}{dt} = \frac{r^{2}}{2} \cdot \frac{dv}{dt} = \frac{r^{2}}{2}\cdot \omega
+\frac{dA}{dt} = \frac{r^{2}}{2} \cdot \frac{dv}{dt} = \frac{r^{2}}{2}\cdot \omega
 \]
 E $\frac{r^{2}}{2}\cdot \omega$ rimane costante, ed $\omega$ sarebbe la velocità
 angolare, calcolabile facendo $\frac{2\pi}{T}$ con T che è il periodo che ci
 si impiega a compiere un giro.
 \[
-	a_{c} = \omega^{2} \cdot r
+a_{c} = \omega^{2} \cdot r
 \]	
 Con $a_{c}$ che sarebbe l'accelerasione centripeta, essendoci una accelerazione
 ora si può definire la FORZA centripeta:
 \[
-	F_{c} = m\cdot a_{c} = m\cdot \omega^{2}\cdot r
+F_{c} = m\cdot a_{c} = m\cdot \omega^{2}\cdot r
 \]	
 \[
-	F_{c} = 4 \cdot \pi^{2} \cdot \frac{m_{T}}{k_{T}} \cdot \frac{1}{r^{2}} = F_{TS}
+F_{c} = 4 \cdot \pi^{2} \cdot \frac{m_{T}}{k_{T}} \cdot \frac{1}{r^{2}} = F_{TS}
 \]	
 La T indica letteralmente la Terra, mentre invece
 $F_{TS}$ sarebbe la forza esercitata dalla Terra sul Sole, mentre nel caso della 
 forza esercitata dal Sole sulla terra:
 \[
-	F_{ST} = 4\cdot \pi^{2} \frac{m_{S}}{k_{S}} \cdot \frac{1}{r^{2}}
+F_{ST} = 4\cdot \pi^{2} \frac{m_{S}}{k_{S}} \cdot \frac{1}{r^{2}}
 \]	
 Quindi è possibile dire che la forza centripeta sia proporzionale ad 
 $\frac{1}{r^2}$, e si ha una dimostrazione del PERCHE' ciò che ha detto Keplero
 funziona. E non è tutto. \\ \\ 
 Si nota che $F_{TS} = F_{ST}$, che quindi significa: 
 \[
-	4 \cdot \pi^{2} \cdot \frac{m_{T}}{k_{T}} \cdot \frac{1}{r^{2}} = 
-	4\cdot \pi^{2} \frac{m_{S}}{k_{S}} \cdot \frac{1}{r^{2}}
+4 \cdot \pi^{2} \cdot \frac{m_{T}}{k_{T}} \cdot \frac{1}{r^{2}} = 
+4\cdot \pi^{2} \frac{m_{S}}{k_{S}} \cdot \frac{1}{r^{2}}
 \]
 Definiamo inoltre un valore $\gamma = \frac{4\pi^2}{m_{T}\cdot k_{S}} = 
 \frac{4\pi^2}{m_{S}\cdot k_{T}}$ E da qui ragionando su formule inverse di 
 questa uguaglianza si può esprimere che:
 \[
-	F_{ST} = \gamma\cdot \frac{m_{S}m_{t}}{r^{2}} = F_{TS}
+F_{ST} = \gamma\cdot \frac{m_{S}m_{t}}{r^{2}} = F_{TS}
 \]	
+Si definisce $g = \gamma \frac{M_{Terra}}{R_{Terra}^{2}}$, e da qui consegue che
+l'accelereazione lunare sia $a_{Luna} = \gamma \frac{M_{Terra}}{R_{Luna}^{2}}$
+con M che indica la massa mentre R il raggio del corpo (in questo caso celeste
+di riferimento).
+\paragraph{Riporto il grafico di come funziona la velocità angolare rispetto
+alla Terra: }
+\begin{center}
+\includegraphics[width=0.75\textwidth]{3}
+\end{center}
 
-
-
+\paragraph{Calcolo della velocità di un proiettile per non toccare mai terra:}
+In un secondo è dimostrato che un proiettile scenda di 5 metri poichè 
+l'accelerazione $\Delta h = \frac{1}{2}g\cdot t^{2}$. Ne consegue che
+$\Delta L = 7900 \frac{m}{s}$
+\paragraph{Considerando invece l'ISS: } che si trova  a 400km da terra, si 
+osserva che l'accelerazione del corpo in caduta libera è di $g^{'} = 8,6 
+\frac{m}{s^{2}}$
+\paragraph{Spiegato in termini pratici: } Il corpo è in caduta libera MA, nel 
+momento in cui si sposta si sposta con sè anche il pianeta stesso, e quindi
+non cade mai direttamente, o meglio. Quando il corpo arriva nel punto in cui 
+avrebbe dovuto esserci la collisione, il pianeta si è spostato, perciò continua
+ad orbitare
+\subparagraph{In pratica: } la velocità a cui viaggiano i satelliti permette
+di fare in modo che rimanga costante anche la distanza dalla Terra	
+\section*{To conclude}
+Si è dimostrato che esista una forza che dipende dalla massa ed è in grado
+di attirare a sè i corpi. Matematicamente si esprime $\overrightarrow{F_{1,2}} 
+= -g_{N}\cdot \frac{m_{1},m_{2}}{R_{1,2}^{2}} \cdot \widehat{r_{1,2}}$, e
+per il principio di azione-reazione $\overrightarrow{F_{2,1}}= - 
+\overrightarrow{F_{1,2}}$
+Mentre invece, da dove ciccia fuori questa $G_{N}$? 
+\[
+G_{N} = 6,7 \cdot 10^{-11} N \frac{m^{2}}{kg^{2}}
+\]	
+E la massa della terra è calcolabile partendo da $mg =
+G_{N}\cdot \frac{M_{Terra}m}{R^{2}_{Terra}}$, eliminando m che compare da una 
+parte e dall'altra si ottiene la massa terrestre
+\section{Densità}
+La densità indica la quantità di materia distribuita in un volume, o meglio.
+quanta materia c'è in un determinato volume, e si calcola con:
+\[
+	\rho = \frac{M}{\frac{4}{3}\pi \cdot R^{3}}
+\]	
+In cui $\frac{4}{3}\pi\cdot R^{3}$ indica il volume della sfera per poter calcolarne la
+densità. (Siccome stiamo considerando una sfera) ALTRIMENTI in generale lì 
+si indica il volume, riscriviamola
+\[
+	\rho = \frac{M}{Volume}
+\]	
+Letteralmente $\frac{Massa}{Volume}$
 
 
 
