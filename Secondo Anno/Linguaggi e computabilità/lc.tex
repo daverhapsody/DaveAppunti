@@ -801,10 +801,10 @@ Ci sono dei casi particolari
 	\item $\varnothing^{\star} = \varnothing^{0}, \varnothing^{1}, ..., 
 	\varnothing^{n}$
 	\item $\{\epsilon\}^{\star} = \{\epsilon\}^{1}, \{\epsilon\}^{2}, ...,
-	 \{\epsilon\}^{n}$  = $\{\epsilon\}$
-	 \item Qualunque insieme se non vuoto, e non avente solo la stringa vuota,
-	 è in grado di generare qualsiasi stringa, di lunghezza che può estendersi
-	 fino ad $\infty$
+	\{\epsilon\}^{n}$  = $\{\epsilon\}$
+	\item Qualunque insieme se non vuoto, e non avente solo la stringa vuota,
+	è in grado di generare qualsiasi stringa, di lunghezza che può estendersi
+	fino ad $\infty$
 \end{enumerate}
 Tornando alle epsressioni regolari: \\
 Si dice che esse denotino linguaggi regolari, dice come sono fatte le stringhe, 
@@ -874,30 +874,30 @@ Consideriamo due tipi di distributività:
 \end{itemize}
 \paragraph{Vediamo subito un esempio: } Data una ER `$0+01^{\star}$`
 \[
-	L(0+01^{\star}) = L(0) + L(01^{\star}) = \{0\} \cup L(0)L(1^{\star}) =
+L(0+01^{\star}) = L(0) + L(01^{\star}) = \{0\} \cup L(0)L(1^{\star}) =
 \]
 \[
-	= \{0\} \cup \{0\} (L(1))^{\star}) = \{0\} \cup \{0\} \{1\}^{\star} = 
+= \{0\} \cup \{0\} (L(1))^{\star}) = \{0\} \cup \{0\} \{1\}^{\star} = 
 \]
 \[
-	\{0,01,011,0111, 01111, ...\}
+\{0,01,011,0111, 01111, ...\}
 \]
 Con:
 \[
 \begin{cases}
-	\{1\}^{\star} = \epsilon, 1, 11, 111, 1111, ... \\
-	\{0\} \{1\}^{\star} = \epsilon, 01, 011, 0111, 01111, ...
+\{1\}^{\star} = \epsilon, 1, 11, 111, 1111, ... \\
+\{0\} \{1\}^{\star} = \epsilon, 01, 011, 0111, 01111, ...
 \end{cases}
 \]
 A questo punto passiamo a considerare `$0+01^{\star}$`:
 \[
-	0+01^{\star} = 0\epsilon + 01^{\star} = 0(\epsilon + 1^{\star}) = 01^{\star}
+0+01^{\star} = 0\epsilon + 01^{\star} = 0(\epsilon + 1^{\star}) = 01^{\star}
 \]
 \[
-	= (0(\epsilon + 1^{*})) = L(0) L(\epsilon + 1^{*}) = 
+= (0(\epsilon + 1^{*})) = L(0) L(\epsilon + 1^{*}) = 
 \]
 \[
-	= \{0\} (\{\epsilon\} \cup L(1))^{*}) ...
+= \{0\} (\{\epsilon\} \cup L(1))^{*}) ...
 \]
 \section{Idempotenza}
 Dal punto di vista dell'unione si ha che L + L = L, ma se visto aritmeticamente
@@ -908,18 +908,18 @@ La somma non gode dell'indepotenza
 Ed allo stesso modo non ne gode nemmeno il prodotto
 \section{Proprietà chiusura}
 \[
-	(L^{\star})^{\star} = L^{\star}
+(L^{\star})^{\star} = L^{\star}
 \]
 \[
-	(L^{\star})^{\star} = \bigcup \limits _{i \geq 0} {(L^{\star})^{i}}
+(L^{\star})^{\star} = \bigcup \limits _{i \geq 0} {(L^{\star})^{i}}
 \]
 Da questo si deriva che $\varnothing^{\star}=\epsilon$ e $\epsilon^{\star}=\epsilon$,
 ora passiamo ad $L^{+}$
 \[
-	L^{+} = LL^{*} = L^{*}L = L + LL + LLL + LLL = L\epsilon + LL * LLL =
+L^{+} = LL^{*} = L^{*}L = L + LL + LLL + LLL = L\epsilon + LL * LLL =
 \]	
 \[
-	L(\epsilon + L + LL + LLL * ....) = LL^{*}
+L(\epsilon + L + LL + LLL * ....) = LL^{*}
 \]	
 \paragraph{Esercizio 1: } Data ER = $(00^{*}1^{*})^{*}$\\ 
 Fin da subito osserviamo che avremo una serie di blocchi tutti inizianti per
@@ -945,7 +945,7 @@ L = \{$w\in \{a,b,c\}$ | w inizia con a, termina con b, e contiene esattamente D
 L = $\{w\in \{0,1\}\}$ | in w, tutte le coppie 11 seguono tutte le coppie 00, 
 nel senso:
 \[
-	L = L_{11}L_{00} 
+L = L_{11}L_{00} 
 \]
 Attenzione, tutte le coppie 11 SEGUONO tutte le coppie 00, quindi da un lato
 si hanno tutti gli 00 e dall'altra 11: 0011, 00001111, 0000000011111111 
@@ -956,7 +956,7 @@ si hanno tutti gli 00 e dall'altra 11: 0011, 00001111, 0000000011111111
 \end{itemize}
 Ed infine proviamo a scrivere l'ER per L:
 \[
-	(10+0)^{*} (\epsilon + 1) (01+1)^{*} (\epsilon + 0)
+(10+0)^{*} (\epsilon + 1) (01+1)^{*} (\epsilon + 0)
 \]
 Si può addirittura elidere $(\epsilon + 1)$ poichè comparirebbe nella parentesi
 dopo.
@@ -1016,9 +1016,9 @@ la d per dispari)
 A questo punto è necessario fare la nostra tabella 2 x 2 
 \begin{center}
 \begin{tabular}{ | c | c | c }
- / &  0 & 1 \\ 
- $q_{p}$ & $q_{p}$  &  $q_{d}$ \\  
- $q_{d}$ &  $q_{d}$ & $q_{p}$     
+/ &  0 & 1 \\ 
+$q_{p}$ & $q_{p}$  &  $q_{d}$ \\  
+$q_{d}$ &  $q_{d}$ & $q_{p}$     
 \end{tabular}
 \end{center}
 Il disegno dell'automa non l'ho fatto io, ringrazio Gaia (ormai son più suoi
@@ -1103,7 +1103,7 @@ Se $w\in \Sigma^{\star}, \widehat{\delta}(q,w) = p$\\ \\
 \paragraph{Esercizio 8: }Produrre una ER per L =$ \{w\in \{0,1\}^{\star} $| 
 contiene al più (al massimo) una coppia di 1 consecutivi\}
 \[
-	(10+0)^{*}(11+1+\epsilon)(01+0)^{*}
+(10+0)^{*}(11+1+\epsilon)(01+0)^{*}
 \]
 Il primo blocco non può essere ($1+0^{*}$) perchè altrimenti verrebbero fuori in 
 mezzo anche coppie di 11.
@@ -1111,7 +1111,7 @@ mezzo anche coppie di 11.
 Produrre una ER per L = $\{w \in \{a,b,c\}^{*}$ | w contiene almeno una a e almeno
 una b\}
 \[
-	c^{*}(a(a+c)^{*}b+b(b+c)^{*}a)(a+b+c)^{*}
+c^{*}(a(a+c)^{*}b+b(b+c)^{*}a)(a+b+c)^{*}
 \]
 \paragraph{Esercizio 10: }
 Progettare un DFA per L = $\{w \in \{0,1\}^{*} | w = x010y, ~con~x,y\in\{0,1\}^{*}\}$ 
@@ -1138,7 +1138,7 @@ $\widehat{\delta}(q_{1},1)$ = $\widehat{\delta}(\delta(q_{1},1),\epsilon)$ =
 $\widehat{\delta}(q_{1}, \epsilon) = q_{1}\in F \to w = 0011 \in L$
 \paragraph{Il libro usa questo metodo: }
 $\widehat{\delta}(q,xa)$ = $\delta(\widehat{\delta}(q,x),a)$ 
- con xa$\in \Sigma^{*} e a \in \Sigma$
+con xa$\in \Sigma^{*} e a \in \Sigma$
 \\ \\ 
 Devo capire se 0011 appartiene al linguaggio, quindi: \\ \\
 $\widehat{\delta}(q_{0},0011) = \delta(\widehat{\delta}(q_{0},001),1)$ =
@@ -1194,7 +1194,7 @@ Nei DFA $\delta$ prende lo stato in cui si trova l'automa, prende l'input e dice
 cosa diventerà quello stato MENTRE nell'NFA $\delta$ guarda cosa entra e poi 
 ci indirizza ad un certo insieme di stati:
 \[
-	\delta : Q \times \Sigma \to 2^{Q}
+\delta : Q \times \Sigma \to 2^{Q}
 \]
 \begin{center}
 \includegraphics[width=0.75\textwidth]{21}
@@ -1210,6 +1210,380 @@ il non determinismo è visibile in due modi:
 	\end{center}
 	\paragraph{Cosa notiamo? }Uno dei rami farà morire la coputazione, nel senso
 	che letteralmente si blocca, non può proseguire, ma gli altri possono continuare.
-
 \end{enumerate}
+{\color{black} \rule{\linewidth}{0.3mm}}
+\paragraph{Esercizio: }Dato L =\{$x01|x\in\{0,1\}^{\star}$\} 
+Il DFA risulterebbe: 
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (13.5,-21.5) circle (3);
+\draw (13.5,-21.5) node {$q0$};
+\draw [black] (37.2,-20.2) circle (3);
+\draw (37.2,-20.2) node {$q1$};
+\draw [black] (55.5,-19.2) circle (3);
+\draw (55.5,-19.2) node {$q2$};
+\draw [black] (55.5,-19.2) circle (2.4);
+\draw [black] (6.7,-25.8) -- (10.96,-23.1);
+\draw (6.07,-27.1) node [left] {$start$};
+\fill [black] (10.96,-23.1) -- (10.02,-23.11) -- (10.56,-23.95);
+\draw [black] (16.455,-20.98) arc (98.98993:87.28939:87.21);
+\fill [black] (34.21,-20.01) -- (33.43,-19.47) -- (33.38,-20.47);
+\draw (25.24,-19.49) node [above] {$0$};
+\draw [black] (52.843,-20.586) arc (-66.99585:-106.74854:18.926);
+\fill [black] (52.84,-20.59) -- (51.91,-20.44) -- (52.3,-21.36);
+\draw (46.54,-22.61) node [below] {$1$};
+\draw [black] (14.823,-24.18) arc (54:-234:2.25);
+\draw (13.5,-28.75) node [below] {$1$};
+\fill [black] (12.18,-24.18) -- (11.3,-24.53) -- (12.11,-25.12);
+\draw [black] (39.854,-18.807) arc (113.12545:73.13016:18.826);
+\fill [black] (39.85,-18.81) -- (40.79,-18.95) -- (40.39,-18.03);
+\draw (46.16,-16.77) node [above] {$0$};
+\draw [black] (37.971,-23.087) arc (42.69007:-245.30993:2.25);
+\draw (35.32,-27.41) node [below] {$0$};
+\fill [black] (35.38,-22.57) -- (34.45,-22.74) -- (35.13,-23.48);
+\draw [black] (54.072,-21.836) arc (-32.05375:-141.67726:23.813);
+\fill [black] (15.21,-23.96) -- (15.31,-24.9) -- (16.1,-24.28);
+\draw (35.25,-33.53) node [below] {$1$};
+\end{tikzpicture}
+\end{center}
+Mentre l'NFA: $S:Q\times\Sigma \to 2^{Q}$ con $Q = \{a,b,c\}$ e
+$2^{Q} = \{\varnothing, \{a\}, \{b\}, \{c\}, \{a,b\}, \{a,c\, \{b,c\},\{a,b,c\}\}$
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (16.8,-20.8) circle (3);
+\draw (16.8,-20.8) node {$q0$};
+\draw [black] (40.1,-20.9) circle (3);
+\draw (40.1,-20.9) node {$q1$};
+\draw [black] (64.6,-20.2) circle (3);
+\draw (64.6,-20.2) node {$q2$};
+\draw [black] (64.6,-20.2) circle (2.4);
+\draw [black] (19.8,-20.81) -- (37.1,-20.89);
+\fill [black] (37.1,-20.89) -- (36.3,-20.38) -- (36.3,-21.38);
+\draw (28.45,-20.35) node [above] {$0$};
+\draw [black] (43.045,-20.329) arc (99.68657:83.58658:66.376);
+\fill [black] (61.63,-19.8) -- (60.89,-19.21) -- (60.78,-20.21);
+\draw (52.3,-18.88) node [above] {$1$};
+\draw [black] (8.1,-20.8) -- (13.8,-20.8);
+\draw (7.6,-20.8) node [left] {$start$};
+\fill [black] (13.8,-20.8) -- (13,-20.3) -- (13,-21.3);
+\draw [black] (17.807,-23.614) arc (47.41806:-240.58194:2.25);
+\draw (15.6,-28.16) node [below] {$0,1$};
+\fill [black] (15.18,-23.31) -- (14.27,-23.56) -- (15.01,-24.24);
+\end{tikzpicture}
+\end{center}
+Ora disegnamo la tabella:
+\begin{center}
+\begin{tabular}{ |c|c|c| } 
+\hline
+& 0 & 1 \\ \hline
+q0 & \{q0,q1\} & \{q0\} \\ 
+\hline
+q1 & $\varnothing$ & \{q2\} \\
+\hline
+q2 & $\varnothing$ & $\varnothing$ \\ 
+\hline
+\end{tabular}
+(Siccome non so come fare questo grafico, ringrazio di nuovo l'esistenza di Gaia)
+
+\includegraphics[width=0.75\textwidth]{23}
+\end{center}
+A questo punto come si sviluppa $\widehat{\delta}(q,w)?$ Che ci dice in quale 
+stato si trova l'automa dopo aver consumato w. O meglio, in quale insieme di stati
+si va a trovare.
+\paragraph{$1^{a}$ definizione induttiva: }
+\begin{center}
+	\begin{itemize}
+		\item Base: $\widehat{\delta}(q,w) = \{q\} \forall q \in Q$
+		\item Passo induttivo: posto $w = ax$, con $a \in \Sigma$ e $x \in 
+		\Sigma^{\star}$ e $\delta(q,a) = \{p_{1}, p_{2}, ..., p_{x}\}$ ALLORA
+		$\widehat{\delta} = \bigcup \limits_{i=1}^{k} \widehat{\delta}(p_{i},x) =
+		\{r_{1}, r_{2}, ..., r_{m}\}$
+	\end{itemize}
+\end{center}
+
+\paragraph{$2^{a}$ definizione induttiva: }
+\begin{center}
+	\begin{itemize}
+		\item Base: $\widehat{\delta}(q,w) = \{q\} \forall q \in Q$
+		\item Passo induttivo: posto $w = xa$, con $a \in \Sigma$ e $x \in 
+		\Sigma^{\star}$ e $\delta(q,x) = \{p_{1}, p_{2}, ..., p_{x}\}$ ALLORA
+		$\widehat{\delta} = \bigcup \limits_{i=1}^{k} \widehat{\delta}(p_{i},a) =
+		\{r_{1}, r_{2}, ..., r_{m}\}$
+	\end{itemize}
+\end{center}
+(Per farla in breve, è identica MA si invertono la x e la a.)
+\paragraph{Esempio: }Data la stringa w = 00101, \\
+$\widehat{\delta}(q_{0}, \epsilon) = \{q_{0}\}$, \\
+$\widehat{\delta}(q_{0}, 0) = \delta(q_{0},0) = \{q_{0}, q_{1}\}$, \\
+$\widehat{\delta}(q_{0}, 00) = \delta(q_{0},0) \cup \delta(q_{1},0) = 
+\{q_{0},q_{1}\cup \varnothing\} = \{q_{0},q_{1}\}$\\
+$\widehat{\delta}(q_{0}, 001) = \delta(q_{0},1) \cup \delta(q_{1},1) = 
+\{q_{0}\} \cup \{q_{2}\} = \{q_{0}, q_{2}\}$ \\
+$\widehat{\delta}(q_{0}, 0010) = \delta(q_{0},0) \cup \delta(q_{2},0) =
+\{q_{0},q_{1}\}\cup \varnothing = \{q_{0},q_{1}\}$ \\
+$\widehat{\delta}(q_{0}, 00101) = \delta(q_{0}, 1) \cup \delta(q_{1},1) =
+\{q_{0}\}\cup \{q_{2}\} = \{q_{0}, q_{2}\}$ \\
+Dato che $q_{2}$ è stato accettante, ovvero appartiene all'insieme degli stati finali
+la stringa w = 00101 è accettata dall'automa (NFA)
+\section{Linguaggio accettato}
+\paragraph{Definizione: }Sia A = (Q, $\Sigma, \delta, q_{0}$, F) un NFA, il 
+linguaggio accettato da A è 
+\[
+	L(A)=\{w\in \Sigma^{\star} | \widehat{\delta}(q_{0},w \cap F \neq \varnothing\}
+\]
+\section{Trasformazione da NFA a DFA}
+Per ogni NFA esiste un DFA in grado di simularlo:
+\paragraph{Definizione: }Dato un NFA N = ($Q_{N}, \Sigma, \delta_{N},q_{0}, F_{N}$)
+costruiamo un DFA D = ($Q_{D},\Sigma, \delta_{D},\{q_{0}\}, F_{D}$)
+Però occhio, la presenza di $q_{0}$ dovrebbe violare la definizione di DFA, 
+pertanto possiamo pure chiamarlo Pippo, possiamo rinominarlo come ci pare. 
+Questo insieme che vediamo come $q_{0}$, il DFA lo vede come entità/oggetto 
+indivisibile TALE CHE L(D) = L(N) (costruzione per sottoinsiemi) %lolololol <3
+\subparagraph{Com'è fatto $Q_{D}$?} E' l'insieme della parti di $Q_{N}$, ossia $2^{Q_{N}}$
+\subparagraph{Com'è fatto $F_{D}$?} $F_{D}$ = \{$S \subseteq Q_{N}|S\cap F_{n}\neq 
+\varnothing$\}	
+\subparagraph{Com'è fatta $\delta_{D}$?} $\forall S \subseteq Q_{N}$ e $\forall a \in \Sigma$
+$\delta_{D}(S,a) = \bigcup \limits_{p \in S} \delta_{N}(p,a)$	
+\paragraph{Riprendiamo l'automa di prima: }
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (16.8,-20.8) circle (3);
+\draw (16.8,-20.8) node {$q0$};
+\draw [black] (40.1,-20.9) circle (3);
+\draw (40.1,-20.9) node {$q1$};
+\draw [black] (64.6,-20.2) circle (3);
+\draw (64.6,-20.2) node {$q2$};
+\draw [black] (64.6,-20.2) circle (2.4);
+\draw [black] (19.8,-20.81) -- (37.1,-20.89);
+\fill [black] (37.1,-20.89) -- (36.3,-20.38) -- (36.3,-21.38);
+\draw (28.45,-20.35) node [above] {$0$};
+\draw [black] (43.045,-20.329) arc (99.68657:83.58658:66.376);
+\fill [black] (61.63,-19.8) -- (60.89,-19.21) -- (60.78,-20.21);
+\draw (52.3,-18.88) node [above] {$1$};
+\draw [black] (8.1,-20.8) -- (13.8,-20.8);
+\draw (7.6,-20.8) node [left] {$start$};
+\fill [black] (13.8,-20.8) -- (13,-20.3) -- (13,-21.3);
+\draw [black] (17.807,-23.614) arc (47.41806:-240.58194:2.25);
+\draw (15.6,-28.16) node [below] {$0,1$};
+\fill [black] (15.18,-23.31) -- (14.27,-23.56) -- (15.01,-24.24);
+\end{tikzpicture}
+\end{center}
+\begin{center}
+\begin{tabular}{ |c|c|c| } 
+ \hline
+ \_ & 0 & 1  \\ 
+ $\varnothing$ & $\varnothing$ & $\varnothing$\\ 
+$ \to{q_{0}}$ & \{$q_{0}, q_{1}$\} &  \{$q_{0}$\}  \\ 
+ $\{q_{1}\}$ & $\varnothing$  &  \{$q_{2}$\}     \\ 
+ $\{q_{2}\}$ & $\varnothing $ &   $\varnothing  $  \\ 
+ $\{q_{0}, q_{1}\}$ & $\{q_{0}, q_{1}\} $ &   $\{q_{0}, q_{2}\}$    \\ 
+ $\star\{q_{0}, q_{2}\} $& $\{q_{0}, q_{1}\}$ & $ \{q_{0}\}$ \\ 
+ $\star\{q_{1}, q_{2}\} $& $\varnothing \cup \varnothing $& $ \{q_{2}\} $ \\
+ $\star\{q_{0}, q_{1}, q_{2}\} $& $\{q_{0}, q_{1}\}$ &  $ \{q_{0}, q_{2}\}$    \\  
+ \hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{ |c|c|c| } 
+ \hline
+ A & A & A \\ 
+ B & E & B \\ 
+ C & A & D \\ 
+ D & A & A \\ 
+ E & E & F \\ 
+ F & E & B \\ 
+ G & A & D \\ 
+ H & E & F \\
+ \hline
+\end{tabular}
+\end{center}
+Contiamo che $S_{D}(\{q_{0},q_{1}\}, 0) = \delta_{N}(q_{0},0) \cup \delta_{N}(q_{1},0)
+= \{q_{0},q_{1} \cup \varnothing = \{q_{0}, q_{1}\}\}$ 
+Ecco il DFA che ne risulterebbe:
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (19.9,-22.5) circle (3);
+\draw (19.9,-22.5) node {$A$};
+\draw [black] (16.7,-32.9) circle (3);
+\draw (16.7,-32.9) node {$B$};
+\draw [black] (35.5,-33.2) circle (3);
+\draw (35.5,-33.2) node {$E$};
+\draw [black] (33,-8.7) circle (3);
+\draw (33,-8.7) node {$C$};
+\draw [black] (55.2,-8.1) circle (3);
+\draw (55.2,-8.1) node {$D$};
+\draw [black] (55.2,-8.1) circle (2.4);
+\draw [black] (58.3,-33.5) circle (3);
+\draw (58.3,-33.5) node {$F$};
+\draw [black] (58.3,-33.5) circle (2.4);
+\draw [black] (51.5,-20.5) circle (3);
+\draw (51.5,-20.5) node {$G$};
+\draw [black] (46.7,-48.6) circle (3);
+\draw (46.7,-48.6) node {$H$};
+\draw [black] (46.7,-48.6) circle (2.4);
+\draw [black] (20.703,-19.621) arc (192.15438:-95.84562:2.25);
+\draw (26.17,-16.98) node [above] {$0,1$};
+\fill [black] (22.67,-21.39) -- (23.56,-21.71) -- (23.35,-20.73);
+\draw [black] (6.1,-32.9) -- (13.7,-32.9);
+\draw (5.6,-32.9) node [left] {$Start$};
+\fill [black] (13.7,-32.9) -- (12.9,-32.4) -- (12.9,-33.4);
+\draw [black] (17.522,-35.773) arc (43.69515:-244.30485:2.25);
+\draw (15,-40.13) node [below] {$1$};
+\fill [black] (14.92,-35.3) -- (14,-35.49) -- (14.69,-36.21);
+\draw [black] (19.7,-32.95) -- (32.5,-33.15);
+\fill [black] (32.5,-33.15) -- (31.71,-32.64) -- (31.69,-33.64);
+\draw [black] (19.589,-19.525) arc (-181.60736:-265.41138:11.335);
+\fill [black] (19.59,-19.52) -- (20.11,-18.74) -- (19.11,-18.71);
+\draw (22.17,-10.57) node [left] {$0$};
+\draw [black] (52.998,-10.137) arc (-48.93661:-86.67915:50.253);
+\fill [black] (22.9,-22.42) -- (23.73,-22.87) -- (23.67,-21.87);
+\draw (40.65,-19.31) node [below] {$0,1$};
+\draw [black] (36,-8.62) -- (52.2,-8.18);
+\fill [black] (52.2,-8.18) -- (51.39,-7.7) -- (51.41,-8.7);
+\draw (44.12,-8.93) node [below] {$1$};
+\draw [black] (36.823,-35.88) arc (54:-234:2.25);
+\draw (35.5,-40.45) node [below] {$0$};
+\fill [black] (34.18,-35.88) -- (33.3,-36.23) -- (34.11,-36.82);
+\draw [black] (38.009,-31.561) arc (118.45654:60.03576:18.266);
+\fill [black] (55.84,-31.8) -- (55.39,-30.96) -- (54.89,-31.83);
+\draw (46.96,-28.84) node [above] {$1$};
+\draw [black] (55.436,-34.388) arc (-75.4292:-106.0785:32.346);
+\fill [black] (38.34,-34.16) -- (38.97,-34.87) -- (39.25,-33.9);
+\draw (46.87,-35.94) node [below] {$0$};
+\draw [black] (61.13,-34.46) arc (99:-189:2.25);
+\draw (63.6,-39.75) node [right] {$1$};
+\fill [black] (59.26,-36.33) -- (58.89,-37.2) -- (59.88,-37.04);
+\draw [black] (52.36,-17.63) -- (54.34,-10.97);
+\fill [black] (54.34,-10.97) -- (53.63,-11.6) -- (54.59,-11.88);
+\draw (54.12,-14.9) node [right] {$1$};
+\draw [black] (48.81,-21.827) arc (-66.02561:-106.73142:37.56);
+\fill [black] (22.74,-23.48) -- (23.36,-24.19) -- (23.65,-23.23);
+\draw (36,-25.55) node [below] {$0$};
+\draw [black] (44.94,-46.17) -- (37.26,-35.63);
+\fill [black] (37.26,-35.63) -- (37.33,-36.57) -- (38.14,-35.98);
+\draw (41.69,-39.52) node [right] {$0$};
+\draw [black] (48.53,-46.22) -- (56.47,-35.88);
+\fill [black] (56.47,-35.88) -- (55.59,-36.21) -- (56.38,-36.82);
+\draw (53.07,-42.46) node [right] {$1$};
+\end{tikzpicture}
+\end{center}
+\paragraph{Come si nota è davvero complesso: }
+In realtà avremmo dovuto calcolare solo B E ed F, perchè alcuni stati non sono
+nemmeno raggiungibili, quindi non avremmo dovuto iniziare indicando tutti i
+possibili sottoinsiemi MA considerare il tutto stato per stato:
+\begin{center}
+\begin{tabular}{ |c|c|c| } 
+ \hline
+ \_ & 0 & 1 \\
+ \hline
+ $\to\{q_{0}\} $&$ \{q_{0},q_{1}\}$ & $\{q_{0}\} $\\ 
+ $\{q_{0},q_{1}\} $&$\{q_{0},q_{1}\}$ & $\{q_{0},q_{2}\}$ \\ 
+ $\star\{q_{0},q_{2}\}$ &$ \{q_{0},q_{1}\}$ & $\{q_{0}\} $\\
+ \hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{ |c|c|c| } 
+ \hline
+ B & E & B \\
+ E & E & F \\ 
+ F & E & B \\ 
+ \hline
+\end{tabular}
+\end{center}
+\paragraph{Altro esempio: }Dato il seguente NFA:
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (19.9,-22.5) circle (3);
+\draw (19.9,-22.5) node {$A$};
+\draw [black] (16.7,-32.9) circle (3);
+\draw (16.7,-32.9) node {$B$};
+\draw [black] (35.5,-33.2) circle (3);
+\draw (35.5,-33.2) node {$E$};
+\draw [black] (33,-8.7) circle (3);
+\draw (33,-8.7) node {$C$};
+\draw [black] (55.2,-8.1) circle (3);
+\draw (55.2,-8.1) node {$D$};
+\draw [black] (55.2,-8.1) circle (2.4);
+\draw [black] (58.3,-33.5) circle (3);
+\draw (58.3,-33.5) node {$F$};
+\draw [black] (58.3,-33.5) circle (2.4);
+\draw [black] (51.5,-20.5) circle (3);
+\draw (51.5,-20.5) node {$G$};
+\draw [black] (46.7,-48.6) circle (3);
+\draw (46.7,-48.6) node {$H$};
+\draw [black] (46.7,-48.6) circle (2.4);
+\draw [black] (20.703,-19.621) arc (192.15438:-95.84562:2.25);
+\draw (26.17,-16.98) node [above] {$0,1$};
+\fill [black] (22.67,-21.39) -- (23.56,-21.71) -- (23.35,-20.73);
+\draw [black] (6.1,-32.9) -- (13.7,-32.9);
+\draw (5.6,-32.9) node [left] {$Start$};
+\fill [black] (13.7,-32.9) -- (12.9,-32.4) -- (12.9,-33.4);
+\draw [black] (17.522,-35.773) arc (43.69515:-244.30485:2.25);
+\draw (15,-40.13) node [below] {$1$};
+\fill [black] (14.92,-35.3) -- (14,-35.49) -- (14.69,-36.21);
+\draw [black] (19.7,-32.95) -- (32.5,-33.15);
+\fill [black] (32.5,-33.15) -- (31.71,-32.64) -- (31.69,-33.64);
+\draw [black] (19.589,-19.525) arc (-181.60736:-265.41138:11.335);
+\fill [black] (19.59,-19.52) -- (20.11,-18.74) -- (19.11,-18.71);
+\draw (22.17,-10.57) node [left] {$0$};
+\draw [black] (52.998,-10.137) arc (-48.93661:-86.67915:50.253);
+\fill [black] (22.9,-22.42) -- (23.73,-22.87) -- (23.67,-21.87);
+\draw (40.65,-19.31) node [below] {$0,1$};
+\draw [black] (36,-8.62) -- (52.2,-8.18);
+\fill [black] (52.2,-8.18) -- (51.39,-7.7) -- (51.41,-8.7);
+\draw (44.12,-8.93) node [below] {$1$};
+\draw [black] (36.823,-35.88) arc (54:-234:2.25);
+\draw (35.5,-40.45) node [below] {$0$};
+\fill [black] (34.18,-35.88) -- (33.3,-36.23) -- (34.11,-36.82);
+\draw [black] (38.009,-31.561) arc (118.45654:60.03576:18.266);
+\fill [black] (55.84,-31.8) -- (55.39,-30.96) -- (54.89,-31.83);
+\draw (46.96,-28.84) node [above] {$1$};
+\draw [black] (55.436,-34.388) arc (-75.4292:-106.0785:32.346);
+\fill [black] (38.34,-34.16) -- (38.97,-34.87) -- (39.25,-33.9);
+\draw (46.87,-35.94) node [below] {$0$};
+\draw [black] (61.13,-34.46) arc (99:-189:2.25);
+\draw (63.6,-39.75) node [right] {$1$};
+\fill [black] (59.26,-36.33) -- (58.89,-37.2) -- (59.88,-37.04);
+\draw [black] (52.36,-17.63) -- (54.34,-10.97);
+\fill [black] (54.34,-10.97) -- (53.63,-11.6) -- (54.59,-11.88);
+\draw (54.12,-14.9) node [right] {$1$};
+\draw [black] (48.81,-21.827) arc (-66.02561:-106.73142:37.56);
+\fill [black] (22.74,-23.48) -- (23.36,-24.19) -- (23.65,-23.23);
+\draw (36,-25.55) node [below] {$0$};
+\draw [black] (44.94,-46.17) -- (37.26,-35.63);
+\fill [black] (37.26,-35.63) -- (37.33,-36.57) -- (38.14,-35.98);
+\draw (41.69,-39.52) node [right] {$0$};
+\draw [black] (48.53,-46.22) -- (56.47,-35.88);
+\fill [black] (56.47,-35.88) -- (55.59,-36.21) -- (56.38,-36.82);
+\draw (53.07,-42.46) node [right] {$1$};
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tabular}{ |c|c|c| } 
+ \hline
+ $\star \to \{q_{0}\}$& $\{q_{0},q_{2}\}$ & $ \varnothing$\\ 
+ $\star\{q_{1},q_{2}\} $& $\{q_{1},q_{2}\} $&$ \{q_{1},q_{3}\}$ \\ 
+ $ \varnothing $& $\varnothing$ & $\varnothing$ \\ 
+ $\star\{q_{1},q_{3}\} $& $\{q_{1},q_{2}\} $& $\varnothing$\\ 
+ \hline
+\end{tabular}
+\end{center}
+Ecco il risultato della conversione in DFA: 
+\begin{center}
+\includegraphics[width=0.75\textwidth]{24}
+\end{center}
+
+
+
+
+
+
+
 \end{document}
