@@ -1157,6 +1157,121 @@ del valore di priorità (aumento progressivo della priorità)
 \paragraph{CALMI, Precisiamo meglio questa cosa: }IL VALORE che si associa alla
 priorità più è alto, più il processo PERDE priorità. Esempio: Priorità 0 viene 
 eseguita PRIMA di priorità 1.
+\chapter{Livello Data-Link (SECONDO PARZIALE)}
+Per questo argomento vi consiglio di guardarvi 
+\href{https://www.isistassinari.gov.it/progettodicembre/reti/L2.html#f}{questo sito: }
+\paragraph{Per definizione: }
+Il livello data-link riceve dati dal livello fisico, ed offre servizio al livello
+network.
+Il livello 2 (Data Link Layer) si occupa di gestire il collegamento da un pc 
+all'altro appartenenti alla stessa LAN (Local Area Network) e' un sistema di 
+comunicazione che permette ad apparecchiature indipendenti di comunicare tra 
+loro, entro un' area delimitata, utilizzando un canale fisico a velocita' 
+elevata e con basso tasso d'errore. \\ \\Altra funzione principale di questo livello 
+e' quella di recuperare gli errori trasmissivi: di solito questo avviene mediante 
+tecniche di ritrasmissione automatica dei dati che sono stati ricevuti corrotti.
+Il protocollo Ethernet appartiene a questo livello.
+\section{Media Access Control}
+Il concetto di MAC si introduce ragionando sul concetto del "Mezzo condiviso",
+introduciamo inoltre l'uso dello Switch, ovvero un dispositivo che consente
+di avere più macchine che sfruttino lo stesso mezzo. 
+\section{Switch e Hub}
+\begin{itemize}
+	\item L'hub quando riceve dei dati automaticamente li invia in broadcast 
+	a tutti quanti i nodi connessi
+	\item Lo switch invece serve per fare in modo che il pacchetto parta da un
+	mittente preciso ed arrivi ad un destinatario (connessi allo switch 
+	chiaramente)
+\end{itemize}
+Ora, anche in questo caso siccome a lezione si ha poca chiarezza, lascerò
+lo stesso il materiale direttamente proveniente dalle superiori.
+AHAHAHAHAH.
+\section{Framing}
+Il secondo livello forma dei pacchetti dati, detti frame o trama, da far 
+viaggiare lungo la dorsale di comunicazione. Il frame e' l'unita' dati 
+fondamentale di questo livello. Il livello DataLink incapsula il pacchetto 
+proveniente dallo strato superiore (livello 3) in un nuovo pacchetto detto
+frame (o trama) al quale aggiunge un header (intestazione) e un tail (coda).\\ \\
+
+Ethernet, Token Ring, FDDI, IEEE 802.11 (WLAN), ATM, TCP/IP's Serial Link 
+Interface Protocol (SLIP) e Point-To-Point Protocol (PPP) sono alcune 
+tecnologie e protocolli associati al livello 2. Anche il protocollo 
+ARP che permette di conoscere l'indirizzo fisico di una scheda di rete 
+corrispondente ad un indirizzo IP, appartiene a questo livello. 
+\section{Correzione degli errori}
+Sapendo che ci sia un flusso di dati di qualsiasi tipo, è normale che ci sia la
+presenza di errori, che dipendono da molteplici fattori. Per intenderci 
+il collegamento via radio genera molti più errori rispetto al cavo.
+\paragraph{Come si rilevano? }Esistono diversi modi per poter andare a capire
+se ci son stati errori 
+\subsection{CRC (Codici di ridondanza ciclica)}
+\paragraph{In invio: }
+Hai il messaggio e il polinomio generatore. Al messaggio aggiungi tanti zeri 
+quanto è il grado del polinomio generatore. Poi fai lo XOR tra il messaggio 
+finale e il polinomio... Arrivi alla fine, e al messaggio iniziale, aggiungi 
+il risultato della divisione, con tante cifre quanto il grado del polinomio..
+
+\paragraph{In ricezione: }
+Dividi semplicemente, con lo XOR, il messaggio per il polinomio e se trovi 0 è 
+tutto OK, altrimenti ci sono stati degli errori di trasmissione.
+
+\subparagraph{Il polinomio: } può essere scritto in due forme, 
+in cifre binarie o con le potenze.. Se è in binario è semplicemente una sequenza
+(tipo 1011, 1001 ecc.). Se è con le potenze (può essere una cosa del genere
+"G(x)=$x^{3}+x+x^{0}$", " G(x)=$x^{3}+x^{0}$" ecc.) lo trasformi in binario 
+(rispettivamente 1011, 1001)	
+
+\section{L'indirizzo MAC}
+E' un indirizzo composto da 48 bit (6 byte) ASSOCIATO ALLA SCHEDA DI RETE, in 
+pratica NON può cambiare, è univoco, ogni schedina ha il suo MAC address, non 
+c'è alcuna relazione tra un MAC address e l'altro, non si possono aggregare, nè
+localizzazioni geografiche. L'unico modo è scavare l'indirizzo MAC localmente.
+\paragraph{All'atto pratico: }Se ho lo stesso MAC in Italia ed uno in America,
+a meno che son proprio stronzo, non saranno mai praticamente nella stessa rete.\\
+\\AH SI' poi è chiaro che essendo un numerello scritto in un firmware, allora si
+può cambiare con qualche arcano particolare ;) 
+\section{Gli accessi concorrenti: }
+\subsection{Token Ring: }
+Si applica su reti a forma di anello, ovvero reti circolari in cui per ogni
+nodo c'è un collegamento a precedente e successivo. 
+\paragraph{La particolarità di queste reti sta nel fatto che }lo scambio di 
+informazioni è regolato dalla trasmissione di uno dei nodi della rete di un 
+particolare messaggio (chiamato token) che stabilisce quale nodo abbia “diritto
+di parola” e quale nodo debba ricevere il pacchetto dati (o i pacchetti dati) 
+che viaggiano in simbiosi con il token stesso. 
+\subparagraph{Come funziona Token Ring: }
+All'interno di una LAN organizzata nel modo appena descritto, ogni nodo avrà 
+“diritto di parola” sequenzialmente e solo in quel momento sarà autorizzato a 
+inviare i suoi pacchetti dati verso il nodo mittente.	
+\subparagraph{In modo più specifico: }Pacchetti dati vuoti (detti frame) 
+circolano all'interno della Token ring in maniera continua. Quando un computer 
+dovrà inviare un messaggio, crea il token contenente i dati del nodo di 
+destinazione e lo “lega” ai pacchetti da inviare. Arrivato il suo turno passa 
+token e informazioni al computer successivo, che scansiona il token e verifica
+quale siano i dati scritti al suo interno; 
+\paragraph{}
+nel caso in cui non sia lui il 
+destinatario della comunicazione, passa pacchetti dati e token al nodo 
+successivo. Questa operazione si ripete per ogni nodo della LAN, sino a quando 
+il messaggio non raggiunge il suo destinatario. 
+\paragraph{}
+A questo punto il computer 
+copierà i pacchetti dati e sovrascriverà le informazioni presenti nel token,
+azzerandolo di fatto. Quando il token avrà completato il proprio giro, il
+nodo-mittente scansionerà il “testimone”, 
+\paragraph{}
+verificherà che le informazioni 
+contenute al suo interno sono state sovrascritte ed eliminerà i pacchetti 
+dati presenti all'interno del messaggio. All'interno della LAN ad anello 
+tornerà a circolare un frame vuoto.	
+
+
+\subsection{Slotted Aloha: }	
+La chiave sta nel fatto di aver individuato il conflitto, e qui si capisce
+
+
+
+
 
 
 \end{document}

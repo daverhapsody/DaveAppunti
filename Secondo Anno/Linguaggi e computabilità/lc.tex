@@ -1871,5 +1871,127 @@ insiemi come unione intersezione etc.
 	\item ECLOSE(S) = $\bigcup \limits_{q\in s}$ ECLOSE(q) dove S $\subseteq$ Q
 	\item ECLOSE($\varnothing$) = $\varnothing$
 \end{itemize}
+\section{Trasformazione $\epsilon$-NFA $\to$ DFA}
+Dato un $\epsilon$ NFA E = ($Q_{E}$, $\Sigma, \delta_{E}$, $q_{0},F_{E}$), pertanto
+costruiamo un DFA D=($Q_{D}, \Sigma, \delta_{D}, q_{D}, F_{D}$) tale che
+ L(E) = L(D)
+ $Q_{b}$ = $2^{Q_{E}}$, \\
+ $Q_{D}$ = ECLOSE($q_{0}$), \\
+ $F_{D}$ = \{S $\in Q_{D}$ | $S \cap F_{E}$ $\neq \varnothing$\}, \\
+ $\forall a \in \Sigma$, e $\forall S = \{p_{1}, p_{2}, ..., p_{k}\}$ $\in Q_{D}$ e
+ $\delta_{D}(S,a)$ si calcola come segue: \\
+ $\bigcup \limits_{i = 1}^{k}$ $\delta_{E}(p,a) $= $\{r_{1}, r_{2}, ..., r_{m}\}$\\
+ Si pone $\delta_{D}(S,a)=ECLOSE(\{r_{1}, r_{2}, ..., r_{m}\})$
+ \begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (15.2,-20.3) circle (3);
+\draw (15.2,-20.3) node {$q0$};
+\draw [black] (37,-19.9) circle (3);
+\draw (37,-19.9) node {$q1$};
+\draw [black] (56.7,-19.9) circle (3);
+\draw (56.7,-19.9) node {$q2$};
+\draw [black] (4.6,-26.2) -- (12.58,-21.76);
+\draw (3.93,-27.4) node [left] {$start$};
+\fill [black] (12.58,-21.76) -- (11.64,-21.71) -- (12.12,-22.58);
+\draw [black] (18.2,-20.24) -- (34,-19.96);
+\fill [black] (34,-19.96) -- (33.19,-19.47) -- (33.21,-20.47);
+\draw (26.11,-20.62) node [below] {$\epsilon$};
+\draw [black] (40,-19.9) -- (53.7,-19.9);
+\fill [black] (53.7,-19.9) -- (52.9,-19.4) -- (52.9,-20.4);
+\draw (46.85,-20.4) node [below] {$\epsilon$};
+\draw [black] (14.27,-17.46) arc (225.8699:-62.1301:2.25);
+\draw (16.48,-13.03) node [above] {$a$};
+\fill [black] (16.89,-17.83) -- (17.8,-17.61) -- (17.09,-16.91);
+\draw [black] (38.323,-22.58) arc (54:-234:2.25);
+\draw (37,-27.15) node [below] {$b$};
+\fill [black] (35.68,-22.58) -- (34.8,-22.93) -- (35.61,-23.52);
+\draw [black] (55.377,-17.22) arc (234:-54:2.25);
+\draw (56.7,-12.65) node [above] {$c$};
+\fill [black] (58.02,-17.22) -- (58.9,-16.87) -- (58.09,-16.28);
+\end{tikzpicture}
+\end{center}
+con w = a, ER = $a^{\star}b^{\star}c^{\star}$\\
+ECLOSE($q_{0}$) = \{$q_{0}, q_{1}, q_{2}$\} \\
+ECLOSE($q_{1}$) = \{$q_{1}, q_{2}$\} \\
+ECLOSE($q_{2}$) = \{$q_{2}$\} \\
+\begin{center}
+\begin{tabular}{ |c|c|c|c| } 
+ \hline
+ \_ & a & b & c \\ 
+ $\to^{*}\{q_{0},q_{1},q_{2}\}$ & $\{q_{0},q_{1},q_{2}\}$ & \{$q_{1}, q_{2}$\} 
+ & \{$q_{2}$\} \\ 
+ *\{$q_{1}, q_{2}$\} & $\varnothing$ & \{$q_{1}, q_{2}$\} & \{$q_{2}$\}\\ 
+ *\{$q_{2}$\} & $\varnothing$ & $\varnothing$ & \{$_{2}$\} \\ 
+ $\varnothing$ & $\varnothing$ & $\varnothing$ & $\varnothing$ \\ 
+ \hline
+\end{tabular}
+\end{center}
+(D'ora in avanti scrivo solo EC per indicare ECLOSE)
+Calcolo di $\delta(\{q_{0},q_{1},q_{2}\}$,a) =  $EC(\delta_{E}(q_{0},a) \cup
+\delta_{E}(q_{1},a)) \cup \delta_{E}(q_{2},a) = EC(\{q_{0}\} \cup \varnothing
+\cup \varnothing) = EC (\{q_{0}\}) = EC(q_{0}) = \{q_{0}, q_{1}, q_{2}\}$\\
+A questo punto riscriviamo la tabella però usando le lettere invece che gli 
+insiemi le lettere:
+\begin{center}
+\begin{tabular}{ |c|c|c|c| } 
+ \hline
+ \_ & a & b & c \\ 
+ \hline
+ A & A & B & C \\
+ B & D & B & C \\
+ C & D & D & C \\
+ D & D & D & D \\
+ \hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (13.7,-16.1) circle (3);
+\draw (13.7,-16.1) node {$A$};
+\draw [black] (13.7,-16.1) circle (2.4);
+\draw [black] (42.7,-16.1) circle (3);
+\draw (42.7,-16.1) node {$B$};
+\draw [black] (42.7,-16.1) circle (2.4);
+\draw [black] (14.3,-39.3) circle (3);
+\draw (14.3,-39.3) node {$C$};
+\draw [black] (14.3,-39.3) circle (2.4);
+\draw [black] (42.7,-39.3) circle (3);
+\draw (42.7,-39.3) node {$D$};
+\draw [black] (42.594,-13.114) arc (209.77225:-78.22775:2.25);
+\draw (46.45,-9.44) node [above] {$b$};
+\fill [black] (45.01,-14.2) -- (45.95,-14.24) -- (45.45,-13.37);
+\draw [black] (16.7,-16.1) -- (39.7,-16.1);
+\fill [black] (39.7,-16.1) -- (38.9,-15.6) -- (38.9,-16.6);
+\draw (28.2,-16.6) node [below] {$b$};
+\draw [black] (11.867,-13.74) arc (245.57895:-42.42105:2.25);
+\draw (11.8,-8.91) node [above] {$a$};
+\fill [black] (14.46,-13.21) -- (15.24,-12.69) -- (14.33,-12.27);
+\draw [black] (13.78,-19.1) -- (14.22,-36.3);
+\fill [black] (14.22,-36.3) -- (14.7,-35.49) -- (13.7,-35.51);
+\draw (13.46,-27.71) node [left] {$c$};
+\draw [black] (14.707,-42.26) arc (35.56505:-252.43495:2.25);
+\draw (11.33,-46.24) node [below] {$c$};
+\fill [black] (12.2,-41.42) -- (11.26,-41.48) -- (11.84,-42.3);
+\draw [black] (17.3,-39.3) -- (39.7,-39.3);
+\fill [black] (39.7,-39.3) -- (38.9,-38.8) -- (38.9,-39.8);
+\draw (28.5,-39.8) node [below] {$a,b$};
+\draw [black] (40.38,-18) -- (16.62,-37.4);
+\fill [black] (16.62,-37.4) -- (17.56,-37.28) -- (16.93,-36.51);
+\draw (27.55,-27.21) node [above] {$c$};
+\draw [black] (42.7,-19.1) -- (42.7,-36.3);
+\fill [black] (42.7,-36.3) -- (43.2,-35.5) -- (42.2,-35.5);
+\draw (42.2,-27.7) node [left] {$a$};
+\draw [black] (45.334,-40.712) arc (89.53768:-198.46232:2.25);
+\draw (49.01,-45.29) node [below] {$a,b,c$};
+\fill [black] (43.18,-42.25) -- (42.67,-43.05) -- (43.67,-43.05);
+\end{tikzpicture}
+\end{center}
+
+
+
+
+
 
 \end{document}
