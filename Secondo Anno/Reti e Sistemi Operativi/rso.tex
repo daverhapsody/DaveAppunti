@@ -728,7 +728,6 @@ data \\
 text
 \end{cases}
 \]
-
 Tra stack ed heap perchè ci sono i puntini? E le frecce? Stack ed heap 
 condividono lo stesso spazio di memoria, MA cambia il verso di allocazione
 dei dati. \\ \\
@@ -1192,7 +1191,6 @@ viaggiare lungo la dorsale di comunicazione. Il frame e' l'unita' dati
 fondamentale di questo livello. Il livello DataLink incapsula il pacchetto 
 proveniente dallo strato superiore (livello 3) in un nuovo pacchetto detto
 frame (o trama) al quale aggiunge un header (intestazione) e un tail (coda).\\ \\
-
 Ethernet, Token Ring, FDDI, IEEE 802.11 (WLAN), ATM, TCP/IP's Serial Link 
 Interface Protocol (SLIP) e Point-To-Point Protocol (PPP) sono alcune 
 tecnologie e protocolli associati al livello 2. Anche il protocollo 
@@ -1210,17 +1208,14 @@ Hai il messaggio e il polinomio generatore. Al messaggio aggiungi tanti zeri
 quanto è il grado del polinomio generatore. Poi fai lo XOR tra il messaggio 
 finale e il polinomio... Arrivi alla fine, e al messaggio iniziale, aggiungi 
 il risultato della divisione, con tante cifre quanto il grado del polinomio..
-
 \paragraph{In ricezione: }
 Dividi semplicemente, con lo XOR, il messaggio per il polinomio e se trovi 0 è 
 tutto OK, altrimenti ci sono stati degli errori di trasmissione.
-
 \subparagraph{Il polinomio: } può essere scritto in due forme, 
 in cifre binarie o con le potenze.. Se è in binario è semplicemente una sequenza
 (tipo 1011, 1001 ecc.). Se è con le potenze (può essere una cosa del genere
 "G(x)=$x^{3}+x+x^{0}$", " G(x)=$x^{3}+x^{0}$" ecc.) lo trasformi in binario 
 (rispettivamente 1011, 1001)	
-
 \section{L'indirizzo MAC}
 E' un indirizzo composto da 48 bit (6 byte) ASSOCIATO ALLA SCHEDA DI RETE, in 
 pratica NON può cambiare, è univoco, ogni schedina ha il suo MAC address, non 
@@ -1264,14 +1259,6 @@ verificherà che le informazioni
 contenute al suo interno sono state sovrascritte ed eliminerà i pacchetti 
 dati presenti all'interno del messaggio. All'interno della LAN ad anello 
 tornerà a circolare un frame vuoto.	
-
-
 \subsection{Slotted Aloha: }	
 La chiave sta nel fatto di aver individuato il conflitto, e qui si capisce
-
-
-
-
-
-
 \end{document}
