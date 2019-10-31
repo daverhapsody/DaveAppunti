@@ -1689,11 +1689,15 @@ come da titolo di questa sezione, è possibile asserire anche \textbf{regole}.
 \paragraph{Esempio: } Supponiamo di voler inserire una regola che dica che 
 chiunque passa LP sia felice (E beati loro):
 \begin{lstlisting}[language=Prolog] 
-?- assert(passatoLP(X) :- felice(X)).
+?- assert(felice(X) :- passatoLP(X)).
 bello(dave).
 bello(dave).
 true
 \end{lstlisting} 
+\paragraph{Precisazione: }Per essere risucito a scrivere questa cosa in modo 
+corretto ringrazio RC per la correzione. Ho fatto l'errore di ragionare come 
+se :- si traducesse in "Implica" MA NON E' COSI'. Quel simbolo è traducibili in 
+"E' implicato".
 \section{Varianti dell'assert}
 \subsection{Asserta}
 Sarebbe Assert-a, ovvero l'asserzione viene messa in cima alla lista delle 

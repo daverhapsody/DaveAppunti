@@ -18,7 +18,7 @@ urlcolor=cyan,
 }
 %usepackage[latin1]{inputenc}
 \begin{document}
-\fontfamily{cmss}\selectfont
+%\fontfamily{cmss}\selectfont
 \pagestyle{plain}
 \author{DaveRhapsody}
 \title{Linguaggi e Computabilità}
@@ -1560,10 +1560,316 @@ carine, la dicitura con gli insiemi, che è brutta e cattiva. E non perchè sono
 completamente incapace di fare le parentesi graffe, lo giuro.
 \subparagraph{Scherzi a parte,}	 Una scrittura, si 
 equivale all'altra
+\paragraph{Precisazione: }Se l'NFA si trova in uno stato q e se riceve un 
+carattere 'a' finisce in due stati p ed r allora il DFA risulta che quando
+lo stato \{$q_{0}$\} riceve per l'aoppunto 'a' allora si ottiene lo stato \{p,a\}
+\paragraph{Osservazione: }Si nota che $|Q_{N}| = n \implies |Q_{D}| = 2^{N}$,
+ad esempio:
 
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (14.4,-31.2) circle (3);
+\draw (14.4,-31.2) node {$q0$};
+\draw [black] (29.7,-31.2) circle (3);
+\draw (29.7,-31.2) node {$q1$};
+\draw [black] (42.4,-31.2) circle (3);
+\draw (42.4,-31.2) node {$q2$};
+\draw [black] (63,-47) circle (3);
+\draw (63,-47) node {$q(n-1)$};
+\draw [black] (68.3,-29.7) circle (3);
+\draw (68.3,-29.7) node {$qn$};
+\draw [black] (68.3,-29.7) circle (2.4);
+\draw [black] (53.9,-29.8) circle (3);
+\draw (53.9,-29.8) node {$...$};
+\draw [black] (13.077,-28.52) arc (234:-54:2.25);
+\draw (14.4,-23.95) node [above] {$0,1$};
+\fill [black] (15.72,-28.52) -- (16.6,-28.17) -- (15.79,-27.58);
+\draw [black] (6,-34.4) -- (11.6,-32.27);
+\draw (5.25,-35.23) node [left] {$start$};
+\fill [black] (11.6,-32.27) -- (10.67,-32.09) -- (11.03,-33.02);
+\draw [black] (17.4,-31.2) -- (26.7,-31.2);
+\fill [black] (26.7,-31.2) -- (25.9,-30.7) -- (25.9,-31.7);
+\draw (22.05,-31.7) node [below] {$1$};
+\draw [black] (32.7,-31.2) -- (39.4,-31.2);
+\fill [black] (39.4,-31.2) -- (38.6,-30.7) -- (38.6,-31.7);
+\draw (36.05,-31.7) node [below] {$0,1$};
+\draw [black] (63.88,-44.13) -- (67.42,-32.57);
+\fill [black] (67.42,-32.57) -- (66.71,-33.19) -- (67.66,-33.48);
+\draw (66.42,-38.97) node [right] {$0,1$};
+\draw [black] (45.38,-30.84) -- (50.92,-30.16);
+\fill [black] (50.92,-30.16) -- (50.07,-29.76) -- (50.19,-30.76);
+\draw (48.62,-31.16) node [below] {$0,1$};
+\draw [black] (55.3,-32.45) -- (61.6,-44.35);
+\fill [black] (61.6,-44.35) -- (61.66,-43.41) -- (60.78,-43.87);
+\draw (57.77,-39.56) node [left] {$0,1$};
+\end{tikzpicture}
+\end{center}
+L = \{$w\in \{0,1\}^{\star}|$ è l'n-esimo simbolo di w dalla fine è 1\}
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (10.7,-25.5) circle (3);
+\draw (10.7,-25.5) node {$1$};
+\draw [black] (19.9,-19.5) circle (3);
+\draw (19.9,-19.5) node {$2$};
+\draw [black] (31.4,-19.1) circle (3);
+\draw (31.4,-19.1) node {$3$};
+\draw [black] (43,-18.9) circle (3);
+\draw (43,-18.9) node {$4$};
+\draw [black] (43,-18.9) circle (2.4);
+\draw [black] (20.7,-32.3) circle (3);
+\draw (20.7,-32.3) node {$5$};
+\draw [black] (34.8,-32.3) circle (3);
+\draw (34.8,-32.3) node {$6$};
+\draw [black] (48.2,-31.4) circle (3);
+\draw (48.2,-31.4) node {$7$};
+\draw [black] (60,-31.3) circle (3);
+\draw (60,-31.3) node {$8$};
+\draw [black] (60,-31.3) circle (2.4);
+\draw [black] (6.5,-33.9) -- (9.36,-28.18);
+\draw (4.3,-34.41) node [below] {$start$};
+\fill [black] (9.36,-28.18) -- (8.55,-28.68) -- (9.45,-29.12);
+\draw [black] (13.21,-23.86) -- (17.39,-21.14);
+\fill [black] (17.39,-21.14) -- (16.44,-21.16) -- (16.99,-21.99);
+\draw (16.52,-23) node [below] {$w$};
+\draw [black] (22.9,-19.4) -- (28.4,-19.2);
+\fill [black] (28.4,-19.2) -- (27.58,-18.73) -- (27.62,-19.73);
+\draw (25.67,-19.83) node [below] {$e$};
+\draw [black] (34.4,-19.05) -- (40,-18.95);
+\fill [black] (40,-18.95) -- (39.19,-18.47) -- (39.21,-19.47);
+\draw (37.21,-19.52) node [below] {$b$};
+\draw [black] (13.18,-27.19) -- (18.22,-30.61);
+\fill [black] (18.22,-30.61) -- (17.84,-29.75) -- (17.28,-30.58);
+\draw (14.75,-29.4) node [below] {$e$};
+\draw [black] (23.7,-32.3) -- (31.8,-32.3);
+\fill [black] (31.8,-32.3) -- (31,-31.8) -- (31,-32.8);
+\draw (27.75,-32.8) node [below] {$b$};
+\draw [black] (37.79,-32.1) -- (45.21,-31.6);
+\fill [black] (45.21,-31.6) -- (44.38,-31.16) -- (44.44,-32.15);
+\draw (41.59,-32.41) node [below] {$a$};
+\draw [black] (51.2,-31.37) -- (57,-31.33);
+\fill [black] (57,-31.33) -- (56.2,-30.83) -- (56.2,-31.83);
+\draw (54.1,-31.86) node [below] {$y$};
+\draw [black] (8.376,-23.621) arc (258.77514:-29.22486:2.25);
+\draw (6.78,-18.86) node [above] {$\Sigma$};
+\fill [black] (10.78,-22.51) -- (11.42,-21.83) -- (10.44,-21.63);
+\end{tikzpicture}
+\end{center}
+Da questo automa si può notare che esista una corrispondenza tra "web" ed "ebay"
+E $\Sigma = {a,b,c,....,z}$. Se avessimo provato a fare questo da un DFA sarebbe
+stato davvero più complesso
+\chapter{$\epsilon$ NFA}
+Sono un'estensione dell'NFA in cui si includono le $\epsilon$-transizioni e le
+$\epsilon$-mosse
 
+\section{$\epsilon$-mossa}
+E' una trasmissione spontanea in cui l'automa cambia stato senza consumare il 
+simbolo di input ricevuto.
+\paragraph{Più precisamente: }$\epsilon-$NFA = ($Q,\Sigma,\delta, q_{2},F$),
+$S:Q\times(\Sigma\cup\{\epsilon\})\to 2^{Q}$
+\paragraph{Esercizio 1: }  Dato il seguente NFA:
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (16.8,-20.9) circle (3);
+\draw (16.8,-20.9) node {$p$};
+\draw [black] (40,-15.8) circle (3);
+\draw (40,-15.8) node {$q$};
+\draw [black] (29.4,-34.7) circle (3);
+\draw (29.4,-34.7) node {$r$};
+\draw [black] (6.4,-22.3) -- (13.83,-21.3);
+\draw (5.72,-22.45) node [left] {$start$};
+\fill [black] (13.83,-21.3) -- (12.97,-20.91) -- (13.1,-21.9);
+\draw [black] (14.287,-19.283) arc (264.96376:-23.03624:2.25);
+\draw (12.38,-14.61) node [above] {$a$};
+\fill [black] (16.56,-17.92) -- (17.12,-17.17) -- (16.13,-17.08);
+\draw [black] (26.448,-34.202) arc (-106.01528:-169.18984:13.336);
+\fill [black] (26.45,-34.2) -- (25.82,-33.5) -- (25.54,-34.46);
+\draw (19.74,-31.84) node [left] {$c$};
+\draw [black] (19.241,-19.159) arc (122.29791:82.49808:26.791);
+\fill [black] (37.05,-15.24) -- (36.33,-14.64) -- (36.2,-15.63);
+\draw (27.18,-15.06) node [above] {$b$};
+\draw [black] (37.209,-16.899) arc (-69.82177:-85.38224:65.854);
+\fill [black] (19.79,-20.73) -- (20.63,-21.16) -- (20.55,-20.16);
+\draw (29.23,-19.98) node [below] {$\epsilon$};
+\draw [black] (40.223,-18.788) arc (-0.66181:-57.90967:17.405);
+\fill [black] (32.07,-33.33) -- (33.01,-33.33) -- (32.48,-32.48);
+\draw (38.66,-28.31) node [right] {$b$};
+\draw [black] (30.87,-32.08) -- (38.53,-18.42);
+\fill [black] (38.53,-18.42) -- (37.71,-18.87) -- (38.58,-19.36);
+\draw (35.36,-26.46) node [right] {$\epsilon$};
+\draw [black] (40.029,-12.812) arc (207.17419:-80.82581:2.25);
+\draw (43.98,-9.27) node [above] {$a$};
+\fill [black] (42.39,-14.01) -- (43.33,-14.08) -- (42.87,-13.2);
+\draw [black] (30.435,-37.503) arc (47.99099:-240.00901:2.25);
+\draw (28.5,-41.99) node [below] {$a$};
+\fill [black] (27.8,-37.23) -- (26.9,-37.49) -- (27.64,-38.16);
+\draw [black] (19.393,-22.405) arc (56.61574:28.17913:26.396);
+\fill [black] (28.14,-31.98) -- (28.2,-31.04) -- (27.32,-31.51);
+\draw (24.9,-25.19) node [right] {$c$};
+\end{tikzpicture}
+\end{center}
+$\Sigma$ = \{a,b,c\}, se w = abac allora: \\
+Partiamo dalla p e cerchiamo di capire dove si va a finire, ma in questo caso
+c'è l'$\epsilon$-mossa, ti consente di o consumare un carattere per poi passare
+ad un altro stato.
+\subparagraph{All'atto pratico: }Da q posso andare in r consumando la 'b' oppure
+con $\epsilon$-mossa posso andare in p senza consumare il carattere 	  
+\paragraph{Esercizio 2: }
+Riprendendo l'esempio dell'automa di E-Bay, questo è ciò che ne verrebbe fuori 
+SE si aggiungono le mosse $\epsilon$:
 
-
-
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (18.3,-23.7) circle (3);
+\draw (18.3,-23.7) node {$9$};
+\draw [black] (30.2,-13) circle (3);
+\draw (30.2,-13) node {$1$};
+\draw [black] (45.4,-13.3) circle (3);
+\draw (45.4,-13.3) node {$2$};
+\draw [black] (59.2,-12.9) circle (3);
+\draw (59.2,-12.9) node {$3$};
+\draw [black] (71.6,-12.9) circle (3);
+\draw (71.6,-12.9) node {$4$};
+\draw [black] (71.6,-12.9) circle (2.4);
+\draw [black] (30.2,-30.9) circle (3);
+\draw (30.2,-30.9) node {$0$};
+\draw [black] (42.5,-30.9) circle (3);
+\draw (42.5,-30.9) node {$5$};
+\draw [black] (55.3,-30.9) circle (3);
+\draw (55.3,-30.9) node {$6$};
+\draw [black] (65.2,-30.9) circle (3);
+\draw (65.2,-30.9) node {$7$};
+\draw [black] (74.8,-30.9) circle (3);
+\draw (74.8,-30.9) node {$8$};
+\draw [black] (74.8,-30.9) circle (2.4);
+\draw [black] (7.5,-23.7) -- (15.3,-23.7);
+\draw (7,-23.7) node [left] {$start$};
+\fill [black] (15.3,-23.7) -- (14.5,-23.2) -- (14.5,-24.2);
+\draw [black] (15.877,-21.95) arc (261.89727:-26.10273:2.25);
+\draw (14.04,-17.23) node [above] {$\Sigma$};
+\fill [black] (18.22,-20.71) -- (18.82,-19.99) -- (17.83,-19.85);
+\draw [black] (15.877,-21.95) arc (261.89727:-26.10273:2.25);
+\fill [black] (18.22,-20.71) -- (18.82,-19.99) -- (17.83,-19.85);
+\draw [black] (20.53,-21.69) -- (27.97,-15.01);
+\fill [black] (27.97,-15.01) -- (27.04,-15.17) -- (27.71,-15.91);
+\draw (25.21,-18.84) node [below] {$\epsilon$};
+\draw [black] (33.2,-13.06) -- (42.4,-13.24);
+\fill [black] (42.4,-13.24) -- (41.61,-12.73) -- (41.59,-13.72);
+\draw (37.79,-13.67) node [below] {$w$};
+\draw [black] (48.4,-13.21) -- (56.2,-12.99);
+\fill [black] (56.2,-12.99) -- (55.39,-12.51) -- (55.42,-13.51);
+\draw (52.32,-13.63) node [below] {$e$};
+\draw [black] (62.2,-12.9) -- (68.6,-12.9);
+\fill [black] (68.6,-12.9) -- (67.8,-12.4) -- (67.8,-13.4);
+\draw (65.4,-13.4) node [below] {$b$};
+\draw [black] (20.87,-25.25) -- (27.63,-29.35);
+\fill [black] (27.63,-29.35) -- (27.21,-28.51) -- (26.69,-29.36);
+\draw (23.31,-27.8) node [below] {$\epsilon$};
+\draw [black] (33.2,-30.9) -- (39.5,-30.9);
+\fill [black] (39.5,-30.9) -- (38.7,-30.4) -- (38.7,-31.4);
+\draw (36.35,-31.4) node [below] {$e$};
+\draw [black] (45.5,-30.9) -- (52.3,-30.9);
+\fill [black] (52.3,-30.9) -- (51.5,-30.4) -- (51.5,-31.4);
+\draw (48.9,-31.4) node [below] {$b$};
+\draw [black] (58.3,-30.9) -- (62.2,-30.9);
+\fill [black] (62.2,-30.9) -- (61.4,-30.4) -- (61.4,-31.4);
+\draw (60.25,-31.4) node [below] {$a$};
+\draw [black] (68.2,-30.9) -- (71.8,-30.9);
+\fill [black] (71.8,-30.9) -- (71,-30.4) -- (71,-31.4);
+\draw (70,-31.4) node [below] {$y$};
+\end{tikzpicture}
+\end{center}
+\paragraph{Esercizio 3: }Data ER = $a^{\star}b^{\star}c^{\star}$ e l'$\epsilon$-NFA:
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (11.3,-20.2) circle (3);
+\draw (11.3,-20.2) node {$q0$};
+\draw [black] (34.3,-19.9) circle (3);
+\draw (34.3,-19.9) node {$q1$};
+\draw [black] (57,-19.8) circle (3);
+\draw (57,-19.8) node {$q2$};
+\draw [black] (57,-19.8) circle (2.4);
+\draw [black] (9.648,-17.71) arc (241.29521:-46.70479:2.25);
+\draw (10.17,-12.92) node [above] {$a$};
+\fill [black] (12.27,-17.37) -- (13.09,-16.91) -- (12.22,-16.43);
+\draw [black] (14.3,-20.16) -- (31.3,-19.94);
+\fill [black] (31.3,-19.94) -- (30.49,-19.45) -- (30.51,-20.45);
+\draw (22.8,-20.56) node [below] {$\epsilon$};
+\draw [black] (37.3,-19.89) -- (54,-19.81);
+\fill [black] (54,-19.81) -- (53.2,-19.32) -- (53.2,-20.32);
+\draw (45.65,-20.35) node [below] {$\epsilon$};
+\draw [black] (32.478,-17.532) arc (245.30993:-42.69007:2.25);
+\draw (32.42,-12.69) node [above] {$b$};
+\fill [black] (35.07,-17.01) -- (35.86,-16.49) -- (34.95,-16.08);
+\draw [black] (57.641,-16.881) arc (195.34019:-92.65981:2.25);
+\draw (62.17,-14.03) node [above] {$c$};
+\fill [black] (59.71,-18.53) -- (60.61,-18.8) -- (60.35,-17.84);
+\draw [black] (5.5,-27.6) -- (9.45,-22.56);
+\draw (3.27,-28.1) node [below] {$start$};
+\fill [black] (9.45,-22.56) -- (8.56,-22.88) -- (9.35,-23.5);
+\end{tikzpicture}
+\end{center}
+Andiamo a definire la $\epsilon$ chiusura, che per semplificare chiameremo 
+ECLOSE(q) = insieme (ECLOSE Q $\to 2^{Q}$) degli stati raggiungibili da q 
+tramite $\epsilon$-transizioni:
+\subparagraph{Esempio: }	
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (12.5,-25.5) circle (3);
+\draw (12.5,-25.5) node {$1$};
+\draw [black] (24.2,-16.8) circle (3);
+\draw (24.2,-16.8) node {$2$};
+\draw [black] (35.2,-16.5) circle (3);
+\draw (35.2,-16.5) node {$3$};
+\draw [black] (46.6,-16.5) circle (3);
+\draw (46.6,-16.5) node {$6$};
+\draw [black] (24.9,-30.9) circle (3);
+\draw (24.9,-30.9) node {$4$};
+\draw [black] (39.1,-31.7) circle (3);
+\draw (39.1,-31.7) node {$5$};
+\draw [black] (54.6,-30.9) circle (3);
+\draw (54.6,-30.9) node {$7$};
+\draw [black] (15.25,-26.7) -- (22.15,-29.7);
+\fill [black] (22.15,-29.7) -- (21.62,-28.92) -- (21.22,-29.84);
+\draw (17.78,-28.71) node [below] {$\epsilon$};
+\draw [black] (27.9,-31.07) -- (36.1,-31.53);
+\fill [black] (36.1,-31.53) -- (35.33,-30.99) -- (35.28,-31.99);
+\draw (31.94,-31.85) node [below] {$a$};
+\draw [black] (42.1,-31.55) -- (51.6,-31.05);
+\fill [black] (51.6,-31.05) -- (50.78,-30.6) -- (50.83,-31.6);
+\draw (46.9,-31.85) node [below] {$\epsilon$};
+\draw [black] (14.91,-23.71) -- (21.79,-18.59);
+\fill [black] (21.79,-18.59) -- (20.85,-18.67) -- (21.45,-19.47);
+\draw (19.3,-21.65) node [below] {$\epsilon$};
+\draw [black] (27.2,-16.72) -- (32.2,-16.58);
+\fill [black] (32.2,-16.58) -- (31.39,-16.1) -- (31.42,-17.1);
+\draw (29.71,-17.18) node [below] {$\epsilon$};
+\draw [black] (38.2,-16.5) -- (43.6,-16.5);
+\fill [black] (43.6,-16.5) -- (42.8,-16) -- (42.8,-17);
+\draw (40.9,-17) node [below] {$\epsilon$};
+\draw [black] (40.43,-29.01) -- (45.27,-19.19);
+\fill [black] (45.27,-19.19) -- (44.47,-19.69) -- (45.37,-20.13);
+\draw (43.55,-25.19) node [right] {$b$};
+\end{tikzpicture}
+\end{center}
+In questo caso ECLOSE(1) sarebbe \{1,2,4,3,6\}. Come già detto è letteralmente
+l'insieme degli stati in cui si può andare passando per una $\epsilon$
+\paragraph{Definizione induttiva: }
+\begin{itemize}
+	\item Base: q $\in$ ECLOSE(q)
+	\item Passo: Se p $\in$ ECLOSE(q), ed $\exists ~ ~ \epsilon$-transizione p $\to$ sm
+	allora s $\in$ ECLOSE(q). Infine si definisce Estensione ECLOSE $2^{Q}\to 2^{Q}$
+\end{itemize}
+Essendo che l'ECLOSE è un insieme, per esso varranno TUTTE le proprietà degli 
+insiemi come unione intersezione etc. 
+\begin{itemize}
+	\item ECLOSE(S) = $\bigcup \limits_{q\in s}$ ECLOSE(q) dove S $\subseteq$ Q
+	\item ECLOSE($\varnothing$) = $\varnothing$
+\end{itemize}
 
 \end{document}
