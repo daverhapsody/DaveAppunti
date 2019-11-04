@@ -991,6 +991,7 @@ Da YouMath:
 \begin{center}
 \includegraphics[width=0.75\textwidth]{ym}
 \end{center}
+~
 \begin{center}
 \includegraphics[width=0.75\textwidth]{2kep}
 \end{center}
@@ -1102,10 +1103,102 @@ si indica il volume, riscriviamola
 \rho = \frac{M}{Volume}
 \]	
 Letteralmente $\frac{Massa}{Volume}$
-
-
-
-
-
-
+Se la densità della terra è a simmetria sferica (cioè dipende dalla posizione
+della sfera), allora è corretto dire $g = 9,8 \frac{m}{s^{2}}$. Ma sulla terra
+esistono mari e montagne, chiaramente la forza g può cambiare se uno si trova
+in un determinato posto.
+\paragraph{Inoltre }La terra non è una sfera perfetta, è un geoide (Una sfera 
+schiacciata, un pallone dopo che ti ci sei seduto sopra)
+\paragraph{Esempio: }
+Passando dall'equatore al polo, quant'è la differenza di accelerazione?
+Sappiamo che
+\begin{itemize}
+	\item R = 6400km
+	\item $\delta R = 21km$
+	\item $\frac{\delta g}{g} \sim -2 \frac{2\delta R}{R} = -2\cdot \frac{21km}{6400km}
+	\to \delta g \sim - 0.06 \frac{m}{s^{2}}$
+\end{itemize}
+\paragraph{Altro esempio: }
+\begin{center}
+\includegraphics[width=0.75\textwidth]{4}
+\end{center}
+Se un punto materiale si muove lungo una circonferenza, deve per forza esserci 
+una forza che lo muove. Un'accelerazione centripeta ($\frac{V^{2k}}{R}$). 
+Prendo una massa m, la attacco ad una molla, quando è in equilibrio deduco che
+la forza che applica la molla è uguale alla mossa che attrae la massa verso il 
+basso. La forza che si oppone alla molla la interpreto come forza peso, e la
+considero come $F_{P} = mg_{P} = \kappa x$. Se questo corpo sta fermo si deduce
+che $\Sigma F = 0 \to a = 0$, supponendo$ F_{G} = mg_{P}$ allora $F_{G} > F_{P}$,
+per cui $F_{apparente} - mg_{P} = m\cdot a_{Centripeta}$. Ragioniamola più in
+termini pratici: 
+\[
+m\cdot \omega^{2} R_{T} = G_{N}\cdot \frac{M_{T}\cdot m}{R_{T}^{2}}-mg_{P} 
+\]	
+In cui:
+\[
+w^{2}R_{T} = g - g_{P} ~~e~~ g_{P} = g - \omega^{2}R_{T} 
+\]
+\paragraph{Cosa si deduce? }Il nostro punto materiale di massa m, siccome si 
+trova su una circonferenza e si muove con una velocità non trascurabile, allora
+è sottoposto ad una forza centripeta
+\subparagraph{Spoiler: }Io francamente non ci ho capito molto, nel senso, non ho
+trovato una vera utilità per tutto sto casino, forse è solo un ripasso di formule,
+boh.	
+\chapter{Le forze conservative}
+Sono le forze per cui il lavoro risulti indipendente dal percorso. Tutto ciò
+che conta è solo punto iniziale e finale
+\[
+\Delta U_{AB} = -L_{AB}
+\]
+Ad esempio la forza peso è conservativa, conpie un lavoro che dipende dalla 
+quota iniziale e finale $L = \int_{y_{1}}^{y_{2}} m\cdot g ~ dy  $, pertanto
+$ \Delta U = -L = mgh $ e per piccoli spostamenti sulla Terra possiamo anche
+dire che g sia costante. 
+Come avevamo già visto, $L = \int_{A}^{B} \overrightarrow{F}(distanza)\cdot d 
+\overrightarrow{s}$
+\paragraph{In pratica: }Se hai un lavoro nullo prodotto da una forza su un corpo
+lungo un cammino chiuso, allora quella forza si dice \textbf{Conservativa}.
+\subparagraph{Mi spiego peggio: }Prendi una palla da tennis, vai in mezzo ad un 
+prato e lanciala verso l'alto. Bene, la palla parte da un punto A e arriva fino 
+ad un punto B, beeene. (Ora, fate finta di avere una precisione buona)La palla 
+ad un certo punto raggiunge il suo apice, (B), poi ripercorre a ritroso
+la strada e torna in posizione A. \textbf{Il lavoro} che produciamo noi per 
+farla andare da A a B, ed il lavoro della forza peso per far tornare la palla da
+B ad A sono identici. 
+\subparagraph{E quindi? }Sei in un percorso chiuso in cui posizione iniziale e 
+finale coincidono, ergo lavoro = 0. Perciò la forza conservativa è quella che se
+il lavoro compiuto da essa su un corpo che percorre un cammino lungo, è uguale a 0. 		
+\paragraph{Perchè ci serve? }Perchè in pratica permette di classificare le forze
+dal punto di vista dell'energia. Ci serve più nello specifico per capire meglio
+l'energia potenziale
+\section{Cammino percorso}
+Siccome si considera una forza conservativa, e si sa che il lavoro sia nullo, 
+allora: 
+\[
+	L_{AB} + L_{BA} = 0
+\]	
+A questo punto riprendendo la definizione di lavoro generale, si può
+dire che: 
+\[
+\overbrace{\int_{A}^{B} \overrightarrow{F} \cdot d \overrightarrow{s}}^{Percorso 1}
+ = - \overbrace{\int_{B}^{A} \overrightarrow{F} \cdot d \overrightarrow{s}}^{Percorso 2}
+\]    
+Perciò il lavoro di una forza conservativa da A a B è lo stesso a prescindere dal 
+percorso che si sceglie per andare da A a B. Quindi si hanno queste due 
+importanti proprietà: 
+\begin{itemize}
+	\item Lavoro nulla su un percorso chiuso: 
+	\[
+	\oint_{\gamma} \overrightarrow{F} \cdot d\overrightarrow{s} = 0
+	\]
+	\item Indipendenza del lavoro dal cammino percorso: 
+	\[
+	\overbrace{\int_{A}^{B} \overrightarrow{F} \cdot d \overrightarrow{s}}^{Percorso 1}
+	 = - \overbrace{\int_{B}^{A} \overrightarrow{F} \cdot d \overrightarrow{s}^{Percorso 2}}
+	\]    
+\end{itemize}
 \end{document}
+
+
+
+
