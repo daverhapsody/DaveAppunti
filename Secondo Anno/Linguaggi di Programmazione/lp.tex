@@ -678,7 +678,7 @@ Andiamo a scrivercela sostituendo alla formula $\to$
 \[\frac{(\forall x, uomo(x) \to mortale(x)), Socrate\in C}{uomo(Socrate)\to 
 mortale(Socrate)}\]
 Ora andiamo a togliere il quantificatore universale ($\forall$ detto in modo figo)
-\[frac{uomo(Socrate), uomo(Socrate) \to mortale(Socrate)}{mortale(Socrate)}\]
+\[ \frac{uomo(Socrate), uomo(Socrate) \to mortale(Socrate)}{mortale(Socrate)}\]
 Cosa notiamo? Il "denominatore" della prima formula è diventato il "numeratore"
 della seconda, infatti vedete come abbiamo uomo(Socrate) $\to$ mortale(Socrate)?
 \\ \\
@@ -774,7 +774,7 @@ Esistono due forme normali a clausole:
 	(letterali positivi e letterali negativi)
 	\[\bigvee \limits _{j} (\bigwedge \limits _{i} L_{ij})\]
 \end{enumerate}
-\subsection{Forma normale congiuntiva}
+\subsection{Forma normale disgiuntiva}
 La clausole che hanno al più un solo letterale positivo (sia con che senza 
 letterali negativi) si chiamano clausole di \color{red} \textbf{Horn} \color{black}
 \\ \\
@@ -1029,7 +1029,7 @@ sum(s(X), Y, s(Z)) :- sum (X, Y, Z).
 Il programma verrà interrogato in questo modo: \\
 $\exists X$ sum(s(0), 0, X) \{X / s(0)\}
 $\exists X$ sum(s(s(0)), s(0), W) \{W / s(s(s(0)))\} MA
-Scritto in Prolog divente 
+Scritto in Prolog diventa
 \begin{lstlisting}[language=prolog]
 :- sum(s(0), 0, N)  {N s(0)}
 :- sum(s(s(0)), 0, N)  {W s(s(s(0)))}
@@ -1108,12 +1108,12 @@ principio di risoluzione}} \color{black}, solo più vincolato. \\
 Prolog dimostra la veridicità o meno di una query con una sequenza di passi di
 risoluzione (Sì, sequenza di passi, algoritmo, efficienza, $\Theta nLogn$) 
 \\ \\
-Infatti in Prolog la risoluzione avviene se,pre tra l'ultima query derivata in 
+Infatti in Prolog la risoluzione avviene sempre tra l'ultima query derivata in 
 ciascun passo e una una \textbf{clausola di programma}, ma non accade MAI tra
 due clausole di programma o fra una clausola ed un goal derivato precedentemente.
 \\ \\
 \paragraph{Riassumendo: } Quello che si è appena descritto è definita \textbf{Definizione
-SLD} (Selection funzion for Linear and Definitie sentences Resolution; in cui
+SLD} (Selection function for Linear and Definite sentences Resolution; in cui
 le "frasi lineari" sono essenzialmente delle clausole di Horn).
 \\ \\
 \paragraph{Esempio di risoluzione SLD}:
@@ -1130,7 +1130,7 @@ $G_{i+1}$ si genera in pratica dal principio di risoluzione:
 	\item $\neg A_{i,1} \vee \neg A_{i,2}\vee ...\vee \neg A_{i,m}$ 
 	\item $A_{i,1} \vee \neg B_{1}, \neg B_{2}, ..., \neg B_{m}$
 	\item $\neg B_{1} \vee \neg B_{2} ... \vee \neg B_{n} \vee \neg A_{i,2},
-	\vee \neg A_{i,2}, ..., \vee \neg A_{i,2}$
+	\vee \neg A_{i,3}, ..., \vee \neg A_{i,m}$
 \end{enumerate}
 \[G_{i+1} \equiv ~~ ?- B_{e,1}^{'}, B_{e,1}^{'}, ..., B_{e,1}^{'}, A_{e,1}^{'}, 
 A_{e,1}^{'}, ..., A_{e,1}^{'} \]
@@ -1195,7 +1195,7 @@ che si possono adottare.
 	ed in quest'ultimo caso si riconsiderano le scelte fatte in precedenza.
 	\item Breadth First: (In ampiezza) Si considerano in parallelo tutte le alternative
 \end{itemize}
-Prolog adotta una strategia di risoluzione in profondità con \textbf{Backtracing}
+Prolog adotta una strategia di risoluzione in profondità con \textbf{Backtracking}
 cioè in pratica 
 \begin{itemize}
 	\item Permette risparmio di memoria MA
@@ -1230,7 +1230,7 @@ definito sulla base del processo di prova visto precedentemente
 	\item Può essere scelta dalla sottoquery più a sinistra (se c'è) $\to$ Left - most
 	\item Può essere scelta dalla sottoquery più a destra (se c'è) $\to$ Right - most
 	\item Oppure può anche essere scelta da una sottoquery a caso
-	\item Infine può essere scelta dalla sottoquet migliore
+	\item Infine può essere scelta dalla sottoquery migliore
 \end{itemize}
 Prolog in pratica adotta la regola del Left Most, quindi considera la sottoquery
 più a sinistra e l'albero SLD (implicito) generato dal sistema Prolog ordina i 
@@ -1247,7 +1247,7 @@ fatti del programma \textbf{P}.
 \\
 Cerchiamo di ragionare bene sull'albero visto nell'esempio qui sopra. Abbiamo
 una serie di clausole, sono le varie cl1, 2, 3, ..., 7. Ora, quello che accade
-è che da destra verso sinistra andiamo ad applicarle alla clausola principale.
+è che da sinistra verso andiamo ad applicarle alla clausola principale.
 \\ \\
 Non so se è stato già detto, tutto questo casino è semplicemente quello che 
 effettua Prolog per quando dimostra un teorema \\ \\
