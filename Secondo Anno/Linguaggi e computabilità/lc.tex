@@ -1294,24 +1294,24 @@ stato si trova l'automa dopo aver consumato w. O meglio, in quale insieme di sta
 si va a trovare.
 \paragraph{$1^{a}$ definizione induttiva: }
 \begin{center}
-	\begin{itemize}
-		\item Base: $\widehat{\delta}(q,w) = \{q\} \forall q \in Q$
-		\item Passo induttivo: posto $w = ax$, con $a \in \Sigma$ e $x \in 
-		\Sigma^{\star}$ e $\delta(q,a) = \{p_{1}, p_{2}, ..., p_{x}\}$ ALLORA
-		$\widehat{\delta} = \bigcup \limits_{i=1}^{k} \widehat{\delta}(p_{i},x) =
-		\{r_{1}, r_{2}, ..., r_{m}\}$
-	\end{itemize}
+\begin{itemize}
+	\item Base: $\widehat{\delta}(q,w) = \{q\} \forall q \in Q$
+	\item Passo induttivo: posto $w = ax$, con $a \in \Sigma$ e $x \in 
+	\Sigma^{\star}$ e $\delta(q,a) = \{p_{1}, p_{2}, ..., p_{x}\}$ ALLORA
+	$\widehat{\delta} = \bigcup \limits_{i=1}^{k} \widehat{\delta}(p_{i},x) =
+	\{r_{1}, r_{2}, ..., r_{m}\}$
+\end{itemize}
 \end{center}
 
 \paragraph{$2^{a}$ definizione induttiva: }
 \begin{center}
-	\begin{itemize}
-		\item Base: $\widehat{\delta}(q,w) = \{q\} \forall q \in Q$
-		\item Passo induttivo: posto $w = xa$, con $a \in \Sigma$ e $x \in 
-		\Sigma^{\star}$ e $\delta(q,x) = \{p_{1}, p_{2}, ..., p_{x}\}$ ALLORA
-		$\widehat{\delta} = \bigcup \limits_{i=1}^{k} \widehat{\delta}(p_{i},a) =
-		\{r_{1}, r_{2}, ..., r_{m}\}$
-	\end{itemize}
+\begin{itemize}
+	\item Base: $\widehat{\delta}(q,w) = \{q\} \forall q \in Q$
+	\item Passo induttivo: posto $w = xa$, con $a \in \Sigma$ e $x \in 
+	\Sigma^{\star}$ e $\delta(q,x) = \{p_{1}, p_{2}, ..., p_{x}\}$ ALLORA
+	$\widehat{\delta} = \bigcup \limits_{i=1}^{k} \widehat{\delta}(p_{i},a) =
+	\{r_{1}, r_{2}, ..., r_{m}\}$
+\end{itemize}
 \end{center}
 (Per farla in breve, è identica MA si invertono la x e la a.)
 \paragraph{Esempio: }Data la stringa w = 00101, \\
@@ -1331,7 +1331,7 @@ la stringa w = 00101 è accettata dall'automa (NFA)
 \paragraph{Definizione: }Sia A = (Q, $\Sigma, \delta, q_{0}$, F) un NFA, il 
 linguaggio accettato da A è 
 \[
-	L(A)=\{w\in \Sigma^{\star} | \widehat{\delta}(q_{0},w \cap F \neq \varnothing\}
+L(A)=\{w\in \Sigma^{\star} | \widehat{\delta}(q_{0},w \cap F \neq \varnothing\}
 \]
 \section{Trasformazione da NFA a DFA}
 Per ogni NFA esiste un DFA in grado di simularlo:
@@ -1373,31 +1373,31 @@ $\delta_{D}(S,a) = \bigcup \limits_{p \in S} \delta_{N}(p,a)$
 \end{center}
 \begin{center}
 \begin{tabular}{ |c|c|c| } 
- \hline
- \_ & 0 & 1  \\ 
- $\varnothing$ & $\varnothing$ & $\varnothing$\\ 
+\hline
+\_ & 0 & 1  \\ 
+$\varnothing$ & $\varnothing$ & $\varnothing$\\ 
 $ \to{q_{0}}$ & \{$q_{0}, q_{1}$\} &  \{$q_{0}$\}  \\ 
- $\{q_{1}\}$ & $\varnothing$  &  \{$q_{2}$\}     \\ 
- $\{q_{2}\}$ & $\varnothing $ &   $\varnothing  $  \\ 
- $\{q_{0}, q_{1}\}$ & $\{q_{0}, q_{1}\} $ &   $\{q_{0}, q_{2}\}$    \\ 
- $\star\{q_{0}, q_{2}\} $& $\{q_{0}, q_{1}\}$ & $ \{q_{0}\}$ \\ 
- $\star\{q_{1}, q_{2}\} $& $\varnothing \cup \varnothing $& $ \{q_{2}\} $ \\
- $\star\{q_{0}, q_{1}, q_{2}\} $& $\{q_{0}, q_{1}\}$ &  $ \{q_{0}, q_{2}\}$    \\  
- \hline
+$\{q_{1}\}$ & $\varnothing$  &  \{$q_{2}$\}     \\ 
+$\{q_{2}\}$ & $\varnothing $ &   $\varnothing  $  \\ 
+$\{q_{0}, q_{1}\}$ & $\{q_{0}, q_{1}\} $ &   $\{q_{0}, q_{2}\}$    \\ 
+$\star\{q_{0}, q_{2}\} $& $\{q_{0}, q_{1}\}$ & $ \{q_{0}\}$ \\ 
+$\star\{q_{1}, q_{2}\} $& $\varnothing \cup \varnothing $& $ \{q_{2}\} $ \\
+$\star\{q_{0}, q_{1}, q_{2}\} $& $\{q_{0}, q_{1}\}$ &  $ \{q_{0}, q_{2}\}$    \\  
+\hline
 \end{tabular}
 \end{center}
 \begin{center}
 \begin{tabular}{ |c|c|c| } 
- \hline
- A & A & A \\ 
- B & E & B \\ 
- C & A & D \\ 
- D & A & A \\ 
- E & E & F \\ 
- F & E & B \\ 
- G & A & D \\ 
- H & E & F \\
- \hline
+\hline
+A & A & A \\ 
+B & E & B \\ 
+C & A & D \\ 
+D & A & A \\ 
+E & E & F \\ 
+F & E & B \\ 
+G & A & D \\ 
+H & E & F \\
+\hline
 \end{tabular}
 \end{center}
 Contiamo che $S_{D}(\{q_{0},q_{1}\}, 0) = \delta_{N}(q_{0},0) \cup \delta_{N}(q_{1},0)
@@ -1477,22 +1477,22 @@ nemmeno raggiungibili, quindi non avremmo dovuto iniziare indicando tutti i
 possibili sottoinsiemi MA considerare il tutto stato per stato:
 \begin{center}
 \begin{tabular}{ |c|c|c| } 
- \hline
- \_ & 0 & 1 \\
- \hline
- $\to\{q_{0}\} $&$ \{q_{0},q_{1}\}$ & $\{q_{0}\} $\\ 
- $\{q_{0},q_{1}\} $&$\{q_{0},q_{1}\}$ & $\{q_{0},q_{2}\}$ \\ 
- $\star\{q_{0},q_{2}\}$ &$ \{q_{0},q_{1}\}$ & $\{q_{0}\} $\\
- \hline
+\hline
+\_ & 0 & 1 \\
+\hline
+$\to\{q_{0}\} $&$ \{q_{0},q_{1}\}$ & $\{q_{0}\} $\\ 
+$\{q_{0},q_{1}\} $&$\{q_{0},q_{1}\}$ & $\{q_{0},q_{2}\}$ \\ 
+$\star\{q_{0},q_{2}\}$ &$ \{q_{0},q_{1}\}$ & $\{q_{0}\} $\\
+\hline
 \end{tabular}
 \end{center}
 \begin{center}
 \begin{tabular}{ |c|c|c| } 
- \hline
- B & E & B \\
- E & E & F \\ 
- F & E & B \\ 
- \hline
+\hline
+B & E & B \\
+E & E & F \\ 
+F & E & B \\ 
+\hline
 \end{tabular}
 \end{center}
 \paragraph{Altro esempio: }Dato il seguente NFA:
@@ -1541,14 +1541,14 @@ possibili sottoinsiemi MA considerare il tutto stato per stato:
 \end{center}
 \begin{center}
 \begin{tabular}{ |c|c|c| } 
- \hline
- & a & b \\
- \hline
- $\star \to \{q_{0}\}$& $\{q_{0},q_{2}\}$ & $ \varnothing$\\ 
- $\star\{q_{1},q_{2}\} $& $\{q_{1},q_{2}\} $&$ \{q_{1},q_{3}\}$ \\ 
- $ \varnothing $& $\varnothing$ & $\varnothing$ \\ 
- $\star\{q_{1},q_{3}\} $& $\{q_{1},q_{2}\} $& $\varnothing$\\ 
- \hline
+\hline
+& a & b \\
+\hline
+$\star \to \{q_{0}\}$& $\{q_{0},q_{2}\}$ & $ \varnothing$\\ 
+$\star\{q_{1},q_{2}\} $& $\{q_{1},q_{2}\} $&$ \{q_{1},q_{3}\}$ \\ 
+$ \varnothing $& $\varnothing$ & $\varnothing$ \\ 
+$\star\{q_{1},q_{3}\} $& $\{q_{1},q_{2}\} $& $\varnothing$\\ 
+\hline
 \end{tabular}
 \end{center}
 Ecco il risultato della conversione in DFA: 
@@ -1874,15 +1874,15 @@ insiemi come unione intersezione etc.
 \section{Trasformazione $\epsilon$-NFA $\to$ DFA}
 Dato un $\epsilon$ NFA E = ($Q_{E}$, $\Sigma, \delta_{E}$, $q_{0},F_{E}$), pertanto
 costruiamo un DFA D=($Q_{D}, \Sigma, \delta_{D}, q_{D}, F_{D}$) tale che
- L(E) = L(D)
- $Q_{b}$ = $2^{Q_{E}}$, \\
- $Q_{D}$ = ECLOSE($q_{0}$), \\
- $F_{D}$ = \{S $\in Q_{D}$ | $S \cap F_{E}$ $\neq \varnothing$\}, \\
- $\forall a \in \Sigma$, e $\forall S = \{p_{1}, p_{2}, ..., p_{k}\}$ $\in Q_{D}$ e
- $\delta_{D}(S,a)$ si calcola come segue: \\
- $\bigcup \limits_{i = 1}^{k}$ $\delta_{E}(p,a) $= $\{r_{1}, r_{2}, ..., r_{m}\}$\\
- Si pone $\delta_{D}(S,a)=ECLOSE(\{r_{1}, r_{2}, ..., r_{m}\})$
- \begin{center}
+L(E) = L(D)
+$Q_{b}$ = $2^{Q_{E}}$, \\
+$Q_{D}$ = ECLOSE($q_{0}$), \\
+$F_{D}$ = \{S $\in Q_{D}$ | $S \cap F_{E}$ $\neq \varnothing$\}, \\
+$\forall a \in \Sigma$, e $\forall S = \{p_{1}, p_{2}, ..., p_{k}\}$ $\in Q_{D}$ e
+$\delta_{D}(S,a)$ si calcola come segue: \\
+$\bigcup \limits_{i = 1}^{k}$ $\delta_{E}(p,a) $= $\{r_{1}, r_{2}, ..., r_{m}\}$\\
+Si pone $\delta_{D}(S,a)=ECLOSE(\{r_{1}, r_{2}, ..., r_{m}\})$
+\begin{center}
 \begin{tikzpicture}[scale=0.2]
 \tikzstyle{every node}+=[inner sep=0pt]
 \draw [black] (15.2,-20.3) circle (3);
@@ -1917,14 +1917,14 @@ ECLOSE($q_{1}$) = \{$q_{1}, q_{2}$\} \\
 ECLOSE($q_{2}$) = \{$q_{2}$\} \\
 \begin{center}
 \begin{tabular}{ |c|c|c|c| } 
- \hline
- \_ & a & b & c \\ 
- $\to^{*}\{q_{0},q_{1},q_{2}\}$ & $\{q_{0},q_{1},q_{2}\}$ & \{$q_{1}, q_{2}$\} 
- & \{$q_{2}$\} \\ 
- *\{$q_{1}, q_{2}$\} & $\varnothing$ & \{$q_{1}, q_{2}$\} & \{$q_{2}$\}\\ 
- *\{$q_{2}$\} & $\varnothing$ & $\varnothing$ & \{$_{2}$\} \\ 
- $\varnothing$ & $\varnothing$ & $\varnothing$ & $\varnothing$ \\ 
- \hline
+\hline
+\_ & a & b & c \\ 
+$\to^{*}\{q_{0},q_{1},q_{2}\}$ & $\{q_{0},q_{1},q_{2}\}$ & \{$q_{1}, q_{2}$\} 
+& \{$q_{2}$\} \\ 
+*\{$q_{1}, q_{2}$\} & $\varnothing$ & \{$q_{1}, q_{2}$\} & \{$q_{2}$\}\\ 
+*\{$q_{2}$\} & $\varnothing$ & $\varnothing$ & \{$_{2}$\} \\ 
+$\varnothing$ & $\varnothing$ & $\varnothing$ & $\varnothing$ \\ 
+\hline
 \end{tabular}
 \end{center}
 (D'ora in avanti scrivo solo EC per indicare ECLOSE)
@@ -1935,14 +1935,14 @@ A questo punto riscriviamo la tabella però usando le lettere invece che gli
 insiemi le lettere:
 \begin{center}
 \begin{tabular}{ |c|c|c|c| } 
- \hline
- \_ & a & b & c \\ 
- \hline
- A & A & B & C \\
- B & D & B & C \\
- C & D & D & C \\
- D & D & D & D \\
- \hline
+\hline
+\_ & a & b & c \\ 
+\hline
+A & A & B & C \\
+B & D & B & C \\
+C & D & D & C \\
+D & D & D & D \\
+\hline
 \end{tabular}
 \end{center}
 \begin{center}
@@ -1988,10 +1988,471 @@ insiemi le lettere:
 \fill [black] (43.18,-42.25) -- (42.67,-43.05) -- (43.67,-43.05);
 \end{tikzpicture}
 \end{center}
+\section{Trasformazione $\epsilon - NFA \to DFA$}
+\paragraph{Diamo il seguent $\epsilon - NFA$}:
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (23.6,-22.2) circle (3);
+\draw (23.6,-22.2) node {$p$};
+\draw [black] (48.4,-22.2) circle (3);
+\draw (48.4,-22.2) node {$q$};
+\draw [black] (35.1,-39.5) circle (3);
+\draw (35.1,-39.5) node {$r$};
+\draw [black] (35.1,-39.5) circle (2.4);
+\draw [black] (46.57,-24.58) -- (36.93,-37.12);
+\fill [black] (36.93,-37.12) -- (37.81,-36.79) -- (37.02,-36.18);
+\draw (41.18,-29.44) node [left] {$b$};
+\draw [black] (26.017,-20.429) arc (121.70963:58.29037:18.992);
+\fill [black] (45.98,-20.43) -- (45.56,-19.58) -- (45.04,-20.43);
+\draw (36,-17.09) node [above] {$\epsilon,\mbox{ }b$};
+\draw [black] (25.26,-24.7) -- (33.44,-37);
+\fill [black] (33.44,-37) -- (33.41,-36.06) -- (32.58,-36.61);
+\draw (28.74,-32.18) node [left] {$\epsilon,\mbox{ }c$};
+\draw [black] (49.003,-19.273) arc (196.09853:-91.90147:2.25);
+\draw (53.5,-16.38) node [above] {$c$};
+\fill [black] (51.09,-20.9) -- (52,-21.16) -- (51.72,-20.2);
+\draw [black] (9.7,-18.3) -- (20.71,-21.39);
+\draw (8.93,-17.75) node [left] {$start$};
+\fill [black] (20.71,-21.39) -- (20.08,-20.69) -- (19.81,-21.65);
+\draw [black] (45.4,-22.2) -- (26.6,-22.2);
+\fill [black] (26.6,-22.2) -- (27.4,-22.7) -- (27.4,-21.7);
+\draw (36,-21.7) node [above] {$a,\mbox{ }c$};
+\end{tikzpicture}
+\end{center}
+Bisogna calcolarsi:
+\begin{itemize}
+	\item ECLOSE(p) = \{p, q, r\}
+	\item ECLOSE(q) = \{q\}
+	\item ECLOSE(r) = \{r\}
+\end{itemize}
 
+\begin{center}
+\begin{tabular}{ |c|c|c|c| } 
+\hline
+~ & a & b & c \\ 
+\hline
+$\star \to \{p, q, r\}$ & \{p, q, r\} &  \{q, r\} & \{p, q, r\}\\ 
+$\star \{q,r\}$ & \{p, q, r\} & \{r\} & \{p, q, r\}\\ 
+$\star \{r\}$ & $\varnothing$ & $\varnothing$ & $\varnothing$ \\
+$\varnothing$ & $\varnothing$ & $\varnothing$ & $\varnothing$ \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{ |c|c|c|c| } 
+\hline
+~ & a & b & c\\
+\hline 
+A & A & B & A\\ 
+B & A & C & A\\
+C & D & D & D\\ 
+D & D & D & D\\ 
+\hline
+\end{tabular}
+\end{center}
+\paragraph{PRECISAZIONE: }Anche in questo caso per calcolare le varie tabelle ed
+i valori in esse contenuti ho usato le ECLOSE.
+\paragraph{Ecco il risultante:}
 
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (17.9,-24.5) circle (3);
+\draw (17.9,-24.5) node {$A$};
+\draw [black] (17.9,-24.5) circle (2.4);
+\draw [black] (38.7,-24.5) circle (3);
+\draw (38.7,-24.5) node {$B$};
+\draw [black] (38.7,-24.5) circle (2.4);
+\draw [black] (58.6,-24.5) circle (3);
+\draw (58.6,-24.5) node {$C$};
+\draw [black] (58.6,-24.5) circle (2.4);
+\draw [black] (58.6,-42.1) circle (3);
+\draw (58.6,-42.1) node {$D$};
+\draw [black] (6.4,-21.7) -- (14.99,-23.79);
+\draw (5.64,-21.26) node [left] {$start$};
+\fill [black] (14.99,-23.79) -- (14.33,-23.12) -- (14.09,-24.09);
+\draw [black] (20.671,-23.356) arc (108.80689:71.19311:23.665);
+\fill [black] (35.93,-23.36) -- (35.33,-22.62) -- (35.01,-23.57);
+\draw (28.3,-21.59) node [above] {$b$};
+\draw [black] (36.272,-26.255) arc (-59.59875:-120.40125:15.754);
+\fill [black] (20.33,-26.25) -- (20.76,-27.09) -- (21.27,-26.23);
+\draw (28.3,-28.92) node [below] {$a,c$};
+\draw [black] (61.52,-41.467) arc (129.96376:-158.03624:2.25);
+\draw (65.91,-44.19) node [right] {$a,\mbox{ }b,\mbox{ }c$};
+\fill [black] (60.88,-44.03) -- (61.01,-44.97) -- (61.78,-44.32);
+\draw [black] (58.6,-27.5) -- (58.6,-39.1);
+\fill [black] (58.6,-39.1) -- (59.1,-38.3) -- (58.1,-38.3);
+\draw (58.1,-33.3) node [left] {$a,\mbox{ }b,\mbox{ }c$};
+\draw [black] (41.7,-24.5) -- (55.6,-24.5);
+\fill [black] (55.6,-24.5) -- (54.8,-24) -- (54.8,-25);
+\draw (48.65,-25) node [below] {$b$};
+\draw [black] (17.74,-21.516) arc (210.80141:-77.19859:2.25);
+\draw (22.39,-17.77) node [above] {$a,\mbox{ }c$};
+\fill [black] (20.17,-22.56) -- (21.11,-22.58) -- (20.6,-21.72);
+\end{tikzpicture}
+\end{center}
+\chapter{Correzione di un esame}
+\section{Esercizio 1}
+Regolare, tipo 3, lineare a sx 
+\begin{itemize}
+	\item $\Sigma = \{a, b, c ,d\}$
+	\begin{itemize}
+		\item S $\to$ Sd | Ac
+		\item A $\to$ Bb | Cc
+		\item B $\to$ a 
+		\item C $\to$ Cb | a
+	\end{itemize}
+\end{itemize}
+\section*{Data la stringa w = 'abcdd'}
+S $\implies$ Sd $\implies$ Sdd $\implies$ Acdd $\implies$ Bbcdd $\implies$ abcdd
+\section*{Data la stringa w = 'abcc'}
+S $\implies$ Ac $\implies$ Ccc $\implies$ Cbcc $\implies$ abcc
+Ne consegue che la grammatica sia: $(ab^{\star}c + ab) cd^{\star}= a(b^{\star}c+b)cd^{\star}$
+\section{Esercizio 2}
+Dato il linguaggio L =$ \{w \in \{a, b, c\}^{\star} | w = a^{m}cb^{n}ac^{m+n} m\geq 0,  n>0 $\}
+\\ $a^{m}cb^{n}ac^{n}c^{m}, m\geq 0, n>0$\\
+\begin{itemize}
+	\item S $\to$ aSc | cX 
+	\item X $\to$ bXc | bac
+\end{itemize} 
+Data la stringa w = acbacc\\
+S $\implies$ aSc $\implies$ acXc $\implies$ acbacc
+\paragraph{Gaia ci regala anche l'albero di derivazione per la stringa w=acbacc}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{deriva1}
+\end{center}
+\section{Esercizio 3}
+Progettare un DFA per L = \{$w \in \{a, b, c, d\}^{\star}$ | w inizia con a oppure
+c, e termina con d, ed è contenente un numero pari di b\} 
+\paragraph{Esempio: } 
+\begin{itemize}
+	\item abcbd, cd, cbbdbabad $\in$ L \\
+	\item bbd, cbdbbd $\notin$ L
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (13.6,-21.2) circle (3);
+\draw (13.6,-21.2) node {$q_0$};
+\draw [black] (34.7,-21.2) circle (3);
+\draw (34.7,-21.2) node {$q_1$};
+\draw [black] (55.5,-22.2) circle (3);
+\draw (55.5,-22.2) node {$q_2$};
+\draw [black] (55.5,-22.2) circle (2.4);
+\draw [black] (16.3,-37.5) circle (3);
+\draw (16.3,-37.5) node {$qe$};
+\draw [black] (35.6,-37.8) circle (3);
+\draw (35.6,-37.8) node {$q_3$};
+\draw [black] (7.9,-21.2) -- (10.6,-21.2);
+\draw (7.4,-21.2) node [left] {$start$};
+\fill [black] (10.6,-21.2) -- (9.8,-20.7) -- (9.8,-21.7);
+\draw [black] (16.6,-21.2) -- (31.7,-21.2);
+\fill [black] (31.7,-21.2) -- (30.9,-20.7) -- (30.9,-21.7);
+\draw (24.15,-21.7) node [below] {$a,c$};
+\draw [black] (33.377,-18.52) arc (234:-54:2.25);
+\draw (34.7,-13.95) node [above] {$a,c$};
+\fill [black] (36.02,-18.52) -- (36.9,-18.17) -- (36.09,-17.58);
+\draw [black] (37.346,-19.793) arc (113.19962:61.29541:17.908);
+\fill [black] (53,-20.55) -- (52.54,-19.72) -- (52.06,-20.6);
+\draw (45.31,-17.82) node [above] {$d$};
+\draw [black] (58.406,-21.504) arc (131.19573:-156.80427:2.25);
+\draw (62.83,-24.09) node [right] {$d$};
+\fill [black] (57.82,-24.08) -- (57.97,-25.01) -- (58.72,-24.36);
+\draw [black] (14.09,-24.16) -- (15.81,-34.54);
+\fill [black] (15.81,-34.54) -- (16.17,-33.67) -- (15.19,-33.83);
+\draw (14.24,-29.57) node [left] {$b,\mbox{ }d$};
+\draw [black] (33.925,-35.318) arc (-152.22764:-201.56564:13.761);
+\fill [black] (33.92,-35.32) -- (33.99,-34.38) -- (33.11,-34.84);
+\draw (31.78,-29.68) node [left] {$b$};
+\draw [black] (36.015,-23.893) arc (21.21787:-15.01115:17.858);
+\fill [black] (36.01,-23.89) -- (35.84,-24.82) -- (36.77,-24.46);
+\draw (37.78,-29.36) node [right] {$b$};
+\draw [black] (52.581,-22.889) arc (-79.35459:-106.15038:32.497);
+\fill [black] (37.54,-22.17) -- (38.17,-22.87) -- (38.45,-21.91);
+\draw (44.93,-24) node [below] {$a,\mbox{ }c$};
+\draw [black] (53.14,-24.05) -- (37.96,-35.95);
+\fill [black] (37.96,-35.95) -- (38.9,-35.85) -- (38.28,-35.06);
+\draw (44.54,-29.5) node [above] {$b$};
+\draw [black] (34.984,-40.724) arc (15.84277:-272.15723:2.25);
+\draw (28.54,-43.6) node [below] {$a,\mbox{ }c,\mbox{ }d$};
+\fill [black] (32.9,-39.09) -- (32,-38.83) -- (32.27,-39.79);
+\draw [black] (16.479,-40.483) arc (31.16635:-256.83365:2.25);
+\draw (10.16,-44.27) node [below] {$a,\mbox{ }b,\mbox{ }c\mbox{ }d$};
+\fill [black] (14.04,-39.46) -- (13.1,-39.44) -- (13.62,-40.3);
+\end{tikzpicture}
+\end{center}
+\section{Esercizio 4}
+Data la seguente ER =$aa^{\star}(bb+c)^{\star}(b+a)$
+\begin{itemize}
+	\item La stringa abbca appartiene? Sì
+	\item La stringa bbcb? No
+	\item aab? Sì
+	\paragraph{Precisazione: }Bisogna dare un occhio alla stringa basandosi sulla 
+	ER che ci vien fornita, quindi non è così istantanea la risposta
+	\item abbba? 
+\end{itemize}
+\section{Esercizio 5}
+Trasformazione di un $\epsilon$-NFA $\to$ DFA
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (26.9,-12.5) circle (3);
+\draw (26.9,-12.5) node {$q_0$};
+\draw [black] (45.2,-11.4) circle (3);
+\draw (45.2,-11.4) node {$q_1$};
+\draw [black] (60,-12.7) circle (3);
+\draw (60,-12.7) node {$q_2$};
+\draw [black] (48.6,-28.1) circle (3);
+\draw (48.6,-28.1) node {$q_3$};
+\draw [black] (36.2,-28.6) circle (3);
+\draw (36.2,-28.6) node {$q_4$};
+\draw [black] (12.4,-14.5) -- (23.93,-12.91);
+\draw (11.72,-14.66) node [left] {$start$};
+\fill [black] (23.93,-12.91) -- (23.07,-12.52) -- (23.2,-13.51);
+\draw [black] (29.89,-12.32) -- (42.21,-11.58);
+\fill [black] (42.21,-11.58) -- (41.38,-11.13) -- (41.44,-12.13);
+\draw (36.12,-12.51) node [below] {$b$};
+\draw [black] (48.19,-11.66) -- (57.01,-12.44);
+\fill [black] (57.01,-12.44) -- (56.26,-11.87) -- (56.17,-12.87);
+\draw (52.46,-12.62) node [below] {$\epsilon$};
+\draw [black] (62.68,-11.377) arc (144:-144:2.25);
+\draw (67.25,-12.7) node [right] {$a$};
+\fill [black] (62.68,-14.02) -- (63.03,-14.9) -- (63.62,-14.09);
+\draw [black] (45.8,-14.34) -- (48,-25.16);
+\fill [black] (48,-25.16) -- (48.33,-24.28) -- (47.35,-24.48);
+\draw (46.16,-20.07) node [left] {$a$};
+\draw [black] (58.22,-15.11) -- (50.38,-25.69);
+\fill [black] (50.38,-25.69) -- (51.26,-25.34) -- (50.46,-24.75);
+\draw (53.72,-19.01) node [left] {$\epsilon$};
+\draw [black] (45.6,-28.22) -- (39.2,-28.48);
+\fill [black] (39.2,-28.48) -- (40.02,-28.95) -- (39.98,-27.95);
+\draw (42.37,-27.81) node [above] {$b$};
+\draw [black] (34.7,-26) -- (28.4,-15.1);
+\fill [black] (28.4,-15.1) -- (28.37,-16.04) -- (29.23,-15.54);
+\draw (32.2,-19.32) node [right] {$\epsilon$};
+\end{tikzpicture}
+\end{center}
+A questo punto bisogna calcolarsi gli ECLOSE
+\begin{itemize}
+	\item ECLOSE($q_{0}$) = \{$q_{0}$\}
+	\item ECLOSE($q_{1}$) = \{$q_{1}$, $q_{2}$, $q_{3}$\}
+	\item ECLOSE($q_{2}$) = \{$q_{2}$, $q_{3}$\}
+	\item ECLOSE($q_{3}$) = \{$q_{3}$\}
+	\item ECLOSE($q_{4}$) = \{$q_{0}$, $q_{4}$\}
+\end{itemize}
+\begin{center}
+\begin{tabular}{ |c|c|c| } 
+\hline
+~ & a & b \\ 
+\hline
+$\to {q_{0}}$ & $\varnothing$ & ${q_{1}, q_{2}, q_{3}}$ \\ 
+$\varnothing$ & $\varnothing$ & $\varnothing$ \\
+$\star {q_{1}, q_{2}, q_{3}}$ & ${q_{2}, q_{3}}$ & ${q_{0}, q_{4}}$\\  
+$\star {q_{2}, q_{3}}$ & \{${q_{2}, q_{3}}$\} & \{$q_{0}, q_{4}$\} \\
+$\star {q_{0}, q_{4}}$ & $\varnothing$ & \{$q_{1}, q_{2}, q_{3}$\} \\
+\hline
+\end{tabular}
+\end{center}  
 
+\begin{center}
+\begin{tabular}{ |c|c|c| } 
+\hline
+~ & a & b \\ 
+\hline
+A & B & C \\ 
+B & B & B \\ 
+C & D & E \\ 
+D & D & E \\ 
+E & B & C \\ 
+\hline
+\end{tabular}
+\end{center} 
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (20.1,-13.5) circle (3);
+\draw (20.1,-13.5) node {$A$};
+\draw [black] (43,-13.4) circle (3);
+\draw (43,-13.4) node {$C$};
+\draw [black] (43,-13.4) circle (2.4);
+\draw [black] (65.1,-14.5) circle (3);
+\draw (65.1,-14.5) node {$E$};
+\draw [black] (50,-30.5) circle (3);
+\draw (50,-30.5) node {$D$};
+\draw [black] (50,-30.5) circle (2.4);
+\draw [black] (30,-29.5) circle (3);
+\draw (30,-29.5) node {$B$};
+\draw [black] (13.4,-8) -- (17.78,-11.6);
+\draw (12.84,-6.57) node [left] {$start$};
+\fill [black] (17.78,-11.6) -- (17.48,-10.7) -- (16.85,-11.48);
+\draw [black] (23.1,-13.49) -- (40,-13.41);
+\fill [black] (40,-13.41) -- (39.2,-12.92) -- (39.2,-13.92);
+\draw (31.55,-13.95) node [below] {$b$};
+\draw [black] (45.67,-12.038) arc (112.65476:61.64629:19.659);
+\fill [black] (62.58,-12.88) -- (62.11,-12.06) -- (61.64,-12.94);
+\draw (54.27,-10) node [above] {$b$};
+\draw [black] (62.289,-15.543) arc (-73.14077:-112.55817:24.635);
+\fill [black] (45.69,-14.72) -- (46.24,-15.49) -- (46.62,-14.56);
+\draw (53.87,-17.12) node [below] {$b$};
+\draw [black] (62.34,-15.68) -- (32.76,-28.32);
+\fill [black] (32.76,-28.32) -- (33.69,-28.47) -- (33.3,-27.55);
+\draw (46.63,-21.49) node [above] {$a$};
+\draw [black] (63.04,-16.68) -- (52.06,-28.32);
+\fill [black] (52.06,-28.32) -- (52.97,-28.08) -- (52.24,-27.39);
+\draw (57.02,-21.03) node [left] {$b$};
+\draw [black] (47.152,-29.586) arc (-115.66482:-199.81104:10.915);
+\fill [black] (47.15,-29.59) -- (46.65,-28.79) -- (46.21,-29.69);
+\draw (41.04,-24.79) node [left] {$a$};
+\draw [black] (21.68,-16.05) -- (28.42,-26.95);
+\fill [black] (28.42,-26.95) -- (28.43,-26.01) -- (27.58,-26.53);
+\draw (24.42,-22.79) node [left] {$a$};
+\draw [black] (30.327,-32.47) arc (34.01689:-253.98311:2.25);
+\draw (25.89,-36.4) node [below] {$a,\mbox{ }b$};
+\fill [black] (27.84,-31.57) -- (26.9,-31.6) -- (27.46,-32.43);
+\draw [black] (52.381,-32.305) arc (80.56505:-207.43495:2.25);
+\draw (54.01,-37.04) node [below] {$d$};
+\fill [black] (50.02,-33.49) -- (49.39,-34.2) -- (50.38,-34.36);
+\end{tikzpicture}
+\end{center}
+\paragraph{Questo è lo schema dei passaggi fattibili nei vari schemi}
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (18.6,-12.6) circle (3);
+\draw (18.6,-12.6) node {$DFA$};
+\draw [black] (48.4,-12.6) circle (3);
+\draw (48.4,-12.6) node {$NFA$};
+\draw [black] (18.6,-30.9) circle (3);
+\draw (18.6,-30.9) node {$ER$};
+\draw [black] (48.4,-30.9) circle (3);
+\draw (48.4,-30.9) node {$\epsilon-NFA$};
+\draw [black] (21.143,-11.012) arc (118.64976:61.35024:25.773);
+\fill [black] (45.86,-11.01) -- (45.39,-10.19) -- (44.92,-11.07);
+\draw [black] (48.4,-15.6) -- (48.4,-27.9);
+\fill [black] (48.4,-27.9) -- (48.9,-27.1) -- (47.9,-27.1);
+\draw [black] (21.524,-13.268) arc (75.42073:41.4716:50.159);
+\fill [black] (46.48,-28.59) -- (46.33,-27.66) -- (45.58,-28.33);
+\draw [black] (45.528,-30.034) arc (-108.14405:-134.96361:62.888);
+\fill [black] (20.67,-14.77) -- (20.88,-15.69) -- (21.59,-14.98);
+\draw [black] (21.6,-30.9) -- (45.4,-30.9);
+\fill [black] (45.4,-30.9) -- (44.6,-30.4) -- (44.6,-31.4);
+\draw [black] (18.6,-15.6) -- (18.6,-27.9);
+\fill [black] (18.6,-27.9) -- (19.1,-27.1) -- (18.1,-27.1);
+\end{tikzpicture}
+\end{center}
+\section{Passaggio da ER a $\epsilon$ -NFA}
+\begin{enumerate}
+	\item Esattamente uno stato finale
+	\item Nessun arco entrante nello stato iniziale
+	\item Nessun arco uscente dallo stato finale
+\end{enumerate}
+\begin{itemize}
+	\item 
+	\begin{enumerate}
+		\item \textbf{BASE: } Se R = $\epsilon$ (L(R) = \{$\epsilon$\}), allora
+		\begin{center}
+		\begin{tikzpicture}[scale=0.2]
+		\tikzstyle{every node}+=[inner sep=0pt]
+		\draw [black] (18.9,-11.8) circle (3);
+		\draw [black] (47.7,-11.9) circle (3);
+		\draw [black] (47.7,-11.9) circle (2.4);
+		\draw [black] (21.9,-11.81) -- (44.7,-11.89);
+		\fill [black] (44.7,-11.89) -- (43.9,-11.39) -- (43.9,-12.39);
+		\draw (33.3,-12.35) node [below] {$\epsilon$};
+		\end{tikzpicture}
+		\end{center}
+		\item se R = $\varnothing$ (L(R) = $\varnothing$), allora
+		\begin{center}
+		\begin{tikzpicture}[scale=0.2]
+		\tikzstyle{every node}+=[inner sep=0pt]
+		\draw [black] (18.9,-11.8) circle (3);
+		\draw [black] (47.7,-11.9) circle (3);
+		\draw [black] (47.7,-11.9) circle (2.4);
+		\end{tikzpicture}
+		\end{center}
+		\item Se R = a (L(R) = \{a\}), allora 
+		\begin{center}
+		\begin{tikzpicture}[scale=0.2]
+		\tikzstyle{every node}+=[inner sep=0pt]
+		\draw [black] (18.9,-11.8) circle (3);
+		\draw [black] (47.7,-11.9) circle (3);
+		\draw [black] (47.7,-11.9) circle (2.4);
+		\draw [black] (21.9,-11.81) -- (44.7,-11.89);
+		\fill [black] (44.7,-11.89) -- (43.9,-11.39) -- (43.9,-12.39);
+		\draw (33.3,-12.35) node [below] {$a$};
+		\end{tikzpicture}
+		\end{center}
+	\end{enumerate}
+	\item \textbf{PASSO INDUTTIVO: }
+	\begin{enumerate}
+		\item Se R = S + T (L(R) = L(S)$\cup$ L(T)), allora
+		\begin{center}
+		\begin{tikzpicture}[scale=0.2]
+		\tikzstyle{every node}+=[inner sep=0pt]
+		\draw [black] (12.9,-28.2) circle (3);
+		\draw [black] (30.8,-15.7) circle (3);
+		\draw [black] (50.1,-15.1) circle (3);
+		\draw [black] (64.7,-28.2) circle (3);
+		\draw [black] (64.7,-28.2) circle (2.4);
+		\draw [black] (52.7,-37.9) circle (3);
+		\draw [black] (29.1,-38.5) circle (3);
+		\draw [black] (15.36,-26.48) -- (28.34,-17.42);
+		\fill [black] (28.34,-17.42) -- (27.4,-17.47) -- (27.97,-18.29);
+		\draw (22.8,-22.45) node [below] {$\epsilon$};
+		\draw [black] (15.43,-29.81) -- (26.57,-36.89);
+		\fill [black] (26.57,-36.89) -- (26.16,-36.04) -- (25.63,-36.88);
+		\draw (20.06,-33.85) node [below] {$\epsilon$};
+		\draw [black] (52.33,-17.1) -- (62.47,-26.2);
+		\fill [black] (62.47,-26.2) -- (62.21,-25.29) -- (61.54,-26.03);
+		\draw (56.44,-22.14) node [below] {$\epsilon$};
+		\draw [black] (55.03,-36.01) -- (62.37,-30.09);
+		\fill [black] (62.37,-30.09) -- (61.43,-30.2) -- (62.06,-30.98);
+		\draw (59.65,-33.54) node [below] {$\epsilon$};
+		\end{tikzpicture}
+		\end{center}
+		\item Se R = ST (L(R) = L(S)L(T)), allora		
+		\begin{center}
+		\begin{tikzpicture}[scale=0.2]
+		\tikzstyle{every node}+=[inner sep=0pt]
+		\draw [black] (14.4,-28.6) circle (3);
+		\draw [black] (32.6,-28.8) circle (3);
+		\draw [black] (49.1,-28.2) circle (3);
+		\draw [black] (65.3,-27.4) circle (3);
+		\draw [black] (65.3,-27.4) circle (2.4);
+		\draw [black] (35.6,-28.69) -- (46.1,-28.31);
+		\fill [black] (46.1,-28.31) -- (45.28,-27.84) -- (45.32,-28.84);
+		\draw (40.88,-29.03) node [below] {$\epsilon$};
+		\end{tikzpicture}
+		\end{center}
+		\item Se R = $S^{\star}$ (L(R)= ($L(S))^{\star}$), allora
+		\begin{center}
+		\begin{tikzpicture}[scale=0.2]
+		\tikzstyle{every node}+=[inner sep=0pt]
+		\draw [black] (12.5,-23.6) circle (3);
+		\draw [black] (29.1,-23.7) circle (3);
+		\draw [black] (46.6,-24) circle (3);
+		\draw [black] (60.5,-25.5) circle (3);
+		\draw [black] (60.5,-25.5) circle (2.4);
+		\draw [black] (15.5,-23.62) -- (26.1,-23.68);
+		\fill [black] (26.1,-23.68) -- (25.3,-23.18) -- (25.3,-24.18);
+		\draw (20.8,-24.16) node [below] {$\epsilon$};
+		\draw [black] (58.05,-27.229) arc (-57.07682:-127.45673:37.548);
+		\fill [black] (58.05,-27.23) -- (57.11,-27.24) -- (57.65,-28.08);
+		\draw (36.13,-33.77) node [below] {$\epsilon$};
+		\draw [black] (28.806,-20.728) arc (-183.78208:-358.18215:9.107);
+		\fill [black] (28.81,-20.73) -- (29.36,-19.96) -- (28.36,-19.9);
+		\draw (38.06,-11.71) node [above] {$\epsilon$};
+		\draw [black] (49.58,-24.32) -- (57.52,-25.18);
+		\fill [black] (57.52,-25.18) -- (56.78,-24.6) -- (56.67,-25.59);
+		\draw (53.35,-25.33) node [below] {$\epsilon$};
+		\end{tikzpicture}
+		\end{center}
+		\item Se R = (S) (L(R)=L(S)), allora 
+		$\epsilon$-NFA per R = $\epsilon$-NFA per S
 
+	\end{enumerate}
+\end{itemize}
 
 
 \end{document}
