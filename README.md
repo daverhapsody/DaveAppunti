@@ -14,10 +14,11 @@ MA in caso di necessità prendo e mi metto a cambiare o aggiungere roba. Gli app
 3) Siccome ho messo in alcuni file anche dei riferimenti con link a YouTube o anche altri siti, per poterli aprire dovrete avere aperto il pdf con un programma per aprire pdf. Se aprite gli appunti direttamente da GitHub purtroppo non vi fa cliccare.
 
 ## Contatti:
-Per qualsiasi info, chiarimento, segnalazione, contattatemi su [Telegram](https://t.me/cicciobistecca),
+
+###### Per qualsiasi info, chiarimento, segnalazione, contattatemi su [Telegram](https://t.me/cicciobistecca),
 stavo pensando se valesse la pena di aprire un canale in cui pubblicare roba ogni volta che c'è un 
-update, o muoio, o devo aggiornare i file e non sono morto ma tipo "Hey sono nel magico mondo del
-work in progress ;)))". Fatemi sapere :3
+update, o muoio, o devo aggiornare i file e non sono morto ma tipo "Hey sono nel magico mondo del work in progress ;)))". Fatemi sapere :3
+
 ------
 
 ### Ringraziamenti:
