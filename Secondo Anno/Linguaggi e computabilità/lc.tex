@@ -2450,9 +2450,438 @@ E & B & C \\
 		\end{center}
 		\item Se R = (S) (L(R)=L(S)), allora 
 		$\epsilon$-NFA per R = $\epsilon$-NFA per S
-
 	\end{enumerate}
 \end{itemize}
+\paragraph{Altra trasformazione di un $\epsilon$-NFA $\to$ DFA}
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (18.6,-26.6) circle (3);
+\draw (18.6,-26.6) node {$q_0$};
+\draw [black] (41.1,-15.5) circle (3);
+\draw (41.1,-15.5) node {$q_1$};
+\draw [black] (41.1,-15.5) circle (2.4);
+\draw [black] (62.7,-26.6) circle (3);
+\draw (62.7,-26.6) node {$q_2$};
+\draw [black] (41.1,-39.4) circle (3);
+\draw (41.1,-39.4) node {$q_3$};
+\draw [black] (5.9,-23) -- (15.71,-25.78);
+\draw (5.13,-22.44) node [left] {$start$};
+\fill [black] (15.71,-25.78) -- (15.08,-25.08) -- (14.81,-26.04);
+\draw [black] (38.255,-38.449) arc (-109.92665:-129.34348:59.3);
+\fill [black] (38.25,-38.45) -- (37.67,-37.71) -- (37.33,-38.65);
+\draw (28.2,-34.74) node [below] {$a$};
+\draw [black] (43.68,-37.87) -- (60.12,-28.13);
+\fill [black] (60.12,-28.13) -- (59.18,-28.11) -- (59.69,-28.97);
+\draw (52.9,-33.5) node [below] {$b$};
+\draw [black] (59.813,-25.787) arc (-107.31838:-127.07788:53.637);
+\fill [black] (43.44,-17.37) -- (43.78,-18.26) -- (44.38,-17.46);
+\draw (50.33,-22.79) node [below] {$a$};
+\draw [black] (44.042,-16.082) arc (76.60338:49.00036:38.815);
+\fill [black] (60.51,-24.55) -- (60.24,-23.64) -- (59.58,-24.4);
+\draw (53.73,-18.81) node [above] {$\epsilon$};
+\draw [black] (21.29,-25.27) -- (38.41,-16.83);
+\fill [black] (38.41,-16.83) -- (37.47,-16.73) -- (37.91,-17.63);
+\draw (30.78,-21.55) node [below] {$\epsilon$};
+\end{tikzpicture}
+\end{center}
+\begin{itemize}
+	\item ECLOSE($q_{0}$) = \{$q_{0}, q_{1}, q_{2}$\}
+	\item ECLOSE($q_{1}$) = \{$q_{1}, q_{2}$\}
+	\item ECLOSE($q_{2}$) = \{$q_{2}$\}
+	\item ECLOSE($q_{3}$) = \{$q_{2}$\}
+\end{itemize}
+\begin{center}
+\begin{tabular}{ |c|c|c| } 
+\hline
+~ & a & b \\
+\hline 
+$\star \to$ \{$q_{0}, q_{1}, q_{2}$\} & \{$q_{1}, q_{2}$\} & \{$q_{3}$\} \\ 
+$\star$ \{$q_{1}, q_{2}$\} & \{$q_{1}, q_{2}$\} & \{$q_{3}$\} \\ 
+\{$q_{3}$\} & \{$q_{0}, q_{1}, q_{2}$\} & {$q_{2}$} \\ 
+\{$q_{2}$\} & \{$q_{1}, q_{2}$\} & $\varnothing$ \\
+$\varnothing$ & $\varnothing$ & $\varnothing$ \\
+\hline
+\end{tabular}
+\end{center}
+\subparagraph{Sorry: }Non ho fatto la tabella con le lettere prima di fare 
+diretto l'automa nuovo, però son facilmente ricavabili.	
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (15.7,-14.7) circle (3);
+\draw (15.7,-14.7) node {$A$};
+\draw [black] (15.7,-14.7) circle (2.4);
+\draw [black] (45,-14.7) circle (3);
+\draw (45,-14.7) node {$B$};
+\draw [black] (45,-14.7) circle (2.4);
+\draw [black] (16.3,-37) circle (3);
+\draw (16.3,-37) node {$C$};
+\draw [black] (45,-37) circle (3);
+\draw (45,-37) node {$D$};
+\draw [black] (65,-38) circle (3);
+\draw (65,-38) node {$E$};
+\draw [black] (4.3,-14.7) -- (12.7,-14.7);
+\draw (3.8,-14.7) node [left] {$start$};
+\fill [black] (12.7,-14.7) -- (11.9,-14.2) -- (11.9,-15.2);
+\draw [black] (18.7,-14.7) -- (42,-14.7);
+\fill [black] (42,-14.7) -- (41.2,-14.2) -- (41.2,-15.2);
+\draw (30.35,-15.2) node [below] {$a$};
+\draw [black] (46.687,-12.234) arc (173.35775:-114.64225:2.25);
+\draw (51.55,-10.18) node [right] {$a$};
+\fill [black] (47.98,-14.54) -- (48.72,-15.13) -- (48.84,-14.13);
+\draw [black] (45,-34) -- (45,-17.7);
+\fill [black] (45,-17.7) -- (44.5,-18.5) -- (45.5,-18.5);
+\draw (45.5,-25.85) node [right] {$a$};
+\draw [black] (42.63,-16.54) -- (18.67,-35.16);
+\fill [black] (18.67,-35.16) -- (19.61,-35.06) -- (18.99,-34.27);
+\draw (29.64,-25.35) node [above] {$b$};
+\draw [black] (14.392,-34.691) arc (-145.72015:-211.19742:16.261);
+\fill [black] (14.39,-34.69) -- (14.35,-33.75) -- (13.53,-34.31);
+\draw (11.03,-25.98) node [left] {$b$};
+\draw [black] (16.22,-34) -- (15.78,-17.7);
+\fill [black] (15.78,-17.7) -- (15.3,-18.51) -- (16.3,-18.49);
+\draw (16.54,-25.84) node [right] {$a$};
+\draw [black] (19.3,-37) -- (42,-37);
+\fill [black] (42,-37) -- (41.2,-36.5) -- (41.2,-37.5);
+\draw (30.65,-37.5) node [below] {$b$};
+\draw [black] (48,-37.15) -- (62,-37.85);
+\fill [black] (62,-37.85) -- (61.23,-37.31) -- (61.18,-38.31);
+\draw (54.95,-38.05) node [below] {$b$};
+\draw [black] (67.045,-35.821) arc (164.55605:-123.44395:2.25);
+\draw (72.08,-34.81) node [right] {$a,b$};
+\fill [black] (67.97,-38.3) -- (68.61,-38.99) -- (68.88,-38.03);
+\end{tikzpicture}
+\end{center}
+\section{$\widehat{\delta}$ per $\epsilon$-NFA}
+\paragraph{$\widehat{\delta} Q \times \Sigma^{\star} \to 2^{Q}$}: 
+$\widehat{\delta}(q,w) = \{p_{1}, ..., p_{\kappa}\}$
+\subsection{$1^{a}$ definizione:}
+(w = ax)
+\begin{itemize}
+	\item \textbf{BASE: } $\widehat{\delta}$(q,$\epsilon$) = ECLOSE(q)
+	\item \textbf{PASSO: } $\widehat{\delta}(q, ax) = $\\
+	Posto ECLOSE(q) = \{$p_{0}, ..., p_{\kappa}$\} e \{$r_{1}, ..., r_{m}$\} = 
+	$\bigcup \limits_{i = 1}^{\kappa} \delta (p_{i}, a)$
+\end{itemize}
+
+ECLOSE(S) = $\bigcup \limits_{q \in S}$ ECLOSE(q)\\ 
+$\delta$(S,a) = $\bigcup \limits_{q \in S} ~ \delta$(q, a)\\
+$\widehat{\delta}(S, w)$ = $\bigcup \limits_{q \in S} \widehat{\delta}$(q, w)\\
+
+\paragraph{}ECLOSE($\varnothing$) = $\varnothing$\\
+$\delta$($\varnothing$, a) = $\varnothing ~ \forall a$\\
+$\widehat{\delta}(\varnothing, w)$ = $\varnothing ~ \forall w$
+
+\begin{itemize}
+	\item \textbf{BASE: }$\widehat{\delta}(q,\epsilon) =$ ECLOSE(q)
+	\item \textbf{PASSO: }$\widehat{\delta}(q, ax) = \widehat{\delta}(R, x)$\\
+	posto P = ECLOSE(q)\\
+	S = $\delta(P,a)$\\
+	R = ECLOSE(S)\\
+	$\widehat{\delta}(q, ax) = \widehat{\delta}($ECLOSE($\delta$ECLOSE(q),a),x) 
+\end{itemize}
+\paragraph{Ulteriore estensione: }
+$\widehat{\delta} : Q \times \Sigma^{\star} \to 2^{Q} \to \widehat{\delta} 
+: 2^{Q} \times \Sigma^{\star} \to 2^{Q}, \widehat{\delta}(T, w)...$
+
+\begin{itemize}
+	\item \textbf{BASE: }$\widehat{\delta}(T, \epsilon) = $ ECLOSE(T)
+	\item \textbf{PASSO: }$\widehat{\delta}(T, ax) = \widehat{\delta}(R, x)$\\
+	posto P = ECLOSE(T)\\
+	S = $\delta$(P, a) ed R = ECLOSE(S)
+\end{itemize}
+\paragraph{Esempio: }
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (20.9,-20.1) circle (3);
+\draw (20.9,-20.1) node {$q_0$};
+\draw [black] (42.4,-20.1) circle (3);
+\draw (42.4,-20.1) node {$q_1$};
+\draw [black] (63.3,-20.1) circle (3);
+\draw (63.3,-20.1) node {$q_2$};
+\draw [black] (63.3,-20.1) circle (2.4);
+\draw [black] (19.942,-17.269) arc (226.43416:-61.56584:2.25);
+\draw (22.08,-12.82) node [above] {$a$};
+\fill [black] (22.56,-17.62) -- (23.48,-17.38) -- (22.75,-16.69);
+\draw [black] (40.694,-17.646) arc (242.53789:-45.46211:2.25);
+\draw (41.02,-12.83) node [above] {$b$};
+\fill [black] (43.31,-17.25) -- (44.12,-16.77) -- (43.24,-16.31);
+\draw [black] (7.2,-22.4) -- (17.94,-20.6);
+\draw (6.49,-22.63) node [left] {$start$};
+\fill [black] (17.94,-20.6) -- (17.07,-20.24) -- (17.24,-21.22);
+\draw [black] (23.9,-20.1) -- (39.4,-20.1);
+\fill [black] (39.4,-20.1) -- (38.6,-19.6) -- (38.6,-20.6);
+\draw (31.65,-20.6) node [below] {$\epsilon$};
+\draw [black] (45.4,-20.1) -- (60.3,-20.1);
+\fill [black] (60.3,-20.1) -- (59.5,-19.6) -- (59.5,-20.6);
+\draw (52.85,-20.6) node [below] {$\epsilon$};
+\draw [black] (63.121,-17.117) arc (211.16635:-76.83365:2.25);
+\draw (66.83,-13.37) node [above] {$c$};
+\fill [black] (65.56,-18.14) -- (66.5,-18.16) -- (65.98,-17.3);
+\end{tikzpicture}
+\end{center}
+\paragraph{Considerando la stringa w = aabc: }
+\subparagraph{*Incompleto, finitelo voi please*}	
+$\widehat{\delta}$($q_{0}$, aabc) x=abc
+\\ P = ECLOSE($q_{0}$) = \{$q_{0}, q_{1}, q_{2}$\}\\
+S = $\delta$(P, a) = \{$q_{0}$\}\\
+R = ECLOSE(S) = ECLOSE($q_{0}$) \{$q_{0}, q_{1}, q_{2}$\}\\
+$\widehat{\delta}(q_{0}, aabc) = \widehat{\delta}(\underbrace{\{q_{0}, q_{1},
+q_{2}\}}_{P}, \underbrace{abc}_{x})$
+
+\section{Trasformazione da automa a ER}
+Questo algoritmo funziona per eliminazione degli stati, quindi l'idea è che
+io parta da un automa complesso in cui ho uno stato iniziale, alcuni stati finali,
+e degli stai che non sono nè iniziali nè finali. \\ 
+Come casi particolari ho la situazione in cui lo stato iniziale è anche finale.
+In seguito ci sono stati che non sono nè iniziali nè finali, e son quelli che 
+andremo ad elidere.
+\paragraph{Alla fine }si ottiene un automa semplificato avente uno stato iniziale
+ed uno o più finali. 
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (20.8,-30.8) circle (3);
+\draw [black] (36.2,-19.7) circle (3);
+\draw [black] (36.2,-19.7) circle (2.4);
+\draw [black] (36.2,-30.8) circle (3);
+\draw [black] (36.2,-30.8) circle (2.4);
+\draw [black] (36.2,-41.7) circle (3);
+\draw [black] (36.2,-41.7) circle (2.4);
+\draw [black] (10.3,-30.8) -- (17.8,-30.8);
+\fill [black] (17.8,-30.8) -- (17,-30.3) -- (17,-31.3);
+\draw [black] (23.23,-29.05) -- (33.77,-21.45);
+\fill [black] (33.77,-21.45) -- (32.82,-21.52) -- (33.41,-22.33);
+\draw [black] (23.25,-32.53) -- (33.75,-39.97);
+\fill [black] (33.75,-39.97) -- (33.39,-39.1) -- (32.81,-39.91);
+\draw [black] (23.8,-30.8) -- (33.2,-30.8);
+\fill [black] (33.2,-30.8) -- (32.4,-30.3) -- (32.4,-31.3);
+\draw [black] (36.2,-27.8) -- (36.2,-22.7);
+\fill [black] (36.2,-22.7) -- (35.7,-23.5) -- (36.7,-23.5);
+\draw [black] (36.2,-22.7) -- (36.2,-27.8);
+\fill [black] (36.2,-27.8) -- (36.7,-27) -- (35.7,-27);
+\draw [black] (36.2,-33.8) -- (36.2,-38.7);
+\fill [black] (36.2,-38.7) -- (36.7,-37.9) -- (35.7,-37.9);
+\draw [black] (36.2,-38.7) -- (36.2,-33.8);
+\fill [black] (36.2,-33.8) -- (35.7,-34.6) -- (36.7,-34.6);
+\end{tikzpicture}
+\end{center}
+ER = $ER_{1} + ER_{2} + ER_{3} = 
+\begin{cases}
+	L_{1} \to ER_{1}\\
+	L_{2} \to ER_{2}\\
+	L_{3} \to ER_{3}\\
+\end{cases}$
+\paragraph{Esempio fig 3.7 p 92}
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (18.5,-15.6) circle (3);
+\draw (18.5,-15.6) node {$q_1$};
+\draw [black] (45.6,-29) circle (3);
+\draw (45.6,-29) node {$S$};
+\draw [black] (22.4,-41.9) circle (3);
+\draw (22.4,-41.9) node {$q_\kappa$};
+\draw [black] (62.6,-13.1) circle (3);
+\draw (62.6,-13.1) node {$p_1$};
+\draw [black] (62.6,-40.2) circle (3);
+\draw (62.6,-40.2) node {$pm$};
+\draw [black] (21.19,-16.93) -- (42.91,-27.67);
+\fill [black] (42.91,-27.67) -- (42.42,-26.87) -- (41.97,-27.76);
+\draw (33.68,-21.79) node [above] {$Q_1$};
+\draw [black] (25.02,-40.44) -- (42.98,-30.46);
+\fill [black] (42.98,-30.46) -- (42.04,-30.41) -- (42.52,-31.28);
+\draw (36.27,-35.95) node [below] {$Q_\kappa$};
+\draw [black] (43.623,-26.759) arc (249.14944:-38.85056:2.25);
+\draw (43.02,-21.92) node [above] {$S$};
+\fill [black] (46.18,-26.07) -- (46.93,-25.5) -- (45.99,-25.14);
+\draw [black] (47.79,-26.95) -- (60.41,-15.15);
+\fill [black] (60.41,-15.15) -- (59.48,-15.33) -- (60.17,-16.06);
+\draw (55.76,-21.53) node [below] {$Q_1$};
+\draw [black] (62.6,-16.1) -- (62.6,-37.2);
+\fill [black] (62.6,-37.2) -- (63.1,-36.4) -- (62.1,-36.4);
+\draw [black] (48.11,-30.65) -- (60.09,-38.55);
+\fill [black] (60.09,-38.55) -- (59.7,-37.69) -- (59.15,-38.53);
+\draw (51.76,-35.1) node [below] {$P_m$};
+\draw [black] (61.597,-43.025) arc (-22.86995:-215.43763:25.904);
+\fill [black] (61.6,-43.03) -- (60.82,-43.57) -- (61.75,-43.96);
+\draw (22.67,-56.08) node [below] {$R1m$};
+\draw [black] (21.5,-15.43) -- (59.6,-13.27);
+\fill [black] (59.6,-13.27) -- (58.78,-12.82) -- (58.83,-13.81);
+\draw (40.68,-14.96) node [below] {$R_{11}$};
+\draw [black] (25.4,-41.77) -- (59.6,-40.33);
+\fill [black] (59.6,-40.33) -- (58.78,-39.86) -- (58.82,-40.86);
+\draw (42.39,-40.43) node [above] {$R_{\kappa m}$};
+\draw [black] (18.94,-18.57) -- (21.96,-38.93);
+\fill [black] (21.96,-38.93) -- (22.34,-38.07) -- (21.35,-38.21);
+\draw [black] (64.708,-15.232) arc (41.27166:-150.03468:25.321);
+\fill [black] (64.71,-15.23) -- (64.86,-16.16) -- (65.61,-15.5);
+\draw (63.15,-53.02) node [below] {$R_{\kappa 1}$};
+\end{tikzpicture}
+\end{center}
+$q_{1}, ..., q_{\kappa}$ sono predecessori di S \\
+$p_{1}, ..., p_{m}$ sono successori di S\\
+$Q_{1}, ..., Q_{\kappa}, p_{1}, ..., p_{m}, S$ sono ER \\
+$R_{1j} \forall i \forall j$ sono ER, Se $\nexists$ arco da $q_{1}$ a $p_{j}$, 
+allora $R_{1j}$ = $\varnothing$, stessa cosa invece per S
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (19.1,-13.4) circle (3);
+\draw (19.1,-13.4) node {$q_1$};
+\draw [black] (49.9,-13.4) circle (3);
+\draw (49.9,-13.4) node {$p_1$};
+\draw [black] (49.9,-34.7) circle (3);
+\draw (49.9,-34.7) node {$p_m$};
+\draw [black] (19.1,-34.7) circle (3);
+\draw (19.1,-34.7) node {$q_\kappa$};
+\draw [black] (22.1,-13.4) -- (46.9,-13.4);
+\fill [black] (46.9,-13.4) -- (46.1,-12.9) -- (46.1,-13.9);
+\draw (34.5,-12.9) node [above] {$R_11\mbox{ }+\mbox{ }Q_1\mbox{ }S^\star\mbox{ }P_1$};
+\draw [black] (19.1,-16.4) -- (19.1,-31.7);
+\fill [black] (19.1,-31.7) -- (19.6,-30.9) -- (18.6,-30.9);
+\draw (18.6,-24.05) node [left] {$R_\kappa1\mbox{ }+\mbox{ }Q_\kappa\mbox{ }S^\star\mbox{ }P_1$};
+\draw [black] (49.9,-16.4) -- (49.9,-31.7);
+\fill [black] (49.9,-31.7) -- (50.4,-30.9) -- (49.4,-30.9);
+\draw [black] (22.1,-34.7) -- (46.9,-34.7);
+\fill [black] (46.9,-34.7) -- (46.1,-34.2) -- (46.1,-35.2);
+\draw (34.5,-35.2) node [below] {$R_\kappa\mbox{ }m\mbox{ }+\mbox{ }Q_\kappa\mbox{ }S^\star\mbox{ }P_m$};
+\draw [black] (21.749,-14.808) arc (61.43212:49.23563:148.204);
+\fill [black] (47.65,-32.72) -- (47.37,-31.82) -- (46.72,-32.57);
+\draw (45.08,-22.57) node [above] {$R_1\mbox{ }m\mbox{ }+\mbox{ }Q_0\mbox{ }S^\star\mbox{ }P_m$};
+\draw [black] (20.515,-32.056) arc (149.58966:99.74259:38.1);
+\fill [black] (20.52,-32.06) -- (21.35,-31.62) -- (20.49,-31.11);
+\end{tikzpicture}
+\end{center}
+Se per esempio avessi
+\begin{itemize}
+	\item Stato iniziale $q_{0}$
+	\item Stati finali $q_{1}, ..., q_{m}$
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (25.5,-24.7) circle (3);
+\draw (25.5,-24.7) node {$q_0$};
+\draw [black] (49.3,-24.7) circle (3);
+\draw (49.3,-24.7) node {$q_1$};
+\draw [black] (49.3,-24.7) circle (2.4);
+\draw [black] (11.3,-24.7) -- (22.5,-24.7);
+\draw (10.8,-24.7) node [left] {$start$};
+\fill [black] (22.5,-24.7) -- (21.7,-24.2) -- (21.7,-25.2);
+\draw [black] (27.204,-22.239) arc (138.94194:41.05806:13.521);
+\fill [black] (47.6,-22.24) -- (47.45,-21.31) -- (46.69,-21.96);
+\draw (37.4,-17.1) node [above] {$S$};
+\draw [black] (52.06,-25.846) arc (95.18593:-192.81407:2.25);
+\draw (54.98,-30.27) node [below] {$U$};
+\fill [black] (50.07,-27.59) -- (49.64,-28.43) -- (50.64,-28.34);
+\draw [black] (47.416,-27.028) arc (-45.0462:-134.9538:14.177);
+\fill [black] (27.38,-27.03) -- (27.6,-27.95) -- (28.3,-27.24);
+\draw (37.4,-31.67) node [below] {$T$};
+\draw [black] (25.829,-27.67) arc (34.05477:-253.94523:2.25);
+\draw (22.12,-31.58) node [below] {$R$};
+\fill [black] (23.34,-26.77) -- (22.4,-26.8) -- (22.96,-27.63);
+\end{tikzpicture}
+\end{center}
+$E_{i}$ = $(R+SU^{\star}T)^{\star}SU^{\star}$\\
+$q_{0} $ NON E' STATO FINALE
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (43,-27.4) circle (3);
+\draw (43,-27.4) node {$q_0$};
+\draw [black] (43,-27.4) circle (2.4);
+\draw [black] (45.286,-29.325) arc (77.62938:-210.37062:2.25);
+\draw (46.84,-34.1) node [below] {$R$};
+\fill [black] (42.86,-30.39) -- (42.2,-31.06) -- (43.18,-31.27);
+\draw [black] (29.6,-25.8) -- (40.02,-27.04);
+\draw (28.94,-25.68) node [left] {$start$};
+\fill [black] (40.02,-27.04) -- (39.29,-26.45) -- (39.17,-27.45);
+\end{tikzpicture}
+\end{center}
+$E_{i} = R^{\star}$
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (17.6,-23.2) circle (3);
+\draw (17.6,-23.2) node {$q_0$};
+\draw [black] (37.5,-23.2) circle (3);
+\draw (37.5,-23.2) node {$q_1$};
+\draw [black] (57.6,-23.2) circle (3);
+\draw (57.6,-23.2) node {$q_2$};
+\draw [black] (57.6,-23.2) circle (2.4);
+\draw [black] (10.2,-23.2) -- (14.6,-23.2);
+\draw (9.7,-23.2) node [left] {$start$};
+\fill [black] (14.6,-23.2) -- (13.8,-22.7) -- (13.8,-23.7);
+\draw [black] (20.6,-23.2) -- (34.5,-23.2);
+\fill [black] (34.5,-23.2) -- (33.7,-22.7) -- (33.7,-23.7);
+\draw (27.55,-23.7) node [below] {$1$};
+\draw [black] (39.905,-21.416) arc (120.80831:59.19169:14.926);
+\fill [black] (55.19,-21.42) -- (54.76,-20.58) -- (54.25,-21.44);
+\draw (47.55,-18.81) node [above] {$0+1$};
+\draw [black] (55.043,-24.762) arc (-63.67449:-116.32551:16.896);
+\fill [black] (40.06,-24.76) -- (40.55,-25.56) -- (41,-24.67);
+\draw (47.55,-27.01) node [below] {$0,\mbox{ }1$};
+\draw [black] (16.277,-20.52) arc (234:-54:2.25);
+\draw (17.6,-15.95) node [above] {$0$};
+\fill [black] (18.92,-20.52) -- (19.8,-20.17) -- (18.99,-19.58);
+\end{tikzpicture}
+\end{center}
+Eliminiamo $q_{1}$:
+pred: $q_{0}, q_{2},~~~ ER q_{0} \xrightarrow{1} q_{1}$, $q_{2} \to^{0+1} q_{1}$\\
+succ: $q_{2}$, ~~~ ER $q_{1} \xrightarrow{0+1} q_{2}$\\
+no Self-Loop, ER $\varnothing$ con $R_{02}$ = $R_{22} = \varnothing$
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (23.8,-22.1) circle (3);
+\draw (23.8,-22.1) node {$q_0$};
+\draw [black] (50.9,-22.1) circle (3);
+\draw (50.9,-22.1) node {$q_2$};
+\draw [black] (50.9,-22.1) circle (2.4);
+\draw [black] (10.1,-20.8) -- (20.81,-21.82);
+\draw (9.47,-20.72) node [left] {$start$};
+\fill [black] (20.81,-21.82) -- (20.06,-21.24) -- (19.97,-22.24);
+\draw [black] (22.477,-19.42) arc (234:-54:2.25);
+\draw (23.8,-14.85) node [above] {$0$};
+\fill [black] (25.12,-19.42) -- (26,-19.07) -- (25.19,-18.48);
+\draw [black] (26.8,-22.1) -- (47.9,-22.1);
+\fill [black] (47.9,-22.1) -- (47.1,-21.6) -- (47.1,-22.6);
+\draw (37.35,-22.6) node [below] {$1(0+1)$};
+\end{tikzpicture}
+\end{center}
+\begin{itemize}
+	\item $R_{02}$ = $\varnothing$ + 1$\varnothing^{\star}(0+1)$ = 1(0+1)
+	\item $R_{22}$ = $\varnothing$ + (0+1)$\varnothing^{\star}(0+1)$ = (0+1)(0+1)
+\end{itemize}
+(Applico $E_{i}$ = $(R+SU^{\star}T)^{\star}SU^{\star}$)
+E = (0 + 1(0+1) $((0+1)(0+1))^{\star}\varnothing)^{\star}$ 1(0+1) \\
+$((0+1)(0+1))^{\star} = 0^{\star}1(0+1)((0+1)(0+1))^{\star}$. \\
+Volendo si può specificare che: 00+01+10+11
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \end{document}
