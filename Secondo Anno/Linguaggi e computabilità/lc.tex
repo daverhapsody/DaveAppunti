@@ -74,7 +74,7 @@ dimostra che esso sia corretto in ogni caso. Non esiste nessuna procedura genera
 se esistesse ci sarebbero contraddizioni logiche.
 \paragraph{Cos'è una contraddizione logica?} 
 E' un paradosso, ma a livello un po' più infame, pensate alla frase "Questa 
-frase è vera", se ci scavate a fondo, dopo un po' diventa una contraddizione.
+frase è falsa", se ci scavate a fondo, dopo un po' diventa una contraddizione.
 \section{Automi a stati finiti}
 Sono insiemi di stati ai quali arrivan dall'esterno dei dati, ed a seconda dello
 stato in cui si trovano, e del dato che arriva, allora potrebbero verificarsi le
@@ -123,7 +123,7 @@ Per definizione $\Sigma ^{0}$ = {$\epsilon$}, \\
 \subparagraph{Attenzione} Quello che è contenuto in $\Sigma$ è un insieme di STRINGHE
 non caratteri o simboli. 
 \paragraph{Chiusura di Kleene}
-$\Sigma ^{*}$ = U per k $\geq$ 0 $\Sigma ^{*}$ = U per k $\in$ {0 ad $\infty$}
+$\Sigma ^{*}$ = $\bigcup \limits_{k \geq 0}$ $\Sigma ^{*}$ = $\bigcup \limits_{k = 0}^{\infty}$
 di $\Sigma ^{k}$
 \\ \\
 $\Sigma ^{+}$ = $\Sigma ^{*} - \Sigma ^{0}$, invece $\Sigma ^{*}$ è considerabile
@@ -192,7 +192,7 @@ questa gerarchia
 	,\beta ~ \in ~ (V ~ \cup ~ T)^{*} ~ , ~ \beta ~ \neq ~ \epsilon, A\in V$
 	\paragraph{Problema di decisione} E' un problema la cui risposta possibile è
 	sì o no (Cioè alla fine true o false). Risolvere un problema di decisione non 
-	pè altro che risolvere un problema di membership.
+	è altro che risolvere un problema di membership.
 	\item Grammatiche Tipo 2: 
 	Le regole di produzione qui sono del tipo A$\in$B, con A$\in$V e 
 	$\beta \in(V \cup T)^{*}$
@@ -243,7 +243,7 @@ $$G_{pal} = (V, T, P, S), ~in ~cui $$\\
 \begin{itemize}
 	\item V = \{S\}
 	\item T = \{0, 1\}
-	\item P = $S \in \epsilon, S \in 0, S \in 1, S \in 0S0, S \in 1S1$
+	\item P = $S \to \epsilon, S \to 0, S \to 1, S \to 0S0, S \to 1S1$
 \end{itemize}
 Più in generale
 $$G_{pal} = (\{S\},\{0, 1\}, P, S) ~  dove ~  P  ~ = ~  \{S \in \epsilon, ...\}$$
@@ -2630,7 +2630,6 @@ S = $\delta$(P, a) = \{$q_{0}$\}\\
 R = ECLOSE(S) = ECLOSE($q_{0}$) \{$q_{0}, q_{1}, q_{2}$\}\\
 $\widehat{\delta}(q_{0}, aabc) = \widehat{\delta}(\underbrace{\{q_{0}, q_{1},
 q_{2}\}}_{P}, \underbrace{abc}_{x})$
-
 \section{Trasformazione da automa a ER}
 Questo algoritmo funziona per eliminazione degli stati, quindi l'idea è che
 io parta da un automa complesso in cui ho uno stato iniziale, alcuni stati finali,
@@ -2670,9 +2669,9 @@ ed uno o più finali.
 \end{center}
 ER = $ER_{1} + ER_{2} + ER_{3} = 
 \begin{cases}
-	L_{1} \to ER_{1}\\
-	L_{2} \to ER_{2}\\
-	L_{3} \to ER_{3}\\
+L_{1} \to ER_{1}\\
+L_{2} \to ER_{2}\\
+L_{3} \to ER_{3}\\
 \end{cases}$
 \paragraph{Esempio fig 3.7 p 92}
 \begin{center}
@@ -2862,11 +2861,53 @@ no Self-Loop, ER $\varnothing$ con $R_{02}$ = $R_{22} = \varnothing$
 E = (0 + 1(0+1) $((0+1)(0+1))^{\star}\varnothing)^{\star}$ 1(0+1) \\
 $((0+1)(0+1))^{\star} = 0^{\star}1(0+1)((0+1)(0+1))^{\star}$. \\
 Volendo si può specificare che: 00+01+10+11
-
-
-
-
-
+\chapter{Altre operazioni sui Linguaggi Regolari}
+\section{Unione}
+Se L, M $\in$ REG su $\Sigma$ allora L $\cup$ M $\in$ REG
+\paragraph{Dimostrazione 1: }
+L, M $\in$ REG $\implies \exists$ espressione regolare R, S t.c L = L(S) e M = L(R)
+ALLORA L $\cup$ M = L(S+R)
+\paragraph{Dimostrazione 2: }
+L, M $\in$ REG $\implies \exists$ due ASF R ed S che li accettano. Costruiamo un
+$\epsilon - NFA$ che accetti L $\cup$ M
+\subparagraph{Siccome} non ho ancora capito una bega di come si fa a fare questo
+tipo di grafico, di nuovo, grazie Gaia $\to$
+\begin{center}
+\includegraphics[width=0.75\textwidth]{25}
+\end{center}	
+\paragraph{Proposizione 1: }Se L, M $\in$ REG, allora LM $\in$ REG 
+\paragraph{Proposizione 2: }Se L $\in$ REG, allora $L^{\star} \in$ REG
+\paragraph{proposizione 3: }Se L $\in$ REG ($\Sigma$), allora $\overline{L}$
+= $\Sigma^{\star}\setminus$L \\
+$\in$ REG 
+\subparagraph{Dimostrazione: }Se L $\in$ REG $\implies \exists$ DFA, 
+A=(Q, $\Sigma, \delta, q_{0}$, F) t.c. L = L(A). Allora $\overline{L} = L(B)$ dove
+B è il DFA B = (Q, $\Sigma$, $\delta$, $q_{0}$, Q $\setminus$ F) 	
+$\Sigma^{'}$ t.c. $\Sigma \subseteq \Sigma^{'}$\\
+L $\subseteq \Sigma^{'~\star}$\\
+$\overline{L} = \Sigma^{'~\star} \setminus $L\\
+\paragraph{Proposizione 4: }Se L, M $\in$ REG, allora L$\cap$M $\in$ REG
+\subparagraph{Dimostrazione: }L$\cap$ M = $\overline{\overline{L} \cup \overline{M}}$	\\
+Se L, M $\in$ REG, allora: $\overline{L} \in$ REG, $\overline{M} \in$ REG, 
+$\overline{L} \cup \overline{M} \in$ REG, $\overline{\overline{L}\cup\overline{M}} \in$ REG 
+\subparagraph{Dimostrazione: }Se L, M $\in$ REG, $\exists$ DFA $A_{L}=(Q_{L}, 
+\Sigma, \delta_{L},q_{L}, F_{L}) e A_{M} = (Q_{M}, \Sigma, \delta_{M}, q_{M}, F_{M})$
+\begin{center}
+\includegraphics[width=0.75\textwidth]{26}
+\end{center}	
+\section{Automa Prodotto}
+Costruiamo l'automa prodotto $A_{L} \otimes A_{M}$\\
+\[A_{L} \oplus A_{M} = (\underbrace{Q_{L} \times Q_{M}}_{Q}, \Sigma, \delta, 
+\underbrace{q_{L}, q_{M}}_{q_{0}}, \underbrace{F_{L}\times F_{L}}_{F} \]\\
+\[Q = \{(p, q | p \in Q_{L}~ e ~ q\in Q_{M}\}\]
+$\delta ((p, q), a) = (\delta_{L}(p,a), \delta_{M}(q,a))$
+\section{Differenza insiemistica}
+\paragraph{Proposizioni: }Se L, M $\in$ REG, allora L $\setminus$ M $\in$ REG
+\subparagraph{Dimostrazione: }L $\setminus$ M = L$\cap \overline{M}$. \\
+M $\in$ REG $\implies \overline{M} \in$ REG. L $\cap \overline{M} \in$ REG   
+\begin{center}
+\includegraphics[width=0.75\textwidth]{27}
+\end{center}           
 
 
 
