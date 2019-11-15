@@ -178,7 +178,7 @@ questa gerarchia
 		\item linguaggi che generano sono i ricorsivamente numerati, li vedremo a 
 		computabilità (Sia deterministiche che non)
 	\end{itemize}
-	\item Grammatiche Tipo 1: La testa ha lunghezza $\geq$ corpo, ne vedremo 
+	\item Grammatiche Tipo 1: La testa ha lunghezza $\leq$ corpo, ne vedremo 
 	solo due esempi
 	\begin{itemize}
 		\item Linguaggi dipendenti dal contesto, riconosciuti da macchine 
@@ -194,14 +194,14 @@ questa gerarchia
 	sì o no (Cioè alla fine true o false). Risolvere un problema di decisione non 
 	è altro che risolvere un problema di membership.
 	\item Grammatiche Tipo 2: 
-	Le regole di produzione qui sono del tipo A$\in$B, con A$\in$V e 
+	Le regole di produzione qui sono del tipo A$\to$B, con A$\in$V e 
 	$\beta \in(V \cup T)^{*}$
 	Sono linguaggi context free, e vengono riconosciuti da macchine (o automi) a
 	pila monoterministica
 	\item Grammatiche Tipo 3: Sono le grammatiche regolari e quindi producono e
 	generano semplicemente linguaggi regolari, e le produzioni delle grammatiche
-	regolari si possono tutte trasformare in modo tale che A$\in$ aB $\wedge$ A
-	$\in$ a con A, B$\in$V e a$\in$ T, riconosciuti da automi a stati finiti, 
+	regolari si possono tutte trasformare in modo tale che A$\to$ aB $\wedge$ A
+	$\to$ a con A, B$\in$V e a$\in$ T, riconosciuti da automi a stati finiti, 
 	deterministici o monodeterministici
 \end{enumerate}
 Il complemento di un linguaggio può essere sia infinito che finito (Nel senso
@@ -1203,7 +1203,7 @@ Come è possibile notare adesso $\delta$ è diventata una funzione parziale, ino
 il non determinismo è visibile in due modi:
 \begin{enumerate}
 	\item Trovo tutte le possibilità, cioè l'automa si trova in più stati 
-	contemporaneamenta, si spezza, si duplica, ed una parte continua con una
+	contemporaneamente, si spezza, si duplica, ed una parte continua con una
 	sua computazione, l'altra con la sua. 
 	\begin{center}
 	\includegraphics[width=0.75\textwidth]{22}
@@ -2908,7 +2908,6 @@ M $\in$ REG $\implies \overline{M} \in$ REG. L $\cap \overline{M} \in$ REG
 \begin{center}
 \includegraphics[width=0.75\textwidth]{27}
 \end{center}           
-
 
 
 
