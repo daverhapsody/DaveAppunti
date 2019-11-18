@@ -1851,5 +1851,40 @@ sistemi deduttivi.\\ \\
 Lo stile di programmazione del Prolog e le idee alla sua base sono i componenti 
 principali di una serie di nozioni utili alla gestione di relazioni semantiche
 su Web (RDF)
-
+\chapter{Linguaggi Funzionali (SECONDO PARZIALE)}
+Prima di parlare effettivamente di questo paradigma di programmazione, bisogna 
+menzionare un argomento importante.
+\section{Trasparenza referenziale}
+Allora, con calma, è una proprietà, ed è valida per espressioni 
+matematiche, e rende possibili le sostituzioni di espressioni con altre, basta 
+che hai gli stessi valori. 
+\paragraph{Eh.. Cioè? }Prendi f(x) + g(x), sono sostituibili con delle nuove
+funzioni f e h Se e SOLO se effettivamente produciono gli stessi valori. (Si, 
+oddio, più che funzioni, f e h scritte così sembrano variabili)
+\subparagraph{Eeeee... Quindi?} Niente, per quanto riguarda LISP, ed i linguaggi
+funzionali in generale, si ha questa trasparenza referenziale come "fondamento".
+\paragraph{Lo stile }NON è più dichiarativo, qua è una funzione, una super mega 
+giganteschissima funzione, più precisamente è una combinazione di tutte le mie 
+varie funzioni. La composizione di funzioni è la chiave.
+Quello che accade è che definiremo funzioni per poi andare ad usarle, 
+tutto lì. Le regole delle funzioni vengono applicate.
+\paragraph{Anche qui è tutto ricorsivo: }I cicli non ci sono, come non c'erano
+in Prolog, gli assegnamenti si possono circa fare, ed è tutto di nuovo 
+ricorsivo. Ah sì, per il resto tutto funzioni, tutto completamente a funzioni.
+\chapter{LISP}
+\textbf{LIS}T Processing, cioè elaborazione delle liste, nasce verso la fine 
+degli anni 50 (Siamo solo nel 2019, not bad), successivamente poi LISP si è 
+evoluto in altri sottoLinguaggi (Tipo le fork su GitHub) come Common LISP e 
+Scheme, noi useremo Common LISP. 
+\paragraph{L'ambiente }NON è compilato, o meglio, dovrebbe non esserlo, perchè
+si ha un interprete tipo Prolog.
+L'interprete \textbf{VALUTA TUTTO}, argomenti della funzione compresi. T U T T O.
+Non metterò più di tanta roba, vi lascio giusto qualche esempio.
+\begin{center}
+\includegraphics[width=0.75\textwidth]{10}
+\end{center}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{11}
+\end{center}
+            
 \end{document}

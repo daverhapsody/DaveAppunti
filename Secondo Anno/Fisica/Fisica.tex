@@ -1216,7 +1216,155 @@ un punto A, che sarebbe il vettore.
 \begin{center}
 \includegraphics[width=0.75\textwidth]{componenti}
 \end{center}
-          
+\chapter{I fluidi (SECONDO PARZIALE)}
+Finora si è ragionato sulla meccanica classica, e si è studiato come descrivere
+il moto di un punto materiale (un oggetto rappresentato da un punto senza
+dimensioni), si è descritto il moto etc. Insomma, se siete qui probabilmente 
+avrete letto anche tutto il resto. 
+\section{Cos'è un fluido}
+Un fluido è un insieme di "particelle" distinte, più precisamente liquidi e gas.
+Questi ultimi non hanno una forma precisa, non sono corpi rigidi, perciò saranno
+soggetti a delle regole particolari. 
+\paragraph{Più in generale: }
+Hai diversi stati di materia (Solido, liquido, gas, plasma), cioè la materia è 
+la stessa ma con stati diversi, e questo stato è derivante da cosa accade a 
+livello \textbf{microscopico}.
+\paragraph{La Fluidodinamica: }
+E' la branca della fisica che si occupa di studiare tutto quello che accade per
+quanto riguardi i fluidi MA fermandosi prima del concetto di atomo, quindi non 
+andrà a scavare troppo nel piccolo. Prendendo ad esempio un solido su un tavolo
+se volessimo strisciarlo sopra NON otterremmo un attrito. Il liquido per dire
+scorre su se stesso, l'unica resistenza che c'è è la viscosità (Lo scorrimento
+degli strati uno sull'altro è più veloce o lento per via di una specie di attrito
+la viscosità). Noi ci occuperemo di liquindi che hanno una viscosità trascurabile.
+\section{Le unità di misura}
+Per quanto concerne i fluidi non ha senso parlare di massa, nè di volume, in 
+questo caso si ragionerà su quantità \textbf{intensive}, prese "per unità di".
+Quali sono? 
+\begin{itemize}
+	\item Densità
+	\item Temperatura
+	\item Pressione
+\end{itemize}
+Hanno un'intensità NON DIPENDENTE dalle dimensioni dell'oggetto di cui si parla
+Supponiamo di voler ragionare su un determinato volume avremo che $\Delta V \to 
+\Delta M$, cioè c'è una proporzionalità tra massa e volume tale che: 
+\[
+	\rho = \frac{\Delta M}{\Delta V}
+\]
+Con $\rho$ che sarebbe la densità.
+\paragraph{I liquidi non possono esser compressi: }Pertanto la densità sarà 
+uguale e costante in ogni punto. Però la definizione corretta di densità è 
+differenziale OVVERO c'è da prendere il limite tale per cui 
+\[
+    	\rho = \frac{d \Delta M}{d \Delta V} ~ con ~ \rho(x, y, z)
+\]    
+L'unità di misura è: $[\rho] = \frac{kg}{m^{3}}$
+\section{La pressione}
+Per definizione, la pressione è la forza perpendicolare applicata alle pareti 
+fratto la superficie. 
+\[
+	P = \frac{\Delta F_{\perp}}{\Delta S}
+\]
+PERO' solo se è costante, ma siccome la forza non è necessariamente costante
+sulla superficie, allora
+\[
+	P = \frac{dF_{\perp}}{dS}
+\]
+\[
+	[P] = \frac{N}{m^{2}} = Pa (Pascal)	
+\]	
+\[
+	1 ~ atm ~ (atmosfera) = 1.01 \cdot 10^{5} Pa
+\]
+\[
+	1 bar = 10^{5} Pa \approx 1 atm
+\]
+Più semplicemente la pressione è una forza applicata ad una superficie. ($
+Con F_{H} = -k\Delta x $)La pressione su una superficie è la componente \textbf{
+	perpendicolare
+} di una forza. \textbf{ATTENZIONE} Non è un vettore, si considera solo il 
+modulo della componente verticale. (La forza è un vettore)
+\section{Legge di Stevino}
+Prendiamo un contenitore con una sua superficie, un asse di riferimento che
+chiamiamo asse y, fissano $y_{0}$ sul livello del fluido. Tutto ciò che vien 
+sotto è negativo. 
+Consideriamo ora un solido e posizioniamolo immerso nel liquido di riferimento.
+Il fluido è un fluido in quiete, è fermo. Noteremo che il solito avrà un'altezza
+$y_{1} $ ed un'altra $y_{2} $ ne ricaviamo abbastanza easy che h = $y_{1} - y_{2}$.
+Ora, questo volume avrà una pressione sulle sue superifici ideali, pertanto ci 
+saranno due forza che picchiano su tutte le superfici.
+\begin{center}
+\includegraphics[width=0.75\textwidth]{5}
+\end{center}
+A questo punto iniziamo a ragionare in termini \textbf{ESTENSIVI}, cioè andiamo
+a ragionare su qualcosa di diverso dalle dimensioni delle oggetti. 
+\begin{center}
+\includegraphics[width=0.75\textwidth]{6}
+\end{center}
+\paragraph{La legge di Stevino} dice appunto che la pressione dipenda davvero 
+dalla profondità 
+\[
+	P_{2} = P_{1} + \rho \cdot g(y_{1} - y_{2})
+\]
+E quindi 
+\[
+	\Delta P = \rho \cdot g \cdot h 
+\]
+Riprendendo l'altezza si ha che $\Delta y = y_{2} - y_{1}$ e quindi
+\[
+	\Delta P = -\rho \cdot g \cdot \Delta y
+\]
+In via invece infinitesimale si può dire che:
+\[
+	\frac{dP}{dy} = -\rho \cdot g
+\]
+In superficie la pressione che "sentiamo" è quella atmosferica, mentre per 
+esempio quando ci immergiamo in una piscina, più si scende più va sommato un 
+termine lineare con la profondità OVVERO $P = P_{0} + \rho \cdot g \cdot h$
+\paragraph{Contenuti speciali:}
+\subparagraph{Esistono liquidi ideali? }No, è come chiedersi se esistono i punti
+materiali
+\subparagraph{Come si misura la pressione? }Con il Manometro
+\section{Misura della pressione atmosferica}
+E' il primo dei casi in cui possiamo applicare la legge di Stevino. Torricelli 
+prese un tubo e lo riempì di mercurio (Che è un metallo liquido a temperatura 
+ambiente). 
+Il mercurio (Hg) è infatti il primo liquido usato per misurare la pressione. 
+\[
+	\rho_{Hg} = 13.6 \frac{g}{cm^{3}} ~ e ~ \rho_{H_{2}O} = 1 \frac{g}{cm^{3}}
+\]
+\begin{center}
+\includegraphics[width=0.75\textwidth]{7}
+\end{center}
+Ne consegue che 1 Tor = 1 mm di Mercurio E 1 Bar sono 760 Tor.
+Ora, a questo punto le stesse formule applicate in questo caso su dei liquidi
+sono anche applicabili a corpi aeriforme. 
+\section{La pressa idraulica}
+Avete presente quando siete a letto, che state prendendo sonno, ma c'è il telefono
+lì di fianco a voi sul comodino, con sopra YouTube (Va bene pure Instagram, e sì,
+pure Reddit MA NON 4Chan), 
+ecco. Bene. Iniziate
+a guardare un video di qualcosa che vi interessa, 5 video dopo vi ritrovate a 
+guardare video di presse idrauliche. Ecco quelle.
+\begin{center}
+\includegraphics[width=0.75\textwidth]{8}
+\end{center}
+\section{Principio di Archimede}
+\paragraph{Enunciato: }Il principio di Archimede afferma che «ogni corpo immerso 
+parzialmente o completamente in un fluido riceve una spinta verticale dal basso
+ verso l'alto, uguale per intensità al peso del fluido spostato».
+ \paragraph{Spiegato peggio: }
+ Ho una vaschetta d'acqua, ci butto dentro un oggetto avente un peso p=mg. La 
+ forza applicata al corpo che dovrebbe portarlo verso l'alto si chiama $F_{B}$,
+ (Bob, rimanere in superficie)
+ \[
+ 	F_{B} = \rho _{Liquido} \cdot V \cdot g = P_{Liquido}
+ \]
+ In cui la V è il volume, g.. è g, e P sarebbe la forza peso del liquido
+
+ 	     	
+            
 
 \end{document}
 
