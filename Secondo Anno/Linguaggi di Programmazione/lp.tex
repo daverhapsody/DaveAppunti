@@ -16,7 +16,7 @@
 \fontfamily{cmss}\selectfont
 \author{\href{https://github.com/daverhapsody}{DaveRhapsody}}
 \title{\includegraphics[width=0.10\textwidth]{logo}\\ 
- Linguaggi di Programmazione}
+Linguaggi di Programmazione}
 \color{blue}
 \date{30 Settembre 2019}
 \color{black}
@@ -1822,9 +1822,9 @@ solve([], [G | Goals]) :- solve(G, Goals).
 solve([A | B], Goals) :- append(B, Goals, BGoals),
 solve(A, BGoals). 
 solve(A, Goals) :- rule(A),
-	solve(Goals, []). 
-	solve(A, Goals) :- rule(A, B), 
-	solve(B, Goals).
+solve(Goals, []). 
+solve(A, Goals) :- rule(A, B), 
+solve(B, Goals).
 \end{lstlisting}
 \textbf{solve} diventa un meta-interprete per i predicati \textbf{rule}che
 compongono il nostro sistema.
@@ -1832,14 +1832,14 @@ compongono il nostro sistema.
 \begin{lstlisting}[language=Prolog]
 solve_cf(true, 1) :- !.
 solve_cf((A, B), C) :- !, solve_cf(A, CA), 
-		solve_cf(B, CB),
-		minimum(CA, CB, C).
+solve_cf(B, CB),
+minimum(CA, CB, C).
 solve_cf(A, 1) :- builtin(A), 
-		!, 
-		call(A).
+!, 
+call(A).
 solve_cf(A, C) :- rule_cf(A, B, CR), 
-		solve_cf(B, CB), 
-		C is CR * CB.
+solve_cf(B, CB), 
+C is CR * CB.
 \end{lstlisting}	
 Devo mi sa rivedermi l'indentazione, spero sia corretta. 
 Appena riesco sistemo questa cosa.
@@ -1886,5 +1886,152 @@ Non metterò più di tanta roba, vi lascio giusto qualche esempio.
 \begin{center}
 \includegraphics[width=0.75\textwidth]{11}
 \end{center}
-            
+\section{Introduzione}
+Di base LISP è composto di funzioni. Un esempio di funzione potrebbe
+essere ad esempio
+\begin{lstlisting}[language=LISP]
+	prompt> (+ 3 5)
+	8
+\end{lstlisting}
+Come già da qua si vede c'è una funzione definita tutta tra parentesi. Si apre 
+con + (indica che funzione è) e poi gli argomenti della funzione che si considera.
+Ora, c'è un detto famoso: \textbf{LISP è il miglior simulatore di parentesi}. 
+Basti pensare che se voglio fare una somma dentro una somma mi vien fuori
+\begin{lstlisting}[language=LISP]
+	prompt> (+ (+ 4 6) 5)
+	15
+\end{lstlisting}
+Immaginatevi cosa vien fuori tra poco.
+Dalle slide vi riporto qualche esempio più preciso: 
+\begin{center}
+\includegraphics[width=0.75\textwidth]{12}
+\end{center}
+Inoltre bisogna anche mettersi nell'ottica che se Prolog funzionava tutto al 
+contrario, invece LISP no, funziona in ordine da sinistra verso destra.
+Anche qui non sto a insistere troppo, riporto diretto dalle slide.
+\begin{center}
+\includegraphics[width=0.75\textwidth]{13}
+\end{center}
+L'interprete realizza il suo parsing partendo da sinistra e procedendo 
+ricorsivamente verso destra, easy, riconosce i simboli etc.
+\paragraph{Osservazione: }$v_{1}$ è prodotto da $x_{1}$, nel senso che 
+siccome l'interprete ragiona su ogni elemento delle parentesi
+\subsection{Come definisco una funzione o una variabile}
+Ci son due funzioni predefinite per questo scopo che sono \textbf{defparameter}
+e \textbf{defun}, uno definisce un parametro, per ipotesi se avessi:
+\begin{lstlisting}[language=LISP]
+	prompt> (defparameter x 15)
+	15
+\end{lstlisting}
+In java avremmo scritto
+\begin{lstlisting}[language=Java]
+	x = 15;
+\end{lstlisting}
+(Mancherebbe il tipo per i dati ma.. Non c'è in questo caso). Ci sono diversi 
+modi per fare gli assegnamenti, in questo caso si ha defparametere come base ma 
+ne vedremo migliori più avanti.
+Definiamo ora una ipotetica funzione: 
+\begin{lstlisting}[language=LISP]
+	prompt> (defun quadrato(x) (* x x))
+	quadrato
+\end{lstlisting}
+E' come aver fatto in java
+\begin{lstlisting}[language=Java]
+	public int quadrato(int x){
+		return x * x;
+	}
+\end{lstlisting}
+E' abbastanza intuitivo, una volta definite le nostre funzioni e costanti, 
+possiamo poi utilizzarle ovviamente
+\begin{lstlisting}[language=LISP]
+	prompt> (quadrato x)
+	1764
+\end{lstlisting}
+Qua si lavora con simboli, non stringhe, occhio a non confondersi su questa cosa.
+\section{Funzioni $\lambda$ (Funzione anonima)}
+In pratica si possono costruire delle funzioni che siano anonime, dette anche 
+funzioni $\lambda$. 
+In parole povere lambda è una funzione che però non ha un nome. 
+\paragraph{A che serve?} Puoi direttamente applicarla a degli argomenti, tipo 
+per dire
+\begin{lstlisting}[language=LISP]
+	prompt> (lambda (x) (+ 2 x))
+	%In pratica aggiungo 2 ad x
+	prompt> ((lambda (x) (+ 2 x))40)
+\end{lstlisting}
+Ogni volta si deve star lì a ridefinirsela insomma, capiamo già da qui che ha 
+più senso (in base alla riusabilità) definirsi di pacco una funzione e stop.
+Per ora lasciamole un po' da parte, più tardi ci serviranno di più. 
+Ora, proviamo a definirci una funzione del tipo valore\_assoluto.
+A cosa è uguale? 
+\[
+	valore\_Assoluto = \begin{cases}
+		x ~ se ~ x > 0 \\
+		0 ~ se ~ x = 0 \\
+		-x ~ se ~ x < 0
+	\end{cases}
+\]	
+Bene, questo da un punto di vista prettamente matematico, ma invece come sarebbe
+dal punto di vista più programmativo? In questo caso c'è il \textbf{cond}. 
+E' una funzione che associa semplicemente elemeti tra loro.
+\begin{lstlisting}[language=LISP]
+	(cond (x a) (y b))
+\end{lstlisting}
+In pratica associa x con a e y con b, con x, a, y, b che sono delle espressioni.
+\begin{lstlisting}[language=LISP]
+(defun valore-assoluto (x) 
+	(cond ((> x 0) x)
+	((= x 0) 0)
+	((< x 0) (- x))))
+\end{lstlisting}
+Da qui abbiamo un esempio carino anche di indentazione del codice. 
+Non c'è molto da dire su < > e =, sono delle booleane che o danno True o False.
+Se ci son le booleane c'è anche l'\textbf{if}, che funziona come una qualsiasi 
+funzione booleana 
+\begin{lstlisting}[language=LISP]
+	defun(maggiore_di_zero (x))
+		(if (> x 0) T) 
+\end{lstlisting}
+In pratica ti spara True se lo è, come si osserva non c'è l'else, perchè va in
+successione all'altra espressione.
+Proviamo a definire una funzione ricorsiva, il fattoriale.
+\begin{lstlisting}[language=LISP]
+	 (defun fattoriale (n)
+       (if (= n 0) 1
+		(* n (fattoriale (- n 1)))))
+\end{lstlisting}
+Tradotto, se n è 0 allora dammi 1 altrimenti dammi il prodotto di n con il 
+fattoriale di n-1. Manca l'else, ma da qua si capisce che vien fatto in sequenza.
+\paragraph{E' tutto ricorsivo: }Come in Prolog tutto va ricorsivamente, PERCIO' 
+sarà possibile in qualche modo tentare di simulare un'iterazione.
+\begin{lstlisting}[language = LISP]
+	(defun fatt-ciclo (n acc) 
+		(if (= n 0)
+			acc
+			(fatt-ciclo (- n 1) (* n acc))))
+	
+	(defun fattoriale (n) 
+		(fatt-ciclo n 1))
+\end{lstlisting}
+In pratica gli chiedo, è n = 0? restituisco l'accumulatore, quindi questo si 
+incrementerà costantemente, infatti dopo si ha il fattoriale di n - 1 che 
+va a prendere l'accumulatore e lo moltiplica per n.
+Sotto infatti abbiamo che il fattoriale di n è il risultato di questa iterazione.
+\paragraph{Questa struttura si chiama ricorsione in coda: }Ovvero la ricorsione 
+è \textbf{L'ultima} operazione che eseguo. Per intenderci, la funzione di fibbonacci
+NON è eseguibile così, perchè funziona con due ricorsioni attive. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \end{document}
