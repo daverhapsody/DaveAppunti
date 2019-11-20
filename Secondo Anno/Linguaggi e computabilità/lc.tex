@@ -2908,13 +2908,328 @@ M $\in$ REG $\implies \overline{M} \in$ REG. L $\cap \overline{M} \in$ REG
 \begin{center}
 \includegraphics[width=0.75\textwidth]{27}
 \end{center}           
+\section{Automa minimo}
+\begin{itemize}
+	\item Si ha come input un DFA A
+	\item Come out invece un DFA $A_{min}$ tali che
+\end{itemize}
+L($A_{min}$ = L(A)) e $A_{min}$ contiene in numero minimo di stati. 
+\subsection{Equivalenza tra stati}
+Due stati p e q sono equivalenti (p $\approx$ q) SE $\forall w \in \Sigma^{\star}$,
+$\widehat{\delta}(p, w) \in F$ se e solo se $\widehat{\delta}(q,w) \in F$.
+\paragraph{Se gli stati non sono equivalenti: } (p $\not\approx$) allora p e q
+sono distinguibili e quindi esista una stringa che li distingue. 
+\paragraph{Detto meglio: }$\exists(Almeno~una)w \in \Sigma^{\star}$ t.c. 
+$\widehat{\delta}(p,w) \in F$ e $\widehat{\delta}(q,w) \notin F$ OPPURE
+$\widehat{\delta}(p,w) \notin F$ e $\widehat{\delta}(q,w) \in F$.
+\paragraph{Prop: }$\approx$ è una relazione di equivalenza:
+\begin{itemize}
+	\item Riflessiva $\forall p \in Q, p \approx p$
+	\item Transitiva $\forall p, q \in Q,$ se $p \approx q$ ALLORA $q \approx p$
+	\item Simmetrica $\forall p, q, r \in Q$ SE $p \approx q$ E $q \approx r$ 
+	ALLORA $p \approx r$
+\end{itemize}
+\paragraph{Esempio: }
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (12.3,-15.8) circle (3);
+\draw (12.3,-15.8) node {$A$};
+\draw [black] (27.8,-15.8) circle (3);
+\draw (27.8,-15.8) node {$B$};
+\draw [black] (44.7,-15.8) circle (3);
+\draw (44.7,-15.8) node {$C$};
+\draw [black] (44.7,-15.8) circle (2.4);
+\draw [black] (62.3,-15.8) circle (3);
+\draw (62.3,-15.8) node {$D$};
+\draw [black] (12.3,-33.1) circle (3);
+\draw (12.3,-33.1) node {$E$};
+\draw [black] (28.4,-33.1) circle (3);
+\draw (28.4,-33.1) node {$F$};
+\draw [black] (44.7,-33.1) circle (3);
+\draw (44.7,-33.1) node {$G$};
+\draw [black] (62.3,-33.1) circle (3);
+\draw (62.3,-33.1) node {$H$};
+\draw [black] (8,-11.3) -- (10.23,-13.63);
+\draw (5.76,-10.82) node [above] {$start$};
+\fill [black] (10.23,-13.63) -- (10.04,-12.71) -- (9.31,-13.4);
+\draw [black] (15.3,-15.8) -- (24.8,-15.8);
+\fill [black] (24.8,-15.8) -- (24,-15.3) -- (24,-16.3);
+\draw (20.05,-16.3) node [below] {$0$};
+\draw [black] (15.3,-33.1) -- (25.4,-33.1);
+\fill [black] (25.4,-33.1) -- (24.6,-32.6) -- (24.6,-33.6);
+\draw (20.35,-33.6) node [below] {$1$};
+\draw [black] (14.34,-18) -- (26.36,-30.9);
+\fill [black] (26.36,-30.9) -- (26.18,-29.98) -- (25.45,-30.66);
+\draw (19.82,-25.91) node [left] {$1$};
+\draw [black] (30.8,-15.8) -- (41.7,-15.8);
+\fill [black] (41.7,-15.8) -- (40.9,-15.3) -- (40.9,-16.3);
+\draw (36.25,-15.3) node [above] {$1$};
+\draw [black] (43.377,-13.12) arc (234:-54:2.25);
+\draw (44.7,-8.55) node [above] {$1$};
+\fill [black] (46.02,-13.12) -- (46.9,-12.77) -- (46.09,-12.18);
+\draw [black] (59.3,-15.8) -- (47.7,-15.8);
+\fill [black] (47.7,-15.8) -- (48.5,-16.3) -- (48.5,-15.3);
+\draw (53.5,-15.3) node [above] {$0$};
+\draw [black] (60.16,-17.9) -- (46.84,-31);
+\fill [black] (46.84,-31) -- (47.76,-30.79) -- (47.06,-30.08);
+\draw (52.48,-23.97) node [above] {$1$};
+\draw [black] (30.307,-17.447) arc (54.97011:33.6897:49.623);
+\fill [black] (43.11,-30.56) -- (43.08,-29.61) -- (42.25,-30.17);
+\draw (37.85,-21.93) node [right] {$0$};
+\draw [black] (29.489,-30.306) arc (155.64508:117.76437:28.05);
+\fill [black] (41.98,-17.05) -- (41.03,-16.98) -- (41.5,-17.87);
+\draw (34.1,-21.17) node [left] {$0$};
+\draw [black] (45.598,-35.95) arc (45.2296:-242.7704:2.25);
+\draw (43.28,-40.37) node [below] {$0$};
+\fill [black] (42.98,-35.55) -- (42.07,-35.76) -- (42.78,-36.47);
+\draw [black] (42.346,-34.956) arc (-55.27943:-124.72057:24.309);
+\fill [black] (14.65,-34.96) -- (15.03,-35.82) -- (15.6,-35);
+\draw (28.5,-39.78) node [below] {$1$};
+\draw [black] (59.3,-33.1) -- (47.7,-33.1);
+\fill [black] (47.7,-33.1) -- (48.5,-33.6) -- (48.5,-32.6);
+\draw (53.5,-32.6) node [above] {$0$};
+\draw [black] (47.441,-17.017) arc (63.29899:27.68601:31.169);
+\fill [black] (47.44,-17.02) -- (47.93,-17.82) -- (48.38,-16.93);
+\draw (56.31,-22.16) node [above] {$1$};
+\draw [black] (60.736,-35.659) arc (-34.45531:-145.54469:28.423);
+\fill [black] (60.74,-35.66) -- (59.87,-36.04) -- (60.7,-36.6);
+\draw (37.3,-48.5) node [below] {$0$};
+\draw [black] (13.831,-13.224) arc (144.49457:35.50543:18.019);
+\fill [black] (13.83,-13.22) -- (14.7,-12.86) -- (13.89,-12.28);
+\draw (28.5,-5.17) node [above] {$0$};
+\end{tikzpicture}
+\end{center}
+A questo punto introduciamo l'algoritmo riempi tabella, che è un algoritmo 
+ricorsivo che trasformiamo in iterativo, che è più ottimizzato
+\begin{itemize}
+	\item Base: p $\in Finali ~ e ~ q \notin Finali \implies$ \{p,q\} è distinguibile
+	quindi (p $\approx$ q)
+	\item Passo induttivo: Seper a $\in \Sigma$, gli stati r = $\delta(p, a)$ e
+	S = $\delta$(q,a) sono distinguibili, allora anche p e q sono distinguibili
+\end{itemize}
+L'idea dell'algoritmo è di partire dagli stati finali e non finali, poi aggiungiamo
+un simbolo, ci si chiede da quali stati siano distinti in base ai caratteri che
+ha la stringa. Ipotesi, gli attacchiamo un carattere, ci chiediamo cosa accade 
+se inseriamo una stringa ad un carattere, poi ne attacchiamo un secondo e si 
+fa lo stesso ragionamento ma con due caratteri. 
+\paragraph{Costruiamo ora la tabella}
+\begin{center}
+\begin{tabular}{ c|c|c|c|c|c|c|c| } 
+ \hline
+ B & X &  &  &  &  &  & \\ 
+ C & X & X &  &  &  &  & \\ 
+ D & X & X & X &  &  &  & \\
+ E &  & X & X & X &  &  & \\ 
+ F & X & X & X &  & X &  &  \\ 
+ G & X & X & X & X & X & X & \\
+ H & X &  & X & X & X & X & X\\ 
+ \hline
+  & A & B & C & D & E & F & G \\ 
+  \hline
+\end{tabular}
+\end{center}
+La X indica quando sono distinguibili. Per capire se son distinguibili bisogna
+capire dove va a finire quella determinata coppia di stati. Come devo ragionare?
+Dobbiamo stare attenti agli stati che vanno negli stessi stati.
+\paragraph{Gli stati equivalenti} quindi sono 
+\begin{itemize}
+	\item \{A, E\}
+	\item \{B, H\}
+	\item \{D, F\}
+	\item \{C\}
+	\item \{G\}
+\end{itemize}
+In una classe di equivalenza hai o tutti finali o non finali.
+\paragraph{Ecco il risultato: }
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (13.3,-27) circle (3);
+\draw (13.3,-27) node {$A,\mbox{ }E$};
+\draw [black] (24.7,-16.4) circle (3);
+\draw (24.7,-16.4) node {$G$};
+\draw [black] (43.5,-16.4) circle (3);
+\draw (43.5,-16.4) node {$D,\mbox{ }F$};
+\draw [black] (24.7,-39.4) circle (3);
+\draw (24.7,-39.4) node {$B,\mbox{ }H$};
+\draw [black] (43.5,-39.4) circle (3);
+\draw (43.5,-39.4) node {$C$};
+\draw [black] (43.5,-39.4) circle (2.4);
+\draw [black] (6.1,-27) -- (10.3,-27);
+\draw (5.6,-27) node [left] {$start$};
+\fill [black] (10.3,-27) -- (9.5,-26.5) -- (9.5,-27.5);
+\draw [black] (22.149,-37.825) arc (-125.02488:-149.78706:25.818);
+\fill [black] (22.15,-37.82) -- (21.78,-36.96) -- (21.21,-37.77);
+\draw (17.43,-35.62) node [left] {$0$};
+\draw [black] (13.176,-24.007) arc (-182.87801:-318.44052:16.343);
+\fill [black] (41.73,-13.99) -- (41.57,-13.06) -- (40.82,-13.72);
+\draw (23.17,-8.88) node [above] {$1$};
+\draw [black] (24.7,-36.4) -- (24.7,-19.4);
+\fill [black] (24.7,-19.4) -- (24.2,-20.2) -- (25.2,-20.2);
+\draw (25.2,-27.9) node [right] {$0$};
+\draw [black] (27.7,-39.4) -- (40.5,-39.4);
+\fill [black] (40.5,-39.4) -- (39.7,-38.9) -- (39.7,-39.9);
+\draw (34.1,-39.9) node [below] {$1$};
+\draw [black] (41.709,-41.801) arc (-41.91708:-182.72863:16.536);
+\fill [black] (12.89,-29.97) -- (12.35,-30.74) -- (13.35,-30.79);
+\draw (22.16,-46.57) node [below] {$0$};
+\draw [black] (46.42,-38.767) arc (129.96376:-158.03624:2.25);
+\draw (50.81,-41.49) node [right] {$1$};
+\fill [black] (45.78,-41.33) -- (45.91,-42.27) -- (46.68,-41.62);
+\draw [black] (25.533,-13.53) arc (191.53853:-96.46147:2.25);
+\draw (30.27,-10.93) node [above] {$0$};
+\fill [black] (27.48,-15.32) -- (28.37,-15.65) -- (28.17,-14.67);
+\draw [black] (22.5,-18.44) -- (15.5,-24.96);
+\fill [black] (15.5,-24.96) -- (16.42,-24.78) -- (15.74,-24.05);
+\draw (17.98,-21.21) node [above] {$1$};
+\draw [black] (43.5,-19.4) -- (43.5,-36.4);
+\fill [black] (43.5,-36.4) -- (44,-35.6) -- (43,-35.6);
+\draw (43,-27.9) node [left] {$0$};
+\draw [black] (40.5,-16.4) -- (27.7,-16.4);
+\fill [black] (27.7,-16.4) -- (28.5,-16.9) -- (28.5,-15.9);
+\draw (34.1,-15.9) node [above] {$1$};
+\end{tikzpicture}
+\end{center}
+\paragraph{Osservazione: }D siccome è un nodo irraggiungibile, allora andrebbe
+anzi, va assolutamente eliminato, perciò se stampate questi appunti, fateci una
+croce sopra, o anche un teschio, va bene uguale
+\paragraph{Altro esempio}
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (13.4,-17.3) circle (3);
+\draw (13.4,-17.3) node {$A$};
+\draw [black] (13.4,-34.5) circle (3);
+\draw (13.4,-34.5) node {$E$};
+\draw [black] (30.5,-17.3) circle (3);
+\draw (30.5,-17.3) node {$B$};
+\draw [black] (30.5,-34.5) circle (3);
+\draw (30.5,-34.5) node {$F$};
+\draw [black] (30.5,-34.5) circle (2.4);
+\draw [black] (45.9,-17.3) circle (3);
+\draw (45.9,-17.3) node {$C$};
+\draw [black] (45.9,-17.3) circle (2.4);
+\draw [black] (45.9,-34.5) circle (3);
+\draw (45.9,-34.5) node {$G$};
+\draw [black] (61,-34.5) circle (3);
+\draw (61,-34.5) node {$H$};
+\draw [black] (45.7,-4.6) circle (3);
+\draw (45.7,-4.6) node {$D$};
+\draw [black] (38.1,-46.1) circle (3);
+\draw (38.1,-46.1) node {$I$};
+\draw [black] (38.1,-46.1) circle (2.4);
+\draw [black] (16.4,-17.3) -- (27.5,-17.3);
+\fill [black] (27.5,-17.3) -- (26.7,-16.8) -- (26.7,-17.8);
+\draw (21.95,-17.8) node [below] {$0$};
+\draw [black] (4.5,-17.3) -- (10.4,-17.3);
+\draw (4,-17.3) node [left] {$start$};
+\fill [black] (10.4,-17.3) -- (9.6,-16.8) -- (9.6,-17.8);
+\draw [black] (13.4,-20.3) -- (13.4,-31.5);
+\fill [black] (13.4,-31.5) -- (13.9,-30.7) -- (12.9,-30.7);
+\draw (12.9,-25.9) node [left] {$1$};
+\draw [black] (33.5,-17.3) -- (42.9,-17.3);
+\fill [black] (42.9,-17.3) -- (42.1,-16.8) -- (42.1,-17.8);
+\draw (38.2,-17.8) node [below] {$0$};
+\draw [black] (28.855,-31.999) arc (-153.056:-206.944:13.459);
+\fill [black] (28.86,-32) -- (28.94,-31.06) -- (28.05,-31.51);
+\draw (26.89,-25.9) node [left] {$1$};
+\draw [black] (45.85,-14.3) -- (45.75,-7.6);
+\fill [black] (45.75,-7.6) -- (45.26,-8.41) -- (46.26,-8.39);
+\draw (46.32,-10.95) node [right] {$0$};
+\draw [black] (48.822,-16.652) arc (95.53404:-12.97379:12.325);
+\fill [black] (62.02,-31.69) -- (62.69,-31.02) -- (61.71,-30.8);
+\draw (59.82,-19.34) node [right] {$1$};
+\draw [black] (48.571,-5.465) arc (69.97982:-164.39916:26.449);
+\fill [black] (14.04,-37.43) -- (13.77,-38.33) -- (14.74,-38.07);
+\draw (58.5,-50.21) node [below] {$0$};
+\draw [black] (47.07,-7.27) -- (59.63,-31.83);
+\fill [black] (59.63,-31.83) -- (59.71,-30.89) -- (58.82,-31.34);
+\draw (52.66,-20.68) node [left] {$1$};
+\draw [black] (16.4,-34.5) -- (27.5,-34.5);
+\fill [black] (27.5,-34.5) -- (26.7,-34) -- (26.7,-35);
+\draw (21.95,-35) node [below] {$0$};
+\draw [black] (16.12,-35.78) -- (35.38,-44.82);
+\fill [black] (35.38,-44.82) -- (34.87,-44.03) -- (34.45,-44.94);
+\draw (24.77,-40.81) node [below] {$1$};
+\draw [black] (33.5,-34.5) -- (42.9,-34.5);
+\fill [black] (42.9,-34.5) -- (42.1,-34) -- (42.1,-35);
+\draw (38.2,-35) node [below] {$0$};
+\draw [black] (31.714,-20.039) arc (19.10332:-19.10332:17.907);
+\fill [black] (31.71,-20.04) -- (31.5,-20.96) -- (32.45,-20.63);
+\draw (33.2,-25.9) node [right] {$1$};
+\draw [black] (43.9,-32.26) -- (32.5,-19.54);
+\fill [black] (32.5,-19.54) -- (32.66,-20.46) -- (33.41,-19.8);
+\draw (38.74,-24.44) node [right] {$1$};
+\draw [black] (48.9,-34.5) -- (58,-34.5);
+\fill [black] (58,-34.5) -- (57.2,-34) -- (57.2,-35);
+\draw (53.45,-35) node [below] {$0$};
+\draw [black] (58.39,-33.03) -- (33.11,-18.77);
+\fill [black] (33.11,-18.77) -- (33.56,-19.6) -- (34.06,-18.73);
+\draw (46.75,-25.4) node [above] {$0$};
+\draw [black] (59.02,-32.25) -- (47.88,-19.55);
+\fill [black] (47.88,-19.55) -- (48.03,-20.49) -- (48.78,-19.83);
+\draw (53.99,-24.45) node [right] {$1$};
+\draw [black] (58.32,-35.86) -- (40.78,-44.74);
+\fill [black] (40.78,-44.74) -- (41.72,-44.83) -- (41.26,-43.94);
+\draw (48.56,-39.8) node [above] {$1$};
+\end{tikzpicture}
+\end{center}
+Prima cosa: diamo un occhio per vedere se ci sono dei nodi che non vanno da 
+nessuna parte, o che sono irraggiungibili, ma vi spoilero che qui non ce ne
+sono
+\paragraph{Ripetiamo la tabella di prima}
+\begin{center}
+\begin{tabular}{ c|c|c|c|c|c|c|c|c| } 
+ \hline
+ B & X &  &  &  &  &  &  & \\ 
+ C & X & X &  &  &  &  &  & \\ 
+ D &  & X & X &  &  &  &  & \\
+ E & X &  & X & X &  &  &  & \\ 
+ F & X & X &  & X & X &  &  & \\ 
+ G &  &  & X &  &  & X &  & \\
+ H & X &  & X & X &  & X & X & \\
+ I & X & X &  & X & X &  & X & X\\ 
+ \hline
+  & A & B & C & D & E & F & G & H\\ 
+  \hline
+\end{tabular}
+\end{center}
+\paragraph{In definitiva: }
+\begin{itemize}
+	\item \{A, D, G\}
+	\item \{B, E, H\}
+	\item \{C, I, F\}
+\end{itemize}
+Ecco l'automa risultante, molto figo, no? 
 
-
-
-
-
-
-
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (16.4,-25.3) circle (3);
+\draw (16.4,-25.3) node {$A,D,G$};
+\draw [black] (37.5,-25.3) circle (3);
+\draw (37.5,-25.3) node {$B,E,H$};
+\draw [black] (25.9,-37.8) circle (3);
+\draw (25.9,-37.8) node {$C,F,I$};
+\draw [black] (25.9,-37.8) circle (2.4);
+\draw [black] (9,-25.3) -- (13.4,-25.3);
+\draw (8.5,-25.3) node [left] {$start$};
+\fill [black] (13.4,-25.3) -- (12.6,-24.8) -- (12.6,-25.8);
+\draw [black] (19.322,-24.626) arc (100.87085:79.12915:40.444);
+\fill [black] (34.58,-24.63) -- (33.89,-23.98) -- (33.7,-24.97);
+\draw (26.95,-23.4) node [above] {$0,\mbox{ }1$};
+\draw [black] (36.009,-27.902) arc (-32.55966:-53.16298:31.343);
+\fill [black] (28.38,-36.12) -- (29.32,-36.04) -- (28.72,-35.24);
+\draw (33.1,-33.82) node [right] {$0,\mbox{ }1$};
+\draw [black] (23.391,-36.161) arc (-127.61957:-157.91076:19.241);
+\fill [black] (17.31,-28.16) -- (17.14,-29.09) -- (18.07,-28.71);
+\draw (19.24,-33.97) node [left] {$0$};
+\draw [black] (27.472,-35.246) arc (146.01501:128.26236:36.196);
+\fill [black] (35.07,-27.06) -- (34.13,-27.16) -- (34.75,-27.95);
+\draw (30.42,-29.39) node [left] {$1$};
+\end{tikzpicture}
+\end{center}
 
 
 
