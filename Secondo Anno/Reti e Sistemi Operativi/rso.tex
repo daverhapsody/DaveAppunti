@@ -1263,4 +1263,164 @@ dati presenti all'interno del messaggio. All'interno della LAN ad anello
 tornerà a circolare un frame vuoto.	
 \subsection{Slotted Aloha: }	
 La chiave sta nel fatto di aver individuato il conflitto, e qui si capisce
+\section{Slotted Aloha}
+\section{CSMA/CD}
+\section{Backoff Esponenziale}
+\section{802.3}
+
+
+
+
+
+\chapter{VLAN}
+Per definizione una VLAN è una rete locale (LAN) però virtuale.
+\paragraph{A che serve? }
+Allora, se abbiamo presente cos'è uno switch, sappiamo che è possibile connettere
+tra loro più host assieme, ma la VLAN estende questa possibilità ad un livello
+superiore. Nel senso che ti consente di creare diversi domini di \textbf{broadcast}
+\subparagraph{Cioè?} Prendi un client che invia una richiesta per sapere il MAC
+address di un determinato indirizzo, come fa? Niente invia un messaggio a tutti,
+e gli arriverà la risposta di quello corrispondente.
+\paragraph{}
+Bene, ora però immaginati una rete turbogigante di dimensioni abnormi, un messaggio
+in broadcast dà molto fastidio. PERTANTO, ciò che accade è che grazie alla
+VLAN tu puoi evitare questa cosa, perchè le richieste di broadcast vengono 
+limitate solo a quella VLAN. 
+\paragraph{Osservazione: }Un aspetto da rimarcare è che le VLAN possono essere 
+estese anche oltre i limiti fisici del singolo switch.
+Supponendo di avere una rete che si sviluppa su più piani, si può usare il 
+trunking per collegare più switch tra di loro quindi sfruttare il protocollo 
+802.1Q, uno standard con cui l'hardware provvede ad aggiungere - in ciascun frame 
+Ethernet - le informazioni sulla VLAN di appartenenza dei dati in transito 
+(è prevista una tag aggiuntiva da 4 byte).
+Così facendo dispositivi fisicamente lontani l'uno dall'altro possano appartenere 
+alla medesima VLAN.
+\paragraph{Inoltre si hanno i seguenti vantaggi:}
+\begin{itemize}
+	\item Si possono isolare determinati gruppi di dispositivi, tipo un gruppo 
+	di stampanti o cose simili
+	\begin{itemize}
+		\item Perchè mai? Perchè ci sono alcuni dispositivi che non ha senso che 
+		possano accedere ad altri
+	\end{itemize}
+	\item Si migliora la gestione del traffico, grazie al QoS che riesce a 
+	prioritizzare il traffico (ci son delle politiche). In pratica puoi limitare
+	la banda per un determinato host. 
+	\paragraph{Avete presente} le mamme che guardano i video su Whatsapp con il 
+	volume a 12000 db? Ecco, potrete disattivarle il wifi 
+	\item Si possono creare reti più scalabili, nel senso che espanderle risulta
+	effettivamente più semplice
+	\item Per creare una sottorete non devi stare a comprarti un nuovo switch, 
+	puoi fartela pure con uno switch e basta (Sì, la poraccitudine regna sovrana)
+\end{itemize}
+\chapter{Wireless}
+Neanche a dirlo, si sta parlando di un metodo di collegamento che sfrutta le 
+onde radio invece che il mezzo fisico (Il cavo), non si ha un accesso più "fisso"
+ma appunto. 
+\paragraph{Neacnche a dirlo: }La presenza di errori per quanto riguarda un 
+collegamento radio è molto più elevata rispetto al mezzo fisico, perciò è 
+necessario sviluppare dei metodi di prevenzione e correzione errori.
+\paragraph{Concettualmente: }in un collegamento fisico io so esattamente da 
+dove arriva un segnale, nel wireless invece ce ne son tanti di segnali che 
+viaggiano assieme. Per ora differenziamoci i problemi che si devono affrontare.
+\begin{enumerate}
+	\item \textbf{Il collegamento radio stesso}: Quando si  parla di un accesso 
+	wifi si ha più questo problema rispetto agli altri.
+	\item \textbf{Localizzazione del dispositivo} 
+	\item \textbf{Handover}
+\end{enumerate}
+Un collegamento con rete cellulare (3/4/5/10 G+) si hanno tutti e tre questi 
+problemi insieme.
+\paragraph{Il collegamento radio: }Per questo ho allegato un file pdf che 
+sarebbe contenente appunti presi in quarta superiore, non si sa mai, può
+sempre servire. 
+\subparagraph{}Tendenzialmente l'acqua è un attenuatore dei segnali, questo
+spiega perchè un albero (soprattutto le sue foglie) sia un attenuatore del 
+segnale. Molti impianti fatti in inverno (con alberi senza foglie) poi 
+smettono di funzionare per via dell'acqua presente nelle foglie. Il concetto
+è che un segnale radio è molto complesso (Realizzabile, chiaro), ma complesso.
+\subparagraph{}Si sono fissate 3 bande di frequenza standard (recentemente) 
+assegnate per la nuova 5G (in Italia)
+\begin{itemize}
+	\item 800 Mhz
+	\item 3,5 Ghz
+	\item 28 Ghz
+\end{itemize}	
+Cosa si intende per frequenza assegnata? Una frequenza o è libera o assegnata in
+concessione, poichè le frequenze \textbf{NON} possono esser vendute \textbf{MA}
+solo date in concessione. Sono \textbf{SEMPRE} proprietà dello stato. C'è una
+regolamentazione mondiale ma a noi ci importa una bellissima *\textit{Censura}*.
+\subparagraph{}per "Frequenza libera" non si intende che puoi fare quello che 
+vuoi a quella frequenza MA che (con apparati che siano regolari) puoi lavorarci.
+\paragraph{Cosa significa?} Non hai garanzie di avere una trasmissione libera da
+problemi, oggi c'è il Wifi 5ghz che comunque è una banda più libera di quella a 
+2,4. Tra l'altro il 5 Ghz tende ad attenuarsi di più, in questo caso è un 
+vantaggio. 
+\subparagraph{Precisazione: }Quando c'è una frequenza assegnata in concessione,
+in pratica si hanno anche delle garanzie dallo stato per quella frequenza, e
+nel momento in cui si assegna una determinata frequenza, (ipotesi al 4G), 
+non è che tutti gli operatori vanno a quella frequenza MA stanno attorno a quei
+valori. 
+\subparagraph{Esempio:} A TIM assegno da 780 a 800 Mhz, a Wind da 800 a 820, 
+e così via, in base al tuo operatore verrà usata una determinata frequenza.
+\paragraph{Data un'antenna di una determinata dimensione} questa dipende da
+$\lambda$ = $\frac{C}{F}$ Con f che è la frequenza e C che è... Non ricordo, 
+devo cercarmelo, mandatemi un issue e lo risolvo.
+\section{Antenna MiMo}
+Acronimo di Multiple in Multiple out, la tecnologia MiMo sfrutta il multipath, 
+un fenomeno naturale e molto conosciuto delle onde radio. Questa proprietà 
+permette di aumentare la velocità di trasmissione senza che sia necessario 
+aumentare la larghezza della banda di trasmissione: 
+\paragraph{}il segnale sarà inviato da 
+diverse sorgenti (antenne di trasmissione) e, grazie a “giochi di sponda” con 
+muri, mobili e altri oggetti presenti nell'ambiente, raggiungerà l'antenna 
+ricevente seguendo percorsi multipli in tempi leggermente diversi, creando, così
+diversi flussi dati simultanei in grado di trasportare più informazioni rispetto
+ad un singolo flusso “standard”.
+\paragraph{Il vantaggio} è che puoi trasmettere o a velocità. Uno dei maggiori
+problemi che affligge i router Wi-Fi è il cosiddetto collo di bottiglia: in 
+alcuni casi può accadere che in dati in ingresso e in uscita siano superiori al
+flusso che il dispositivo può gestire e ne risulta una congestione e un 
+rallentamento generale delle prestazioni. 
+\paragraph{}Nel corso degli anni sono stati 
+progettati diversi metodi e tecnologie per tentare quanto meno di mitigare la 
+situazione. Tra queste, la più efficacie è senza dubbio la tecnologia MiMo, 
+che permette di aumentare la velocità e il flusso dei dati in viaggio attraverso 
+una connessione wireless.
+\section{Bit Error Rate}
+E' un valore, un rateo di errori che ci possono essere, approssimativamente è 
+\[
+	Ber < 10^{-12}
+\]
+\section{SNR (Rapporto tra segnale e rumore)}
+In base a questo rapporto, cambia la qualità del mio segnale, la prima cosa che
+devo fare è ragionare su come funzionerà il mio canale, nel senso in base 
+al suo livello di errori. Minore è il tasso di errore e più la conversazione ha
+qualità, viceversa.
+\section{Modulazione e codifica dei segnali}
+\paragraph{Esempio molto semplice: } Devo trasmettere dei bit, ho un bit ad 1
+che è un segnale positivo, e il bit a 0 che invece è a segnale o negativo o 
+spento. Ipotizziamo una stringa di 100100011. Questo segnale circa usa una 
+frequenza che è la metà del bitrate. (Teniamo conto che è figlio di una
+sinusoide questo segnale digitale).
+\paragraph{Si può essere più aggressivi?} Perchè trasmettere solo un livello? 
+Perchè non trasmettere 4 livelli? Cioè perchè trasmettere solo 0 o 1 invece di 
+$\begin{cases}
+	00\\
+	01\\
+	10\\
+	11\\
+\end{cases}$?Cioè in pratica si raggruppano i bit di prima e diventano 11-10-00-11-01
+\dots ok, perchè non usarne 3? 10? 256? Sarebbe bello il mondo se da qualche 
+parte non ci arriva l'inculata. Infatti se noi aumentiamo la profondità di 
+codifica, avviene che il segnale diventa più vulnerabile al rumore. Quindi una
+determinata frequenza magari vien codificata con il valore subito successivo
+o precedente. 
+\paragraph{Perciò} modulare in modo più aggressivo (più bit al secondo per hz) 
+genera molta più vulnerabilità. Oggi i dispositivi hanno un bitrate adattivo
+che si regola su base di come è messo il canale
+    
+
+    
+
 \end{document}

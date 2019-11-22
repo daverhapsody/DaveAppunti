@@ -3230,13 +3230,203 @@ Ecco l'automa risultante, molto figo, no?
 \draw (30.42,-29.39) node [left] {$1$};
 \end{tikzpicture}
 \end{center}
+\section{Equivalenza tra Linguaggi regolari e DFA}
+$\begin{cases}
+	Linguaggi regolari\\
+	DFA
+\end{cases}$ \\
 
+In input:
+\begin{itemize}
+    	\item DFA $A_{L} = (Q_L, \Sigma, \delta_L, q_L, F_L)$
+    	\item DFA $A_{M} = (Q_M, \Sigma, \delta_M, q_M, F_M)$
+    	\item L($A_L$) = L
+    	\item L($A_M$) = M
+    \end{itemize}    
+\paragraph{Domanda: }L = M? \\
+Per saperlo costruiamo un DFA A = ($Q_L \cup Q_M, \Sigma, \delta, q_L, F_L \cup 
+F_M)$
+. Ora bisogna ragionare su come è fatta la delta, perciò disegnamoci l'automa:
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (15,-19.4) circle (3);
+\draw (15,-19.4) node {$A$};
+\draw [black] (15,-19.4) circle (2.4);
+\draw [black] (36,-19.6) circle (3);
+\draw (36,-19.6) node {$B$};
+\draw [black] (14.8,-33) circle (3);
+\draw (14.8,-33) node {$C$};
+\draw [black] (14.8,-33) circle (2.4);
+\draw [black] (36.4,-33) circle (3);
+\draw (36.4,-33) node {$D$};
+\draw [black] (36.4,-33) circle (2.4);
+\draw [black] (14.4,-42.4) circle (3);
+\draw (14.4,-42.4) node {$E$};
+\draw [black] (12.676,-17.521) arc (258.77514:-29.22486:2.25);
+\draw (11.19,-12.76) node [above] {$0$};
+\fill [black] (15.08,-16.41) -- (15.72,-15.73) -- (14.74,-15.53);
+\draw [black] (5.8,-19.4) -- (12,-19.4);
+\draw (5.3,-19.4) node [left] {$start$};
+\fill [black] (12,-19.4) -- (11.2,-18.9) -- (11.2,-19.9);
+\draw [black] (36.106,-16.614) arc (205.69924:-82.30076:2.25);
+\draw (40.2,-13.15) node [above] {$1$};
+\fill [black] (38.43,-17.87) -- (39.37,-17.97) -- (38.94,-17.07);
+\draw [black] (17.666,-18.031) arc (112.83954:66.06914:19.772);
+\fill [black] (33.36,-18.18) -- (32.83,-17.4) -- (32.43,-18.31);
+\draw (25.53,-15.97) node [above] {$1$};
+\draw [black] (33.46,-21.189) arc (-62.95588:-118.13544:17.221);
+\fill [black] (17.51,-21.04) -- (17.98,-21.86) -- (18.45,-20.97);
+\draw (25.46,-23.58) node [below] {$0$};
+\draw [black] (6.2,-33) -- (11.8,-33);
+\draw (5.7,-33) node [left] {$start$};
+\fill [black] (11.8,-33) -- (11,-32.5) -- (11,-33.5);
+\draw [black] (17.8,-33) -- (33.4,-33);
+\fill [black] (33.4,-33) -- (32.6,-32.5) -- (32.6,-33.5);
+\draw (25.6,-33.5) node [below] {$0$};
+\draw [black] (38.75,-31.154) arc (155.88866:-132.11134:2.25);
+\draw (43.75,-31.27) node [right] {$0$};
+\fill [black] (39.29,-33.74) -- (39.82,-34.53) -- (40.23,-33.61);
+\draw [black] (16.446,-35.473) arc (19.63325:-24.50655:6.132);
+\fill [black] (16.45,-35.47) -- (16.24,-36.39) -- (17.19,-36.06);
+\draw (17.36,-37.81) node [right] {$0$};
+\draw [black] (12.958,-39.797) arc (-163.737:-201.1363:6.754);
+\fill [black] (12.96,-39.8) -- (13.21,-38.89) -- (12.25,-39.17);
+\draw (12.13,-37.6) node [left] {$1$};
+\draw [black] (17.056,-43.769) arc (90.46923:-197.53077:2.25);
+\draw (19.42,-48.33) node [below] {$1$};
+\fill [black] (14.93,-45.34) -- (14.44,-46.15) -- (15.44,-46.14);
+\draw [black] (33.64,-34.18) -- (17.16,-41.22);
+\fill [black] (17.16,-41.22) -- (18.09,-41.37) -- (17.7,-40.45);
+\draw (26.37,-38.21) node [below] {$1$};
+\end{tikzpicture}
+\end{center}
+Rifacciamoci la tabella che abbiam visto nel caso precedente
+\begin{center}
+\begin{tabular}{ c|c|c|c|c| } 
+ \hline
+ B & X & & &\\ 
+ C & & X & &\\ 
+ D & & X & &\\ 
+ E & X &  & X & X\\
+ \hline
+ & A & B & C & D
+\end{tabular}
+\end{center}
+Questo significa che \{A, C, D\} e \{B, E\} saranno le nostre equivalenze
+\paragraph{NFA da fig. 4.13 pagina 154}
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (16.6,-18.9) circle (3);
+\draw (16.6,-18.9) node {$A$};
+\draw [black] (36.2,-18.9) circle (3);
+\draw (36.2,-18.9) node {$B$};
+\draw [black] (36.2,-18.9) circle (2.4);
+\draw [black] (16.4,-31.5) circle (3);
+\draw (16.4,-31.5) node {$C$};
+\draw [black] (9.9,-18.9) -- (13.6,-18.9);
+\draw (9.4,-18.9) node [left] {$start$};
+\fill [black] (13.6,-18.9) -- (12.8,-18.4) -- (12.8,-19.4);
+\draw [black] (15.277,-16.22) arc (234:-54:2.25);
+\draw (16.6,-11.65) node [above] {$0,1$};
+\fill [black] (17.92,-16.22) -- (18.8,-15.87) -- (17.99,-15.28);
+\draw [black] (19.6,-18.9) -- (33.2,-18.9);
+\fill [black] (33.2,-18.9) -- (32.4,-18.4) -- (32.4,-19.4);
+\draw (26.4,-19.4) node [below] {$0$};
+\draw [black] (15.732,-28.578) arc (-171.34047:-190.47829:20.392);
+\fill [black] (15.73,-28.58) -- (16.11,-27.71) -- (15.12,-27.86);
+\draw (14.98,-25.18) node [left] {$1$};
+\draw [black] (17.421,-21.781) arc (10.81987:-12.63863:16.887);
+\fill [black] (17.42,-21.78) -- (17.08,-22.66) -- (18.06,-22.47);
+\draw (18.24,-25.22) node [right] {$0$};
+\end{tikzpicture}
+\end{center}
+\begin{center}
+\begin{tabular}{ |c|c|c| } 
+ \hline
+ B & X &  \\ 
+ C & X & X \\ 
+ \hline
+  & A & B \\
+\end{tabular}
+\end{center}
+Noteremo che si va ad eliminare la c perchè avremmo fuori \{A\}, B\}, \{C\},
+pertanto ne consegue che l'automa dev'essere necessariamente deterministico.
+\section{Pumping lemma (PRESENTE NEL COMPITINO)}
+E' una tecnica per dimostrare che un determinato linguaggio non sia REGOLARE.
+\paragraph{L'idea è: }Supponiamo un linguaggio $L_{01}$ = $\{0^n 1^n | n\geq 1\}$
+= \{01,0011,000111,00001111, ...\}\\
+Passiamo ora a definire una grammatica: S $\to$ 0S1 | 01, e chiediamoci se 
+$L_{01} \in REGOLARI$. La risposta è no. Ma perchè?\\
+Supponiamo per assurdo che $L_{01} \in REGOLARI$, allora $\exists$DFA A tale che
+L(A) = $L_{01}$. \\
+Sia k = |Q| e consideriamo w = $0^{\kappa}$. Si ha che i prefissi di $0^\kappa$ 
+sono $\underbrace{\epsilon, 0, 000, 0000, ..., 0^{\kappa}}_{k+1 ~ prefissi}$\\
+Dato che k = |Q|, $\exists$ i, j  tali che i $\neq$ e $0^{i}$ porta allo stato di
+$0^{j}$ ALLORA $0^{i} e 0^{j}$ NON sono distinguibili, quindi se A accetta $0^{i}1^{i}$,
+e $L_{01}$ allora questo mi accetterebbe $0^{j}1^{i}$ e $0^{i}1^{j}$ CHE NON fanno
+parte del nostro $L_{01}$
+\paragraph{Teorema 4.1 pagina 120 (Pumping Lemma)}: \\
+Sia L $\in$ Regolari allora $\exists$ costante n (che dipende da L), tale che
+$\forall w \in L$ tale che |w|$\geq$n, w può essere scomposta come w = xyz tale
+che 
+\begin{enumerate}
+	\item y $\neq$ $\epsilon$
+	\item |xy| $\leq$ n
+	\item $\forall k \geq 0$, $xy^{\kappa}z \in$ L
+\end{enumerate}
+\paragraph{Dimostrazione}:\\
+Se L $\in$ Reg., allora $\exists$ DFA A con n stati tale che L(A) = L, sia w =
+ $a_{1}, a_2$, ..., 
+, $a_{m}^{\in L}$ e $a_{i} \in \Sigma \forall i = 1, 2, ..., m$.\\
+Per ogni i = 0,1, ..., n, sia $p_{i} = \widehat{\delta}(q_0, a_1, ..., a_i)$, allora
+abbiamo $p_0 = q_0$. Dato che A ha n stati, $p_0, p_1, p_n$, NON possono essere tutti
+$\neq$.
+\textbf{ALLORA} esistono una i e una j tali che $0 \leq i < j \leq n$ tali che $p_i
+= p_j$, perciò scomponiamo w = xyz come segue:
+\begin{itemize}
+	\item x = $a_1, ..., a_{i}$
+	\item y = $a_{i+1}, ..., a_{j}$
+	\item z = $a_{j+1}, ..., a_{m}$
+\end{itemize}
 
-
-
-
-
-
-
-
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (17,-25.6) circle (3);
+\draw (17,-25.6) node {$p_0$};
+\draw [black] (40.4,-25.6) circle (3);
+\draw (40.4,-25.6) node {$p_i$};
+\draw [black] (67.1,-25.6) circle (3);
+\draw [black] (67.1,-25.6) circle (2.4);
+\draw [black] (8.4,-25.6) -- (14,-25.6);
+\draw (7.9,-25.6) node [left] {$start$};
+\fill [black] (14,-25.6) -- (13.2,-25.1) -- (13.2,-26.1);
+\draw [black] (20,-25.6) -- (37.4,-25.6);
+\fill [black] (37.4,-25.6) -- (36.6,-25.1) -- (36.6,-26.1);
+\draw (28.7,-26.1) node [below] {$x\mbox{ }=\mbox{ }a_1,\mbox{ }....,\mbox{ }a_i$};
+\draw [black] (39.077,-22.92) arc (234:-54:2.25);
+\draw (40.4,-18.35) node [above] {$y\mbox{ }=\mbox{ }a_(i+1),\mbox{ }...,\mbox{ }a_j$};
+\fill [black] (41.72,-22.92) -- (42.6,-22.57) -- (41.79,-21.98);
+\draw [black] (43.4,-25.6) -- (64.1,-25.6);
+\fill [black] (64.1,-25.6) -- (63.3,-25.1) -- (63.3,-26.1);
+\draw (53.75,-26.1) node [below] {$z\mbox{ }=\mbox{ }a_(j+1),\mbox{ }....,\mbox{ }m$};
+\end{tikzpicture}
+\end{center}
+A accetta $xy^{\kappa}z \forall \kappa \geq 0$
+\paragraph{Facciamo un esempio}:\\
+Dato un linguaggio $L_{01} = \{0^n 1^n | n\geq 1\}$, supponendo che $L_{01} \in$ REG
+$\implies$ applichiamo il PL sia n la costante del PL $(n\geq 1)$. \\
+Sia w = $0^{n}1^{n} (|w| = 2n \geq n, e w \in L_{01})$. Scriviamo w = xyz, con 
+$x = 0^{n-1}, y=0, z=1^{n}$, allora per il PL deve valere che $\forall k \geq 0$
+$xy^{\kappa}z \in L_{01}$ cioè $0^{n-1}0^{k}1^{n} = 0^{n}
+-1+\kappa 1^{n}$\\
+per k = 0, $0^{n-1}1^{n}\notin L_{01}$ (assurdo)
+\paragraph{Esempio: }
+$L_{bal} = \{w \in \{(,)\} |$ w è bilanciata \}
+CFG: B$\to$BB | (B) | $\epsilon$, supponendo $L_{bal} \in$ REG, e sia n la costante
+del PL: sia w = $(^{n})^{n} $e sia w = xyz tale che x = $(^{n-1} , y= (, z = )^{n}$
+allora per il PL dovrebbe valere che $\forall k \geq 0$ $xy^{\kappa}z \in L_{bal}$
+$(^{n-1} , y= (, z = )^{n}$ in generale $\notin$ $L_{bal}$ (ad esempio per k=0)
 \end{document}
