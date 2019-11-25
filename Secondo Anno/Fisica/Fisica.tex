@@ -1194,7 +1194,7 @@ importanti proprietà:
 	\item Indipendenza del lavoro dal cammino percorso: 
 	\[
 	\overbrace{\int_{A}^{B} \overrightarrow{F} \cdot d \overrightarrow{s}}^{Percorso 1}
-	= - \overbrace{\int_{B}^{A} \overrightarrow{F} \cdot d \overrightarrow{s}^{Percorso 2}}
+	= - \overbrace{\int_{B}^{A} \overrightarrow{F} \cdot d \overrightarrow{s}}^{Percorso 2}
 	\]    
 \end{itemize}
 \chapter{Preparazione per il primo parziale}
@@ -1494,6 +1494,143 @@ Ne segue che
 \[
 P + \frac{1}{2} \rho v^{2} + \rho \cdot g \cdot y = COSTANTE
 \]	
+\chapter{Termodinamica}
+Si occupa di trasferimenti di energia sotto forma di lavoro e \textbf{calore}
+che è una quantità che studieremo in questo capitolo. Va ricordato come 
+funziona il meccanismo di conservazione dell'energia. 
+\paragraph{Dal punto di vista microscopico} è pressochè impossibile capire in 
+che modo interagiscono gli atomi e le molecole di due corpi che per ipotesi
+collidono. Ci son però due possibilità per trattare questi micro punti materiali,
+(Micro perchè son punti materiali che fan riferimento a quantità microscopiche),
+una è dal punto di vista statistico (che descrivono quantità medie) collegate a
+delle quantità che sono osservabili macroscopicamente (pressione, temperatura 
+etc).
+\section{Dal punto di vista macroscopico}
+La prima cosa da fare è definire cos'è un sistema (in questo caso termodinamico)
+, ossia una porzione di "universo" che in qualche modo isoliamo dal resto, e 
+prendiamo in esame/considerazione. Un sistema scambia energia e lavoro con il 
+mondo esterno, avrà delle trasformazioni, ovviamente, e la termodinamica studia
+queste trasformazioni.
+\subparagraph{}Un sistema può pure essere contenente solidi, liquidi e gas tutti
+assieme, è un sottoinsieme dell'universo alla fine. 
+\paragraph{Un sistema è inserito in un ambiente} e quindi ci sarà una "interfaccia"
+che collega il nostro sistema all'ambiente esterno.
+\paragraph{Sistema aperto: }E' un sistema che permette entrata ed uscita di 
+materia. Si ok, in che senso?
+\subparagraph{La pentola a pressione} è un sistema chiuso, nel senso che la 
+materia da dentro la pentola non esce (ok dopo un po' potrebbe esplodere). 
+La pentola aperta, invece questa è un sistema aperto (avete presente quando 
+per via dei 200 chili di sale so forma la schiumetta bianca? Ecco)
+\paragraph{Sistema isolato: }Isolato è letteralmente quello che appare, cioè 
+un sistema che non può aver alcun legame con l'esterno, isolato per l'appunto. 
+\textbf{OCCHIO A NON CONFONDERE}, all'interno può pure succedere il finimondo, 
+ma da dentro a fuori e viceversa
+no. (Avete presente la \textbf{Subaru Baracca} isolata da dentro per fuori e non
+dentro
+per dentro? Ecco stesso discorso). 
+\paragraph{Concentrandosi sui Gas}: \\
+\textbf{Definiamo le variabili che useremo d'ora in poi:}
+\begin{itemize}
+	\item P: Pressione
+	\item V: Volume
+	\item T: Temperatura
+	\item n:
+\end{itemize}
+\section{Equazione di stato}
+Ogni volta che si ha una terna di P, V e T si ha un'equazione di stato di un 
+sistema. f(P, V, T), visto che sto studiando pure LISP la scrivo così: (f P V T).
+E' la \textbf{Relazione} che lega le variabili all'equilibrio (Sì, varibili 
+termodinamiche per sistema termodinamico)
+\textbf{A che serve?} Serve per definire gli stati di equilibrio
+\paragraph{Cos'è?} Un sistema è in equilibrio se tutte le variabili che lo 
+descrivono sono \textbf{COSTANTI} nel tempo. 
+\paragraph{L'equazione di stato} è applicabile però su un sistema in particolare,
+quindi non è universale, dipende come al solito dal sistema, tra l'altro non 
+ragioneremo nemmeno dal punto di vista chimico
+\section{Temperatura}
+E' un casino, perchè la temperatura è un concetto molto relativo, nel senso
+quello che definiamo noi come "\color{red}caldo\color{black}" o "\color{blue} 
+freddo\color{black}
+" varia in base allo scambio termico con l'oggetto che consideriamo. Tutto va in
+funzione della rapidità con cui avviene il trasferimento di calore, perciò noi
+percepiamo più caldo con il crescere della velocità del trasferimento. 
+\paragraph{Esempio: }
+Prendiamo 3 sistemi: \{A, B, C\} aventi le loro 3 temperature: \{$T_{A}, T_{B}
+, T_{C}$\}, supponendo che A e C entrano in contatto, allora a un certo punto
+si raggiungerà l'equilibrio (Ossia, $T_{A} = T_{C}$, il più caldo si raffredda
+e il più freddo si scalda), ora attacchiamo C a B, 
+cosa notiamo? C andrà in equilibrio con B, quindi c'è una relazione \textbf{
+	Transitiva
+} tale che SE $
+\begin{cases}
+	SE ~ A ~ e' ~ in ~ Relazione ~ con ~ B, \\B ~ e' ~ in ~ Relazione ~ con ~
+     C, \\ALLORA ~ A ~ e' ~ in ~ Relazione ~ con ~ C 
+\end{cases}$ 
+\subparagraph{L'unità di misura: }E' il Kelvin [T] = K ed è di valore $\in (0, 
++\infty)$, in pratica misura il livello di agitazione delle molecole, oppure 
+anche solo il livello di "movimento", perciò sì, 0 sta per fermo, e meno fermo
+che fermo non può essere un corpo quindi easy. 
+Ora, noi ragioniamo in Celsius, ed abbiamo come centro gli $0^{\circ}C$ 
+che sarebbero 
+coincidenti a 273,15 K (Perchè? E' la temperatura a cui ghiaccia l'acqua). 
+\paragraph{Definiamoci $T_{0} e T_{1}$} tali che:
+$
+\begin{cases}
+T_{0} = 0^{\circ}C	
+T_{1} = 100^{\circ}C
+\end{cases}
+$
+Sapendo che T = aX + b allora possiamo dire che:
+\[
+\begin{cases}
+0^{\circ}C	= a X_{0} + b
+100^{\circ}C = a X_{1} + b
+\end{cases}
+\]
+Questa X da dove ciccia fuori? Che cosa sarebbe? Sarebbe la pressione, infatti
+c'è una relazione tra temperatura e pressione tale che X = X(T) e T = T(X),
+perciò è possibile stabilire che T = T(X) = a X (con a che sarebbe un coeffieciente)
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
