@@ -2020,7 +2020,136 @@ Sotto infatti abbiamo che il fattoriale di n è il risultato di questa iterazion
 \paragraph{Questa struttura si chiama ricorsione in coda: }Ovvero la ricorsione 
 è \textbf{L'ultima} operazione che eseguo. Per intenderci, la funzione di fibbonacci
 NON è eseguibile così, perchè funziona con due ricorsioni attive. 
-
+\section*{Ricorsione}
+Dato un insieme di funzioni mutualmente ricorsive, questo può rappresentare una 
+macchina di Turing, pertanto i linguaggi funzionali puri (senza assegnamenti e
+salti) sono \textbf{Turing Completi}
+\section{Strutture per i dati e funzioni}
+Ipotizziamo di dover costruire una libreria per fare dei calcoli su numeri 
+razionali. Di cosa ci sarà bisogno? Innanzitutto si deve assumere di avere a 
+disposizione una funzione che costruisce una \textit{Reppresentazione} di un 
+numero razionale:
+\paragraph{Banalmente: } (\textbf{crea-razionale n d}) $\implies <razionale \frac{n}{d}$>
+Ora però ci servono due funzioni per definirci il numeratore ed il denominatore
+\begin{itemize}
+	\item numer
+	\item denom
+\end{itemize}
+A questo punto è easy crearsi una libreria (Sieh, è già tanto se so scriverti 
+una somma, sicurissimo so farti la libreria guarda), e vien fuori una roba del 
+genere:
+\begin{center}
+	\includegraphics[width=0.75\textwidth]{14}
+\end{center}
+\section{Cons-Cells e funzione CONS}
+Una struttura essenziale è la cons-cell, cioè una coppia di puntatori a due 
+elementi.
+Sono create dalla funzione \textbf{cons} che praticamente alloca della memoria 
+(E' tipo malloc di C oppure un new in Java) 
+\begin{center}
+	\includegraphics[width=0.75\textwidth]{15}
+\end{center}
+\section{Rappresentazione dei numeri razionali}
+In pratica tu hai la tua primitica cons, e hai delle funzioni che sono
+\begin{itemize}
+	\item Crea-razionale
+	\item numer
+	\item denom
+\end{itemize}
+che vengono schematizzate così: 
+\begin{center}
+	\includegraphics[width=0.75\textwidth]{16}
+\end{center}
+Visto che si è menzionato qualcosa di più grafico, proviamo a dare un che di 
+informativo a ciò che abbiam detto. Come detto primo quello che fa la conf è:
+\begin{itemize}
+	\item Generare una coppia di puntatori
+\end{itemize}
+Si possono ottenere dei veri e propri grafi che sono in una notazione box and 
+pointer, come in questa illustrazione:
+\begin{center}
+	\includegraphics[width=0.75\textwidth]{17}
+\end{center}
+\paragraph{Precisazione: }Quando disegnate questi grafi aspettate un attimo prima
+di scrivere i numerelli dentro i quadratini.
+Ok e se voglio fare un puntatore che punta ad un solo elemento? Niente, invece 
+di metterci un valore gli do NIL che sarebbe un puntatore a.. niente. Nel senso
+lista vuota, ma il senso è quello. 
+\paragraph{Come si comporta LISP quando gli diamo un cons}?\\
+Esplode, perchè ci odia palesemente :)\\
+Scherzi a parte, si ha una notazione "dotted-pair" che praticamente è una coppia
+separata da un punto, in cui gli spazi son significativi. (NIL . T), che è il 
+corrispettivo di una funzione (cons NIL T).
+\subparagraph{Lamentela mia:} Sarò fastidioso, ma mi urta il sistema nervoso 
+"NIL", ma non potevan chiamarlo NULL come tutte le persone normali? No? Vabbeh.
+Ora sono offeso :c
+\subsubparagraph{Edit: }A quanto pare più avanti si vedrà che null è una funzione,
+e quindi.. Han dato il nome di un valore ad una funzione, giusto per confondermi
+meglio	
+\paragraph{Occhio a una cosa:} Se io pongo (cons 42 nil) ottengo una lista avente
+solo un numero che è 42, invece se fosse (cons nil 42) non è una lista, è una 
+cosa un po' diversa, \textbf{altra cosa importante: }Se notiamo, quello che 
+accade è che facendo (cons a nil), si ottiene una lista, perciò se al posto di 
+nil ci fosse un'altra lista tipo (cons a (cons a nil)), in pratica aggiungi una
+lista a dentro una lista quindi hai una lista con dentro una lista, mentre 
+se vuoi aggiungere solo l'elemento devi usare (cons a (cons nil a)), che 
+concatena alla prima lista il nuovo carattere semplicemente. 
+\section{Esempi sulle liste}
+\paragraph{Esempio 1}
+\begin{center}
+	\includegraphics[width=0.75\textwidth]{18}
+\end{center}
+In pratica quello che accade è che: \\
+La funzione list-ref si definisce con il nome nth (Per via di Common Lisp),
+mentre invece la funzione cdr ritorna il resto di una lista, inteso come "tutti"
+gli altri elementi meno la testa, quindi si ha in common lisp il "rest".
+\paragraph{}
+Ora, la funzione car torna invece il primo elemento della lista, la testa, e 
+qua si segna con first infatti, al fine di evitarci le combinazioni standard si 
+ha che :
+\begin{lstlisting}[language=LISP]
+(car (cdr L))
+(car (cdr (cdr L))
+(car (cdr (cdr (cdr L)))) 
+...	
+\end{lstlisting}
+Common lisp ha in libreria le funzioni second, third, fourth fino a tenth, cioè
+fino al decimo elemento.. credo.. della lista(?) A logica è quello.     
+\paragraph{Esempio 2: Concatenazione delle liste}
+Anche qui c'è l'append, che letteralmente prende due parametri che sarebbero due 
+liste (pure la lista vuota) e quel che fa è concatenarle, se però una delle
+due liste è vuota, ti spara quell'altra e basta.
+\section{Espressioni simboliche}
+Se in prolog avevamo le clausole di horn qui ci sono fondamentalmente
+\begin{itemize}
+	\item Numeri
+	\item Simboli
+	\item Stringhe
+	\item Cons-cells
+	\item Oggetti di base di LISP
+\end{itemize}
+CIoè fondamentalmente pure qua ci sono espressioni simboliche (sexp's) che sono
+a tutti gli effetti costituite dalle cons-cells
+\begin{itemize}
+	\item Dato che programmi e sexp’s in Lisp sono equivalenti, possiamo dare
+	 le seguenti regole di valutazione (ed implementarle nella funzione eval!)
+\end{itemize}
+Data una sexp: 
+\begin{center}
+	\includegraphics[width=0.75\textwidth]{19}
+\end{center}
+Ora vi riporto gli esempi dalle slide di funzioni ricorsive:
+\begin{center}
+	\includegraphics[width=0.75\textwidth]{20}
+\end{center}
+Il concetto è che la forma ricorsiva delle liste si presta bene alla programmazione
+ricorsiva.. Cioè ovviamente direi.
+Come?
+\begin{itemize}
+	\item Scrivo il valore della funzione nel caso base
+	\item Ricorsivamente mi devo ridurre al caso base operando su un argomento
+	ridotto, minore, decrementato. FINCHE' non sarà 0 o il caso base.
+\end{itemize}
 
 
 

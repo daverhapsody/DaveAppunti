@@ -3016,17 +3016,17 @@ fa lo stesso ragionamento ma con due caratteri.
 \paragraph{Costruiamo ora la tabella}
 \begin{center}
 \begin{tabular}{ c|c|c|c|c|c|c|c| } 
- \hline
- B & X &  &  &  &  &  & \\ 
- C & X & X &  &  &  &  & \\ 
- D & X & X & X &  &  &  & \\
- E &  & X & X & X &  &  & \\ 
- F & X & X & X &  & X &  &  \\ 
- G & X & X & X & X & X & X & \\
- H & X &  & X & X & X & X & X\\ 
- \hline
-  & A & B & C & D & E & F & G \\ 
-  \hline
+\hline
+B & X &  &  &  &  &  & \\ 
+C & X & X &  &  &  &  & \\ 
+D & X & X & X &  &  &  & \\
+E &  & X & X & X &  &  & \\ 
+F & X & X & X &  & X &  &  \\ 
+G & X & X & X & X & X & X & \\
+H & X &  & X & X & X & X & X\\ 
+\hline
+& A & B & C & D & E & F & G \\ 
+\hline
 \end{tabular}
 \end{center}
 La X indica quando sono distinguibili. Per capire se son distinguibili bisogna
@@ -3181,18 +3181,18 @@ sono
 \paragraph{Ripetiamo la tabella di prima}
 \begin{center}
 \begin{tabular}{ c|c|c|c|c|c|c|c|c| } 
- \hline
- B & X &  &  &  &  &  &  & \\ 
- C & X & X &  &  &  &  &  & \\ 
- D &  & X & X &  &  &  &  & \\
- E & X &  & X & X &  &  &  & \\ 
- F & X & X &  & X & X &  &  & \\ 
- G &  &  & X &  &  & X &  & \\
- H & X &  & X & X &  & X & X & \\
- I & X & X &  & X & X &  & X & X\\ 
- \hline
-  & A & B & C & D & E & F & G & H\\ 
-  \hline
+\hline
+B & X &  &  &  &  &  &  & \\ 
+C & X & X &  &  &  &  &  & \\ 
+D &  & X & X &  &  &  &  & \\
+E & X &  & X & X &  &  &  & \\ 
+F & X & X &  & X & X &  &  & \\ 
+G &  &  & X &  &  & X &  & \\
+H & X &  & X & X &  & X & X & \\
+I & X & X &  & X & X &  & X & X\\ 
+\hline
+& A & B & C & D & E & F & G & H\\ 
+\hline
 \end{tabular}
 \end{center}
 \paragraph{In definitiva: }
@@ -3232,17 +3232,17 @@ Ecco l'automa risultante, molto figo, no?
 \end{center}
 \section{Equivalenza tra Linguaggi regolari e DFA}
 $\begin{cases}
-	Linguaggi regolari\\
-	DFA
+Linguaggi regolari\\
+DFA
 \end{cases}$ \\
 
 In input:
 \begin{itemize}
-    	\item DFA $A_{L} = (Q_L, \Sigma, \delta_L, q_L, F_L)$
-    	\item DFA $A_{M} = (Q_M, \Sigma, \delta_M, q_M, F_M)$
-    	\item L($A_L$) = L
-    	\item L($A_M$) = M
-    \end{itemize}    
+	\item DFA $A_{L} = (Q_L, \Sigma, \delta_L, q_L, F_L)$
+	\item DFA $A_{M} = (Q_M, \Sigma, \delta_M, q_M, F_M)$
+	\item L($A_L$) = L
+	\item L($A_M$) = M
+\end{itemize}    
 \paragraph{Domanda: }L = M? \\
 Per saperlo costruiamo un DFA A = ($Q_L \cup Q_M, \Sigma, \delta, q_L, F_L \cup 
 F_M)$
@@ -3304,13 +3304,13 @@ F_M)$
 Rifacciamoci la tabella che abbiam visto nel caso precedente
 \begin{center}
 \begin{tabular}{ c|c|c|c|c| } 
- \hline
- B & X & & &\\ 
- C & & X & &\\ 
- D & & X & &\\ 
- E & X &  & X & X\\
- \hline
- & A & B & C & D
+\hline
+B & X & & &\\ 
+C & & X & &\\ 
+D & & X & &\\ 
+E & X &  & X & X\\
+\hline
+& A & B & C & D
 \end{tabular}
 \end{center}
 Questo significa che \{A, C, D\} e \{B, E\} saranno le nostre equivalenze
@@ -3344,11 +3344,11 @@ Questo significa che \{A, C, D\} e \{B, E\} saranno le nostre equivalenze
 \end{center}
 \begin{center}
 \begin{tabular}{ |c|c|c| } 
- \hline
- B & X &  \\ 
- C & X & X \\ 
- \hline
-  & A & B \\
+\hline
+B & X &  \\ 
+C & X & X \\ 
+\hline
+& A & B \\
 \end{tabular}
 \end{center}
 Noteremo che si va ad eliminare la c perchè avremmo fuori \{A\}, B\}, \{C\},
@@ -3378,7 +3378,7 @@ che
 \end{enumerate}
 \paragraph{Dimostrazione}:\\
 Se L $\in$ Reg., allora $\exists$ DFA A con n stati tale che L(A) = L, sia w =
- $a_{1}, a_2$, ..., 
+$a_{1}, a_2$, ..., 
 , $a_{m}^{\in L}$ e $a_{i} \in \Sigma \forall i = 1, 2, ..., m$.\\
 Per ogni i = 0,1, ..., n, sia $p_{i} = \widehat{\delta}(q_0, a_1, ..., a_i)$, allora
 abbiamo $p_0 = q_0$. Dato che A ha n stati, $p_0, p_1, p_n$, NON possono essere tutti
@@ -3429,4 +3429,178 @@ CFG: B$\to$BB | (B) | $\epsilon$, supponendo $L_{bal} \in$ REG, e sia n la costa
 del PL: sia w = $(^{n})^{n} $e sia w = xyz tale che x = $(^{n-1} , y= (, z = )^{n}$
 allora per il PL dovrebbe valere che $\forall k \geq 0$ $xy^{\kappa}z \in L_{bal}$
 $(^{n-1} , y= (, z = )^{n}$ in generale $\notin$ $L_{bal}$ (ad esempio per k=0)
+\paragraph{Esercizio}:\\
+Dimostrare che il linguaggio delle stringhe palindrome 
+$L_{pal} = \{w \in \{0,1\}^{\star} | w = w^{R}\}$.
+\subparagraph{}Supponendo che $L_{pal}$ sia regolare, e sia n la costante del PL.
+Inoltre, sia W = $0^{n}10^{n}$ e scriviamo w = xyz tali che ad esempio x = $0^{n-1},$
+y = 0, z = $10^{n}$. \\
+Per il PL, $xy^{\kappa}z \in L_{pal} \forall \kappa \geq 0$ ma è \textbf{impossibile}
+perche ad esempio per $\kappa = 0$ si ha che xz = $0^{n-1}10^{n} \notin L_{pal}$
+\paragraph{Altro esercizio}:\\
+L = $\{0^{n}1^{m} | n \leq m\}$ Quindi w diventa:
+\[
+w = \underbrace{0^{n-1}}_{x} \underbrace{0^{l}}_{y} \underbrace{1^{m}}_{z}
+\]	
+Con $0 \leq l \leq n$
+\paragraph{Altro esercizio}:\\
+L = \{$0^{n}1^{m} | n \geq m$\}\\
+Supponiamo che L sia regolare, e n sia la cosatante del PL, \\
+Sia w = $0^{n}1^{m} \in L$ (quindi in pratica $n\geq m$), scriviamo w = xyz tale
+che y $\neq \epsilon$ e |xy| $\leq$ n, ALLORA y è formata soltanto da 0.
+Poniamo l = |y|, con 0 < l $\leq$ n e n-l < m, in pratica succede che:\\
+Per il PL, $xy^{\kappa}z \in L \forall \kappa \geq 0,$ ma invece xz $\notin$ L, 
+perchè il numero di 0 è minore del numero di 1.
+\paragraph{Altro esercizio}:\\
+Dato il linguaggio L = \{$0^{n}$ | n è un quadrato perfetto\}\\
+Qui in pratica hai n = $m^{2}$ con m $\geq$ 1\\
+Supponendo che L sia regolare e sia n la costante del PL, sia w = $0^{n} \in L$
+, e scriviamo w = xyz, con $x = 0^{n-l}, y = 0^{l}, z = \epsilon$, in cui n-l non è 
+un quadrato perfetto. \\
+Per il PL, $xy^{\kappa}z \in L \forall \kappa \geq$ 0, MA invece xz = $0^{n-l} 
+\notin L$
+\chapter{Automi a pila}
+Nonostante in inglese pila si dica stack, qui si chiameranno Pushdown automata..
+ok(?) Va beh quel che ci importa è che è una struttura a pila, quindi una lista 
+che viene utilizzata con le funzioni top, push, pop, e stackempty.
+\\
+Il concetto è: Prendi un $\epsilon$-NFA e aggiungici una pila, quindi nella 
+$\delta$ potrebbero esserci $\epsilon$mosse che non consumano un carattere e 
+vanno ad operare su una pila. 
+\paragraph{Definizione formale} Un automa a pila (PDA) è una 7-upla costruita
+in questo modo:
+\[
+P = (Q, \Sigma, \Gamma, \delta, q_{0}, z_{0}, F)
+\]	
+Q è insieme finito e non vuoto di stati\\
+\begin{itemize}
+	\item $\Sigma$ è l'alfabeto di input
+	\item $\Gamma$ è un altro alfabeto dei simboli di stack 
+	\item $\delta$ è una funzione che prende uno stato e un simbolo in input, o anche $\epsilon$
+	e poi prende un simbolo dalla pila (La testa) e in output dà un insieme di 
+	coppie in cui il primo elemento è uno stato ed il secondo elemento è una stringa
+	di simboli della pila. 
+	\item $q_{0}$ è lo stato iniziale
+	\item $z_{0}$ è il simbolo ($\in \Gamma$), inizialmente posto nella pila, quindi la pila
+	non parte vuota, non può partire vuota, perchè se no non posso applicare una
+	delta, ci deve essere sempre un simbolo che possa consumare. $z_{0}$ in pratica 
+	dice che la lista è vuota, nel senso dice "dopo di me un c'è nulla", quindi 
+	occhio a dove lo usate.
+	\item F invece sarebbe l'insieme degli stati finali (F$\subseteq$ Q)
+\end{itemize}
+\[
+\delta : Q \times (\Sigma \cup \{\epsilon\}) \times \Gamma \to 2^{Q\times 
+\Gamma^{\star}}
+\]	
+Su una pila che operazioni posso effettuare?
+\section{Operazioni sulle pile}
+Supponendo un automa in stato q che riceva in input un carattere a, e abbia una
+pila con \{x, $\epsilon$\}. Ora, prendiamo $(p, \gamma) \in \delta(q, a, X$) SE
+voglio non togliere la x devo porre $\gamma = x$ altrimenti devo porre $\gamma = \epsilon$
+Se invece volessi aggiungere una y al posto della x dovrei porre $\gamma = y$,
+se volessi aggiungere uno zero in testa invece $\gamma = 0x$\\
+Cos'è accaduto più precisamente? In pratica tolgo la x e ci rimetto qualcosa,
+quel qualcosa può essere pure lunghissimo, però tipo se voglio mantenere la
+presenza della x prima la tolgo, poi la rimetto
+\paragraph{Dettaglio: }$2^{Q \times \Gamma^{\star}}$ DEVE essere un insieme 
+finito, perciò nella $\delta$ va specificato che si sta lavorando su un insieme
+finito di coppie
+\paragraph{Esempio:} Dato $L_{ww^{R}} = {w w^{R} | w \in \{0,1\}^{\star}}$ è il 
+linguaggio delle stringhe palindrome di lunghezza pari. Per esempio 0110
+$P = (\{q_{0}, q_{1}, q_{2}\}, \{0,1\}, \{0,1, z_{0}\}, \delta, q_{0}, z_{0},\{q_{2}\})$\\
+$\delta(q_{0}, 0, z_{0}) = \{(q_{0}, 0z_{0})\}$\\
+$\delta(q_{0}, 1, z_{0}) = \{(q_{0}, 1z_{0})\}$\\
+$\delta(q_{0}, 0, 0) = \{(q_{0}, 00)\}$\\
+$\delta(q_{0}, 0, 1) = \{(q_{0}, 01)\}$\\
+$\delta(q_{0}, 1, 0) = \{(q_{0}, 10)\}$\\
+$\delta(q_{0}, 1, 1) = \{(q_{0}, 11)\}$\\
+$\delta(q_{0}, \epsilon, z_{0}) = \{(q_{0}, z_{0})\}$\\
+$\delta(q_{0}, \epsilon, 0) = \{(q_{0}, 0)\}$\\
+$\delta(q_{0}, \epsilon, 1) = \{(q_{0}, 1)\}$\\
+Ora l'automa si trova in q1, e deve fare confronto tra cosa c'è in cima alla pila 
+e deve poi verificare cosa gli arriva, a noi non importa cosa c'è nella pila, 
+ci interessa che venga consumata la stringa e che si arrivi allo stato finale.
+$\delta(q_{1}, 0, 0) = \{(q_{1}, \epsilon)\}$\\
+$\delta(q_{1}, 1, 1) = \{(q_{1}, \epsilon)\}$\\
+$\delta(q_{1}, \epsilon, z_{0}) = \{(q_{2}, z_{0})\}$\\
+$\delta(q_{1}, \epsilon, z_{0}) = \{(q_{2}, \epsilon)\}$\\
+Questo è per un automa piccino, figuratevi che divertimento quando avremo automi
+più pesanti. 
+\section{Diagrammi di transizione degli stati}
+Sono composti da:
+\begin{itemize}
+	\item Nodi, che compongono gli stati
+	\item Archi orientati che corrispondono alle transazioni
+	\item Una freccia che indica lo stato iniziale
+	\item Un doppio cerchio che indica gli stati finali
+\end{itemize}
+Sì, è come l'automa MA la $\delta$ funziona così:
+\begin{center}
+SE $(p, \gamma) \in \delta(q, a, x)$ ALLORA 
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (14,-26.4) circle (3);
+\draw (14,-26.4) node {$q$};
+\draw [black] (35.2,-26.5) circle (3);
+\draw (35.2,-26.5) node {$p$};
+\draw [black] (17,-26.41) -- (32.2,-26.49);
+\fill [black] (32.2,-26.49) -- (31.4,-25.98) -- (31.4,-26.98);
+\draw (24.6,-26.96) node [below] {$a,\mbox{ }x/\gamma$};
+\end{tikzpicture}
+\end{center}
+\paragraph{Esempio: }
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (14.7,-24.8) circle (3);
+\draw (14.7,-24.8) node {$q_0$};
+\draw [black] (40.2,-24.8) circle (3);
+\draw (40.2,-24.8) node {$q_1$};
+\draw [black] (63.3,-24.8) circle (3);
+\draw (63.3,-24.8) node {$q_2$};
+\draw [black] (63.3,-24.8) circle (2.4);
+\draw [black] (13.377,-22.12) arc (234:-54:2.25);
+\fill [black] (16.02,-22.12) -- (16.9,-21.77) -- (16.09,-21.18);
+\draw [black] (39.901,-21.827) arc (213.48298:-74.51702:2.25);
+\fill [black] (42.38,-22.75) -- (43.32,-22.73) -- (42.77,-21.9);
+\draw [black] (8.5,-23.6) -- (11.75,-24.23);
+\draw (7.77,-23.3) node [left] {$start$};
+\fill [black] (11.75,-24.23) -- (11.06,-23.59) -- (10.87,-24.57);
+\draw [black] (17.7,-24.8) -- (37.2,-24.8);
+\fill [black] (37.2,-24.8) -- (36.4,-24.3) -- (36.4,-25.3);
+\draw [black] (43.2,-24.8) -- (60.3,-24.8);
+\fill [black] (60.3,-24.8) -- (59.5,-24.3) -- (59.5,-25.3);
+\end{tikzpicture}
+\end{center}
+Hai 
+\begin{itemize}
+	\item 0, $z_{0}$ / 0$Z_{0}$
+	\item 1, $z_{0}$ / 1$Z_{0}$
+	\item 0,0 / 00
+	\item 0,1 / 01
+	\item 1,0 / 10
+	\item 1,1 / 11
+	\item $\epsilon$,1 / 1
+	\item $\epsilon$,0 / 0
+	\item $\epsilon$,$z_{0} / z_{0}$
+\end{itemize}
+\section{Descrizione Istantanea (ID)}
+\paragraph{Configurazione}:\\
+E' una tripla del tipo (q, w, $\gamma$) in cui q è lo stato attuale, w è l'input 
+residuo, quindi la parte che bisogna ancora elaborare, e poi $\gamma$ che è il 
+contenuto della pila (o dello stack, ci siam capiti dai)
+\paragraph{Mossa (Passo di computazione)}:\\
+E' una relazione $\vdash_{p} (\vdash)$ definita come segue: SE $(p, \alpha) \in 
+\delta (q, a, x)$ ALLORA $\forall w \in \Sigma^{\star} e \forall \beta \in \Gamma^{\star}\\
+(q, aw, x\beta) \vdash (p, w, \alpha \beta)$
+\paragraph{Chiusura transitiva, definizione per induzione}: 
+$\vdash^{\star}_{p}  (\vdash^{\star})$ = zero o più mosse
+\begin{itemize}
+	\item Base: I $\vdash^{\star} I \forall$ ID I
+	\item Passo: I $\vdash^{\star}$ J SE $\exists$ ID $\kappa$ t.c. I $\vdash \kappa$  E
+	$\kappa \vdash^{\star}$ J
+\end{itemize}
+Che equivale a I $\vdash^{\star}$J se e solo se $\exists ID \kappa_{1}, \kappa_{2}$,
+..., $\kappa_{m}$ tali che I = $\kappa_{1}$, J = $\kappa_{m} e \kappa_{1} + \kappa_{i+1} 
+\forall$ i = 1, 2, ..., n-1
 \end{document}

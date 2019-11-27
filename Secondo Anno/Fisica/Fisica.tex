@@ -1711,14 +1711,88 @@ Più o meno comunque funziona così:
 \end{center}
 Sapendo che P = $\frac{nRT}{V} = aT$ con a che è una costante = $\frac{P_3}{T_{3}}$
 se T $\to$ T, T = $\frac{P}{a}$ = $\frac{P}{P_{3}} \cdot T_{3}$
-
-
-
-
-
-
-
-
+\section{Temperatura e pressione (Dal punto di vista microscopico)}
+Si consideri un contenitore cubico di lato l, pertanto il volume sarà $l^{3}$, e
+ogni molecola avente la sua velocità vettoriale $\overrightarrow{v_{i}}$, quando
+impattano sulla parete hanno un riflesso speculare, o meglio si inverte solo la
+componente x. Il modulo NON cambia.
+\begin{center}
+   \includegraphics[width=0.75\textwidth]{16}
+   \end{center}   
+Succede in pratica che non c'è dispersione di energia per gli urti contro le pareti.
+Ricordiamo che:
+\[
+	F_{x_{i}} = \frac{m\cdot v^{2}_{\lambda_{i}}}{L}
+\]	
+Perciò è vero anche che la $F_{\lambda_{tot}} = \frac{m}{L} \cdot v^{2}_{\lambda_{i}} =
+\frac{m}{L} \cdot N <v_{x}^{2}>$
+Banalmente la sommatoria di tutte le forze è uguale a quel valore lì.
+$v_{i}^{2} = v_{x_{i}}^{2} + v_{y_{i}}^{2} + v_{z_{i}}^{2}$, perciò si conclude
+che \[
+	<v_{i}^{2}> = <v_{x_{i}}^{2}> + <v_{y_{i}}^{2}> + <v_{z_{i}}^{2}>
+\]
+P = $\frac{\gamma}{A (l^{2})} = \frac{1}{3} \frac{m}{l^{3}} N \cdot <v^{2}> =
+\frac{1}{3}m \frac{N}{V} <v^{2}> = \frac{2}{3} \frac{N}{V} \cdot 
+\underbrace{\frac{1}{2} <v^{2}>}_{<K>}$, e quindi si giunge alla conclusione
+che 
+\[
+	m \cdot \frac{N}{V} = \rho
+\]
+Perciò:
+\[
+	PV = \frac{2}{3}N \cdot \frac{1}{2}m <v^{2}> = \frac{2}{3}N <K>
+\]	
+Tutto sto casino per arrivare a dire che N = n$\cdot$ Na e 
+nRT = $\frac{2}{3} n\cdot Na <K>$, n si semplifica, si ottiene che
+\[
+	T = \frac{2}{3} \frac{Na}{R} <K>
+\]	
+Questo dimostra che finchè la temperatura è >0 (Kelvin) allora le molecole sono
+in moto, e l'energia del gas è data dalla somma dell'energia delle molecole 
+singole, e quest'energia si chiama energia interna ($U_{int}$) (Energia totale
+cinetica del nostro gas (nNa<K> = $\frac{3}{2}$ nNa $K_{b}$T) = $\frac{3}{2}$nRT) 
+\paragraph{Paranoia personale: }Na è Numero di Avogadro, così, giusto per 
+ricordarmene... Che poi quanto è strano ma carino il nome Avogadro, è un misto
+tra l'avocado è un ladro.. dal Galles.. Sì, sorridiamo e annuiamo :3
+\section{Il Calore}
+E' un quantitativo di energia che vien passato da un corpo ad un altro SENZA
+lavori meccanici. 
+\paragraph{Esempio a cannone: }
+Prendi un corpo che abbia una temperatura $t_{i}$, bene applicategli del calore,
+e da $t_{i}$ si otterrà $t_{f}$, e la loro differenza ($\Delta t$) sarà la differenza
+di temperature, e già qui è un pandemonio perchè quella t prima era il tempo, 
+va beh ORA E' LA TEMPERATURA.
+\[
+ 	Q = c \Delta t
+ \] 
+E mo che è sto c? Niente di che, è il calore specifico del materiale che si 
+considera ->
+\[
+	Q = c\cdot m  \Delta t
+\]	
+m sarebbe la massa, potrebbe essere moli, in quel caso sarebbe calore molare
+o qualcosa del genere, non ci interessa
+\subsection{La Caloria}
+Una caloria è il quantitativo di energia necessario per far salire di un grado
+un grammo d'acqua ($h_{2}O$) partendo dalla temperatura di 14.5 $^{\circ}C$
+\section{Esperimento di Joule}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{17}
+\end{center}
+In pratica emerge che il calore è una forma di lavoro misurabile in Joule, 
+poichè il calore è generabile partendo da del lavoro meccanico, si conclude che
+\begin{itemize}
+	\item $Q = \Delta U$
+	\item $Q = -W$
+	\item $W = -\Delta U $
+\end{itemize}
+Vero solo in situazioni adiabatiche. Qui c'è un grafico di come si relazionano
+calore e lavoro:
+\begin{center}
+\includegraphics[width=0.75\textwidth]{18}
+\end{center}
+$L = \int_{V_{A}}^{V_{B}} p~~ dV$
+    
 
 
 
