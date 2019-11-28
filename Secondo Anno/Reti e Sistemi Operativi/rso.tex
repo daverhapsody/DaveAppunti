@@ -1390,7 +1390,7 @@ una connessione wireless.
 \section{Bit Error Rate}
 E' un valore, un rateo di errori che ci possono essere, approssimativamente è 
 \[
-	Ber < 10^{-12}
+Ber < 10^{-12}
 \]
 \section{SNR (Rapporto tra segnale e rumore)}
 In base a questo rapporto, cambia la qualità del mio segnale, la prima cosa che
@@ -1406,10 +1406,10 @@ sinusoide questo segnale digitale).
 \paragraph{Si può essere più aggressivi?} Perchè trasmettere solo un livello? 
 Perchè non trasmettere 4 livelli? Cioè perchè trasmettere solo 0 o 1 invece di 
 $\begin{cases}
-	00\\
-	01\\
-	10\\
-	11\\
+00\\
+01\\
+10\\
+11\\
 \end{cases}$?Cioè in pratica si raggruppano i bit di prima e diventano 11-10-00-11-01
 \dots ok, perchè non usarne 3? 10? 256? Sarebbe bello il mondo se da qualche 
 parte non ci arriva l'inculata. Infatti se noi aumentiamo la profondità di 
@@ -1419,8 +1419,117 @@ o precedente.
 \paragraph{Perciò} modulare in modo più aggressivo (più bit al secondo per hz) 
 genera molta più vulnerabilità. Oggi i dispositivi hanno un bitrate adattivo
 che si regola su base di come è messo il canale
-    
+\section{Il WiFi (Ieee 802.11)}
+Viene utilizzata la banda DSM, e la frequenza su cui viaggiano i segnali è a 
+2,4 oppure 5 ghz.. Mi fa strano il fatto che lo sto davvero specificando, ma
+procediamo. Questo protocollo ha più versioni di se stesso dei videogiochi di 
+Pokemon, infatti si hanno svariate versioni
+\begin{itemize}
+	\item 802.11b : 2,4 Ghz $\to 1-11  \frac{Mbit}{s}$ 
+	\item 802.11c : 2,4 Ghz $\to 1,5 - 54 \frac{Mbit}{s}$ 
+	\item 802.11a : 5 Ghz $\to 54 \frac{Mbit}{s}$ 
+	\item 802.11n : 2,4 / 5 Ghz $\to 150 \frac{Mbit}{s}$ 
+	\item 802.11ac : 2,4 / 5 Ghz $\to 1 \frac{Gbit}{s}$ 
+	\item 802.11ax : 2,4 / 5 Ghz / 6 Ghz $\to 10 \frac{Gbit}{s}$ 
+\end{itemize} 
+Chiunque può operare una 801.11 purchè abbia degli apparati certificati per 
+operare. Sia nel 2,4 che nel 5 Ghz la frequenza centrale dei canali e la loro
+spaziatura non sono tali da evitare interferenze tra canali. Nel caso del 
+2,4 ghz posso avere fino a 13 canali affiancati, ma se mi posiziono su un 
+ipotetico canale, quelli ad esso vicini verranno disturbati.
+\paragraph{Come funziona una rete wifi?} Hai una serie di terminali che si 
+collegano all'access point direttamente. Ogni tot di tempo vengono generati
+dei beacon frames (bisogna configurare l'access point) e si ottengono tre forme
+di associazione 
+\begin{enumerate}
+	\item Passive scan
+	\item Assoc.request
+	\item Assoc.response
+\end{enumerate}
+Una volta associati poi bisogna autenticarsi e i meccanismi poi di autenticazione 
+diversi (chiave simmetrica, password, chiave asimmetrica, certificati etc.)
+\subparagraph{Active scan:} Il terminale prima invia un messaggio di \textbf{probe
+request}, l'access point risponde con un probe response, e da qui si riprendono
+i due assoc. 
+\subsection{La gestione delle "collisioni"}
+Il vecchio CSMA/CD non è applicabile perchè via radio non è possibile capire se 
+ci sono delle interferenze, perciò si implementa un meccanismo che invece di 
+rilevare la collisione, punta ad evitarle, questo meccanismo è il CSMA/CA 
+(La A sta per avoidance.)
+\paragraph{Come funziona? }L’idea di base dietro il protocollo CSMA/CA è il 
+principio “Listen before Talk“, ciò vuol dire che deve prima di tutto essere 
+verificato se la linea sia libera (“idle”), prima che la stazione possa
+iniziare una trasmissione. Ma questo è solo il primo passo: vi sono anche 
+altre funzioni all’interno del processo che consentono di evitare la maggior
+parte delle collisioni.	
+\subparagraph{I tempi di attesa: }Maggiore è il tempo di attesa, maggiore sarà
+la priorità, pertanto gli ack praticamente hanno sempre la priorità massima, e
+quando si becca una collisione si ha un meccanismo di backoff esponenziale E
+finchè ci son trasmissioni in corso, il mio backoff esponenziale NON si scala,
+questo succede solo quando è LIBERO.
+\subparagraph{Come si nota} l'obbiettivo sta nell'evitare la collisione più che
+nel rilevarla
+\subsection{RTS e CTS}
+Questo procedimento precede la vera e propria trasmissione dei dati. Se un
+partecipante stabilisce che il mezzo trasmissivo è libero, il dispositivo 
+invia prima di tutto un frame RTS al partecipante che dovrebbe essere il 
+destinatario dei dati. 
+\\
+E' tipo chiedere "che si può per caso?" 
+\\
+In questo caso il computer di partenza rende chiaro che
+vorrebbe iniziare una trasmissione e occupare così il mezzo trasmissivo per un 
+certo periodo.		
 
-    
+Il destinatario invia a sua volta un frame \textbf{CTS} al trasmittente originario. In 
+questo modo da una parte vengono informati tutti gli altri partecipanti che si
+trovano nella stessa estensione, com’è il caso con il frame RTS, e dall’altra 
+il trasmittente riceve il via libera per la trasmissione. Solo allora il dispositivo
+originario comincia la trasmissione dei dati. 
 
+\paragraph{Ora, } non è possibile per i 
+partecipanti in una rete wifi stabilire l’insorgenza di collisioni o 
+altri disturbi nella trasmissione. Per questo motivo è necessario che la stazione 
+di destinazione invii una conferma (ACK), non appena il pacchetto sarà arrivato
+correttamente.
+
+Se il frame ACK non arriva, il trasmittente dei dati presume che sia sopraggiunta 
+una complicazione e invia di nuovo il pacchetto. La stazione ha in questo caso 
+il diritto di priorità sull’utilizzo del mezzo, non deve quindi di nuovo aspettare 
+finché il canale sarà libero. 
+\paragraph{Quali sono i vantaggi e svantaggi?} Per mandare un singolo byte devo
+fare un pandemonio inutile di passaggi tra cts rts csma etc., MA si migliora 
+l'efficienza di rete generale.
+
+
+\paragraph{Precisazione: }Ogni access point è praticamente (visto da tutti i 
+dispositivi cablati tipo router etc) uno switch, nel senso che cts rts etc esistono
+solo tra access point e i suoi terminali, ma dopo quello che accade è il normale
+802.3 
+\section{La rete cellulare}
+Si hanno delle base stations oppure NodeB oppure eNodeB, son reti che usano 
+bande licenziate, assegnate dallo stato ad un concessionario avente diritto 
+esclusivo di usarle (dopo aver pagato centinaia di milioni di euro per questo
+diritto). Ci son le varie generazione:
+\begin{itemize}
+	\item 2G GSM
+	\item 3G UMTS
+	\item 4G LTE (o LTE-A)
+	\item 5G 
+\end{itemize}
+Sia 2G che 3G stanno venendo dismesse, probabilmente le 2g rimangono vive per il
+fatto che in giro per l'Italia ci son decine di migliaia di sistemi di controllo
+(tipo le caldaie in montagna) che usano il 2g. Vi ricordate prima del 2g? Quando
+sul tuo vecchio telefono con i tasti aprivi per sbaglio internet e ti ritrovavi
+più indebitato del Burundi? Ecco, oggi con 4G e 5G non c'è più questo problema.
+\\ 
+\paragraph{Precisazione: }Dal 4g in poi si ha finalmente un indirizzo IP, tutto
+IP, vero e proprio, prima invece questa cosa non c'era.. Impensabile. Però c'è
+un problema, cioè in pratica tu hai un IP, ma cambia continuamente sulla carta,
+perchè se sei in una determinata rete e poi cambi, dovrebbe cambiarti anche l'ip...
+\subparagraph{Il tunneling} risolve questa situazione, nel senso che continui 
+a fare tipo dei tunnel con le shell per una supermegaipergigantissima macro rete
+che contiene tutti quanti. L'indirizzo è l'ip V6, mentre dentro una rete bastano
+e avanzano gli ipv4... A meno che in casa abbiate $2^{32}$ + 1 dispositivi diversi
+in casa.	
 \end{document}

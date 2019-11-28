@@ -3708,11 +3708,128 @@ Segnamoci un $P_{F} = (Q \cup \{p_{0}, p_{f}\}, \Sigma, \Gamma \cup \{x_{0}\},
 	\Gamma, \delta_{F}(q,a,y) contiene tutte le coppie di \delta_{N}(q,a,y)$
 	\item $\forall q \in Q, \delta_{F}(q,\epsilon, x_{0}) contiene (p_{f}, \epsilon)$ 
 \end{enumerate}
-
-
-
-
-
+\paragraph{Teorema 6.11, p 222}:\\
+SE L = $L(P_{F})$ per un PDA $P_{F} = (Q, \Sigma, \Gamma, \delta, q_{0}, z_{0}$, F),
+ALLORA $\exists PDA P_{N}$ tale che $L = N(P_{N})$
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (7.1,-20.7) circle (3);
+\draw (7.1,-20.7) node {$p_0$};
+\draw [black] (29.3,-20.8) circle (3);
+\draw (29.3,-20.8) node {$q_0$};
+\draw [black] (45.9,-13.6) circle (3);
+\draw [black] (45.9,-13.6) circle (2.4);
+\draw [black] (45.4,-29) circle (3);
+\draw [black] (45.4,-29) circle (2.4);
+\draw [black] (60.8,-21.4) circle (3);
+\draw (60.8,-21.4) node {$p_f$};
+\draw [black] (5.7,-14.7) -- (6.42,-17.78);
+\draw (4.21,-14.03) node [above] {$start$};
+\fill [black] (6.42,-17.78) -- (6.72,-16.89) -- (5.75,-17.11);
+\draw [black] (10.1,-20.71) -- (26.3,-20.79);
+\fill [black] (26.3,-20.79) -- (25.5,-20.28) -- (25.5,-21.28);
+\draw (18.2,-21.27) node [below] {$\epsilon,\mbox{ }x_0\mbox{ }|\mbox{ }z_0x_0$};
+\draw [black] (48.56,-14.99) -- (58.14,-20.01);
+\fill [black] (58.14,-20.01) -- (57.67,-19.19) -- (57.2,-20.08);
+\draw (51.64,-18.01) node [below] {$\epsilon,\mbox{ }x_0\mbox{ }|\mbox{ }z_0x_0$};
+\draw [black] (48.09,-27.67) -- (58.11,-22.73);
+\fill [black] (58.11,-22.73) -- (57.17,-22.63) -- (57.61,-23.53);
+\draw (54.8,-25.71) node [below] {$\epsilon,\mbox{ }x_0\mbox{ }|\mbox{ }z_0x_0$};
+\draw [black] (63.013,-19.392) arc (159.9454:-128.0546:2.25);
+\draw (68.06,-18.98) node [right] {$\epsilon,\mbox{ }x_0\mbox{ }|\mbox{ }z_0x_0$};
+\fill [black] (63.74,-21.94) -- (64.32,-22.68) -- (64.66,-21.74);
+\end{tikzpicture}
+\end{center}
+$P_{N} = (Q \cup \{p_{0}, p\}, \Sigma, \Gamma \cup \{x_{0}\}, \delta_{N}, p_{0}, x_{0})$\\
+\begin{enumerate}
+	\item $\delta_{N}(p_{0}, \epsilon, x_{0}) = \{(q_{0}, z_{0}, x_{0})\}$
+	\item $\forall q \in Q, \forall a \in \Sigma \cup \{\epsilon\}, \forall y \in 
+	\Gamma, \delta_{N}(q,a,y) = \delta_{F}(q,a,y) (Cioè P_{N} simula P_{F})$
+	\item $\forall q \in F, \forall y \in \Gamma \cup \{x_{0}\}, \delta_{N}(q, \epsilon, y) =
+	\{p, \epsilon\}$
+	\item $\forall y \in \Gamma \cup \{x_{0}\}, \delta_{N}(p, \epsilon, y) = \{p, \epsilon\}$
+\end{enumerate}
+\paragraph{Esempio 6.10 pagina 220} ($Da P_{N} a P_{F}$)\\
+Occhio che l'automa è definito in maniera strano. L'obbiettivo è di prendere in 
+input delle stringe w $\in \{i, e\}^{\star}$, e si chiede che in ogni prefissa di 
+w, il numero di e non deve eccedere il numero di i. In pratica accetta quando
+scopre che il numero di e eccede il numero di i. \\
+$P_{N} = (\{q\}, \{i, e\}, \{z\}, \delta_{N}, q, z)$ ACCETTA se e solo se il numero
+di e \textbf{ECCEDE} il numero di I (e lo stack è vuoto).\\
+$\delta_{N}(q, i, z)$ = \{(q, zz)\} (La differenza tra i ed e è aumentata di 1)\\
+$\delta_{N}(q, e, z)$ = \{q, $\epsilon$\}(La differenza tra i ed e è diminuita di 1, il che equivale
+a togliere una z).
+\paragraph{Problema: }Noi vorremmo giusto giusto l'opposto, e.. Sì lo fa, ma 
+rimarrebbe un pezzetto di stringa non consumata. Nel senso:\\
+Noi si vuol verificare che ci non ci siano else senza if, quindi in ogni prefisso
+della stringa devo verificare che e sia minore di i, il libro ci fa fare il 
+contrario. Il concetto è che in ogni \textbf{PREFISSA} di w, il numero di E \textbf{non}
+deve eccedere il numero di if. Cioè, in java, puoi avere un if, ok, ma non degli else
+messi così a vuoto.
+Ad ogni modo l'automa che esce è questo:
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (14.7,-28) circle (3);
+\draw (14.7,-28) node {$p_0$};
+\draw [black] (39.9,-28) circle (3);
+\draw (39.9,-28) node {$q$};
+\draw [black] (66.4,-28) circle (3);
+\draw (66.4,-28) node {$r$};
+\draw [black] (66.4,-28) circle (2.4);
+\draw [black] (8.8,-28) -- (11.7,-28);
+\draw (8.3,-28) node [left] {$start$};
+\fill [black] (11.7,-28) -- (10.9,-27.5) -- (10.9,-28.5);
+\draw [black] (17.7,-28) -- (36.9,-28);
+\fill [black] (36.9,-28) -- (36.1,-27.5) -- (36.1,-28.5);
+\draw (27.3,-28.5) node [below] {$\epsilon,\mbox{ }x_0\mbox{ }|\mbox{ }zx_0$};
+\draw [black] (41.223,-30.68) arc (54:-234:2.25);
+\draw (39.9,-35.25) node [below] {$e,z\mbox{ }|\mbox{ }\epsilon\mbox{ }\mbox{ }oppure\mbox{ }i,\mbox{ }z\mbox{ }|\mbox{ }zz$};
+\fill [black] (38.58,-30.68) -- (37.7,-31.03) -- (38.51,-31.62);
+\draw [black] (42.9,-28) -- (63.4,-28);
+\fill [black] (63.4,-28) -- (62.6,-27.5) -- (62.6,-28.5);
+\draw (53.15,-28.5) node [below] {$\epsilon,\mbox{ }x_0\mbox{ }|\mbox{ }\epsilon$};
+\end{tikzpicture}
+\end{center}
+\paragraph{CFG }$\to P_{N}$: \\
+Sia G una grammatica context free G = (V, T, P, S), costruiamo il PDA 
+P = $(\{q\}, T, V\cup T, \delta, q, S)$ tale che L(G) = N(P).
+Quindi in pratica si ha un automa di questo genere, con una serie di transizioni.
+Ed è un automa a pila NON deterministico: \begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (14.7,-28) circle (3);
+\draw (14.7,-28) node {$p_0$};
+\draw [black] (8.8,-28) -- (11.7,-28);
+\draw (8.3,-28) node [left] {$start$};
+\fill [black] (11.7,-28) -- (10.9,-27.5) -- (10.9,-28.5);
+\draw [black] (17.38,-26.677) arc (144:-144:2.25);
+\fill [black] (17.38,-29.32) -- (17.73,-30.2) -- (18.32,-29.39);
+\end{tikzpicture}
+\begin{enumerate}
+	\item $\forall$ A $\in$ V, $\delta(q, \epsilon, A) = \{(q, \beta) | A \to \beta$ è una
+	produzione di G\}
+	\item $\forall a \in T, \delta(q,a,a) = \{q, \epsilon\}$
+\end{enumerate}
+Gli automi a pila in pratica accettano tutti (e soli) i linguaggi context free, 
+pertanto basta una qualsiasi grammatica context free per avere un automa a pila.
+\paragraph{Esempio: } L(C) = $\{0^{n}1^{n}| n \geq 1\}$
+S $\to$ 0S1 | 01
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (39.5,-28) circle (3);
+\draw (39.5,-28) node {$p_0$};
+\draw [black] (33.6,-28) -- (36.5,-28);
+\draw (33.1,-28) node [left] {$start$};
+\fill [black] (36.5,-28) -- (35.7,-27.5) -- (35.7,-28.5);
+\draw [black] (41.517,-25.795) arc (165.28765:-122.71235:2.25);
+\draw (46.54,-24.69) node [right] {$\epsilon,\mbox{ }S\mbox{ }|\mbox{ }0S1\mbox{ }\newline
+\mbox{ }\epsilon\mbox{ },\mbox{ }S\mbox{ }|\mbox{ }01\mbox{ }\newline\mbox{ }0,0\mbox{ }|
+\mbox{ }epsilon\mbox{ }\newline\mbox{ }1,1|\epsilon$};
+\fill [black] (42.48,-28.26) -- (43.12,-28.95) -- (43.38,-27.98);
+\end{tikzpicture}
+\end{center}
 
 
 
