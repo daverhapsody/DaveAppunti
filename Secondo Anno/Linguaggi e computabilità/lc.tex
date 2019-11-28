@@ -3603,4 +3603,128 @@ $\vdash^{\star}_{p}  (\vdash^{\star})$ = zero o più mosse
 Che equivale a I $\vdash^{\star}$J se e solo se $\exists ID \kappa_{1}, \kappa_{2}$,
 ..., $\kappa_{m}$ tali che I = $\kappa_{1}$, J = $\kappa_{m} e \kappa_{1} + \kappa_{i+1} 
 \forall$ i = 1, 2, ..., n-1
+\paragraph{Teorema 6.5 p 215}:\\
+SE p = (Q, $\Sigma, \Gamma, \delta, q_{0}, z_{0}$, F) è un PDA e (q, x, $\alpha) \vdash^{\star}_{p}$
+(p, y,  $\beta)$ (se q x alpha porta in 0 o più passaggi) ALLORA $\forall w \in \Sigma^{\star}$
+e $\forall \gamma \in \Sigma^{\star}$ è vero che (q,xw, $\alpha\gamma) \vdash^{\star}_{p}
+(p, yw, \beta\gamma)$
+\paragraph{Casi particolari}:\\
+\begin{enumerate}
+	\item $w = \epsilon$
+	\item $\gamma = \epsilon$
+\end{enumerate}
+Supponiamo sia possibile andare da (q, xw, $\alpha\gamma) \vdash^{\star}_{p} (p, yw, \beta\gamma)$
+\subparagraph{$\vdash^{\star}_{p}$}: si traduce in "in zero o più passi"
+Otterremmo che (q, x, $\alpha) \vdash^{\star}_{p} (p, y, \beta)$ Ma non è detto 
+che valga. Non posso spendere sia la stringa che la pila, perciò non va bene 
+definitivamente Mentre è vero che (q,x, $\alpha\gamma) \vdash^{\star}_{p}
+(p, y, \beta\gamma)$. In qualche modo uno dei due ci deve essere. 
+\paragraph{Teorema 6.6 o 216}:\\
+SE P = (Q, $\Sigma, \Gamma, \delta, q_{0}, z_{0}$, F) è un PDA, e (q, xw, $\alpha)
+\vdash^{\star}_{p} (p, yw, \beta)$ ALLORA è vero che (q, x, $\alpha)\vdash^{\star}_{p}(p,y,\beta) $
+\section{Linguaggi formali accettati dal PDA}
+L'accettazione può essere ottenuta in diversi modi, finora si è lavorato per 
+stato finale
+\subsection{Accettazione per \textbf{stato finale}}
+L(P) = $\{w \in \Sigma^{\star} | (q_{0}, w, z_{0})$ $\vdash^{\star}_{p} (q, \epsilon
+, \alpha)\}$ tali che q $\in F e \alpha \in \Gamma^{\star}$ (qualsiasi)
+\subparagraph{L(P)} riferito ad un PDA fa riferimento all'accettazione per stato
+finale	
+\subsection{Accettazione per \textbf{stringa vuota}}
+N(P) = $\{w \in \Sigma^{\star} | (q_{0}, w, z_{0}) \vdash^{\star}_{p} (q, 
+\epsilon, \epsilon)\}$
+La pila vuota è vuota per un qualche $q \in Q$\\
+$P = (Q, \Sigma, \Gamma, \delta, q_{0}, z_{0})$\\
+Ora si son definiti due modi per accettare una stringa, ma quali sono i linguaggi
+che accettano un modo, e quali invece accettano l'altro? Ce n'è uno dei due che
+è più potente e ne accetta di più? 
+\paragraph{Teorema 6.9 p. 218}:\\
+SE L = $N(P_{N})$ per un PDA $P_{N} = (Q, \Sigma, \Gamma, \delta_{N}, q_{0}, z_{0})$
+ALLORA $\exists PDA P_{F} tale che L = L(P_{F})$, praticamente puoi costruirti
+un automa che genera gli stessi linguaggi modificando l'automa di partenza. \\
+Quello che accade è che il nuovo automa simula il precedente, cambiando il modo
+di accettazione, questo fa capire che tendenzialmente quelli a stati finali 
+risultino più potenti. Ora, per ipotesi consideriamo un P(N) di questo tipo:
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (19.8,-26.1) circle (3);
+\draw (19.8,-26.1) node {$q_0$};
+\draw [black] (42.3,-12.3) circle (3);
+\draw [black] (42.3,-26.1) circle (3);
+\draw [black] (42.3,-40.7) circle (3);
+\draw [black] (18.477,-23.42) arc (234:-54:2.25);
+\fill [black] (21.12,-23.42) -- (22,-23.07) -- (21.19,-22.48);
+\draw [black] (13.6,-24.9) -- (16.85,-25.53);
+\draw (12.87,-24.6) node [left] {$start$};
+\fill [black] (16.85,-25.53) -- (16.16,-24.89) -- (15.97,-25.87);
+\end{tikzpicture}
+\end{center}
+Sostanzialmente quello che si verifica è che si aggiunge un nuovo start
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (19.8,-26.1) circle (3);
+\draw (19.8,-26.1) node {$q_0$};
+\draw [black] (42.3,-12.3) circle (3);
+\draw [black] (42.3,-26.1) circle (3);
+\draw [black] (42.3,-40.7) circle (3);
+\draw [black] (14.6,-39.5) circle (3);
+\draw (14.6,-39.5) node {$p_{0}$};
+\draw [black] (61.7,-26.4) circle (3);
+\draw (61.7,-26.4) node {$P_{f}$};
+\draw [black] (61.7,-26.4) circle (2.4);
+\draw [black] (18.477,-23.42) arc (234:-54:2.25);
+\fill [black] (21.12,-23.42) -- (22,-23.07) -- (21.19,-22.48);
+\draw [black] (13.6,-24.9) -- (16.85,-25.53);
+\draw (12.87,-24.6) node [left] {$start$};
+\fill [black] (16.85,-25.53) -- (16.16,-24.89) -- (15.97,-25.87);
+\draw [black] (14.6,-50.3) -- (14.6,-42.5);
+\draw (14.6,-50.8) node [below] {$start$};
+\fill [black] (14.6,-42.5) -- (14.1,-43.3) -- (15.1,-43.3);
+\draw [black] (15.69,-36.7) -- (18.71,-28.9);
+\fill [black] (18.71,-28.9) -- (17.96,-29.46) -- (18.89,-29.82);
+\draw (17.95,-33.65) node [right] {$\epsilon,\mbox{ }x_0\mbox{ }|\mbox{ }z_0x_0$};
+\draw [black] (45.106,-13.359) arc (67.16594:40.81444:39.918);
+\fill [black] (59.83,-24.06) -- (59.68,-23.13) -- (58.92,-23.78);
+\draw (56.6,-17.36) node [above] {$\epsilon,\mbox{ }x_0\mbox{ }|\mbox{ }\epsilon$};
+\draw [black] (45.3,-26.15) -- (58.7,-26.35);
+\fill [black] (58.7,-26.35) -- (57.91,-25.84) -- (57.89,-26.84);
+\draw (51.99,-26.78) node [below] {$\epsilon,\mbox{ }x_0\mbox{ }|\mbox{ }\epsilon$};
+\draw [black] (59.827,-28.743) arc (-40.73369:-66.47746:41.086);
+\fill [black] (59.83,-28.74) -- (58.93,-29.02) -- (59.68,-29.68);
+\draw (54.85,-35.5) node [below] {$\epsilon,\mbox{ }x_0\mbox{ }|\mbox{ }\epsilon$};
+\draw [black] (22.479,-24.752) arc (114.70765:64.4719:43.066);
+\fill [black] (59.04,-25.01) -- (58.53,-24.22) -- (58.1,-25.12);
+\draw (40.79,-20.3) node [above] {$\epsilon,\mbox{ }x_0\mbox{ }|\mbox{ }\epsilon$};
+\end{tikzpicture}
+\end{center}
+\paragraph{Vediamo un esempio}:\\
+Segnamoci un $P_{F} = (Q \cup \{p_{0}, p_{f}\}, \Sigma, \Gamma \cup \{x_{0}\}, 
+\delta_{F}, p_{0}, x_{0}, \{p_{F}\})$
+\begin{enumerate}
+	\item $\delta_{F} = (p_{0}, \epsilon, x_{0}) = \{(q_{0},z_{0}x_{0})\}$
+	\item $\forall q \in Q, \forall a \in \Sigma \cup \{\epsilon\}, \forall y \in
+	\Gamma, \delta_{F}(q,a,y) contiene tutte le coppie di \delta_{N}(q,a,y)$
+	\item $\forall q \in Q, \delta_{F}(q,\epsilon, x_{0}) contiene (p_{f}, \epsilon)$ 
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \end{document}
