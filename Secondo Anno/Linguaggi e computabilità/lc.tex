@@ -3830,18 +3830,174 @@ S $\to$ 0S1 | 01
 \fill [black] (42.48,-28.26) -- (43.12,-28.95) -- (43.38,-27.98);
 \end{tikzpicture}
 \end{center}
-
-
-
-
-
-
-
-
-
-
-
-
-
+\paragraph{Altro esempio: }Dato il linguaggio L = 
+$\{a^{n}b^{m}c^{m}d^{n} | n \geq 1, m \geq \}$\\
+Definiamo la CFG che sarà di questo tipo: 
+\begin{itemize}
+	\item S $\to$ aSd | X
+	\item Z $\to$ bXc | bc
+\end{itemize}
+Con X che si riferisce a $b^{m}c^{m}$ 
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (37.4,-28.3) circle (3);
+\draw (37.4,-28.3) node {$q$};
+\draw [black] (28,-28.3) -- (34.4,-28.3);
+\draw (27.5,-28.3) node [left] {$start$};
+\fill [black] (34.4,-28.3) -- (33.6,-27.8) -- (33.6,-28.8);
+\draw [black] (40.08,-26.977) arc (144:-144:2.25);
+\draw (44.65,-28.3) node [right] {$\star$};
+\fill [black] (40.08,-29.62) -- (40.43,-30.5) -- (41.02,-29.69);
+\end{tikzpicture}
+\end{center}
+E $\star$ = \\
+$\epsilon$, S / aSd \\
+$\epsilon$, S / X \\
+$\epsilon$, X / bXc \\
+$\epsilon$, X / bc \\
+a, a / $\epsilon$ \\
+b, b / $\epsilon$ \\
+c, c / $\epsilon$ \\
+d, d / $\epsilon$ \\
+Proviamo abcd:\\
+S $\implies$ aSd $\implies$ aXd $\implies$ abcd, quindi abcd appartiene al 
+linguaggio. Ora ragioniamo sull'automa a pila:\\
+(q, abcd, S) $\vdash$ (q abcd, aSd) $\vdash$ (q, bcd, Sd) $\vdash$ (q, bcd, Xd)
+$\vdash$ (q, bcd, bcd) $\vdash$ (q, cd, cd) $\vdash$ (q, d, d) $\vdash$
+(q, $\epsilon$, $\epsilon$) (accetta)
+\section{PDA Deterministici (DPDA)}
+Un PDA P = $(Q, \Sigma, \Gamma, \delta, q_{0}, z_{0}, F)$ è un DPDA se
+\begin{enumerate}
+	\item $|\delta(q,a,X| \leq 1 \forall q \in Q, \forall a \in \Sigma \cup 
+	\{\epsilon\}, \forall x \in \Gamma$
+	\item Se $|\delta(q, a, X)| \neq 0$ per qualche a $\in \Gamma$ ALLORA 
+	$|\delta(q, \epsilon, X)|$ = 0
+\end{enumerate}
+La prima condizione ci dice che non deve esserci più di una scelta, la cardinalità
+o è 0 o massimo 1, non possono esserci due coppie o più, mentre la seconda 
+condizione dice che se c'è una $\delta$ definita per un certo simbolo di input
+allora per lo stesso stato e l'elemento testa della pila non dev'esserci 
+un'$\epsilon$-mossa
+\paragraph{Esempio: }Vediamo un DPDA per $L_{wcw^{R}} = \{wcw^{R} | w \in \{0,1\}^{\star}\}$\\
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (25.2,-28.4) circle (3);
+\draw (25.2,-28.4) node {$q_0$};
+\draw [black] (42.7,-28.4) circle (3);
+\draw (42.7,-28.4) node {$q_1$};
+\draw [black] (61.1,-28.4) circle (3);
+\draw (61.1,-28.4) node {$q_2$};
+\draw [black] (61.1,-28.4) circle (2.4);
+\draw [black] (15.8,-28.4) -- (22.2,-28.4);
+\draw (15.3,-28.4) node [left] {$start$};
+\fill [black] (22.2,-28.4) -- (21.4,-27.9) -- (21.4,-28.9);
+\draw [black] (23.877,-25.72) arc (234:-54:2.25);
+\draw (25.2,-21.15) node [above] {$\star$};
+\fill [black] (26.52,-25.72) -- (27.4,-25.37) -- (26.59,-24.78);
+\draw [black] (28.2,-28.4) -- (39.7,-28.4);
+\fill [black] (39.7,-28.4) -- (38.9,-27.9) -- (38.9,-28.9);
+\draw [black] (45.7,-28.4) -- (58.1,-28.4);
+\fill [black] (58.1,-28.4) -- (57.3,-27.9) -- (57.3,-28.9);
+\draw (51.9,-28.9) node [below] {$\epsilon,\mbox{ }z_0$};
+\draw [black] (41.377,-25.72) arc (234:-54:2.25);
+\draw (42.7,-21.15) node [above] {$\star_{2}$};
+\fill [black] (44.02,-25.72) -- (44.9,-25.37) -- (44.09,-24.78);
+\end{tikzpicture}
+\end{center}
+Con $\star$ = \\
+0, $z_{0} | 0z_{0}$\\
+1, $z_{0} | 1z_{0}$\\
+0,0 | 00 \\
+0,1 | 01 \\
+1,0 | 10 \\
+1,1 | 11 \\
+c, $z_{0} | cz_{0}$\\
+c, 0 | 0\\
+c, 1 | 1\\
+E Con $\star_{2}$ =\\
+0,0 | $\epsilon$\\
+1,1 | $\epsilon$\\
+Ora, la domanda che ci si deve porre è: $\exists$ DPDA che accetta 
+$L_{ww^{R}} = \{ww^{R} | w \in \{0,1\}^{\star}\}$, la risposta è no perchè con
+i DPDA. Cosa possono accettare i DPDA? Possono accettare tutti i linguaggi
+regolari? \\
+\paragraph{Teorema 6.17 p 234:} SE L $\in$ Regolari, allora L = L(P) per un DPDA P.
+\subparagraph{Dimostrazione:} L'idea è che un PDA non deterministico è un $\epsilon$-NFA
+più una pila, se io tolgo la pila posso accettare i linguaggi regolari. Qui si ha
+un DFA più una pila, ma il ragionamento è lo stesso, non uso la pila e accetto
+qualsiasi linguaggio regolare, perciò:\\
+SE L $\in$ REG, allora $\exists$ DFA A = $(Q, \Sigma, \delta_{A}, q_{0}$, F) tale che
+L = L(A). \\
+\textbf{Costruiamo il DPDA }P = $(Q, \Sigma, \{Z_{0}\}, \delta_{p}, q_{0}, Z_{0}, F)$
+tale che $\delta_{p} (q,a, Z_{0}) = \{(p, Z_{0})\} \forall p, q \in Q$ tale che
+$\delta_{A}(q,a) = p$\\
+Vale allora che $(q_{0}, w, Z_{0}) \vdash^{\star}_{p} (p, \epsilon, Z_{0})$ SE e
+solo SE $\widehat{\delta}_{A}(q_{0}, w)$ = p
+\section{Proprietà del Prefisso (Prefix Free)}
+Occhio che fa confondere, perchè noi vogliam dire che un certo l'inguaggio NON
+abbia prefissi, in inglese infatti è \textbf{Prefix Free}.\\
+Un linguaggio L ha la \underline{proprietà del prefisso}, cioè è \underline{Prefix Free}
+SE \textbf{NON} esistono due stringhe x e y dello stesso linguaggio tali che son
+diverse E x sia prefissa di y.
+\paragraph{Detto peggio}:\\
+\[PrefixFree(L) ~ se ~ \nexists ~ x, y \in L ~ t.c. ~ x \neq y ~ e ~ x ~ prefissa ~ di ~ y\]
+Cioè non devo mai trovare due stringhe diverse tra loro in cui una è prefissa 
+dell'altra. Prendo una stringa qualsiasi, qualunque sia la prefissa che considero,
+questa \textbf{NON} apparterrà al linguaggio. 
+\paragraph{Prendere una prefissa} significa prendere un sottoinsieme della stringa
+partendo dalla lista
+\paragraph{Teorema 6.19 p 235: }Un linguaggio L è N(P) cioè accettabile per pila vuota,
+per un DPDA P SE e solo SE L è L(P') per un DPDA P' e inoltre L ha proprietà 
+\textbf{Prefix Free}.\\
+\textbf{Perchè non tutti i regolari sono accettati a pila vuota? Contro esempio}\\
+Consideriamo questa espressione regolare: $0^{\star} \to L = {\epsilon, 0, 00, 000, ...}
+\in$ Reg MA non è prefix free! 
+\paragraph{Supponendo che:} L \underline{\underline{non}} è prefixFree ALLORA $\exists$
+x, y, $\in$ L tali che x è prefissa di y ALLORA posso scrivere y = xw per qualche w $\in \Sigma^{\star}$.
+Ora prendiamo il nostro DPDA, supponendo che esista, tale che L sia accettato per pila vuota 
+da questo DPDA. \\
+\subparagraph{}	Questo DPDA parte da $q_{0}$ e riceve in input x $(q_{0}, x, z_{0})$ 
+$\vdash^{\star}_{p} (q, \epsilon, \epsilon)$ per qualche q $\in$ Q\\
+$(q_{0}, y, z_{0}) = (q_{0}, xw, z_{0}) \vdash^{\star}_{p} (q, w, \epsilon)$, ha w
+ma la pila e vuota, e quindi è bloccato perchè le $\delta$ necessitano almeno
+un elemento nella pila, quindi vien rifiutato y, e sbaglia, mentre invece dovrebbe
+accettarlo siccome fa parte del linguaggio. Perciò se ha delle prefisse non si 
+può accettare per pila vuota.
+\paragraph{Teorema 6.20 p 236: }SE L = N(P) per un DPDA P cioè se è accettabile
+per pila vuota per un qualche DPDA ALLORA L ha una grammatica \textbf{Context
+Free} NON ambigua
+\paragraph{Teorema 6.21 p 237: }SE L = L(P) per un qualche DPDA allora L ha una
+CFG \textbf{Non ambigua}
+\paragraph{Vediamo un esempio per} L = ${0^{n} 1^{n} | n \geq 1}$
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (25.2,-28.4) circle (3);
+\draw (25.2,-28.4) node {$q_0$};
+\draw [black] (42.7,-28.4) circle (3);
+\draw (42.7,-28.4) node {$q_1$};
+\draw [black] (61.1,-28.4) circle (3);
+\draw (61.1,-28.4) node {$q_2$};
+\draw [black] (61.1,-28.4) circle (2.4);
+\draw [black] (15.8,-28.4) -- (22.2,-28.4);
+\draw (15.3,-28.4) node [left] {$start$};
+\fill [black] (22.2,-28.4) -- (21.4,-27.9) -- (21.4,-28.9);
+\draw [black] (23.877,-25.72) arc (234:-54:2.25);
+\draw (25.2,-21.15) node [above] {$0,z_0\mbox{ }|\mbox{ }0z_0\mbox{ }oppure\mbox{ }0,0\mbox{ }|\mbox{ }00$};
+\fill [black] (26.52,-25.72) -- (27.4,-25.37) -- (26.59,-24.78);
+\draw [black] (28.2,-28.4) -- (39.7,-28.4);
+\fill [black] (39.7,-28.4) -- (38.9,-27.9) -- (38.9,-28.9);
+\draw (33.95,-27.9) node [above] {$1,0\mbox{ }|\mbox{ }\epsilon$};
+\draw [black] (45.7,-28.4) -- (58.1,-28.4);
+\fill [black] (58.1,-28.4) -- (57.3,-27.9) -- (57.3,-28.9);
+\draw (51.9,-28.9) node [below] {$\epsilon,\mbox{ }z_0\mbox{ }|\mbox{ }\epsilon$};
+\draw [black] (41.377,-25.72) arc (234:-54:2.25);
+\draw (42.7,-21.15) node [above] {$1,0\mbox{ }|\mbox{ }\epsilon$};
+\fill [black] (44.02,-25.72) -- (44.9,-25.37) -- (44.09,-24.78);
+\end{tikzpicture}
+\end{center}
+Si conclude che questo linguaggio ha la proprietà del prefisso cioè è prefix free. 
 
 \end{document}

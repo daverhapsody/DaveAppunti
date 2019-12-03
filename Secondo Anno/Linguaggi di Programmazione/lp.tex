@@ -1890,16 +1890,16 @@ Non metterò più di tanta roba, vi lascio giusto qualche esempio.
 Di base LISP è composto di funzioni. Un esempio di funzione potrebbe
 essere ad esempio
 \begin{lstlisting}[language=LISP]
-	prompt> (+ 3 5)
-	8
+prompt> (+ 3 5)
+8
 \end{lstlisting}
 Come già da qua si vede c'è una funzione definita tutta tra parentesi. Si apre 
 con + (indica che funzione è) e poi gli argomenti della funzione che si considera.
 Ora, c'è un detto famoso: \textbf{LISP è il miglior simulatore di parentesi}. 
 Basti pensare che se voglio fare una somma dentro una somma mi vien fuori
 \begin{lstlisting}[language=LISP]
-	prompt> (+ (+ 4 6) 5)
-	15
+prompt> (+ (+ 4 6) 5)
+15
 \end{lstlisting}
 Immaginatevi cosa vien fuori tra poco.
 Dalle slide vi riporto qualche esempio più preciso: 
@@ -1920,32 +1920,32 @@ siccome l'interprete ragiona su ogni elemento delle parentesi
 Ci son due funzioni predefinite per questo scopo che sono \textbf{defparameter}
 e \textbf{defun}, uno definisce un parametro, per ipotesi se avessi:
 \begin{lstlisting}[language=LISP]
-	prompt> (defparameter x 15)
-	15
+prompt> (defparameter x 15)
+15
 \end{lstlisting}
 In java avremmo scritto
 \begin{lstlisting}[language=Java]
-	x = 15;
+x = 15;
 \end{lstlisting}
 (Mancherebbe il tipo per i dati ma.. Non c'è in questo caso). Ci sono diversi 
 modi per fare gli assegnamenti, in questo caso si ha defparametere come base ma 
 ne vedremo migliori più avanti.
 Definiamo ora una ipotetica funzione: 
 \begin{lstlisting}[language=LISP]
-	prompt> (defun quadrato(x) (* x x))
-	quadrato
+prompt> (defun quadrato(x) (* x x))
+quadrato
 \end{lstlisting}
 E' come aver fatto in java
 \begin{lstlisting}[language=Java]
-	public int quadrato(int x){
-		return x * x;
-	}
+public int quadrato(int x){
+return x * x;
+}
 \end{lstlisting}
 E' abbastanza intuitivo, una volta definite le nostre funzioni e costanti, 
 possiamo poi utilizzarle ovviamente
 \begin{lstlisting}[language=LISP]
-	prompt> (quadrato x)
-	1764
+prompt> (quadrato x)
+1764
 \end{lstlisting}
 Qua si lavora con simboli, non stringhe, occhio a non confondersi su questa cosa.
 \section{Funzioni $\lambda$ (Funzione anonima)}
@@ -1955,9 +1955,9 @@ In parole povere lambda è una funzione che però non ha un nome.
 \paragraph{A che serve?} Puoi direttamente applicarla a degli argomenti, tipo 
 per dire
 \begin{lstlisting}[language=LISP]
-	prompt> (lambda (x) (+ 2 x))
-	%In pratica aggiungo 2 ad x
-	prompt> ((lambda (x) (+ 2 x))40)
+prompt> (lambda (x) (+ 2 x))
+%In pratica aggiungo 2 ad x
+prompt> ((lambda (x) (+ 2 x))40)
 \end{lstlisting}
 Ogni volta si deve star lì a ridefinirsela insomma, capiamo già da qui che ha 
 più senso (in base alla riusabilità) definirsi di pacco una funzione e stop.
@@ -1965,53 +1965,53 @@ Per ora lasciamole un po' da parte, più tardi ci serviranno di più.
 Ora, proviamo a definirci una funzione del tipo valore\_assoluto.
 A cosa è uguale? 
 \[
-	valore\_Assoluto = \begin{cases}
-		x ~ se ~ x > 0 \\
-		0 ~ se ~ x = 0 \\
-		-x ~ se ~ x < 0
-	\end{cases}
+valore\_Assoluto = \begin{cases}
+x ~ se ~ x > 0 \\
+0 ~ se ~ x = 0 \\
+-x ~ se ~ x < 0
+\end{cases}
 \]	
 Bene, questo da un punto di vista prettamente matematico, ma invece come sarebbe
 dal punto di vista più programmativo? In questo caso c'è il \textbf{cond}. 
 E' una funzione che associa semplicemente elemeti tra loro.
 \begin{lstlisting}[language=LISP]
-	(cond (x a) (y b))
+(cond (x a) (y b))
 \end{lstlisting}
 In pratica associa x con a e y con b, con x, a, y, b che sono delle espressioni.
 \begin{lstlisting}[language=LISP]
 (defun valore-assoluto (x) 
-	(cond ((> x 0) x)
-	((= x 0) 0)
-	((< x 0) (- x))))
+(cond ((> x 0) x)
+((= x 0) 0)
+((< x 0) (- x))))
 \end{lstlisting}
 Da qui abbiamo un esempio carino anche di indentazione del codice. 
 Non c'è molto da dire su < > e =, sono delle booleane che o danno True o False.
 Se ci son le booleane c'è anche l'\textbf{if}, che funziona come una qualsiasi 
 funzione booleana 
 \begin{lstlisting}[language=LISP]
-	defun(maggiore_di_zero (x))
-		(if (> x 0) T) 
+defun(maggiore_di_zero (x))
+(if (> x 0) T) 
 \end{lstlisting}
 In pratica ti spara True se lo è, come si osserva non c'è l'else, perchè va in
 successione all'altra espressione.
 Proviamo a definire una funzione ricorsiva, il fattoriale.
 \begin{lstlisting}[language=LISP]
-	 (defun fattoriale (n)
-       (if (= n 0) 1
-		(* n (fattoriale (- n 1)))))
+(defun fattoriale (n)
+(if (= n 0) 1
+(* n (fattoriale (- n 1)))))
 \end{lstlisting}
 Tradotto, se n è 0 allora dammi 1 altrimenti dammi il prodotto di n con il 
 fattoriale di n-1. Manca l'else, ma da qua si capisce che vien fatto in sequenza.
 \paragraph{E' tutto ricorsivo: }Come in Prolog tutto va ricorsivamente, PERCIO' 
 sarà possibile in qualche modo tentare di simulare un'iterazione.
 \begin{lstlisting}[language = LISP]
-	(defun fatt-ciclo (n acc) 
-		(if (= n 0)
-			acc
-			(fatt-ciclo (- n 1) (* n acc))))
-	
-	(defun fattoriale (n) 
-		(fatt-ciclo n 1))
+(defun fatt-ciclo (n acc) 
+(if (= n 0)
+acc
+(fatt-ciclo (- n 1) (* n acc))))
+
+(defun fattoriale (n) 
+(fatt-ciclo n 1))
 \end{lstlisting}
 In pratica gli chiedo, è n = 0? restituisco l'accumulatore, quindi questo si 
 incrementerà costantemente, infatti dopo si ha il fattoriale di n - 1 che 
@@ -2039,7 +2039,7 @@ A questo punto è easy crearsi una libreria (Sieh, è già tanto se so scriverti
 una somma, sicurissimo so farti la libreria guarda), e vien fuori una roba del 
 genere:
 \begin{center}
-	\includegraphics[width=0.75\textwidth]{14}
+\includegraphics[width=0.75\textwidth]{14}
 \end{center}
 \section{Cons-Cells e funzione CONS}
 Una struttura essenziale è la cons-cell, cioè una coppia di puntatori a due 
@@ -2047,7 +2047,7 @@ elementi.
 Sono create dalla funzione \textbf{cons} che praticamente alloca della memoria 
 (E' tipo malloc di C oppure un new in Java) 
 \begin{center}
-	\includegraphics[width=0.75\textwidth]{15}
+\includegraphics[width=0.75\textwidth]{15}
 \end{center}
 \section{Rappresentazione dei numeri razionali}
 In pratica tu hai la tua primitica cons, e hai delle funzioni che sono
@@ -2058,7 +2058,7 @@ In pratica tu hai la tua primitica cons, e hai delle funzioni che sono
 \end{itemize}
 che vengono schematizzate così: 
 \begin{center}
-	\includegraphics[width=0.75\textwidth]{16}
+\includegraphics[width=0.75\textwidth]{16}
 \end{center}
 Visto che si è menzionato qualcosa di più grafico, proviamo a dare un che di 
 informativo a ciò che abbiam detto. Come detto primo quello che fa la conf è:
@@ -2068,7 +2068,7 @@ informativo a ciò che abbiam detto. Come detto primo quello che fa la conf è:
 Si possono ottenere dei veri e propri grafi che sono in una notazione box and 
 pointer, come in questa illustrazione:
 \begin{center}
-	\includegraphics[width=0.75\textwidth]{17}
+\includegraphics[width=0.75\textwidth]{17}
 \end{center}
 \paragraph{Precisazione: }Quando disegnate questi grafi aspettate un attimo prima
 di scrivere i numerelli dentro i quadratini.
@@ -2083,7 +2083,7 @@ corrispettivo di una funzione (cons NIL T).
 \subparagraph{Lamentela mia:} Sarò fastidioso, ma mi urta il sistema nervoso 
 "NIL", ma non potevan chiamarlo NULL come tutte le persone normali? No? Vabbeh.
 Ora sono offeso :c
-\subsubparagraph{Edit: }A quanto pare più avanti si vedrà che null è una funzione,
+\subparagraph{Edit: }A quanto pare più avanti si vedrà che null è una funzione,
 e quindi.. Han dato il nome di un valore ad una funzione, giusto per confondermi
 meglio	
 \paragraph{Occhio a una cosa:} Se io pongo (cons 42 nil) ottengo una lista avente
@@ -2097,7 +2097,7 @@ concatena alla prima lista il nuovo carattere semplicemente.
 \section{Esempi sulle liste}
 \paragraph{Esempio 1}
 \begin{center}
-	\includegraphics[width=0.75\textwidth]{18}
+\includegraphics[width=0.75\textwidth]{18}
 \end{center}
 In pratica quello che accade è che: \\
 La funzione list-ref si definisce con il nome nth (Per via di Common Lisp),
@@ -2132,15 +2132,15 @@ CIoè fondamentalmente pure qua ci sono espressioni simboliche (sexp's) che sono
 a tutti gli effetti costituite dalle cons-cells
 \begin{itemize}
 	\item Dato che programmi e sexp’s in Lisp sono equivalenti, possiamo dare
-	 le seguenti regole di valutazione (ed implementarle nella funzione eval!)
+	le seguenti regole di valutazione (ed implementarle nella funzione eval!)
 \end{itemize}
 Data una sexp: 
 \begin{center}
-	\includegraphics[width=0.75\textwidth]{19}
+\includegraphics[width=0.75\textwidth]{19}
 \end{center}
 Ora vi riporto gli esempi dalle slide di funzioni ricorsive:
 \begin{center}
-	\includegraphics[width=0.75\textwidth]{20}
+\includegraphics[width=0.75\textwidth]{20}
 \end{center}
 Il concetto è che la forma ricorsiva delle liste si presta bene alla programmazione
 ricorsiva.. Cioè ovviamente direi.
@@ -2150,17 +2150,177 @@ Come?
 	\item Ricorsivamente mi devo ridurre al caso base operando su un argomento
 	ridotto, minore, decrementato. FINCHE' non sarà 0 o il caso base.
 \end{itemize}
+\section{Operatori di uguaglianza}
+Si hanno due differenti operatori per verificare l'uguaglianza tra due oggetti:
+\begin{itemize}
+	\item eql
+	\item equal
+\end{itemize}
+\subsection{Eql}
+E' applicato a simboli e numeri interi e puntatori. In pratica ti dice
+se due valori sono uguali, tipo (eql 'a 'a):
+\paragraph{}In pratica gli chiedi: è la stringa "a" uguale alla stringa "a"? 
+Ma potrebbe pure esserci un valore numerico
+\subsection{Equal} \textbf{equal} è esattamente come \textbf{eql} ma va 
+a scavare in profondità alle liste, nel senso che applica ricorsivamente a tutte 
+le sottoliste presenti l'eql. 
+\subparagraph{Esempio: }prendi la lista (((((a))))), in pratica hai una serie di 
+sottoliste che ricorsivamente devi andarti a calcolare, equal fa anche questo, 
+quindi è più figo, potente.
+\section{Il vantaggio del paradigma funzionale}
+Una volta capito cos'è il quote, la lista possiamo finalmente dare un senso 
+all'esistenza di questo tipo di paradigma. 
+\paragraph{Per esempio: }prendete la lista 
+\begin{lstlisting}[language=LISP]
+(defparameter pari (list 2 4 6 8 10))
+\end{lstlisting}
+E supponismo ora che per ipotesi volessimo moltiplicare tutti gli 
+elementi di questa lista per un determinato valore (In pratica prodott di un 
+vettore per $\kappa$)
+\begin{lstlisting}[language=LISP]
+(defun scala-lista (l fattore) 
+	(if (null l)
+		nil
+		(cons (* fattore (car l))
+				(scala-lista (cdr l) fattore))))	
+\end{lstlisting}
+Notare che questa funzione che certamente mi ricordo già a memoria.. Vero? usa
+una ripetizione di append, l'operazione fa questa funzione si può astrarre se 
+andiamo ad astrarre il concetto di valore funzionale.
+\paragraph{Cioè? }L’astrazione “ \color{red} applica la funzione f a tutti gli 
+elementi della
+lista L e ritorna una lista dei valori”\color{black} è nota come “map”; in
+Common Lisp la 
+funzione mapcar svolge questo compito.
+\paragraph{Mapcar} è una funzione predefinita ma è riscrivibile come:
+\begin{lstlisting}[language=LISP]
+(defun mapcar* (funzione lista)
+       (if (null lista)
+			nil
+			(cons (funcall funzione (car lista))
+					(mapcar* funzione (cdr lista)))))	
+\end{lstlisting}
+In cui mapcar* è usato per evitare errori in CommonLisp, e si noti inoltre anche
+\textbf{funcall} che invece chiama la funzione prendendo un certo argomento.
+\paragraph{Qua ci sono alcuni esempi presi dalle slide}
+\begin{center}
+	\includegraphics[width=0.75\textwidth]{21}
+\end{center}
+\section{$\lambda$-Funzioni}
+Avevo voglia di scrivere $\lambda$ come simbolo a caso, ma quando si useranno 
+queste funzioni si usa \textbf{lambda}, che serve per indicare delle funzioni 
+anonime, praticamente costruisce delle funzioni quando ce n'è bisogno.
+\paragraph{Cioè? }In LISP è possibile definire queste funzioni in modo che ti 
+definisci unas funzione solo quando ti serve. Una volta creata, la usi, ma appena
+finito di usarla *puf*, morta, schiattata, defunta, REST IN PEACE BOI. Consente
+sicuramente di ottimizzarsi meglio la memoria
+\paragraph{Esempi: }
+\begin{center}
+\includegraphics[width=0.75\textwidth]{22}
+\end{center}
+In pratica il concetto è che con il lambda puoi generare delle funzioni che 
+si basano su quest'ultima: Per intenderci se voglio fare una funzione che si 
+chiama "IncrementaDi" con x come parametro, la \textbf{lambda} praticamente 
+si può strutturare con un (+ x y), perciò si definisce una funzione:\\
+(defun incrementa-x (x) 
+	(lambda (y) (+ x y)))\\
+Se per ipotesi ora si volesse fare una funzione che ti somma 5 diventerebbe
+(defun incrementa-5 (x) (incrementa-x 5))
+\section{Let}
+Prendiamo una funzione di questo tipo:
+\[
+	f(x, y) = x(1+xy)^{2}+y(1-y)+(1-y)(1+xy)
+\]	
+In pratica tu usando lambda puoi costruirti tutti i valori intermedi, e quel che
+accade è che la funzione vien chiamata con due valori che saranno i valori 
+intermedi da usare:
+\begin{lstlisting}[language=LISP]
+(defun f (x y)
+      ((lambda (a b)
+          (+ (* x (quadrato a))
+             (* y b)
+             (* a b)))
+(+ 1 (* x y))
+(- 1 y)))	
+\end{lstlisting}
+Questo tipo di chiamate a funzioni anonime è così utile da essere stato ri-codificato
+con un nuovo operatore speciale: \textbf{let}
+La funzione riportata qua sopra diventerebbe: 
+\begin{lstlisting}[language=LISP]
+(defun f (x y)
+      (let ((a (+ 1 (* x y)))
+		(b (- 1 y))
+            )
+         (+ (* x (quadrato a))
+            (* y b)
+            (* a b))))
+\end{lstlisting}
+Ovvero, l’operatore let ci permette di introdurre dei nuovi nomi (variabili) 
+locali da poter riutilizzare all’interno di una procedura; la sua sintassi è la 
+seguente.
+\section{Funzioni di un ordine superiore}
+Si intende ordine di una funzione quello che consiste nel prendere una funzione
+e usarla come argomento di un'altra ma potrebbero essere anche di più. Il fatto che possiamo
+implementare queste funzioni è fondamento del paradigma funzionale. Per ora
+si è visto il \textbf{mapcar} ma ce ne sono altre tipo:
+\begin{itemize}
+	\item compose
+	\item fold (o reduce)
+	\item complement
+	\item filter (variante di remove e delete)
+\end{itemize}
+\subsection{Compose}
+E' l'equivalente della composizione di funzioni in matematica. La sua semantica è:
+date due funzioni (di un unico argomento) f e g, mi deve tornare f di g(x), qui
+ci torna di nuovo utile il \textbf{lambda}
+\begin{lstlisting}[language=LISP]
+(defun compose (f g)
+   (lambda (x)
+		(funcall f (funcall g x)))) 
 
+prompt>	(funcall (compose 'first 'rest)
+					'(1 2 3 4 5))
+2
+\end{lstlisting} 
+Se per dire volessimo fare il fattoriale del 
+\subsection{Filter}
+E' un filtro, quindi rimuove tutti gli elementi che non rispettano una condizione.
+Nel senso all'atto pratico è, prendo un elemento, SE quell'elemento non ha una
+determinata caratteristica, non considero l'elemento. Praticamente è uno switch.
+\begin{lstlisting}[language=LISP]
+      (cond ((null lista) nil)
+            ((funcall predicato (car lista))
+             (cons (car lista)
+                   (filter predicato (cdr lista)))
+            (T (filter predicato (cdr lista)))))	
+\end{lstlisting}
+\subsection{Accumula}
+Detta anche fold o reduce, praticamente progressivamente ha un valore che si
+accumula in base al risultato ottenuto su ogni elemento della lista. Esempio:
+La sommatoria di una lista, o la produttoria.
+\begin{lstlisting}[language=LISP]
+(defun accumula (f iniziale lista)
+   	(if (null lista)
+		iniziale
+		(funcall f (car lista)
+        		 (accumula f iniziale (cdr lista)))))
+\end{lstlisting}
+\chapter{Le Keywords}
+I parametri invece di essere scritti in ordine possono essere anche associati
+a dei nomi, delle keywords. Molte funzioni LISP hanno già questo di comportamento.
+Tipo io prendo una lista (1 2 3 4 5 6 7 8 9 10) e posso dire che :start sia 3
+e :end sia 10, quindi non mi serve averceli più in ordine. Se ad una 
+funzione voglio dire che ciò che le arriva è una keyword devo usare \&key che
+(defun make-point (\&key x y))\\
+(list x y)\\
+Quando noi lo richiamiamo possiamo chiamarla con: (make-point :y 5 :x 6), 
+andrà ad assegnare ad x 6 e y 5 malgrado l'ordine sia invertito.
 
-
-
-
-
-
-
-
-
-
-
-
+\chapter{Input/Output in Common LISP}
+Come in ogni linguaggio anche qui ci sono funzioni che permettano di scrivere
+in output e ricevere in input dati. E queste funzioni sono READ e PRINT.
+Oltre all'input output su schermo posson pure prendere file.
+\section{Read}
+La Read semplicemente acquisisce e legge valori, è un input di oggetti LISP, 
+in cui per oggetto si intende una lista, un valore, un carattere, tutto. 
 \end{document}
