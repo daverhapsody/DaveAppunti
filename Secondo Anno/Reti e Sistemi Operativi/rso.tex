@@ -4,6 +4,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath} 
 \usepackage{xcolor}
+\usepackage{listings}
 \usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
 \usepackage{hyperref}
@@ -1532,4 +1533,115 @@ a fare tipo dei tunnel con le shell per una supermegaipergigantissima macro rete
 che contiene tutti quanti. L'indirizzo è l'ip V6, mentre dentro una rete bastano
 e avanzano gli ipv4... A meno che in casa abbiate $2^{32}$ + 1 dispositivi diversi
 in casa.	
+\chapter{Sistemi: SECONDO PARZIALE}
+\section{Background}
+Quando dei processi o thread eseguono in maniera concorrente o parallela, in 
+pratica l'accesso alle strutture dati condivise può produrre inconsistenze,
+\paragraph{Infatti:} per mantenere la consistenza occorrono strumenti per garantire il 
+corretto ordinamento dell'esecuzione di processi o thread che sono in 
+cooperazione. Il concetto è che una determinata risorsa, se condivisa, va 
+organizzata per quanto riguarda gli accessi. \\
+Lo strutture dati completamente concorrenti sono pressochè da lasciare lì, 
+sì esistono, ma non le vediamo in questo corso. \\
+\paragraph{Di base: }Se qualcuno accede al mezzo, il mezzo è occupato e nessun
+altro deve accedere. Appena finisco però sì, può farlo.
+\section{Race condition (1)}
+L'istruzione counter++ potrebbe essere implementata in un modo simile in assembly:\\
+\begin{center}
+	$Registro_{1}$ = memory[counter];
+	$Registro_{1} = Registro_{1} + 1$;
+	memory[counter] := $registro_{1}$
+\end{center}
+Oppure anche counter-- puoi implementare, basta metterci -1 anzichè +1, 
+ogni istruzione può generarti degli interleaving, che è un processo che dispone 
+in maniera apparentemente disordinata un certo numero di oggetti ordinati. 
+L'operazione inversa, usata al fine di ricostituire l'ordine originario dei dati
+, prende il nome di deinterleaving. 
+\section{Race conditions nel kernel}
+In unix quando si crea un processo questo ha un ID, e quindi due processi 
+avranno per forza due ID diversi. Un'ipotetica soluzione potrebbe essere 
+il kernel senza diritto di prelazione, cioè un processo va in esecuzione in 
+modalità kernel, fa in modo che non viene interrotto il kernel. 
+\paragraph{Il vantaggio?} 
+E' più semplice da realizzre nei sistemi a single core perchè disattivi gli 
+interrupt. Ma lo svantaggio è che aumentano le latenze, e nel caso del multi-core
+diventa tutto più lento
+\section{Problema della sezione critica}
+Prendiamo un'insieme di processi $p_{0}, ..., p_{n-1}$, ogni processo in pratica
+ha un segmento di codice che si definisce \textbf{Sezione critica} in cui accede
+a delle risorse condivise
+\paragraph{Con che obbiettivo? }Il discorso è che devi progettare un protocollo
+con cui i processi si coordinano, cooperano, che praticamente quando un processo
+è nella sezione critica, allora gli altri non ci sono. Come si progetta? Mettendo
+dei blocchi di codice attorno alla sezione critica.
+\begin{enumerate}
+	\item Sezione di ingresso
+	\item Sezione critica
+	\item Sezione di uscita: Serve per avvertire altri processi che ora possono
+	entrare
+	\item Sezione non critica
+\end{enumerate}
+Perciò un processo è una roba del genere:
+\begin{lstlisting}[language=C]
+	while(true){
+	// Sezione di ingresso
+	// Sezione critica
+	// Sezione di uscita
+	// Sezione non critica
+	}
+\end{lstlisting}
+Questo metodo si chiama per mutua esclusione.
+\section{Mutua esclusione}
+Al più un processo nella sua sezione critica, perciò se nessun processo è nella
+sua sezione critica e c'è almeno un processo è in attesa, questo prima o poi 
+viene eseguito... Ok però serve un'attesa limitata.
+\paragraph{Attesa limitata}: Un processo in attesa di entrare nella sezione 
+critica non può aspettare in modo indefinito di entrarci, perciò oltre al 
+concetto di progresso, c'è questa proprietà, che fa in modo che non si possa
+attendere più di un tot.
+\section{Algoritmo di Peterson}
+E' un'ottima soluzione al problema della mutua esclusione. Prendi per dire due 
+processi, supponiamo che le istruzioni load e store siano atomiche, e i due processi 
+condividono delle variabili:
+\begin{itemize}
+	\item int turn
+	\item boolean $flag[2]:flag[i]$ == true; \\
+	In pratica è true solo se $p_{i}$ è pronto per entrare nella sezione critica
+\end{itemize}
+\paragraph{Algoritmo di Peterson: }
+\begin{center}
+	\includegraphics[width=0.75\textwidth]{1}
+\end{center}
+Questo algoritmo garantisce le tre caratteristiche di prima? Cioè progresso
+limitata attesa e mutua esclusione. YES.
+Il problema è che i compilatori moderni effettuano il riordinamento delle 
+istruzioni, e non solo c'è anche l'uso persuasivo delle caches.
+\paragraph{Esempio: }
+Ho un programma con un flag booleano a false e un intero = 5, con annessa
+stampa di questo intero
+\begin{itemize}
+	\item Thread 0: while(!flag): print x:
+	\item Thread 1: x = 100 flag = true
+\end{itemize}
+Può stampare sia 100 che 0, per via del riordinamento delle istruzioni
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \end{document}

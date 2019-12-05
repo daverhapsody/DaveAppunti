@@ -4,6 +4,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath} 
 \usepackage{xcolor}
+\usepackage{listings}
 \usepackage[margin=1in]{geometry}
 \usepackage{hyperref}
 \usepackage{tikz}
@@ -3831,11 +3832,11 @@ S $\to$ 0S1 | 01
 \end{tikzpicture}
 \end{center}
 \paragraph{Altro esempio: }Dato il linguaggio L = 
-$\{a^{n}b^{m}c^{m}d^{n} | n \geq 1, m \geq \}$\\
+$\{a^{n}b^{m}c^{m}d^{n} | n \geq 1, m \geq 0\}$\\
 Definiamo la CFG che sarà di questo tipo: 
 \begin{itemize}
 	\item S $\to$ aSd | X
-	\item Z $\to$ bXc | bc
+	\item X $\to$ bXc | bc
 \end{itemize}
 Con X che si riferisce a $b^{m}c^{m}$ 
 \begin{center}
@@ -3999,5 +4000,469 @@ CFG \textbf{Non ambigua}
 \end{tikzpicture}
 \end{center}
 Si conclude che questo linguaggio ha la proprietà del prefisso cioè è prefix free. 
+\paragraph{Ecco uno schema di cosa sono i DPDA (Disegno di 
+\href{https://github.com/mirkobalza}{Mirko})}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{28}
+\end{center}
+\paragraph{Esempio: }Parentesi bilanciate, senza $\epsilon$
+\subparagraph{Grammatica:} 
+\begin{itemize}
+	\item B $\to$ (BB) | (B) | ()
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (18,-28.2) circle (3);
+\draw (18,-28.2) node {$q_0$};
+\draw [black] (42.4,-28.2) circle (3);
+\draw (42.4,-28.2) node {$q_1$};
+\draw [black] (64.4,-28.2) circle (3);
+\draw (64.4,-28.2) node {$q_2$};
+\draw [black] (64.4,-28.2) circle (2.4);
+\draw [black] (10,-28.2) -- (15,-28.2);
+\draw (9.5,-28.2) node [left] {$start$};
+\fill [black] (15,-28.2) -- (14.2,-27.7) -- (14.2,-28.7);
+\draw [black] (18.85,-31.065) arc (44.24875:-243.75125:2.25);
+\draw (11.98,-36.35) node [below] {$(,\mbox{ }z_0\mbox{ }|\mbox{ }(\mbox{ }z_0o\mbox{ }oppure\mbox{ }(,\mbox{ }(\mbox{ }|\mbox{ }(($};
+\fill [black] (16.24,-30.62) -- (15.32,-30.82) -- (16.02,-31.53);
+\draw [black] (43.723,-30.88) arc (54:-234:2.25);
+\draw (42.4,-35.45) node [below] {$),(\mbox{ }|\mbox{ }\epsilon$};
+\fill [black] (41.08,-30.88) -- (40.2,-31.23) -- (41.01,-31.82);
+\draw [black] (20.041,-26.008) arc (131.44222:48.55778:15.349);
+\fill [black] (40.36,-26.01) -- (40.09,-25.1) -- (39.43,-25.85);
+\draw (30.2,-21.66) node [above] {$),(\mbox{ }|\mbox{ }\epsilon$};
+\draw [black] (39.987,-29.977) arc (-58.2487:-121.7513:18.598);
+\fill [black] (20.41,-29.98) -- (20.83,-30.82) -- (21.36,-29.97);
+\draw (30.2,-33.26) node [below] {$(,(\mbox{ }|\mbox{ }(($};
+\draw [black] (45.4,-28.2) -- (61.4,-28.2);
+\fill [black] (61.4,-28.2) -- (60.6,-27.7) -- (60.6,-28.7);
+\draw (53.4,-28.7) node [below] {$\epsilon,z_0\mbox{ }|\mbox{ }\epsilon$};
+\end{tikzpicture}
+\end{center}
+In pratica accetta per pila vuota perchè se per ipotesi arrivasse ()() non si arriva
+in q2 ma finisce prima.
+\paragraph{Altro esempio: }Parentesi bilanciate ma senza $\epsilon$
+\subparagraph{Grammatica}
+\begin{itemize}
+	\item B $\to$ BB | (B) | ()
+\end{itemize}		
+Non è \underline{Prefix-Free}, come lo dimostriamo? Basta trovare due stringhe 
+diverse tra loro in cui una non sia prefissa dell'altra percioè le due
+stringhe potrebbero essere y = ()() e x = ().\\
+Sono bilanciate e una è prefissa dell'altra, quindi in questo caso si accetta
+per stato finale sì, ma non per pila vuota.
+\begin{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (21.2,-25.9) circle (3);
+\draw (21.2,-25.9) node {$q_0$};
+\draw [black] (40.6,-25.9) circle (3);
+\draw (40.6,-25.9) node {$q_1$};
+\draw [black] (63.8,-25.9) circle (3);
+\draw (63.8,-25.9) node {$q_2$};
+\draw [black] (40.6,-42.1) circle (3);
+\draw (40.6,-42.1) node {$q_3$};
+\draw [black] (40.6,-42.1) circle (2.4);
+\draw [black] (12.8,-25.9) -- (18.2,-25.9);
+\draw (12.3,-25.9) node [left] {$start$};
+\fill [black] (18.2,-25.9) -- (17.4,-25.4) -- (17.4,-26.4);
+\draw [black] (24.2,-25.9) -- (37.6,-25.9);
+\fill [black] (37.6,-25.9) -- (36.8,-25.4) -- (36.8,-26.4);
+\draw (30.9,-26.4) node [below] {$(,z_0|(z_0$};
+\draw [black] (38.904,-23.44) arc (242.30783:-45.69217:2.25);
+\draw (38.81,-18.51) node [above] {$(,(|(($};
+\fill [black] (41.52,-23.06) -- (42.34,-22.58) -- (41.45,-22.12);
+\draw [black] (43.11,-24.262) arc (118.60765:61.39235:18.986);
+\fill [black] (61.29,-24.26) -- (60.83,-23.44) -- (60.35,-24.32);
+\draw (52.2,-21.44) node [above] {$),(|\epsilon$};
+\draw [black] (64.514,-22.998) arc (193.89909:-94.10091:2.25);
+\draw (70.22,-20.24) node [above] {$),(|\epsilon$};
+\fill [black] (66.54,-24.7) -- (67.43,-25) -- (67.19,-24.02);
+\draw [black] (61.34,-27.62) -- (43.06,-40.38);
+\fill [black] (43.06,-40.38) -- (44,-40.33) -- (43.43,-39.51);
+\draw (56.08,-34.5) node [below] {$\epsilon,\mbox{ }z_0\mbox{ }|\mbox{ }z_0$};
+\draw [black] (60.923,-26.749) arc (-75.95241:-104.04759:35.939);
+\fill [black] (43.48,-26.75) -- (44.13,-27.43) -- (44.37,-26.46);
+\draw (52.2,-28.32) node [below] {$(,(|(($};
+\end{tikzpicture}
+\end{center}
+\paragraph{Supponendo un L \underline{\underline{\underline{NON}}} Prefix-Free
+} $\exists x, y \in L t.c. x \neq y ~ e ~ x ~ prefissa ~ di ~ y:$ \\
+DPDA per pila vuota (y = xw)  
+\end{center}
+\paragraph{Altro esempio: Parentesi bilanciate, con $\epsilon$}
+\subparagraph{Grammatica}
+\begin{itemize}
+	\item $B \to BB | (B) | \epsilon$
+\end{itemize}	
+Se $\epsilon \in$ L allora L non è Prefix-Free, basta prendere $\forall y \in L \neq
+\epsilon, \epsilon$ è prefissa di y
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (15.8,-26.6) circle (3);
+\draw (15.8,-26.6) node {$q_0$};
+\draw [black] (15.8,-26.6) circle (2.4);
+\draw [black] (39.2,-26.6) circle (3);
+\draw (39.2,-26.6) node {$q_1$};
+\draw [black] (63.4,-26.6) circle (3);
+\draw (63.4,-26.6) node {$q_2$};
+\draw [black] (7.4,-26.6) -- (12.8,-26.6);
+\draw (6.9,-26.6) node [left] {$start$};
+\fill [black] (12.8,-26.6) -- (12,-26.1) -- (12,-27.1);
+\draw [black] (18.8,-26.6) -- (36.2,-26.6);
+\fill [black] (36.2,-26.6) -- (35.4,-26.1) -- (35.4,-27.1);
+\draw (27.5,-27.1) node [below] {$(,\mbox{ }z_0\mbox{ }|\mbox{ }(z_0$};
+\draw [black] (37.512,-24.134) arc (242.1301:-45.8699:2.25);
+\draw (37.46,-19.2) node [above] {$(,(|(($};
+\fill [black] (40.13,-23.76) -- (40.95,-23.29) -- (40.06,-22.82);
+\draw [black] (41.882,-25.261) arc (112.97298:67.02702:24.13);
+\fill [black] (60.72,-25.26) -- (60.18,-24.49) -- (59.79,-25.41);
+\draw (51.3,-22.85) node [above] {$),(|\epsilon$};
+\draw [black] (60.66,-27.818) arc (-69.28828:-110.71172:26.466);
+\fill [black] (41.94,-27.82) -- (42.51,-28.57) -- (42.87,-27.63);
+\draw (51.3,-30.03) node [below] {$(,(|(($};
+\draw [black] (65.247,-24.251) arc (169.55997:-118.44003:2.25);
+\draw (70.2,-22.62) node [right] {$),(|\epsilon$};
+\fill [black] (66.39,-26.64) -- (67.08,-27.27) -- (67.27,-26.29);
+\draw [black] (62.024,-29.264) arc (-30.6176:-149.3824:26.057);
+\fill [black] (17.18,-29.26) -- (17.15,-30.21) -- (18.01,-29.7);
+\draw (39.6,-42.55) node [below] {$\epsilon,\mbox{ }z_0|z_0$};
+\end{tikzpicture}
+\end{center}
+\paragraph{Dato il linguaggio: }L = \{$a^{n}b^{m}cd^{m}ef^{n} | n, m \geq 0$\}\\
+$\to a^{n}cef^{n}, ~ con ~ $n > 0\\
+$\to b^{m}cd^{n}e, ~ con ~ $m > 0\\
+$\to a^{n}b^{m}cd^{m}ef^{n}$, ~ con ~ m,n > 0\\
+$\to$ c, ~ per ~ m = n = 0
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (17.9,-27.1) circle (3);
+\draw (17.9,-27.1) node {$q_0$};
+\draw [black] (31.4,-43.1) circle (3);
+\draw (31.4,-43.1) node {$q_2$};
+\draw [black] (45.4,-27.1) circle (3);
+\draw (45.4,-27.1) node {$q_1$};
+\draw [black] (70.9,-27.1) circle (3);
+\draw (70.9,-27.1) node {$q_3$};
+\draw [black] (56.8,-43.1) circle (3);
+\draw (56.8,-43.1) node {$q_4$};
+\draw [black] (56.8,-43.1) circle (2.4);
+\draw [black] (10.9,-27.1) -- (14.9,-27.1);
+\draw (10.4,-27.1) node [left] {$start$};
+\fill [black] (14.9,-27.1) -- (14.1,-26.6) -- (14.1,-27.6);
+\draw [black] (15.984,-24.807) arc (247.61458:-40.38542:2.25);
+\draw (9.58,-19.33) node [above] {$a,a\mbox{ }|\mbox{ }aa\mbox{ }oppure\mbox{ }a,z_0\mbox{ }|\mbox{ }aa$};
+\fill [black] (18.55,-24.18) -- (19.32,-23.63) -- (18.4,-23.25);
+\draw [black] (19.83,-29.39) -- (29.47,-40.81);
+\fill [black] (29.47,-40.81) -- (29.33,-39.87) -- (28.57,-40.52);
+\draw (24.1,-36.54) node [left] {$b,\mbox{ }z_0\mbox{ }|\mbox{ }bz_0\mbox{ }oppure\mbox{ }b,\mbox{ }a\mbox{ }|\mbox{ }ba$};
+\draw [black] (33.019,-45.611) arc (60.54532:-227.45468:2.25);
+\draw (33,-50.61) node [below] {$b,b\mbox{ }|\mbox{ }bb$};
+\fill [black] (30.39,-45.91) -- (29.56,-46.36) -- (30.43,-46.86);
+\draw [black] (20.9,-27.1) -- (42.4,-27.1);
+\fill [black] (42.4,-27.1) -- (41.6,-26.6) -- (41.6,-27.6);
+\draw (31.65,-26.6) node [above] {$c,\mbox{ }z_0\mbox{ }|\mbox{ }z_0\mbox{ }oppure\mbox{ }c,\mbox{ }a\mbox{ }|\mbox{ }a$};
+\draw [black] (33.38,-40.84) -- (43.42,-29.36);
+\fill [black] (43.42,-29.36) -- (42.52,-29.63) -- (43.27,-30.29);
+\draw (38.94,-36.55) node [right] {$c,\mbox{ }b\mbox{ }|\mbox{ }b\mbox{ }$};
+\draw [black] (45.699,-24.127) arc (201.99462:-86.00538:2.25);
+\draw (51.87,-20.87) node [above] {$d,b\mbox{ }|\mbox{ }\epsilon$};
+\fill [black] (47.94,-25.53) -- (48.87,-25.69) -- (48.5,-24.77);
+\draw [black] (48.4,-27.1) -- (67.9,-27.1);
+\fill [black] (67.9,-27.1) -- (67.1,-26.6) -- (67.1,-27.6);
+\draw (58.15,-27.6) node [below] {$e,\mbox{ }z_0\mbox{ }|\mbox{ }z_0\mbox{ }oppure\mbox{ }e,\mbox{ }a\mbox{ }|\mbox{ }a$};
+\draw [black] (69.577,-24.42) arc (234:-54:2.25);
+\draw (70.9,-19.85) node [above] {$f,\mbox{ }a\mbox{ }|\mbox{ }\epsilon$};
+\fill [black] (72.22,-24.42) -- (73.1,-24.07) -- (72.29,-23.48);
+\draw [black] (68.92,-29.35) -- (58.78,-40.85);
+\fill [black] (58.78,-40.85) -- (59.69,-40.58) -- (58.94,-39.92);
+\draw (64.39,-36.55) node [right] {$\epsilon,\mbox{ }z_0\mbox{ }|\mbox{ }z_0$};
+\end{tikzpicture}
+\end{center}
+Si dimostra quindi che questo è un linguaggio prefix-free
+\chapter{Computabilità}
+Prima di fare questo argomento ho preso la maestria nel dire ricorsivamente
+computabilitabilitabilitabilitabilitabilitabilità. Sono fiero dei miei enormi
+progressi. Ma tornando seri:
+\paragraph{Non tutto è computabile:} Non può esistere alcun programma che 
+stabilisca se un altro programma con un certo input stampi "hello world" o "ciao
+mondo".
+Quindi non c'è un modo per cui se ho un programma P, ed un input I, il nostro
+programma H risponde sì solo se con input I, stampa a video "hello world" come 
+primi 11 caratteri. Come si dimostra?
+\paragraph{Facciamo qualche ipotesi su come son fatti H e P:} ad esempio possono
+essere scritte in C, semplici programmini in C con solo printf e scanf, easy.
+\begin{lstlisting}[language=C]
+#include<stdio.h>
 
-\end{document}
+int main(){
+int cose;
+scanf("\%d", &cose);
+printf("hello world");
+return 0;
+}
+\end{lstlisting}
+Per assurdo supponiamo che H esista, allora esiste anche H1 che prende in input
+P (sorgente), L'input I e si comporta allo stesso modo di H MA invece di fare
+return true gli faccio stampare "hello world". \paragraph{}Quindi deve esistere H2 che 
+prende solo il sorgente di P e produce in out o sì o "hello world", e H2 prende
+P, fa una copia, richiama H1 con P sia come input che come programma
+\paragraph{Precisazione:} Un input può pure essere il codice sorgente, a questo
+punto si arriva al punto finale, in cui in H2 do in input H2, e mi risponde true o
+"hello world":\\
+Supponiamo che H2 stampi "hello world", vuol dire che il programma da analizzare
+stampa "hello world" ma H2 lo fa solo se lo dice H1, e se H2 stampa "hello world"
+allora H1 stampa true, ma se H1 stampa sì allora anche H2 stampa true. 
+	\paragraph{Supponiamo che} H2 non stampi "hello world", lo diamo ad H2, questo 
+	ci dà false, mentre invece H1 ci stampa "hello world", e a sua volta lo fa 
+	"hello world", ma attenzione H2 per ipotesi non stampava "hello world", altro
+	paradosso.
+	\paragraph{Riassunto}
+	Se H2 stampa ciao mondo, allora se prendo H2 e lo do ad H, allora H risponde sì,
+	quindi H1 risponde sì, quindi H2 dovrebbe dire sì, ma dice hello world! E la
+	stessa cosa a ritroso. In pratica si ottiene che NON esiste questo programma H.
+	\paragraph{Spiegato in modo più preciso}
+	\begin{center}
+	\includegraphics[width=0.75\textwidth]{29}
+	\end{center}
+	\begin{center}
+	\includegraphics[width=0.75\textwidth]{30}
+	\end{center}
+	\begin{center}
+	\includegraphics[width=0.75\textwidth]{31}
+	\end{center}
+	\paragraph{Es 8.1 pagina 297}
+	Domanda: Il programma Q, con input y, chiama la funzione foo? (Foo sarebbe un 
+	nome a caso in inglese). Dimostriamo che sia indecidibile facendo una riduzione
+	da hello world.
+	\paragraph{Dopo la riduzione si ostiene un'istanza}, e la riduzione funziona 
+	in questo modo:
+	\begin{itemize}
+		\item P1 = problema hello world, che sappiamo essere indecidibile
+		\item Riduzione:\\
+		In input si hanno \textbf{Q} e \textbf{y}, e in Output manda \textbf{R} 
+		con il suo input \textbf{z} tale che 
+		R(z) chiama la funzione foo se e solo se Q(y) stampa "hello world". 
+	\end{itemize}
+	\begin{enumerate}
+		\item Se Q ha una funzione foo rischiamo di incasinarci, perciò lo rinominiamo come Q1.
+		e a Q1 sommiamo foo e questa funzione non viene mai chiamata e non fa niente, 
+		si arriva in Q2,
+		\item a questo punto modifichiamo Q2 dicendogli che invece di stampare
+		"hello world", lo deve sparare in un array. 
+		\item Ora si ha Q3, che vien modificato 
+		ogni volta che viene eseguita una print, si controlla l'array se i primi 11 
+		caratteri sono "hello world"
+		\item Emerge che z = y
+	\end{enumerate}
+	Ne consegue che dal punto di vista pratico che "hello world" indecidibile (si 
+	specifica che con un programma qualsiasi ed un input qualsiasi), in questo caso
+	con la riduzione si dimostra che è impossibile stabilire che un certo programma
+	con un certo input ti chiami una funzione.
+	\paragraph{Cosa si conclude? }Non puoi in nessun modo, con nessun algoritmo 
+	stabilire cosa farà un programma con un determinato input, perciò coloro che
+	fanno questo di mestiere generalmente fanno delle ipotesi. 
+	\section{Turing}
+	Negli anni 30 Turing si trova ad aver visto la dimostrazione del teorema di godel.
+	(Godel immaginatelo con i due pallini sopra la o, non li so fare in latex :C).
+	Turing vuole capire come sono fatti i problemi indecidibili, perciò crea una 
+	macchina che si basa su come un matematico dimostra un teorema.
+	\paragraph{Successivamente }simulerà l'alternarsi di "pensare" e "scrivere" del
+	matematico ed arriva a ottenere 3 parti
+	\begin{enumerate}
+		\item Un Controllo Finito: E' il cervello, un automa a stati finiti, nel 
+		senso che il cervello è un insieme finito di stati etc.
+		\item Poi c'è il foglio di carta: che si rappresenta come un nastro infinito
+		sia a destra che sinistra di celle, in cui in ogni cella c'è una lettera
+		dell'alfabeto
+		\begin{itemize}
+			\item Alcune celle sono vuote, si indicano o con lo spazio vuoto, o con
+			una \textbf{B} maiuscola che sta per blank, che è un po' come dire nulla,
+			ma qualcosa deve esserci dentro 
+		\end{itemize}
+		\item Successivamente c'è la matita con la comma in cima, che sarebbe una
+		testina di lettura e scrittura in grado di scrivere un numero per volta su
+		questo nastro
+	\end{enumerate}
+	Quindi questa testina legge il nastro e in base al nastro si ottiene che cambiano
+	i vari stati etc. nell'automa. Tra l'altro c'è un film che si chiama The
+	Imitation Game, in cui vien detto che Turing era appassionato di chimica, è
+	morto mangiando una mela avvelenata, facendo gli esperimenti da chimici, e
+	si era studiato il cervello e cose varie (l'han quasi di sicuro ammazzato, 
+	praticamente l'ha vinta lui grazie al fatto che decriptava i messaggi tedeschi).
+\section{La macchina di Turing}
+E' una settupla: M = (Q, $\Sigma, \Gamma, \delta, q_{0}$, B, F), in cui
+\begin{itemize}
+	\item Q: è l'insieme finito degli stati del controllo
+	\item $\Sigma$: è l'insieme dei simboli di input
+	\item $\Gamma$: E' l'alfabeto dei simboli del nastro ($\Sigma \subset \Gamma$)
+	\item $\delta$: E' la funzione di transizione degli stati, ed è definita su 
+	$Q \times \Gamma$ ed ha valore in Q $\times \Gamma \times \{L, R\}$. E' la
+	funzione appunto che permette la transizione degli stati, ed è una funzione
+	parziale, cioè per alcune coppie potrebbe non esser definita
+	\item $q_{0}$ è lo stato iniziale
+	\item B $\in \Gamma \setminus \Sigma$
+	\item F $\subseteq$ Q: insieme degli stati finali
+\end{itemize}
+\subsection{Come funziona dal punto di vista pratico}
+Programmare una macchina di Turing significa definire la $\delta$ con 
+$w \in \Sigma^{\star}$, quindi si ottiene che $w = a_{1}, a_{2}, ..., a_{n}$,
+e $q_{0}$ va a ragionare su ognuno di questi valori sul nastro. Ad esempio legge
+$q_{1}$, cambiano una serie di stati, e scrive su quella cella e vede in quale
+stato andare, poi passa ad $a_{2}$ etc.\\
+Si definisce L(M) = \{$w \in \Sigma^{\star} ~$ accettate\}
+\paragraph{Osservazione: }La macchina può pure leggere dal nastro e riscrivere
+tutto uguale, può fare avanti e indietro come le pare e piace. 
+\paragraph{Se ho una macchina di Turing: }Si fermerà prima o poi? Problema 
+indecidibile, non è possibile meccanicamente con un algoritmo capire questa cosa.
+Le macchine di turing sono molto flessibili, possono simulare moltissime cose, 
+pertanto può fare da simulatore tipo la JVM.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	\end{document}
