@@ -4321,6 +4321,153 @@ tutto uguale, può fare avanti e indietro come le pare e piace.
 indecidibile, non è possibile meccanicamente con un algoritmo capire questa cosa.
 Le macchine di turing sono molto flessibili, possono simulare moltissime cose, 
 pertanto può fare da simulatore tipo la JVM.
+\section{Tesi di Church}
+Ogni modello di calcolo è isomorfo rispetto alla macchina di Turing, non c'è
+una dimostrazione, poichè essendo che va dimostrato per tutti i teoremi di 
+calcolo, non è possibile trovarne una MA è praticamente ciò che è successo 
+finora.
+\subsection{$\lambda$-Calcolo}
+Sono quelli che han dato origine alle $\lambda$-funzioni, quindi LISP, quindi
+sì, linguaggi funzionali.
+\paragraph{Cosa significa fare una computazione con la MDT?} 
+\subparagraph{Concetti fondamentali:}
+\begin{itemize}
+		\item ID (Descrizione istantanea, o configurazione della macchina)\\
+		$x_{1}, x_{2}, ..., x_{i-1} ~ q \to x_{i} ~ x_{i+1} ~ - ~ - ~ - ~ - ~x_{n}$\\
+		Per iptoesi $Q \cap \Gamma = \varnothing$
+		\item Def: $\vdash_{M}$ \\
+		Supponiamo che la macchina sia nella configurazione riportata al passo 1,
+		quindi $\delta(q, x_{i})$ = $(p, y, L)$, in cui la p sarebbe il nuovo 
+		stato. \\
+		La configurazione in alto diventa perciò: \\
+		da : $x_{1}, x_{2}, ..., x_{i-1}, q, x_{i}, x_{i+1}, ..., x_{n}, \vdash_{M}$\\
+		a : $x_{1}, x_{2}, ..., x_{i - 2}, p, x_{i-1}, y, x_{i+1}, ..., x_{n}$
+		\paragraph{Casi particolari:}
+		\begin{enumerate}
+			\item Se i = 1 allora la configurazione $q, x_{1}, x_{2}, ..., x_{n}
+			 \vdash_{M}, p, B, y, x_{2}, ..., x_{n}$
+			 \item Se i = n e  y = B, allora la configurazione diventa:
+			 $x_{1}, x_{2}, ..., x_{n-1}, q, x_{n} \vdash_{M}, x_{1}, x_{2}, 
+			 ..., x_{n-2},  p,  , x_{n-1}$\\
+			 \paragraph{Supponendo che } $\delta(q, x_{1}) = (p, y, R)$\\
+			 $x_{1}, x_{2}, ..., x_{i-1}, q, x_{i}, x_{i+1}, ..., x_{n}, \vdash_{M}$\\
+			 $x_{1}, x_{2}, ..., x_{i-1}, y, p, x_{i+1}, ..., x_{n}$
+			 \item Se i = 1 e y = B allora\\
+			 $q, x_{1}, x_{2}, ..., x_{n}, \vdash_{M}, p, x_{2}, ..., x_{n}$
+		\end{enumerate}
+\end{itemize}	
+\paragraph{Esempio 8.2, pag 303}: Data una MdT (TM) ch accetta L=\{$0^{n}1^{n} | n\geq 1$\}\\
+M = $(\{q_{0}, q_{0}, q_{0}, q_{0}, q_{0}\}, \{0, 1\}, \{0, 1, x, y, B\}, 
+\delta, q_{0}, B, q_{4})$
+\begin{center}
+\begin{tabular}{l|l|l|l|l|l|}
+\cline{2-6}
+                         & 0          & 1          & x          & y          & B          \\ \hline
+\multicolumn{1}{|l|}{q0} & (q1, x, R) & -          & -          & (q3, y, R) & -          \\ \hline
+\multicolumn{1}{|l|}{q1} & (q1, 0, R) & (q2, y, L) & -          & (q1, y, R) & -          \\ \hline
+\multicolumn{1}{|l|}{q2} & (q2, 0, L) & -          & (q0, x, R) & (q2, y, L) & -          \\ \hline
+\multicolumn{1}{|l|}{q3} & -          & -          & -          & (q3, y, R) & (q4, B, R) \\ \hline
+\multicolumn{1}{|l|}{q4} & -          & -          & -          & -          & -          \\ \hline
+\end{tabular}
+\end{center}
+\paragraph{Questa è l'automa risultante dalla tabella}
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (18.3,-23.5) circle (3);
+\draw (18.3,-23.5) node {$q_0$};
+\draw [black] (42.1,-23.5) circle (3);
+\draw (42.1,-23.5) node {$q_1$};
+\draw [black] (64.4,-23.5) circle (3);
+\draw (64.4,-23.5) node {$q_2$};
+\draw [black] (18.3,-41.3) circle (3);
+\draw (18.3,-41.3) node {$q_3$};
+\draw [black] (42.1,-41.3) circle (3);
+\draw (42.1,-41.3) node {$q_4$};
+\draw [black] (42.1,-41.3) circle (2.4);
+\draw [black] (9.9,-23.5) -- (15.3,-23.5);
+\draw (9.4,-23.5) node [left] {$start$};
+\fill [black] (15.3,-23.5) -- (14.5,-23) -- (14.5,-24);
+\draw [black] (21.3,-23.5) -- (39.1,-23.5);
+\fill [black] (39.1,-23.5) -- (38.3,-23) -- (38.3,-24);
+\draw (30.2,-24) node [below] {$0|x$};
+\draw [black] (40.219,-21.178) arc (246.74273:-41.25727:2.25);
+\draw (34.79,-15.7) node [above] {$0\mbox{ }|\mbox{ }0\mbox{ }->\mbox{ }oppure\mbox{ }y|y\mbox{ }->$};
+\fill [black] (42.8,-20.59) -- (43.57,-20.06) -- (42.66,-19.66);
+\draw [black] (45.1,-23.5) -- (61.4,-23.5);
+\fill [black] (61.4,-23.5) -- (60.6,-23) -- (60.6,-24);
+\draw (53.25,-24) node [below] {$1\mbox{ }|\mbox{ }y\mbox{ }<-$};
+\draw [black] (63.077,-20.82) arc (234:-54:2.25);
+\draw (64.4,-16.25) node [above] {$0\mbox{ }|\mbox{ }0\mbox{ }<-\mbox{ }oppure\mbox{ }y\mbox{ }|\mbox{ }y\mbox{ }<-$};
+\fill [black] (65.72,-20.82) -- (66.6,-20.47) -- (65.79,-19.88);
+\draw [black] (18.3,-26.5) -- (18.3,-38.3);
+\fill [black] (18.3,-38.3) -- (18.8,-37.5) -- (17.8,-37.5);
+\draw (17.8,-32.4) node [left] {$y\mbox{ }|\mbox{ }y\mbox{ }->$};
+\draw [black] (19.958,-43.786) arc (61.43141:-226.56859:2.25);
+\draw (20.17,-48.8) node [below] {$y\mbox{ }|\mbox{ }y\mbox{ }->$};
+\fill [black] (17.34,-44.13) -- (16.51,-44.59) -- (17.39,-45.07);
+\draw [black] (21.3,-41.3) -- (39.1,-41.3);
+\fill [black] (39.1,-41.3) -- (38.3,-40.8) -- (38.3,-41.8);
+\draw (30.2,-41.8) node [below] {$B\mbox{ }|\mbox{ }B\mbox{ }->$};
+\draw [black] (61.832,-25.05) arc (-60.9297:-119.0703:42.154);
+\fill [black] (20.87,-25.05) -- (21.32,-25.88) -- (21.81,-25);
+\draw (41.35,-30.86) node [below] {$x\mbox{ }|\mbox{ }x\mbox{ }->$};
+\end{tikzpicture}
+\end{center}
+
+w = 0011 ($\in$ L), $q_{0}$w = config iniziale\\
+\begin{itemize}
+	\item $q_{0}0011 \vdash xq_{1}011 | x0q_{1}11 \vdash xq_{2}0y1 \vdash 
+	q_{2}x0y1 \vdash xxq_{1}y1 \vdash xxyq_{1}1 \vdash xxq_{2}yy \vdash xq_{2}xyy
+	\vdash xxq_{0}yy \vdash xxyq_{3}y \vdash xxyyq_{3}B \vdash xxyyBq_{4}B$, quindi
+	la macchina si ferma e siccome si trova allo stato finale, la stringa è 
+	accettata
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (15.8,-18.6) circle (3);
+\draw (15.8,-18.6) node {$q$};
+\draw [black] (49.2,-18.6) circle (3);
+\draw (49.2,-18.6) node {$p$};
+\draw [black] (18.8,-18.6) -- (46.2,-18.6);
+\fill [black] (46.2,-18.6) -- (45.4,-18.1) -- (45.4,-19.1);
+\draw (32.5,-19.1) node [below] {$x\mbox{ }/\mbox{ }yD$};
+\end{tikzpicture}
+\end{center}
+Con x, y $\in \Gamma, D \in \{<-, ->\}, \delta(q, x) = (p, y, D) e \\
+\vdash^{\star}_{M} a partire da \vdash_{M}$
+\paragraph{Definizione: }Sia  M = $\{Q, \Sigma, \Gamma, \delta, q_{0}, B, F\}$ 
+una MdT, allora L(M) = $\{w \in \Sigma^{\star} | q_{0}w \vdash^{\star}_{M}
+ \alpha p \beta, ~con~p \in F e \alpha, \beta \in \Gamma^{\star}\}$
+\\ Questi linguaggi hanno un nome, e si chiamano linguaggi \textbf{Ricorsivamente
+enumerabili}
+\paragraph{Ipotizziamo una macchina M} tale che
+riceva in input una stringa w $\in \Sigma^{\star}$ ed in output risponda sì o no 
+\begin{itemize}
+	\item Sì se w$\in$ L(M)
+	\item No se w$\notin$ L(M)
+\end{itemize}
+m $\dot-$ = max (m-n,0) =$\begin{cases}
+	m = n ~ se ~ m \geq n\\
+	0 ~ se ~ m < n
+\end{cases}$
+$0^{m} 1 0^{n} \to 0^{m \dot- n}$
+\section{Macchina di Turing Multinastro}
+Si consideri una macchina di turing che invece di avere un solo nastro ha $\kappa$ nastri
+(con $\kappa$ finito), quind c'è un  nastro principale e poi ne hai uno o più
+ausiliari, si dimostra che non migliora le prestazioni della macchina di Turing
+standard
+\paragraph{Teorema 8.9 pag 318}: Ogni linguaggio accettato da una macchina di 
+Turing multinastro è Ricorsivamente Enumerabile
+\subparagraph{Dimostrazione: }Simulazione di una MdT multinastro tramite una 
+MdT mononastro. Cioè una macchina multinastro non può fare alla fine di più
+dei linguaggi ricorsivamente numerali.
+\paragraph{Eccolo spiegato meglio da Gaia:}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{32}
+\end{center}
 
 
 
