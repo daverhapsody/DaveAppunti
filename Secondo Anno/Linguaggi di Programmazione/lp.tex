@@ -2323,4 +2323,226 @@ Oltre all'input output su schermo posson pure prendere file.
 \section{Read}
 La Read semplicemente acquisisce e legge valori, è un input di oggetti LISP, 
 in cui per oggetto si intende una lista, un valore, un carattere, tutto. 
+\section{Output}
+Ovviamente è bene avere metodi per stampare tipo con la write in Prolog, e 
+Common Lisp ci mette a disposizione la funzione \textbf{FORMAT} (Avete 
+presente fprintf in c? Ecco quello è il concetto). Va detto che è complessa
+la \textbf{FORMAT}, prendiamo ad esempio qualcosa del tipo: 
+\begin{lstlisting}[language=LISP]
+prompt> (format t "il fattoriale di ~D e' ~D~%" 3 (fact 3))
+il fattoriale di 3 e' 6
+NIL
+\end{lstlisting}
+Le direttive in una stringa da formattare sono introdotte da \~, vediamone alcune
+\begin{itemize}
+	\item \~D stampa numeri interi
+	\item \~\% ritorna a capo
+	\item \~S stampa un oggetto Lisp secondo la sua sintassi standard
+	\item \~A stampa invece un oggetto secondo una sintassi piacevole.. Che non
+	so cosa voglia dire, ma oh, le cose piacevoli sono belle.
+\end{itemize}
+\section{Streams in CommonLisp}
+Allora, ci son 3 tipi di stream, uno standard input, uno output, e uno error, che 
+è più o meno come in java (syserr, sysout, sysin), inoltre le funzioni \textbf{Read,
+print, e Format} accettano un numero variabile di argomenti, e uno di questi 
+stream (di \textbf{output} per format e print e \textbf{input} per read).
+\subsection{Manipolazione dei file}
+Vi avviso, non è così semplice, perchè ci son diversi passaggi (è come in Java
+più o meno, il funzionamento è lo stesso), non andremo in profondità su come si
+gestiscono file di testo in LISP \underline{\underline{\textbf{MA}}}.
+\paragraph{Di base:} per aprire un file si deve usare "\textbf{with-open-file}",
+la sintassi precisa è la seguente: 
+\begin{lstlisting}[language=LISP]
+(with-open-file (<var> <file> :direction :input) <codice>)
+
+(with-open-file (<var> <file> :direction :output) <codice>)
+\end{lstlisting}
+La variabile <var> è il nome dello stream, o meglio si associa allo stream aperto
+sul file e può venire usata all'interno di <codice> cioè del segmento di codice
+che andiamo a considerare. Tutto questo è \textbf{dentro} una funzione.
+\paragraph{with-open-file} è una figata perchè si preoccupa di chiudere sempre e 
+comunque lo stream associato a <var>, anche se ci sono errori.
+\begin{lstlisting}[language=LISP]
+(with-open-file (out "foo.lisp" 
+					 :direction :output
+					 :if-exists :supersede
+					 :if-does-not-exist :create) 
+	(mapcar (lambda (e)
+			(format out "~S" e))
+		'((1 . A) (2 . B) (42 . QD) (3 . D))))
+\end{lstlisting}
+Come già detto lo stream si chiude con l'ultima parentesi, ora apriamo lo stesso
+stream ma in formato di input
+\begin{lstlisting}[language=LISP]
+(with-open-file (in "foo.lisp" 
+			:direction :input
+			:if-does-not-exist :error) 
+	(read-list-from in))
+\end{lstlisting}
+In pratica in questo caso andiamo a vedere se un file c'è, se c'è appost, possiamo
+modificarlo, altrimenti ritorniamo che c'è stato un errore.
+\begin{lstlisting}[language=LISP]
+(defun read-list-from (input-stream)
+	(let ((e (read input-stream nil 'eof)))
+		(unless (eq e 'eof)
+			(cons e (read-list-from input-stream)))))
+\end{lstlisting}
+La cosa importante è il simbolo 'eof che indica per l'appunto l'end of file, 
+ed in questo caso precisamente quello che stiamo dicendo è che quando arriviamo
+alla fine deve uscire.
+\section{Interazione con l'ambiente LISP}
+Quando si parla di lisp, lavoriamo a linea di comando, ciò che fa quest'ultima
+sono 3 operazioni fondamentali
+\begin{enumerate}
+	\item Leggere i comandi (\textbf{Read})
+	\item Valuta con l'\textbf{eval} finchè non trova il risultato della valutazione
+	\item Stampa il risultato della valutazione
+\end{enumerate}
+E tutto questo è praticamente un ciclo while(\textbf{true}), all'infinito. Ma
+come funziona più precisamente questo loop? Come posso implementarlo in lisp?
+La parte che segue è un po' più cicciosa di quella che abbiam visto finora, 
+ci saranno un po' più cose da tenere a mente. 
+\section{Apply ed Eval}
+Dato che i programmi in lisp e sexp's sono equivalenti si può dare le seguenti 
+regole di valutazione (ed implementare l'eval), questa roba servirà per il 
+progetto.
+\begin{itemize}
+	\item Se è un atomo: cioè se non è una cons-cell
+	\begin{itemize}
+		\item Se è un numero ritorna il valore
+		\item Se è una stringa la ritorna così come è
+		\item Se è un simbolo
+		\begin{enumerate}
+			\item Estra il suo valore dell'ambiente corrente e lo ritorna
+			\item Se non esiste un valore associato allora segnala un errore
+		\end{enumerate}
+	\end{itemize}
+	\item Se è una cons-cell ($O A_{1}, A_{2}, A_{3}, ..., A_{N}$)
+	\begin{itemize}
+		\item Se O è un operatore speciale allora la suddetta lista vien valutata
+		in modo speciale
+		\item Se invece fosse un simbolo che denota una funzione allora viene 
+		applicata (con l'\textbf{apply}) una lista ($VA_{1}, VA_{2}, ..., VA_{N}$)
+		che praticamente raccoglie i valori delle valutazioni delle espressioni
+		$A_{1}, A_{2}, A_{3}, ..., A_{N}$
+		\item Se invece fosse una lambda expression la si applica alla lista 
+		($VA_{1}, VA_{2}, ..., VA_{N}$) che raccoglierà i valori delle espressioni
+		$A_{1}, A_{2}, A_{3}, ..., A_{N}$
+		\item Altrimenti ti spara fuori un errore
+	\end{itemize}
+\end{itemize}
+Formalmente prende un designatore, cioè il nome di una funzione o una lambda exp. 
+e ti ritorna un valore, invece quello che fa l'eval costruisce il valore, ti prende
+un'espressione standard e un ambiente.\\
+La figaggine è che in lisp posso crearmi un interprete lisp, sembra assurdo ma
+si può fare tranquillamente. QUesti interpreti si chiamano \textbf{meta-circolari}
+e sono utili perchè se voglio estendere lisp con delle funzionalità posso usare 
+lisp stesso
+\paragraph{CHE TRIP:} Ora in pratica si vede come fare questa cosa.\\
+Tramite \textbf{eval} e \textbf{apply} possiamo fare questa cosa, teniamo a mente
+una cosa, ossia che in pratica useremo una funzione \textbf{valuta} che è una
+fork di eval, siccome non si può usare essendo predefinita.
+\paragraph{Cosa fa?} Prende una sexp ed un ambiente (env) e la valuta con i seguenti
+passaggi
+\begin{enumerate}
+	\item Sexp è autovalutante? (self-evaluating-p sexp), se sì allora ritorna
+	il suo valore cioè la sexp stessa, \textbf{altrimenti} dobbiamo andare a 
+	vedere che tipo di espressione è per poterla valutare
+	\item sexp è una variabile? (variable-p sexp) Se sì, allora recuperiamone
+	il valore associato
+	\begin{itemize}
+		\item Si ok, da dove? In env (var-value sexp env)
+	\end{itemize}, \textbf{altrimenti} 
+	\item E' un'espressione quotata del tipo (quote <expr>), cioè in pratica si
+	dice che l'espressione ha quel valore, se sì allora torna <expr> altrimenti
+	\item Sexp è una lamba expression? Cioè una lista del tipo (lambda (...) ...)?
+	\begin{itemize}
+		\item Se sì allora creo una chiusura ricordando l'ambiente in cui 
+		questa espressione è valutata (cioè ricordando static link)
+		\begin{lstlisting}[language=LISP]
+			(make-fun (lambda-exp-vars sexp) 
+				(lambda-exp-body sexp)
+				env)
+
+		\end{lstlisting}
+	\end{itemize}
+	\item Sexp è una applicazione di una funzione a degli argomenti 
+	(application-exp-p sexp)
+	\begin{itemize}
+		\item Se sì allora apply applica l'operatore alla lista dei valori ottenuto
+		valutando ogni argomento, \textbf{altrimenti}
+	\end{itemize}
+	\item Ci mancherebbe la segnalazione dell'errore, che è l'altrimenti del 
+	passaggio precedente
+\end{enumerate}
+\section{Sequenze di valutazione}
+Ricordiamo che il let sarebbe comodo per un'applicazione di una lambda function,
+infatti le sequenze di valutazioni sono rappresentabili come applciazioni 
+successive di funzioni.
+\paragraph{}La valutazione di una espressione LAMBDA genera una funzione che 
+viene rappresentata nell’ambiente come una struttura particolare (cfr., la 
+funzione make-fun chiamata da valuta) detta chiusura
+
+\paragraph{}
+Questa struttura contiene il corpo dell’espressione LAMBDA, la lista dei 
+parametri fomali e l’ambiente in cui l’espressione
+LAMBDA è stata costruita
+– Ovverolastrutturacontienelostaticlinkall’ambientedivalutazione dove recuperare 
+i valori delle variabili libere nel corpo dell’espressione LAMBDA
+\paragraph{}
+La funzione applica usa lo static link contenuto nella chiusura
+\section{Gli ambienti}
+Li abbiam nominati prima varie volte, ma non si è detto che sono. In pratica sono
+delle sequenze di frames. Tutto quello che abbiam visto di apply ed eval si 
+basa sugli ambienti. \\
+Le funzione var-value non è nient’altro che una 'get' di una chiave in una mappa.
+Ora la domanda è: come posso implementare in lisp queste funzioni?
+\begin{itemize}
+	\item make-frame
+	\item extend-env
+	\item var-value
+	\item var-value-in-frame
+\end{itemize}
+Con ordine, partiamo dalla manipolazione del singolo frane, che per intenderci
+è una lista di coppie prefissa dal simbolo frame
+\begin{lstlisting}[language=LISP]
+	(defun make-frame (vars values)
+      (cons ’frame (mapcar ’cons vars values)))
+\end{lstlisting}
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ù
+
+
+
+
+
 \end{document}
