@@ -2507,10 +2507,113 @@ Con ordine, partiamo dalla manipolazione del singolo frane, che per intenderci
 è una lista di coppie prefissa dal simbolo frame
 \begin{lstlisting}[language=LISP]
 	(defun make-frame (vars values)
-      (cons ’frame (mapcar ’cons vars values)))
+      (cons 'frame (mapcar 'cons vars values)))
 \end{lstlisting}
+\chapter{C e C++}
+E' uno dei linguaggi praticamente di base su Unix e Windows, è la base per tutto.
+E' tipo quello che si studia anche alle superiori nel corso di informatica, è
+assolutamente fondamentale.\\
+\paragraph{E' imperativo}, ci dà enorme libertà, soprattutto perchè in C possiamo
+implementare pure delle istruzioni Assembly. Tra l'altro opera direttamente 
+sulla memoria
+\paragraph{C++} è semplicemente un'evoluzione ma.. programmate in C, è più 
+divertente. Ora vedremo come si compone il linguaggio base, come si trova 
+corrispondenza con l'hardware
+\begin{itemize}
+	\item Linguaggio base
+	\item Modalità di programmazione
+	\item Strumenti di programmazione
+	\item Le librerie
+	\item Interazioni con il sistema operativo, soprattutto l'I/O
+\end{itemize}
+Non si vedrà come si programma MA è tipo recensione del linguaggio. 
+Ricordiamo come si fa per imparare un nuovo linguaggio? Esatto, pensiamo ai costrutti
+selezione, iterazione e selezione. Ovviamente anche le strutture dati. In java 
+avevamo gli oggetti, qua le struct. \\
+\paragraph{Per semplificarvi la vita: }Vi spoilero che Java è un derivato del C,
+quindi avrete costantemente un Deja Vu. 
+\paragraph{E' un linguaggio COMPILATO} quindi l'esecuzione avviene tramite 
+caricamento di un eseguibile (sì, il file.exe, quella roba lì), e ci sono diversi
+compilatori in grado di compilarlo: gcc, g++, xcrun, ed esistono in alcuni casi
+preinstallato. Sì ok poi ci sono i vari IDE tipo DevC++ e Eclipse. \\
+Per compilare qualcosa fate: \textbf{gcc nomeFile.c}. Vi verrà generato un file
+a.out che è l'eseguibile. Se volete un nome diverso fate \textbf{gcc -o nome file.c}
+% \paragraph{Come funziona una compilazione? }Avete presente la catena programmativa
+% di Architettura degli Elaboratori? Tenetela a mente che ora ci servirà.
+\section{Tipi per i dati}
+Come Java anche qui le variabili sono tipizzate già in fase dichiarativa, e  i 
+tipi principali sono identici in fatti a java, quindi insomma
+\begin{itemize}
+	\item int
+	\item double
+	\item float
+	\item long
+	\item char
+\end{itemize}
+Manca string! Attenzione a questa cosa, per operare sulle stringhe in C dovrete 
+andare ad operare su un array di caratteri. In realtà se si importa la libreria
+string.h (o per meglio dire si include, non si importa), allora ci sono diverse
+funzioni per gestire.	
+\paragraph{Le struct}
+Struct è abbreviativo di structure, è la rappresentazione di un record, ossia
+una struttura per i dati avente più campi (anche magari dello stesso tipo), 
+che sono per intenderci quelli che abbiamo nei database. 
+\paragraph{C++ è a oggetti} quindi insomma, è come per Java fatto di classi e
+oggetti, siamo lì. 
+\section{I puntatori}
+Il puntatore è un tipo per i dati particolari, contiene l'indirizzo di memoria
+di una variabile, quindi ciò che contiene un puntatore è un indirizzo. Si dichiara
+con int * p, in questo caso ho dichiarato un puntatore a intero. 
+\subparagraph{Appunto sull'if}
+Come nei vettori se eccedete non c'è controllo, se in un if mettete = anzichè 
+== vi fa l'assegnamento! Non verifica il valore, occhio anche a quello. 
+\section{Gli array}
+Un array è una struttura per i dati statica concreta ed omogenea, e in questo
+caso funziona praticamente come in Java, grazie alla sintassi che abbiamo possiamo
+pure dichiarare una sequenza di variabili consecutive per ottenerlo. 
+\\ GENERALMENTE
+si fa "*tipo* nome [*quantiElementi*];" E lui ti alloca in sequenza un tot di
+variabili praticamente.
+\subparagraph{Occhio alle dichiarazioni}
+Perchè C non implementa l'errore di quando è finito un array, va avanti in 
+sequenza. In che senso? Un array è un insieme di variabili successive, ipotizziamo 
+vada da A a B, se noi da programma chiedessimo la posizione B+1, questo NON 
+crasha! Ma va a prendere il valore di quella cella di memoria, quindi occhio.  
+(Non sto mettendo codice ma.. E' davvero una cagata, basta cercarsi qualsiasi
+manuale online come abbiam fatto per prolog e lisp)
+\paragraph{Quello che abbiam visto }finora è la base, fondamentalmente simile
+a molti altri linguaggi. La parte più interessante e  complessa viene ora.
+\section{Come lavora il compilatore}
+\begin{enumerate}
+	\item Si hanno dei file.h e dei file.c che vengono passati al pre-processore C/C++
+	che praticamente sarebbe un parser ed opera su base di questi 3 principi
+	\begin{itemize}
+		\item Inclusione: E' quella che permette di fare l'include, copia di pacco
+		tutto quel che c'è nel file.h nel nostro programma
+		\item Definizione delle macro: SI definiscono sia variabili che funzioni 
+		più complesse (Il define permette di definire delle costanti)
+		\item Condizionali: Non è il costrutto selezione, occhio a non confondere
+		assieme agli \#include e \#define ci sono anche 
+		\begin{itemize}
+			\item \#ifndef
+			\item \#else
+			\item \#endif
+		\end{itemize}
+	\end{itemize}
+	\item Il compilatore compila dei nuovi file.o
+	\item Il linker gli attacca le librerie e vien generato il file.exe (nel caso
+	di linux non ha estensione)
+\end{enumerate}
+Il linker gli attacca le librerie del sistema operativo, in pratica fanno in modo
+che quel programma possa essere eseguito.
+In prima istanza il preprocessore serviva per introdurre le costanti, infatti 
+buona parte degli header contengono definizioni di costanti che vengono 
+preprocessate da c e c++ (in fase di precompilazione).
+\paragraph{Più precisamente} Il linker prende un file.o che sarebbe il codice 
+oggetto, ossia la sequenza di cose da fare E una volta preso il codice oggetto,
+allora vengono attaccate le librerie
 
-
+    
 
     
 

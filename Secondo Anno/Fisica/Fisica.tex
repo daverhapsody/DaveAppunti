@@ -1794,6 +1794,13 @@ calore e lavoro:
 \end{center}
 $L = \int_{V_{A}}^{V_{B}} p~~ dV$
 \chapter{Elettromagnetismo}
+\paragraph{Premessa: }Quest'argomento è stato spiegato senza troppi giri di parole
+male. Io ho fatto estremamente fatica a seguire questa parte in particolare, ho
+riassunto delle parti, ho cercato di sparare fuori qualcosa dal libro, ma 
+sarà tutto confusionario. Sinceramente è stato spiegato troppo di fretta.
+\\
+{\color{black} \rule{\linewidth}{0.3mm} }
+\\
 Già dal tempo dei greci c'è in giro più o meno qualche conoscenza sul mondo del
 magnetismo, che fondamentalmente è tutto legato a quando due oggetti si 
 sfregano, nel senso che a generarsi non è solo calore ma ci sono delle forse 
@@ -1839,7 +1846,8 @@ E' un campo elettromagnetico con una sua "realtà" indipendente, non è solo
 formalismo, per intenderci la luce è una manifestazione.
 \paragraph{Cos'è: }Se ho una carica ($q_{0}$), e gli esercitiamo una forza, allora
 abbiamo un campo elettrico (Può pure esser dovuto a fenomeni chimici o 
-meccanici)
+meccanici). E' praticamente un campo vettoriale, perchè tira dentro informazioni
+relative alla forza.
 \subsection{Un quadro generale}
 Come per il campo gravitazionale, si dice che una carica elettrica, o una 
 distribuzione di cariche elettriche, genera attorno a sé un campo elettrico, nel
@@ -1864,14 +1872,16 @@ Quindi finalmente si arriva a dire che
 \[
 E = \frac{F}{q} = k \frac{Q}{d^{2}}
 \]
+E ed F hanno lo stesso verso siccome la carica è positiva, mentre per quanto
+riguarda il modulo di E nel punto p, si ottiene facendo $\frac{F}{q_{0}}$
 dove d è la distanza tra la carica Q e il punto nel quale viene misurato il 
 campo (con la carica q). L'intensità del campo elettrico dunque non dipende 
 dalla carica di prova q, ma dalla distanza alla quale il campo viene misurato 
 allontanandosi dalla carica Q generatrice del campo, la sua 
 intensità diminuisce. 
 \section{Come si rappresenta un campo elettrico}
-Un campo elettrico può essere rappresentato graficamente attraverso le linee di 
-forza, che praticamente corrisponde alla traiettoria percorsa da una carica 
+Un campo elettrico può essere rappresentato graficamente attraverso le \textbf{linee di 
+forza}, che praticamente corrisponde alla traiettoria percorsa da una carica 
 elettrica in quel punto.
 \subparagraph{Digressione:} Mi sento tipo una particella di sodio che si aggiura 
 nell'acqua Lete. In altri termini, sto facendo fatica a capire dove mi trovo e 
@@ -1885,11 +1895,116 @@ di forza, perchè le linee di forza si usano e applicano.. alle forze, per
 l'appunto
 \paragraph{Riassunto: }E' una curva ideale che ha come tangente in ogni punto la
 direzione del vettore del campo stesso. Per ogni punto passa una sola linea di 
-campo che perciò si può dire univocamente definita.
+campo che perciò si può dire univocamente definita. E soprattutto \textbf{Le
+linee di forza escono dalle cariche positive e vanno verso le negative}
 \subparagraph{Ecco la pagina del libro che mostra il sommario:}
 \begin{center}
 	\includegraphics[width=0.75\textwidth]{20}
 \end{center}	
+\section{Campo elettrico uniforme}
+E' un campo elettrico che praticamente in tutti i punti del campo il vettore 
+campo elettrico ha sempre lo stesso modulo direzione e verso. In questo campo
+studiare i fenomeni è molto più facile che in un campo non uniforme che in
+pratica è composto da vettori che cambiano da punto a punto.
+\paragraph{Il campo elettrostatico è un vettore}, perciò $\overrightarrow{E}$, 
+$q \to \overrightarrow{F} = q \overrightarrow{E} \& \overrightarrow{a} = q 
+\frac{\overrightarrow{E}}{m}$, $\oint{A} \overrightarrow{E} \cdot d \overrightarrow{A}$
+$\equiv \frac{q}{\epsilon_{0}}$. Il concetto è che abbiamo la possibilità di 
+usare una forza od osservare cosa accade dal punto di vista energetico, nel 
+senso che si è scoperto che la legge di Coulomb permette di capire che anche la
+forza elettrostatica sia conservativa.
+\paragraph{Attenzione: }Non è che una forza elettrica è necessariamente 
+conservativa, cioè se compie un lavoro su un percorso circlolare chiuso, allora
+esso è 0. La conseguenza è che esiste una quantità energetica legata alla 
+configurazione (energia potenziale) e dipende dal punto in cui vai a calcolarla.
+\paragraph{Ridefiniamo il lavoro} $W = \int_{i}^{f} \overrightarrow{F} \cdot c
+ \overrightarrow{F} = q_{0} \int_{i}^{f} \overrightarrow{E} \cdot d \overrightarrow{S}$
+ , ricordandoci che $q_{0}$ è una carica di prova circa.
+ \paragraph{Tutto sto casino darà: }$q_{0} \int_{i}^{f} cos(\theta E \cdot ds$\\
+ $\Delta U = U_{f} - U_{i} = - q_{0} \int_{i}^{f} \overrightarrow{F} \cdot d \overrightarrow{S}$
+ $(= -W)$
+ Ora siccome $\Delta U \alpha q_{0}$ allora $V = \frac{U}{q_0}$, e $\Delta V = -
+  \int_{i}^{f} \overrightarrow{E} \cdot d \overrightarrow{S}$, e la cosa fiqua è
+  che $[V] = \frac{Joule}{Coulomb} = Volt$
+  \paragraph{Che differenza c'è tra campo elettrico e potenziale?} Bisogna
+  introdurre il concetto di superficie, che non è più una rappresentazione 
+  vettoriale ma scalare. PERO' c'è sempre un vettore perpendicolare ad una 
+  superficie, e serve da un certo punto di vista per identificarla. 
+  Queste superfici si chiamo equipotenziali. 
+\section{Superfici equipotenziali}
+Sarebbe il luogo dei punti nello spazio che hanno lo stesso potenziale. Se vuoi
+muovere una carica tra due punti qualsiasi di una superficie, non c'è bisogno
+che il tuo campo compia un lavoro sulla carica.
+$L = 0$ per qualsiasi percorso che congiunga i punti iniziale e finale 
+\subsection{Calcolo del potenziale di un campo elettrico}: SI può calcolare
+la differenza di potenziale tra due punti i ed f in un campo elettrico, ci servono
+alcune cose prima però
+\begin{itemize}
+	\item dL = F $\cdot$ dS (Il lavoro compiuto da una forza)
+	\item $L = q_{0} = \int_{i}^{f} E \cdot ds$
+\end{itemize}
+A questo punto in pratica se tu vai a sostituire il lavoro con l'espressione
+riportata prima ottieni che 
+\[
+    	V_{f} - V_{i} = - \int_{i}^{f} E \cdot ds
+\]    
+Per cui la differenza di potenziale $V_{f} - V_{i}$ fra due punti in un campo è
+uguale all'opposto dell'integrale di linea, perciò si dimostra che
+\[
+  	V = - \int_{i}^{f} E \cdot dS
+  \]	  
+A questo punto si definisce quello che è il campo uniforme. $E \cdot dx = E dx cos 0 = E dx$,
+E' importante ricordarsi del $\Delta V$. Ricordiamo che il campo vettore è 
+diretto da potenziali maggiori a minori. 
+\paragraph{Riporto la lavagna attuale} perchè inizio a non capirci più:
+\begin{center}
+\includegraphics[width=0.75\textwidth]{22}
+\end{center}
+\chapter{Componenti elettrici}
+\section{Il condensatore}
+Il condensatore è un componente in grado di immagazzinare della energia elettrica.
+\subsection{Capacità elettrica del condensatore}
+La formula sarebbe C = $\frac{Q}{\Delta V}$, il condensatore va immaginato con 
+due lamine che fanno rimbalzare le cariche da una all'altra (all'esterno non c'è
+nulla) e la carica sta all'interno della superficie. Cosa si ottiene? Viene 
+contenuta della corrente. \\
+Il campo elettrico deve essere perpendicolare alle superfici, cioè in questo caso
+alle due lamine, non devono intersecarsi.
+\paragraph{Come si misura?} $[Farad] = \frac{Coulomb}{Volt}$, siccome il 
+Coulomb è alquanto gigante come unità di misura, generalmente Farad non si usa mai
+ma si sta sempre nell'ordine dei picoFarad
+\section{Teorema di Gauss}
+Il teorema di Gauss per il campo elettrico afferma che il flusso del campo
+ elettrico su una superficie chiusa è direttamente proporzionale alla carica 
+ totale che si trova all’interno della superficie.
+
+In questo caso, il flusso del campo elettrico è descritto dalla seguente relazione:
+\begin{center}
+	\includegraphics[width=0.75\textwidth]{21}
+\end{center}
+Dove $\omega$ indica la superficie chiusa, mentre $\epsilon$ e una costante, 
+la costante dielettrica del mezzo.  
+Notiamo che il flusso del campo elettrico attraverso una superficie chiusa è
+ indipendente dalla grandezza e dalla forma della superficie, e dal numero delle 
+ cariche presenti all’interno di essa.
+\section{La batteria}
+Prendendo le lamine che abbiamo dal condensatore, quello che accade con una 
+batteria è uno spostamento di carica, ed in un conduttore questa è una cosa 
+molto importante. Fondamentalmente la batteria quel che fa è generare tensione.\\
+Il concetto fondamentale da tenersi a mente sono i poli + e -, quello che accade
+è che le cariche van da + a -, c'è proprio uno spostamento
+\paragraph{Lo spostamento di carica} è quello che si definisce come "Corrente". 
+Praticamente sarebbe il movimento delle cariche in un determinato intervallo di
+tempo, tipo oscillazioni.  La corrente si può conservare, se ci son delle 
+biforcazioni allora 
+\section{Legge di Ohm}
+\[
+	V = R \cdot i
+\]
+E' frutto di un comportamento microscopico, ma sinceramente poco ci importa, 
+è una relazione fondamentale, va imparata così com'è comprese le sue varie 
+formule inverse, staph.
+    
     
 
 
@@ -1910,8 +2025,8 @@ campo che perciò si può dire univocamente definita.
 
 
 
+
+
+
+
 \end{document}
-
-
-
-

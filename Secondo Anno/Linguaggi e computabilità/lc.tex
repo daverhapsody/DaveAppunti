@@ -4468,12 +4468,100 @@ dei linguaggi ricorsivamente numerali.
 \begin{center}
 \includegraphics[width=0.75\textwidth]{32}
 \end{center}
-
-
-
-
-
-
+\section{Riassumendo }
+Si hanno diversi tipi di Macchine di Turing:
+\begin{itemize}
+    	\item Deterministiche: $\delta : Q \times \Gamma \to Q \times \Gamma \times \{L, R\}$
+    	\item NON Deterministiche: $\delta : Q \times \Gamma \to 2^{Q \times \Gamma \times \{L, R\}} $
+    	\item Ristrette: Sono delle restrizioni sulle macchine di turing, ma 
+    	le vedremo nella prossima sezione
+\end{itemize}    
+Per dimostrare che una stringa $w \in L(M)$ si costruisce un albero di computazione
+per $q_{0} w$
+\paragraph{Teorema 8.11 pag 321}: Se $M_{N}$ è una Macchina di Turing NON deterministica
+allora esiste una MAcchina di Turing deterministica $M_{D}$ tale che il linguaggio
+accettato dalla macchina non deterministica è uguale al linguaggio accettato 
+dalla macchina deterministica
+\subparagraph{In altri termini }le Macchine di Turing accettano i linguaggi 
+ricorsivamente enumerabili
+\subparagraph{Dimostrazione: }Abbiamo detto che le macchine multinastro sono
+equivalenti alle mononastro, quindi costruisco una MdT deterministica a due 
+nastrio. Data $M_{N}$ costruisco una Macchina determinista M con due nastri in cui
+\begin{itemize}
+ 		\item Sul primo nastro è il nastro di "lavoro" su cui inizialmente si
+ 		salva la configurazione.. iniziale, cioè la stringa.
+ 		\item L'altro visita in ampiezza questo albero
+ \end{itemize} 		
+\paragraph{Ecco un esempio di albero di computazione}
+\begin{center}
+	\includegraphics[width=0.75\textwidth]{33}
+\end{center}
+Numero di passi al più polinomiale rispetto a n che è la lunghezza dell'input 
+quindi |w|, il che significa che il tempo è al più $n^{c}$, con c costante.\\
+Si definisce P = Linguaggi accettati da una Macchina di Turing deterministica
+ in tempo polinomiale.
+\\Np = Linguaggi accettati da una macchina di turing NON deterministica in tempo
+polinomiale.
+\paragraph{A questo punto?} Si può concludere che $P \subseteq NP$? Sì! Invece il
+contrario è vero? E' pressochè un problema indecidibile. A questo punto $P \neq Np$?
+oppure P = NP
+\section{Macchine di Turing ristrette (deterministiche)}
+Perchè fare restrizioni? Cercando di togliere cose si spera di semplificare le 
+dimostrazioni (Ad esempio le dimostrazioni per casi)
+\begin{enumerate}
+	\item Con nastro semi-infinito (cioè è infinito solo da una parte): Fa di meno
+	dei linguaggi ricorsivamente enumerabili?
+	\paragraph{Teorema 8.12 pag 326}: Ogni linguaggio accettato da una Macchina
+	di Turing $M_{2}$ accettato anche da una Macchina di Turing $M_{1}$ tali che
+	\begin{enumerate}
+		\item La testina di $M_{1}$ non va mai a sinistra della posizione iniziale
+		\item $M_{1}$ non scriverà MAI blank
+	\end{enumerate}
+	$M_{2}$ = (Q, $\Sigma, \Gamma, \delta, q_{0}$, B, F)\\
+	$M_{1}$ = (..., $\Gamma_{1} = \Gamma \cup \{b\}$, ...)\\
+	tali che b $\notin \Gamma$
+\end{enumerate}
+\section{Macchine multistack}
+Praticamente sarebbe un DPDA + un numero k di pile ad esso collegato. Quindi appunto
+è un dpda che dà sì o no, e ha questa serie di pile. Ora, come funziona? Cosa 
+riescono a fare? Chiaramente si fermano per stati finali anche perchè per pile
+vuote aiuto. \\
+Cos'è in grado di accettare questo modello di calcolo? Se è una pila allora 
+si riesce a riprodurre tutto quello che si fa con i dpda. Con 2 pile invece
+si riesce ad accettare tutto ciò che accettano delle Macchine di turing?
+\paragraph{Come fanno?} Simulano la macchina di Turing. Sì, è tipo tutte le marche
+di telefoni cinesi che copiano iPhone, fondamentalmente si semplificano alcune
+dimostrazioni. 
+\paragraph{Teorema 8.13 pag 329}: Se un linguaggio L è accettato da una macchina
+di Turing allora L è accettato da un DPDA con 2 Stack, o due pile.
+\subparagraph{Nelle macchine di Turing} possiamo supporre che i simboli del nastro
+siano 0 1 e blank, poichè qualsiasi problema si tratta può esser codificato in
+binario. Non lo dimostriamo formalmente, ma volendo il contenuto può essere \{0, 1, B\}	 
+\paragraph{Teorema 8.14 pagina 332: }Ogni linguaggio ricorsivamente enumerabile
+è accettato da una macchina con 3 contatori
+\subparagraph{Concetto di contatore}
+\begin{itemize}
+		\item E' una variabile che si decrementa
+		\item Bisogna testare se vale 0 (Cioè se c'è z0 in cima alla pila)
+		\item Sommare c costante
+\end{itemize}	
+\paragraph{Definiamo} $\Gamma = \{x_{1}, x_{2}, ..., x_{n-1}\} \equiv$ n simboli
+di pile,
+si consideri una pila che dal basso verso l'alto abbia questi elementi: \{$z_{0}, x_{3}, x_{1}, x_{2}$\}
+\begin{itemize}
+	\item La pop consiste nel sottrarre $x_{2}$ e dividere per n
+	\item La push invece consiste nel moltiplicare per n e sommare x
+\end{itemize}
+In pratica simo la macchina a due pile ma mi serve un contatore d'appoggio s
+\paragraph{Teorema 8.15 p 333}: Ogni linguaggio ricorsivamente enumerabile è 
+accettato da una macchina multistack con 2 contatori. Sì ma... Abbiamo appena
+detto che simuliamo una macchina a due pile e c'è un terzo contatore.\\
+Ebbene, questa simula la macchina a tre contatori ma ne usa due
+\subparagraph{Come fa?} Simuliamo la macchina a tre contatori. Se i tre contatori
+C1, C2, C3 valgono i, j e k, allora definisco un nuovo contatore (quello che
+fa la simulazione) che conterrà come valore $2^{i} 3^{j} 5^{k}$ (Nuovo contatore).
+In pratica si ha questo puntatore che fa da appoggio per le operazioni aritmetiche
+e l'altro che simula a tutti gli effetti
 
 
 
