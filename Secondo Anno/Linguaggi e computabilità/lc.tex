@@ -4562,19 +4562,284 @@ C1, C2, C3 valgono i, j e k, allora definisco un nuovo contatore (quello che
 fa la simulazione) che conterrà come valore $2^{i} 3^{j} 5^{k}$ (Nuovo contatore).
 In pratica si ha questo puntatore che fa da appoggio per le operazioni aritmetiche
 e l'altro che simula a tutti gli effetti
+\section{Enumerazione delle stringhe binarie}
+Si tratta di stringhe w $\in \{0, 1\}^{\star}$, direzionate con i numeri naturali 
+($w_{1}, w_{2}, w_{3}, ..., w_{n}$). 
+\\ Si ottiene che una concatenazione di 1w è un numero binario. Per esempio:
+\begin{itemize}
+	\item $\epsilon \to$ 1 $\epsilon$ = 1 $\to 1$
+	\item $0 to 10 \to 2 $
+	\item $1 \to 11 \to 3$
+	\item $00 \to 100 \to 4 $
+\end{itemize}
+Ora prendiamo una macchina di turing e trasformiamola in una serie di numeri binari
+(o meglio, una stringa $w_{m}$ binaria ($\in {0, 1}^{\star}$)).
+\paragraph{Sia M = }(Q, \{0, 1\}, $\Gamma, \delta, q_{1}$, B, \{$q_{2}$\})
+In cui $\Gamma$ è l'alfabeto del nastro,
+in teoria non ci son vincoli ma poi vedremo. $q_{1}$ invece di $q_{2}$ perchè Q ha
+come insieme di stati \{$q_{1}, q_{2}, ..., q_{r}$\}.
+\\
+$\Gamma = {x_{1}, x_{2}, ..., x_{s}}$ tale che $x_{1} = 0, x_{2} = 1, x_{3} = B$.
+\paragraph{Direzione della testina: }L = $D_{1}, R = D_{2}$
+\paragraph{Codifica di $\delta$: }SE $\delta(q_{i}, x_{j}) = (q_{k}, x_{l}, D_{m})
+~ALLORA~ (i, j, k, l, m)$ $\to 0^{i}10^{j}10^{k}10^{l}10^{m}$
+\paragraph{Esempio 9.1 p 349: }Prendiamo la mdt M = $(\{q_{1}, q_{2}, q_{3}, \{0,1\}
+, \{0, 1, B\}, \delta, q_{1}, B, {q_{2}}$\}) quindi $\to$
+\begin{itemize}
+	\item $\delta(q_{1}, 1) = (q_{3}, 0, R)$
+	\item $\delta(q_{3}, 0) = (q_{1}, 1, R)$
+	\item $\delta(q_{3}, 1) = (q_{3}, 0, R)$
+	\item $\delta(q_{3}, B) = (q_{1}, 1, L)$
+\end{itemize}
+C1) $\underbrace{0}_{q_{1}} 1 \underbrace{00}_{x_{2} = 1} 1 \underbrace{000}_{q_{3}} 1
+\underbrace{0}_{x_{1} = 0} 1 \underbrace{00}_{D_{2} = R}$ \\ 
+C2) $\underbrace{000}_{q_{3}} 1 
+\underbrace{0}_{x_{1} = 0}1 \underbrace{0}_{q_{2}} 1 \underbrace{00}_{x_{2} = 1} 1 \underbrace{00}_{D_{2} = R}\\$ 
+C3) $\underbrace{000}_{q_{3}}1\underbrace{00}_{x_{2} = 1}1\underbrace{00}_{q_{2}}1\underbrace{0}_{x_{1}=0}1\underbrace{00}_{D_{2} = R}$\\
 
+C4) $\underbrace{000}_{q_{3}}1\underbrace{000}_{x_{3} = B}1\underbrace{000}_{q_{3}}1\underbrace{00}_{x_{2} = 1}1\underbrace{0}_{D_{1} = L}1$\\
+cod($\delta$) = C1 11 C2 11 C3 11 C4\\
+QUINDI Mdt $\to$ stringa $w_{M} \in \{0,1\}^{\star}$\\
+In questo modo è possibile stabilire quale sia la stringa i per la j-esima macchina
+\paragraph{Perchè tutto sto casino? }Perchè è possibile passare una stringa che
+sintetizza una macchina ad un'altra macchina. Come? Prendete una Macchina di
+Turing $M_{1}$, applicategli una cod($M_{2}$), che è la codifica di un'altra macchina
+e dategli una stringa w... Sì, $M_{1}$ diventa un interprete.\\ In questo modo
+esiste una \textbf{Macchina universale} \underline{\underline{\underline{U}}} che 
+è quella che si prende in esame quando si deve studiare una macchina di Turing.
+\begin{table}[]
+\begin{tabular}{llllll}
+                         & w1                        & w3                       & ...                      & wj                       & ...                      \\ \cline{2-6} 
+\multicolumn{1}{l|}{M1}  & \multicolumn{1}{l|}{1}    & \multicolumn{1}{l|}{0}   & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{0}   & \multicolumn{1}{l|}{...} \\ \cline{2-6} 
+\multicolumn{1}{l|}{M2}  & \multicolumn{1}{l|}{0}    & \multicolumn{1}{l|}{0}   & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{0} & \multicolumn{1}{l|}{}    \\ \cline{2-6} 
+\multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{....} & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{...} \\ \cline{2-6} 
+\multicolumn{1}{l|}{Mi}  & \multicolumn{1}{l|}{1}    & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{...} \\ \cline{2-6} 
+\end{tabular}
+\end{table}
+Fondamentalmente la mdt restituirà: 
+$\begin{cases}
+	1 ~~ se w_{j} \in L_{M_{i}}\\
+	0 ~~ altrimenti
+\end{cases}$
+Della tabella riportata sopra andiamo quindi a considerare la diagonale, quindi
+Ld = ling. diagonale \\
+A questo punto ci si chiede: Ld è Ricorsivamente Enumerabile? Se ì, allora esiste
+una MDT tale che Ld = L(M)\\
+Ld è diverso da ciascuna riga della tabella $\implies$ Ld \underline{\underline{non è}}
+Ricorsivamente Enumerabile
+\paragraph{Diagonali $\to$ i = j}
+Ld = \{$w_{i} \in \{0, 1\}^{\star} | w_{i} \notin L(M_{i})$\}, se Ld è Ricorsivamente
+enumerabile $\to$ riga della tabella $\to$ MdT M. Chiamiamo i $\in$ N tale che M =$ M_{i}$, 
+e chiedo $w_{i}$ $\in$ Ld?\\ Se Sì allora $w_{i} \notin L(M_{i})$
+\paragraph{Se L è ricorsivo, }esiste una mdt $M_{L}$ tale che prendendo in input 
+una stringa w risponde sì se w $\in L_{M_{L}}$, altrimenti no se sì se w $\notin L_{M_{L}}$
+\paragraph{Se L è ricorsivamente enumerabile, }allora esiste una mdt $M_{L}$ tale 
+che prendendo una stringa w, risponda sì se w $\in L_{M_{L}}$, altrimenti no se
+ sì se w $\notin L_{M_{L}}$
+ \paragraph{Il linguaggio unimersale} $L_{u} = \{cod(M)111w|w \in L(M)\}$ = 
+ $\{(M, w)\in \{0,1\}^{\star} | w \in L(M\}$
+\paragraph{Se L è ricorsivo, }Il complemento di L $\in$ ?\\
+Significa che esista una MDT $M_{L}$ tale che prenda in input w e dica sì se w 
+appartiene al linguaggio, altrimenti se non appartiene. Prendiamo una nuova 
+macchina, costruiamo $M_{L}$ complemento tale che sia definita come $M_{L}$ ma con
+l'inversione delle condizioni di arresto  
+\paragraph{Esercizio: }Data un'enumerazione di stringhe binarie $w_{1}, w_{2}, w_{n}$,
+ed una Macchina di Turing M $\to$ cod(M) $\in$ $\{0,1\}^{\star}$, che dà un'enumerazione
+delle macchine di Turing $M_{1}, M_{2}, M_{n}$, disegnamo la tabella:
+\begin{table}[]
+\begin{tabular}{llllll}
+                        & w1                     & w2                     & w3                     &  &  \\ \cline{2-4}
+\multicolumn{1}{l|}{M1} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{0} & \multicolumn{1}{l|}{1} &  &  \\ \cline{2-4}
+\multicolumn{1}{l|}{M2} & \multicolumn{1}{l|}{0} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{0} &  &  \\ \cline{2-4}
+\multicolumn{1}{l|}{Mi} & \multicolumn{1}{l|}{0} & \multicolumn{1}{l|}{0} & \multicolumn{1}{l|}{1} &  &  \\ \cline{2-4}
+                        &                        &                        &                        &  & 
+\end{tabular}
+\end{table}
 
+A questo punto andiamo a considerare la diagonale principle (cioè quella in cui
+x = y). \\
+Prendiamo Ld che sarebbe il complemento diagonale, Ld non è Ricorsivamente 
+Enumerabile.
+\paragraph{Teoram 9.2 p 352: }LD non è Ricorsivamente Enumerabile
+\subparagraph{Dimostrazione} (Per assurdo) \\
+Supponiamo che Ld = L (M) per una macchina di Turing M, sia i un numero naturale
+tale che M = $M_{i}$, ora poniamoci la seguente domanda: 
+\subparagraph{$w_{i} \in Ld?$} Ld = $\{w_{i} \in \{0,1\}^{\star} | w_{i} \notin L(M_{i})\}$	
+\begin{enumerate}
+	\item Se $w_{i} \in Ld = L(M_{i})$, allora M accetta $w_{i}$\\
+	Ma anche $w_{i} \notin L(M_{i})$, cioè $M_{i}$ rifiuta $w_{i}$, quindi qui c'è 
+	una \textbf{contraddizione}
+	\item Se $w_{i} \notin Ld = L(M_{i})$, allora $M_{i}$ rifiuta $w_{i}$\\
+	Ma anche $w_{i} \in L(M_{i})$, cioè $M_{i}$ accetta $w_{i}$, altra contraddizione.
+	\item E' un problema indecidibile, equivalente al discorso dell'hello world.
+\end{enumerate}
+\begin{itemize}
+	\item Per i linguaggi ricorsivi:\\
+	hai una $w \in M_{L}$ e questa ti dà sì se w appartiene altrimenti no
+	\item Per i linguaggi ricorsivi E ricorsibvamente enumerabili:\\
+	Hai una $w \in M_{L}$ e questa ti dà sì se appartiene altrimenti no, $\infty$
+\end{itemize}
+\paragraph{Teorema 9.3, p 354: }Se L $\in$ Ricorsivi, allora $\bar{L} \in$ Ricorsivi\\
+Se L è ricorsivo allora esiste una macchina di turing $M_{L}$ che presa in input
+la stringa ti spara fuori sì se w è nel linguaggio, altrimenti no.
+Quindi costruiamo $M_{\bar{L}}$ tale che $\bar{L} = L(M_{\bar{L}})$ come segue:
+\begin{itemize}
+	\item Hai w che entra in $M_{L}$
+	\item Si scambiano le risposte
+	\item L'automa risponde sì se w non appartiene a L (quindi appartiene al 
+	complemento)
+	\item No se invece w è nel linguaggio, pertanto il complemento no.
+\end{itemize}
+\paragraph{Teorema 9.4 p 355} Se un linguaggio ed il suo complemento sono 
+ricorsivamente enumerabili allora entrambi sono ricorsivi.
+\subparagraph{Di conseguenza: }Se L e il suo complemento sono ricorsivamente
+enumerabili, allora esiste una macchina di turing per L e una per il complemento
+tale che
+\paragraph{Per L}
+\begin{itemize}
+		\item Risponda sì SE w appartiene a $\bar{L}$
+		\item Altrimenti No, $\infty$ se invece w $\notin$  $\bar{L}$
+	\end{itemize}	
+\paragraph{Per $\bar{L}$}
+\begin{itemize}
+		\item Risponda sì SE w appartiene a $\bar{L}$
+		\item Altrimenti No, $\infty$ se invece w $\notin$  $\bar{L}$
+\end{itemize}	
+\paragraph{Teorema 9.6, pagina 359}
+\textbf{GAIA GRAZIE MI HAI SALVATO LA VITA PERCHE' PER GUARDARE I VOTI DI LP
+MI SON PERSO QUESTO TEOREMA.}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{34}
+\end{center}
+\paragraph{Siano} $L_{e} = \{M | L(M) = \varnothing\}$ e\\
+$L_{ne} = \{M | L(M) \neq \varnothing\}$
 
-
-
-
-
-
-
-
-
-
-
+\paragraph{Teorema 9.8 p364:} Dimostriamo che $L_{ne} \in$ Ricorsivamente Enumerabile:\\
+Costruiamo una macchina di Turing monodeterministica M tale che $L_{ne}$ = L(M)
+\begin{center}
+\includegraphics[width=0.75\textwidth]{35}
+\end{center}
+\paragraph{Teorema 9.9 p365:} Il linguaggio $L_{ne}$ $\notin$ Ricorsivi (La dimostrazione
+non è stata affrontata)
+\section{Teorema di Rice}
+Ogni proprietà non banale dei linguaggi ricorsivamente enumerabili (Cioè alla fine
+delle macchine di Turing) è \textbf{indecidibile}. Cioè non è ricorsivo.
+\paragraph{Okay, che cos'è una proprietà non banale? }Si fa prima a descrivere
+quelle banali, ovvero l'insieme vuoto e l'insieme contenente tutte le macchine
+di Turing. TUTTE le altre sono indecidibili. Qualunque proprietà dinamica del 
+programma è indecidibile (TUTTO, dalla chiamata di un metodo ad una variabile, 
+ad un valore T U T T O). 
+\chapter{Simulazione di una prova d'esame} 
+\section{Esercizio 1}
+Dati:\\
+$L_{1} = \{a^{n}b^{n+1}c^{n}| n \geq 0\}\\
+L_{2} = \{a^{m}b^{n}c^{n} | 0 \leq n < m\}\\
+L_{3} = \{a_{n}b^{2m}c^{n} | m > 0, n \geq 0\}$
+Stabilire se godono della proprietà del prefisso (cioè se non hanno prefisse).
+\paragraph{Ricordiamo che:} Prefix-Free: $\exists x, y, \in L$ tale che x è prefissa 
+di y? Sì se non è prefix free\\
+no se lo è\\
+\begin{itemize}
+	\item $L_{1} e n = 0 \to b, n > 0$ si ha che $a^{n}bb^{n}c^{n}$ E' prefix-free, 
+	quindi gode della proprietà del prefisso
+	\item $L_{2} e n = 0 \to a^{m}, m > 0$, quindi si ottiene che a, $a^{2} \in L_{2}$ ed
+	a è prefissa di $a^{2}$, quindi \textbf{NON} è prefix free
+	\item $L_{3} e n = 0 \to b^{2m}, m > 0$, quindi $b^{2}, b^{4} \in L_{3}$ \textbf{NON} è
+	prefix free
+\end{itemize}
+\section{Esercizio 2}
+Dato L = $\{w \in \{a,b,c\}^{\star} | w = a^{m}b^{n+m}c^{n+1} | m>0 e n\geq 0\}$
+\begin{itemize}
+	\item E' prefix free? Anche qui n = 0, quindi le stringhe che si ottengono
+	sono $a^{m}b^{m}c$, qui basta qualunque prefissa senza c finale, per il 
+	momento è prefix free
+	\begin{itemize}
+		\item Se n > 0 si deve considerare $a^{m}b^{m}b^{n}c^{n+1}$, anche in questo
+		caso, qualsiasi prefissa considero, salta tra il numero di b e c, quindi
+		è \textbf{prefix free}, perchè in entrambi i casi gode della proprietà del
+		prefisso
+		\item Per conseguenza posso terminare con il dpda sia per stato finale 
+		che per pila vuota.
+		\item Andiamo a vedere per stato finale\\
+		$n = 0 \to a^{m}b^{m}c$, altrimenti se $n > 0 \to a^{m}b^{m}b^{n}cc^{n}$\\
+		In pratica prima impilo le b, poi consumo una sola c e poi continuo con
+		tutte le altre c 
+	\begin{center}
+	\begin{tikzpicture}[scale=0.2]
+	\tikzstyle{every node}+=[inner sep=0pt]
+	\draw [black] (17.5,-23.6) circle (3);
+	\draw (17.5,-23.6) node {$q_0$};
+	\draw [black] (39.9,-23.6) circle (3);
+	\draw (39.9,-23.6) node {$q_1$};
+	\draw [black] (63.2,-23.6) circle (3);
+	\draw (63.2,-23.6) node {$q_2$};
+	\draw [black] (63.2,-42.6) circle (3);
+	\draw (63.2,-42.6) node {$q_3$};
+	\draw [black] (63.2,-42.6) circle (2.4);
+	\draw [black] (10.6,-23.6) -- (14.5,-23.6);
+	\draw (10.1,-23.6) node [left] {$start$};
+	\fill [black] (14.5,-23.6) -- (13.7,-23.1) -- (13.7,-24.1);
+	\draw [black] (16.177,-20.92) arc (234:-54:2.25);
+	\draw (17.5,-16.35) node [above] {$a,\mbox{ }z_0\mbox{ }/\mbox{ }az_0\mbox{ }oppure\mbox{ }a,a\mbox{ }/\mbox{ }aa$};
+	\fill [black] (18.82,-20.92) -- (19.7,-20.57) -- (18.89,-19.98);
+	\draw [black] (20.5,-23.6) -- (36.9,-23.6);
+	\fill [black] (36.9,-23.6) -- (36.1,-23.1) -- (36.1,-24.1);
+	\draw (28.7,-24.1) node [below] {$b,a/\epsilon$};
+	\draw [black] (41.223,-26.28) arc (54:-234:2.25);
+	\draw (39.9,-30.85) node [below] {$b,a\mbox{ }/\mbox{ }\epsilon\mbox{ }oppure\mbox{ }b,\mbox{ }z_0/\mbox{ }bz_0\mbox{ }oppure\mbox{ }oppure\mbox{ }b,b\mbox{ }/bb$};
+	\fill [black] (38.58,-26.28) -- (37.7,-26.63) -- (38.51,-27.22);
+	\draw [black] (42.339,-21.859) arc (120.74865:59.25135:18.016);
+	\fill [black] (60.76,-21.86) -- (60.33,-21.02) -- (59.82,-21.88);
+	\draw (51.55,-18.83) node [above] {$c,\mbox{ }z_0\mbox{ }/\mbox{ }z_0\mbox{ }oppure\mbox{ }c,b/b$};
+	\draw [black] (64.802,-21.077) arc (175.31566:-112.68434:2.25);
+	\draw (69.6,-18.82) node [right] {$c,\mbox{ }b\mbox{ }/\mbox{ }\epsilon\mbox{ }$};
+	\fill [black] (66.18,-23.34) -- (66.93,-23.9) -- (67.01,-22.9);
+	\draw [black] (63.2,-26.6) -- (63.2,-39.6);
+	\fill [black] (63.2,-39.6) -- (63.7,-38.8) -- (62.7,-38.8);
+	\draw (63.7,-33.1) node [right] {$\epsilon,\mbox{ }z_0\mbox{ }/\mbox{ }z_0$};
+	\end{tikzpicture}
+	\end{center}
+	E questo accetta per stato finale, mentre se volessimo accettare per 
+	pila vuota, sull'arco che ritorna in $q_{2}$ aggiungiamo $\epsilon, z_{0} / \epsilon$
+	e si toglie $q_{3}$
+	\end{itemize}
+	\item Generiamo ora una CFG per le grammatiche:
+	\begin{enumerate}
+		\item CFG: S $\to$ XY \\
+		X $\to$ a X b | ab \\
+		Y $\to$ b Y c | c\\ 
+		PDA: 
+		\begin{center}
+		\begin{tikzpicture}[scale=0.2]
+		\tikzstyle{every node}+=[inner sep=0pt]
+		\draw [black] (38,-26.3) circle (3);
+		\draw (38,-26.3) node {$q$};
+		\draw [black] (31.7,-26.3) -- (35,-26.3);
+		\draw (31.2,-26.3) node [left] {$start$};
+		\fill [black] (35,-26.3) -- (34.2,-25.8) -- (34.2,-26.8);
+		\draw [black] (37.084,-23.455) arc (225.57303:-62.42697:2.25);
+		\draw (47.77,-16.87) node [above] {$\epsilon,\mbox{ }S\mbox{ }/\mbox{ }xy\mbox{ }oppure\mbox{ }\epsilon,\mbox{ }X\mbox{ }/\mbox{ }aXb\mbox{ }oppure\mbox{ }\epsilon,\mbox{ }X\mbox{ }/\mbox{ }ab\mbox{ }oppure\mbox{ }\epsilon,\mbox{ }Y\mbox{ }/\mbox{ }c$};
+		\fill [black] (39.7,-23.84) -- (40.62,-23.62) -- (39.9,-22.92);
+		\draw [black] (40.62,-27.737) arc (88.99202:-199.00798:2.25);
+		\draw (56.11,-32.33) node [below] {$a,a\mbox{ }/\mbox{ }\epsilon\mbox{ }oppure\mbox{ }b,b\mbox{ }/\mbox{ }\epsilon\mbox{ }oppure\mbox{ }c,c\mbox{ }/\mbox{ }\epsilon$};
+		\fill [black] (38.45,-29.25) -- (37.94,-30.04) -- (38.94,-30.06);
+		\end{tikzpicture}
+	\end{center}
+	Ho fatto due archi, ma in realtà sarebbe uno solo con tutto quel casino. \\
+	\item E' accettata la stringa abbcc?
+	m = 1 e n = 1 quindi\\ 
+	$S \implies XY \implies abY \implies abbYc \implies abbcc$\\
+	$(q, abbcc, S) \vdash (q, abbcc, XY) \vdash (q, abbcc, abY) \vdash
+	(q, bbcc, By) \vdash (q, bcc, Y) \vdash (q, bcc, bYc) \vdash
+	(q, cc, Yc) \vdash (q, cc, cc) \vdash (q, c, c) \vdash (q, \epsilon, \epsilon)$
+	\end{enumerate}
+\end{itemize}
+\section{Esercizio 3 + domande di teoria}
+\paragraph{Ringrazio Alessandro per quest'ultima parte}
+\begin{center}
+	\includegraphics[width=0.75\textwidth]{36}
+\end{center}
+    
 
 
 
