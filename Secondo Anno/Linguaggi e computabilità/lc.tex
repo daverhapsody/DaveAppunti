@@ -3363,8 +3363,8 @@ $L_{01} \in REGOLARI$. La risposta è no. Ma perchè?\\
 Supponiamo per assurdo che $L_{01} \in REGOLARI$, allora $\exists$DFA A tale che
 L(A) = $L_{01}$. \\
 Sia k = |Q| e consideriamo w = $0^{\kappa}$. Si ha che i prefissi di $0^\kappa$ 
-sono $\underbrace{\epsilon, 0, 000, 0000, ..., 0^{\kappa}}_{k+1 ~ prefissi}$\\
-Dato che k = |Q|, $\exists$ i, j  tali che i $\neq$ e $0^{i}$ porta allo stato di
+sono $\underbrace{\epsilon, 0, ,00, 000, 0000, ..., 0^{\kappa}}_{k+1 ~ prefissi}$\\
+Dato che k = |Q|, $\exists$ i, j  tali che i $\neq$ j, e $0^{i}$ porta allo stato di
 $0^{j}$ ALLORA $0^{i} e 0^{j}$ NON sono distinguibili, quindi se A accetta $0^{i}1^{i}$,
 e $L_{01}$ allora questo mi accetterebbe $0^{j}1^{i}$ e $0^{i}1^{j}$ CHE NON fanno
 parte del nostro $L_{01}$
@@ -3380,7 +3380,7 @@ che
 \paragraph{Dimostrazione}:\\
 Se L $\in$ Reg., allora $\exists$ DFA A con n stati tale che L(A) = L, sia w =
 $a_{1}, a_2$, ..., 
-, $a_{m}^{\in L}$ e $a_{i} \in \Sigma \forall i = 1, 2, ..., m$.\\
+, $a_{m \in L}$ e $a_{i} \in \Sigma \forall i = 1, 2, ..., m$.\\
 Per ogni i = 0,1, ..., n, sia $p_{i} = \widehat{\delta}(q_0, a_1, ..., a_i)$, allora
 abbiamo $p_0 = q_0$. Dato che A ha n stati, $p_0, p_1, p_n$, NON possono essere tutti
 $\neq$.
@@ -3415,7 +3415,7 @@ $\neq$.
 \draw (53.75,-26.1) node [below] {$z\mbox{ }=\mbox{ }a_(j+1),\mbox{ }....,\mbox{ }m$};
 \end{tikzpicture}
 \end{center}
-A accetta $xy^{\kappa}z \forall \kappa \geq 0$
+A accetta $xy^{\kappa} z ~~~ \forall \kappa \geq 0$
 \paragraph{Facciamo un esempio}:\\
 Dato un linguaggio $L_{01} = \{0^n 1^n | n\geq 1\}$, supponendo che $L_{01} \in$ REG
 $\implies$ applichiamo il PL sia n la costante del PL $(n\geq 1)$. \\
