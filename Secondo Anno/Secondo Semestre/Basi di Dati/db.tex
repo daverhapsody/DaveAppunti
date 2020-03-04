@@ -1,0 +1,82 @@
+\documentclass[12pt, a4paper, openany, twoside]{book}
+\usepackage[italian]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath} 
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\graphicspath{{./img/}}
+\usepackage{tikz}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+%usepackage[latin1]{inputenc}
+\begin{document}
+\fontfamily{cmss}\selectfont
+\pagestyle{plain}
+\author{DaveRhapsody}
+\title Basi di Dati
+\date 4 Marzo 2020
+\maketitle
+\tableofcontents
+\chapter*{Introduzione}
+Un database, o base di dati, o db (che scriverò d'ora in poi) è un insieme di 
+dati, tipo deposito, per qualsiasi genere di uso, sia aziendale, che personale.
+I suddetti dati sono inseriti, letti, e soprattutto \underline{organizzati} 
+secondo certe regole.
+\paragraph{Alcuni esempi: }
+\begin{itemize}
+	\item Agende telefoniche
+	\item Studenti di una classe o scuola
+	\item Qualsiasi insieme generico in cui ogni elemento differisce da un altro
+	secondo delle linee guide (campi) che si decidono alla base.
+\end{itemize}
+Da Linguaggi di Programmazione sono state viste le Struct, o Record, che sono
+delle strutture per i dati statiche, concrete ed eterogenee, aventi più campi
+non necessariamente dello stesso tipo. \\ \\
+Bene, un DB è un array di record, in cui bisogna garantire integrita, consistenza
+e NON ridondanza dei dati.
+\section{Interazione tra campi}
+Tra loro i campi di questi record possono interagire, nel senso che partendo dal
+valore di un determinato campo, si può ricavare il valore di un altro campo.
+Esempio? Il \underline{codice fiscale}, che è ricavato da una formula che non 
+ricordo mai nella vita forever MA prendendo come dati il nostro nome, cognome, 
+etc.
+\paragraph{Questo sarà un campo calcolato}
+\section{Dove si colloca un DB?}
+\begin{itemize}
+	\item Intefaccia utente
+	\item Applicativi
+	\item Software di ambiente e di sistema
+	\item DB
+	\item Sistema operativo
+	\item Hardware
+	\item Sistema di comunicazione di rete
+\end{itemize}
+Impropriamente si può definire nel mezzo
+\section{Problemi da NON avere}
+\begin{itemize}
+	\item Ridondanza dei dati: non devono esserci dati ripetuti, ogni record è
+	U N I V O C O. Per renderlo tale credo nel corso che vedremo come si fa, 
+	spoiler: chiavi, la nostra futura bacinella di bestemmie.
+	\item Rischi di incoerenza: i dati devono essere consistenti, ossia dato un
+	valore, se lo si attribuisce ad un simbolo (dato, variabile, campo), quel
+	valore dovrà essere SEMPRE quello, per ogni volta che si richiama quel 
+	simbolo
+\end{itemize}
+\section{Condivisione dei dati}
+Data un'organizzazione avente più dipendenti, è naturale che la suddetta possa
+condividere un determinato insieme di dati, infatti ad ogni settore corrisponde
+un sistema informativo (Per chi ha fatto economia, il SIA).\\ \\
+Cosa accade quando si condivide una risorsa? Esatto, bisogna fare in modo che
+non avvengano accessi concorrenti, quindi sono implementate funzioni e 
+procedure di prevenzione di questo genere di problemi. Un DB non protetto da
+modifiche NON consentite, oltre a fare schifo tipo fortissimo forever maonna guarda
+da bruciarlo, è NON integro. 
+\paragraph{Un DB deve essere integro}
+\end{document}

@@ -143,7 +143,8 @@ Il contraente deve garantire:
 - Competenza
 - Proprietà intellettuale: Ciò che ti do è fatto da me, se ti devo fare un sito non te lo faccio con Wordpress.
 - Uso improprio del computer (Nel senso, se con un browser diffondi materiale illegale, non ne risente chi ha sviluppato il browser, ma chi ne fa uso)
-- 
+
+  
 
 ### Codice etico ACM/IEEE
 
