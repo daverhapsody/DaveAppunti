@@ -180,5 +180,33 @@ ricorsive rottissime di Prolog e Lisp)
 \end{center}
 Se il campo è chiave, il pallino diventa pieno. (Sto odiando questa slide, è 
 tutto così non simmetrico che sclero)
+\section{Le Relazioni}
+Una relazione (o associazione) è un legame logico tra più entità, ed il numero
+di esse determina il grado (numero di entità obv), si rappresenta con un rombo
+e dentro ci si scrive cosa lega le entità. Come in questo esempio:
+\begin{center}
+\includegraphics[width=0.75\textwidth]{3.png}
+\end{center}
+Siccome c'è differenza tra queste relazioni e le relazioni del modello relazionale,
+per comodità le chiamerò associazioni. Quindi associazioni -> modello e-r, relazioni ->
+modello relazionale.
+\paragraph{Come scrivere le associazioni:} Bisogna usare dei sostantivi al 
+singolare. Come da esempio: Se ho due entità studente ed esame ed in mezzo ci
+metto "Supera" è sbagliato. Si deve mettere "Esame superato". (Alle superiori
+ero abituato che il verbo andasse all'infinito, che ha più senso ed è più 
+leggibile, ma icchè vi devo dì, noi s'attacca l'asino indoe vuole i' padrone).
+\paragraph{Tra due entità posso insierire più associazioni:} Ad esempio prendendo
+uno studente ed un corso, ci puoi applicare due associazioni, una può essere
+"frequenZa" e l'altra boh.. "Frequenza passata". E da notare che nelle slides 
+ha messo "Frequenta" e "Frequentato in passato".. Niente verbi, ovvio.
+\paragraph{Anche un'associazione può avere degli attributi:} E' una proprietà
+\textbf{locale} che serve ai fini dell'utente, non è una proprietà della singola
+entità ma di tutte coloro che sono in legame.
+\paragraph{In termini umani:} E' una funzione che associa ad ogni istanza di 
+quella associazione un valore che appartiene ad un dominio dell'attributo.
+\paragraph{Esempio:} Studente - \underline{superamento} - Esame, un attributo
+di superamento potrebbe essere Voto. (Tra l'altro lui ha messo esameSuperato.. 
+boh, diobono ok che superato è un aggettivo, ma è participio passato di superare,
+queste slides sono un casino).
 
 \end{document}
