@@ -208,5 +208,91 @@ quella associazione un valore che appartiene ad un dominio dell'attributo.
 di superamento potrebbe essere Voto. (Tra l'altro lui ha messo esameSuperato.. 
 boh, diobono ok che superato è un aggettivo, ma è participio passato di superare,
 queste slides sono un casino).
+\section{Vincoli di cardinalità}
+La cardinalità di una realzione specifica le quantità di interazione di istanze
+di più entità in un'associazione. si specifica un valore minimo ed uno massimo.
+Quindi è un dominio, un insieme finito di valori che è possibile assumere.
+\paragraph{Definizione:} Un vincolo di cardinalità è un limite di istanze di
+una associazione a cui può partecipre un'istanza di una o più entità, caratterizza
+meglio il significato di una associazione.
+\paragraph{Esempio banale babbarello:} Studente - \underline{Frequenza} - Corso,
+Da 0 a N studenti frequentano N corsi. 1 corso può essere frequentato da N
+studenti. 1 studente frequenta N corsi.
+\section{Tipi di assoiazione}
+Rimanendo nel contesto delle relazioni binarie, ci sono 3 tipi di relazione:
+\begin{enumerate}
+	\item Relazione uno a uno
+	\item Uno a Molti
+	\item Molti a Molti
+\end{enumerate}
+Le quali si spiegano da sole, non c'è molto da specificare.
+\section{Generalizzazioni e Relazioni Is-A}
+Partendo dall'Is-A
+\subsection{Relazione IS-A}
+E' una relazione che introduce il fatto che un'istanza possa appartenere a più
+entità, esempio Pilota, Pilota di Rally. E' anche definita relazione di sottoinsieme,
+e si utilizza per entità in cui una sia sottoinsieme dell'altra, o meglio. Una 
+deve essere "padre" dell'altra, che si chiamerà "figlia".
+\paragraph{Esempio:} Fuoristrada \underline{Is-A} Automobile \underline{Is-A} Veicolo
+\paragraph{Principio di ereditarietà:} Ogni attributo e proprietà dell'entità
+padre è anche proprietà della sua sottoentità, va da sè che la figlia può avere
+anche le sue proprietà. (Oh è come le classi di Java, funziona tutto così)
+\paragraph{Graficamente:}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{4.png}
+\end{center}
+\subsection{Generalizzazione tra entità}
+Hai un'entità padre ed una serie di figlie, quello che fai è con un arco unirle,
+fine. 
+\begin{center}
+\includegraphics[width=0.75\textwidth]{5.png}
+\end{center}
+Una generalizzazione può essere di due tipi:
+\begin{itemize}
+	\item Completa: L'unione delle istanze delle sottoentità è uguale all'insieme
+	delle istanza del padre
+	\item Non completa: in cui questo non accade
+\end{itemize}
+\paragraph{Spiegato meglioglioglio:} Hai uomo e donna, e poi essere umano, se prendi
+tutti gli uomini + tutte le donne e fai un insieme contenente tutti essi, ottieni
+l'essere umano. (Sì, LGBT, abbiate pietà, non è il momento di polemizzare) \\
+Ipotizziamo gli animali: hai cane gatto e criceto, e poi animali.. Beh se sommi
+tutti i gatti criceti e cani, non ottieni l'insieme degli animali. Mancano i
+gamberetti per esempio.
+\paragraph{Detto scientificamente accurato:} Se le sotto entità sono partizioni
+dell'entità padre, è completa, altrimenti no.
+\paragraph{L'entità padre può avere più generalizzazioni}
+\section{Attributi composti} Un attributo può esser definito su un dominio di più
+campi. In altri termini, un attributo può essere a sua volta un record. Tipo
+indirizzo (composto da via numero e cap), è uno di questi. Potrebbe essere anche
+un attributo del tipo "dati anagrafici". Quando si ha questa situazione l'attributo
+è composto.
+\section{Relazioni n-arie}
+La relazione BI-naria coinvolge due entità, la ternaria tre, la quaternaria.. 
+Via, si è capito, se è n-aria coinvolge n entità. A sua volta anche la relazione
+può avere i suoi attributi.
+\paragraph{Esistono anche relazioni ricorsive o definite su se stesse:} Il classico
+esempio è il papa. papa - \underline{successione} - papa, per tenervelo in testa
+pensate a "Morto un papa, se ne fa n'altro".
+\section{Identificatori/Chiavi}
+E' un insieme di attributi o relazioni che ti permettono di identificare le
+istanze di un'entità. (Per chi ha già fatto sta roba sono le chiavi primarie).
+Ogni entità ha un certo insieme di identificatori (Da 1 a $\infty$, basta che
+ce ne sia uno $\forall$ entità)
+\subsection{Tipi di identificatore/chiave}
+\begin{itemize}
+	\item \textbf{Interno}: Formati solo da attributi dell'entità stessa. può 
+	essere solo uno, possono essere anche più di uno. Come in questo esempio:
+	\begin{center}
+	\includegraphics[width=0.75\textwidth]{6.png}
+	\end{center}
 
+	\item \textbf{Esterno}: E' formato da attributi dell'entità e da relazioni
+	che la coinvolgono, oppure solo da queste relazioni.
+	\paragraph{Esempio grafico:}
+	\begin{center}
+	\includegraphics[width=0.75\textwidth]{7.png}
+	\end{center}
+
+\end{itemize}
 \end{document}
