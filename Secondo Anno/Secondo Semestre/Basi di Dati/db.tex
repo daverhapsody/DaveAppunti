@@ -293,6 +293,150 @@ ce ne sia uno $\forall$ entità)
 	\begin{center}
 	\includegraphics[width=0.75\textwidth]{7.png}
 	\end{center}
-
 \end{itemize}
+\chapter{Livello logico}
+Il livello logico è quello in cui figurano le strutture di rappresentazione 
+logica dei dati. In altri termini, dove c'è uno schema logico che descrive una
+realtà di interesse. E già qua occhio, non è uno schema concettuale come l'E-R,
+qua non si parla di generalizzazione della realtà, ma di schema logico dei dati. 
+\section{Modello relazionale}
+Il concetto di relazione è da considerarsi in 3 modi diversi:
+\begin{enumerate}
+	\item Relationship (Associazione, classe di fatti)
+	\item Relazione matematica (Qualunque sottoinsieme del prodotto cartesiano 
+	blablabla)
+	\item Relazione secondo il modello relazionale
+\end{enumerate}
+(Non mi soffermerò sulla spiegazione della relazione matematica, tenete solo
+a mente che le n-uple al loro interno sono orninate e che tra le n-uple non c'è
+ordinamento. Se volet buttateci dentro anche che ogni n-upla è univoca)
+\subsection{Definizioni base}
+\begin{itemize}
+	\item \textbf{Struttura non posizionale}: Per ogni dominio si associa un attributo
+	che ne descriva il ruolo
+	\item \textbf{Relazione (o Tabelle)}: Letteralmente la rappresentazione
+	matematica di una relazione in cui i valori per ogni colonna sono dello
+	stesso tipo, e le righe sono diverse. In termini leggibili? Un cazzo di array 
+	di record, con tutte le conseguenze che ne derivano.
+	\paragraph{Osservazione:} Si è specificato "valori" per ogni colonna, NON a
+	caso, perchè nel relazionale ci si basa su valori, ed i riferimenti tra i 
+	dati in relazioni diverse sono rapprentati con valori dei domini che 
+	compaiono nelle n-uple.
+	\paragraph{La domanda è: Per quale f* motivo?} Le ragioni sono 3:
+	\begin{enumerate}
+		\item L'utente finale vede gli stessi dati dei programmatori, costituiti
+		da tabelle
+		\item L'indipendenza della rappresentazione delle strutture fisiche, 
+		che cambiano in modo indipendente, quindi potete usare i floppyni del
+		Nintendo o un SSD Nvme, I N D I P E N D E N Z A.
+		\item i dati sono trasportabili da un sistema ad un altro per la ragione
+		del punto 2
+	\end{enumerate}
+	\item \textbf{Schema di relazione}:
+	\[
+		nomeRelazione(Attributo_{1}, Attributo_{2}, Attributo_{n})
+	\]	
+	Facciamo che da ora nomeRelazione $\to$ nR e Attributo $\to$ A
+	\item \textbf{Schema di Base di Dati}:
+	\[
+		superRelazione = \{nR_{1}(A_{1}, nR_{2}(A_{2}, ..., nR_{n}(A_{n}, )\}
+	\]
+	\item \textbf{N-upla}: Funzione che associa ad un certo insieme X di attributi,
+	$\forall$ attributo A $\in$ X uno ed un solo valore del dominio di A
+	\item \textbf{Istanza di relazione}: Data nR(A), l'istanza è l'insieme r di
+	n-uple su nR
+	\item \textbf{Istanza di Base di Dati}: Stesso identico concetto ma applicato
+	allo schema della base di dati. Dato lo schema di prima (superRelazione),
+	l'istanza è l'insieme delle relazioni r
+	\item \textbf{Valori nulli}: Quando un VALORE non c'è in una determinata
+	colonna, viene considerao Null 
+\end{itemize}
+\section{Strutture nidificate}
+La realtà è rappresentabile con infiniti schemi equivalenti, nel \textbf{contenuto
+informativo}. Ciò vuol dire che schemi equivalenti forniscono lo stesso
+insieme di informazioni.
+\paragraph{Premessa:} immaginatevi di volere rappresentare tutti gli scontrini di
+un ristorante in cui ogni ricevuta ha come campi: \{Numero ricevuta, data emissione
+e le varie voci di costo\}
+\subparagraph{Le voci di costo:} Per ogni voce c'è una corrispondenza con un 
+gruppo di portate, e per ciascun gruppo, il numero di porrtate e il costo del gruppo 
+di portate, infine il totale.\\
+Con un semplice schema ad elenco si ottiene alla fine la suddivisione in sezioni,
+sottosezioni etc., riscrivendolo così vien fuori:
+\begin{enumerate}
+	\item Numero ricevuta
+	\item Data Emissione
+	\item Voci di costo
+	\begin{enumerate}
+		\item Gruppo di portate
+		\begin{enumerate}
+			\item Numero di portate
+			\item Costo del gruppo di portate
+		\end{enumerate}
+	\end{enumerate}
+	\item Totale speso
+\end{enumerate}
+\section{Vincoli}
+Può accadere che dei DB siano sintatticamente corretti MA non rappresentano degli
+stati realmente possibili nella realtà, ad esempio il 27 e lode (esempio delle
+slides).
+\paragraph{Risoluzione:} Per risolvere questo inconveniente occorre aggiungere
+un vincolo che dica SE è 30 allora può avere lode, altrimenti non può. (Lode
+può essere benissimo un campo booleano).
+\section{Vincolo di integrità}
+E' una proprietà che hanno i DB che va soddisfatta da tutte le istanze di uno
+schema, le quali rappresentano informazioni corrette, consistenti, integre per
+l'applicazione.
+\paragraph{Banalmente:} E' una funzione booleana (O predicato for those who 
+love Prolog) che per ogni istanza r dà:
+\begin{itemize}
+	\item \textbf{TRUE}: se l'istanza rappresenta la realtà
+	\item \textbf{FALSE}: In caso contrario
+\end{itemize}
+\paragraph{A che servono?} Permettono di rappresentare in modo più preciso la
+realtà, e quindi contribuiscono ad avere dati più consistenti. Inoltre sono
+utili per progettare perchè lo schema risulta qualitativamente migliore
+\subparagraph{Tipi di vincolo}
+\paragraph{Vincolo intrarelazionale:} Definito all'interno della relazione.
+Sono vincoli applicati agli \textbf{attributi} (si definiscono anche vincoli
+di \textbf{dominio}), oppure vincoli di n-upla, o comunque relativi all'insieme
+di n-uple di una relazione $\to$ Vincoli di relazione
+\paragraph{Interrelazionale:} Definiti tra più relazioni
+\section{Vincolo di n-upla}
+Esprime condizioni sui valori di ciascuna n-upla in una relazione, ad esempio
+non puoi avere due giocatori in una squadra con stesso numero di maglia.
+\subparagraph{Sintassi}
+\begin{itemize}
+		\item Esressioni booleane (AND, OR, NOT)
+		\item Atomi da confrontare (>,<, >= etc.)
+\end{itemize}	
+Per calcolare il valore di verità di un vincolo in una n-upla, occorre sostituire
+i valori degli attributi nella n-upla, e poi calcolare il valore vero o falso.
+\section{Vincolo di chiave}
+C'è bisogno di individuare le informazioni che permettono di rappresentare ogni
+oggetto di interesse con una n-upla differente e identificarlo nel caso in
+cui ne abbia necessità.
+\subsection{Cos'è una chiave} E' un insieme di attributi che identificano in modo
+univoco le n-uple di una relazione. 
+Un insieme K di attributi è \textbf{superchiave} per una relazione r se r non 
+contiene due n-uple distinte $t_{1}$ e $t_{2}$ con $t_{1}[K]$ = $t_{2}[K]$.
+\\ Una chiave tipica è il numero di matricola, che identifica uno studente, e
+siccome è un solo campo, è anche minimale. \\
+Se invece hai [Matricola + cognome] non sono una chiave MA sono superchiave, 
+e non è minimale siccome c'è già matricola.
+\subparagraph{Vincoli, schemi e istanze}
+I vincoli corrispondono a proprietà del mondo reale modellato dal DB. Sono
+proprietà dello schema, fanno riferimento ad ogni istanza. Se hai dei vincoli
+in uno schema, se la istanza lo soddisfa, è corretto (per ogni vincolo).	
+\subsection{Esistenza delle chiavi}	
+Una relazione non può contenere n-uple distinte ma uguali. Ogni relazione ha come
+superchiave l'insieme degli attributi su cui è definita e ha (almeno) una chiave.
+Rappresentiamo per ogni dipartimento di un'università i fornitori di beni ed i 
+beni forniti.
+\paragraph{Precisazione:} Distinte ma uguali significa che hai un'istanza doppia,
+duplicata, ripetuta, ridondante. 
+\subparagraph{Importanza delle chiavi}
+Identificano e distinguono gli oggetti gli uni dagli altri, e quindi ogni dato
+diventa accessibile, inoltre permettono di collegare i dati in realzioni diverse.
+
 \end{document}
