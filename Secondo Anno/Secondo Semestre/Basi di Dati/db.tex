@@ -438,5 +438,399 @@ duplicata, ripetuta, ridondante.
 \subparagraph{Importanza delle chiavi}
 Identificano e distinguono gli oggetti gli uni dagli altri, e quindi ogni dato
 diventa accessibile, inoltre permettono di collegare i dati in realzioni diverse.
+\section{Valori nulli}
+Un valore nullo indica una generica informazione incompleta, assente, non 
+esistente. Un'informazione che a tutti gli effetti non c'è. Occhio a questa cosa,
+spesso si fa confusione con il concetto di 0 ed il concetto di nullo: Nullo è 
+NON avente valore, mentre 0 è un valore.\\ \\
+Esempio su un conto corrente: la casella che indica quanti soldi sono presenti
+\[
+\begin{cases}
+	SE ~ var = null ~ allora ~ NON ~ si ~ ha ~ questo ~ dato\\
+	SE ~ var = 0 ~ allora ~ hai ~ 0
+\end{cases}
+\]
+Ci sono 3 principali tipi diversi di valore nullo.
+\paragraph{Sconosciuto:} Quando il valore esiste ma non è noto
+\paragraph{Inesistente:} Quando invece questo valore non esiste e non è applicabile.
+\paragraph{Nessuna informazione:} Nel caso in cui o è sconosciuto o inesistente..
+\section{Informazione incompleta}
+Come si rappresenta a questo punto l'informazione nulla? Teniamo a mente che i 
+dati vanno separati dalle applicazioni, e soprattutto il significato dei dati non
+deve essere nascosto nei programmi.
+\paragraph{Soluzione:} Il dominio dei valori si estende aggiungendo un valore nuovo
+che si chiama NULL, che per l'appunto indica esattamente il valore "inesistente"
+di prima. Fine
+\subsection{Ammissione di valori nulli}
+Ci sono casi in cui non si può accettare un valore nullo, poichè renderebbe il 
+record incompleto, non univoco, e quindi ridondanze, inconsistenze etc. 
+\paragraph{In presenza di valori nulli:} I valori della chiave NON permettono
+di svolgere le due funzioni della chiave (Identificare i record, esprimere i 
+riferimenti ad altre tabelle)
+\paragraph{Se la chiave primaria fosse nulla?} Verrebbe un agente lì nel punto in
+cui c'è il programmatore che ha permesso una cosa simile, e gli sparerebbe in 
+fronte.
+\section{Vincoli di integrità referenziale}
+E' la proprietà per cui le informazioni con stesso significato in relazioni 
+diverse sono correlate, rispettando la proprietà per cui: 
+\begin{itemize}
+	\item Non è possibile che un oggetto dela realtà
+    \begin{enumerate}
+    	\item Sia rappresentato nella sua relazione con un altro oggetto
+    	\item Non sia rappresentato e identificato nella tabella che lo 
+    	descrive nativamente
+    \end{enumerate}
+\end{itemize}
+\paragraph{Per definizione:} Un vincolo di integrità referenziale fra un 
+insieme X di attributi di una relazione $R_{1}$ ed un'altra relazione $R_{2}$
+impone ai valori su X in $R_{1}$ di comparire come valori della chiave primaria
+di $R_{2}$
+\paragraph{Ok, e se viene violato?} In genere i DBMS per evitare problemi di 
+questo tipo agiscono in tre modi principali.
+\begin{enumerate}
+	\item Rifiutano l'operazione
+	\item Applicano una Eliminazione in cascata: Questa è la più cattiva, perchè
+	va a pescare ovunque c'è quel valore chiave, e cancella quel record
+	\item Introducono dei valori nulli
+\end{enumerate}
+\paragraph{E se il vincolo è su più attributi?} Come in molti altri ambiti è
+necessario che venga specificato un ordine tra gli attributi.
+\chapter{Progettazione concettuale}
+La progettazione concettuale è la fase che segue la stesura dei requisiti utente,
+in quesa fase si raccolgono i requisiti e a partire da questi si crea lo schema
+concettuale (Rappresentazione astratta dei requisiti).
+\paragraph{Tipici problemi legati alla stesura dei requisiti:} Il cliente non 
+è in grado di spiegarsi, vuole una cosa, ma ti racconta una cosa divesa, ha 
+poche idee, riesce a confondere pure quelle. (Se non sbaglio c'è su Aps una foto
+carina a tema)
+\section{Necessità di strategie}
+Quando i requisiti sono semplici, costituiti da poche frasi, allora si può generare
+uno schema "tutto in una volta", ma se ti becchi requisiti articolati (solito
+esempio di una banca), serve metodo.
+\paragraph{Ad un problema esistono infinite soluzioni, ed infinite soluzioni
+sbagliate.} Pensate quindi cosa vuol dire effettivamente capire se la propria è
+la strategia giusta.
+\paragraph{Per definizione:} Si definisce Analisi dei requisiti e della progettazione
+concettuale, l'insieme di:
+\begin{itemize}
+	\item Acquisizione dei requisiti
+	\item Analisi dei requisiti per rimuovere ambiguità e ridondanze
+	\item Costruzione dello schema concettuale
+	\item Costruzione di un glossario dei termini utilizzati
+\end{itemize}
+\section{Definizione di qualità}
+Una qualità di uno schema concettuale è una caratteristica che sarebbe auspicabile
+fare avere allo schema, e va garantita alla fine della fase di progettazione
+concettuale.
+\paragraph{Di che qualità si parla?}
+\begin{itemize}
+	\item Correttezza
+	\begin{itemize}
+		\item Rispetto ai requisiti: I requisiti rappresentati nello schema
+		devono essere rappresentati con il significato dei concetti nell'E-R
+		\item Rispetto al modello: I concetti del modello sono usati nello schema
+		in accordo al loro significato
+	\end{itemize}
+	\item Completezza: Tutti i requisiti devono essere rappresentati nello schema
+	\item Pertinenza: Nello schema devono esserci solo concetti che compaiono nei 
+	requisiti
+	\item Minimalità: Non ci devono essere più concetti che rappresentano lo stesso
+	requisito.
+	\paragraph{Specificazione:} In taluni casi può anche essere accettata la non
+	minimalità (o anche ridondanza). L'importante è che sia riconosciuta, in modo 
+	tale che a lovello logico sia possibile decidere se mantenere o eliminare la
+	ridondanza.
+	\item Leggibilità: Lo schema deve rappresentare i requisiti in modo comprensibile 
+	\begin{itemize}
+		\item Grafica: Leggibilità estetica, nel senso che non ci devono essere
+		incroci tra linee, e le line NON devono essere oblique, solo verticali
+		od orizzontali
+		\item Concettuale: Sarebbe la scelta di strutture del modello che danno
+		luogo ad uno schema più compatto, più semplice da capire.
+	\end{itemize}
+\end{itemize}
+\paragraph{Come si raccolgono i requisiti?} L'analista non ha presente come funziona
+il dominio d'applicazione, c'è bisogno di individuare diverse fonti informative,
+a partire dalle quali raccogliere i requisiti
+\subparagraph{Da dove si attingono le informazioni?} 
+\begin{itemize}
+		\item Dagli utenti tramite interviste o documentazione fornita
+		\paragraph{Problemi legati alle interviste:} Utenti diversi possono 
+		fornire informazioni diverse e usare termini diversi per indicare la stessa cosa.
+		\item Tramite modulistica usata per acquisire i dati
+		\paragraph{Ok, e che documentazione esiste?} 
+		\begin{itemize}
+			\item Normative (Leggi, regolamenti di settore)
+			\item Regolamenti interni, procedure aziendali
+			\item Ralizzazioni preesistenti (I vecchi Db che l'azienda aveva, 
+			per intenderci)
+		\end{itemize}
+\end{itemize}
+\subsection{Regole generali per la documentazione descrittiva}
+Per cominciare bisogna scegliere un corretto livello di astrazione, del tipo
+è meglio usare "animale" o "cane"? Il concetto è capire quanto salire in alto come
+livello di astrazione.
+E' utile anche
+\begin{itemize}
+	\item Standardizzare la struttura dell efrasi
+	\item Separare le frasi sui dati da quelle sulle operazioni che aggiornano i 
+	dati
+\end{itemize}
+\subsection{Organizzazione di termini e concetti}
+In generale si usa:
+\begin{itemize}
+	\item Costruire un glossario dei termini
+	\item Individuare omonimi e sinonimi e fare un'unificazione dei termini
+	\item Rendere esplicito il riferimento tra termini
+	\item Riorganizzare le frasi per concetti
+\end{itemize}
+C'è da fare una distinzione tra strategie semplici (Quelle che danno indicazioni
+per scegliere tra attributo, entità, relazione, relazione is\_a e generalizzazione),
+oppure complesse (Quando si esprime un'idea complessiva su come percorrere il processo di 
+progettazione)
+\section{Strategie semplici}
+Sono le strategie viste finora per quanto riguardi le lezioni sul modello E-R
+\begin{itemize}
+	\item Prima le entità, e attributi di entità
+	\item Poi le relazioni e attributi delle relazioni
+	\item Generalizzazioni
+\end{itemize}
+E per la scelta dei singoli concetti
+\subsection{Strategie di progetto}
+Le solite:
+\begin{itemize}
+	\item Top-down
+	\item Bottom-up
+	\item Inside-out: Da un concetto "a macchia d'olio" verso tutti gli atri
+	\item Mista tra tutte queste tre
+\end{itemize}
+\section{Strategia Top-down}
+Nel top down si possono disciplinare i \underline{raffinamenti}, che sono 
+sostituzioni di concetti con altri concetti più dettagliati, usando un numero
+limitato di \color{red}\textbf{primitive di raffinamento}\color{black}
+\paragraph{Le principali sono:}
+\begin{enumerate}
+	\item Entità $\to$ Entità + Attributi
+	\item Entità $\to$ Relazione tra Entità
+	\item Entità $\to$ Generalizzazione tra Entità
+\end{enumerate}
+\section{Strategia Bottom-up}
+Parti da tanti piccoli sottoschemi fatti di concetti, che vai a unire formando
+uno schema completo, ci sono casi in cui si può attuare una strategia bottom-up
+o una top-down indifferentemente.
+\paragraph{Vantaggi e svantaggi dei vari modelli:}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{8}
+\end{center}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{9}
+\end{center}
+A questo punto risulta scontato che la soluzione migliore sia la \textbf{mista}
+per via del fatto che prende i lati positivi di ognuna delle strategie esistenti.
+\section{Schema scheletro}
+Lo schema scheletro raccoglie i concetti più importanti, che vngono organizzati
+in uno schema concettuale. 
+Ci sono due main strategie miste, che si differenziano su come si procede dopo
+aver individuato lo schema scheletro:
+\begin{enumerate}
+	\item La prima è tutta top-down: definisce in maggior dettaglio la strategia
+	top-down
+	\item La seconda è mista, nel senso che prevede passi ispirati alle altre
+	strategie
+\end{enumerate}
+\subsection{Strategia Top-down completa}
+\paragraph{Analisi dei requisiti:}
+\begin{enumerate}
+	\item Si analizzano i requisiti e si eliminano le ambiguità
+	\item Si raggruppano i requisiti in insiemi omogenei
+\end{enumerate}
+\paragraph{Passo base:}
+\begin{enumerate}
+	\item Si definisce uno schema scheletro con i concetti più rilevanti
+\end{enumerate}
+\paragraph{Passo iterativo:} Si ripete finchè non sono stati rappresentati tutti
+i requisiti
+\begin{enumerate}
+	\item Si raffinano i cncetti presenti sulla base dell eloro specifiche
+	\item Si aggiungono concetti per descrivere specifiche non descritte
+	\item Si verifica la qualità dello schema e eventualmente lo si modifica per 
+	raggiunggere le qualità desiderate
+\end{enumerate}
+\subsection{Metodologia mista}
+\paragraph{Analisi dei requisiti:}
+\begin{enumerate}
+	\item Si crea lo schema scheletro
+\end{enumerate}
+\paragraph{Decomposizione:}
+\begin{enumerate}
+	\item Si decompongono i requisiti con riferimenti ai concetti nello schema 
+	scheletro
+	\item Si creano i diversi sottoschemi
+\end{enumerate}
+\paragraph{Passo iterativo:} 
+\begin{enumerate}
+	\item ìSi integrano i vari sottoschemi in uno schema complessivo facendo 
+	riferimento allo schema scheletro.
+\end{enumerate}
+\paragraph{Analisi di quaità}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{10}
+\end{center}
+\chapter{Progettazione logica}
+La progettazione logica si pone l'obbiettivo di tradurre lo schema concettuale
+in uno schema logico che sia in grado di rappresentare lo schema per mezzo
+di un \textbf{modello logico}. 
+\subsection{Efficienza e correttezza}
+Prima di tutto, lo schema nel modello relazionale deve rappresentare la
+stessa realtà dello schema E-R, e soprattutto le varie query e transizioni
+devono essere eseguite sullo schema con un costo di risorse ridotto al minimo.
+\paragraph{Precisazioni sulla correttezza:}
+Come già detto, lo schema ER e il relazionale devono rappresentare la stessa
+realtà, devono avere un \textbf{contenuto informativo} equivalente. Ci sono però
+alcune strutture che non sono direttamente rappresentabili:
+\begin{enumerate}
+	\item Le generalizzazioni
+	\item Le associazioni (in particolari le molti a molti)
+	\item Gli attributi multivalore
+	\item Le chiavi composte
+\end{enumerate}
+\paragraph{Precisazioni sull'efficienza:} La riduzione del carico applicativo
+comprende \textbf{interrogazioni} (query) e \textbf{transizioni}, banalmente
+operazioni che tirano fuori informazioni, e operazioni che ci scrivono roba.
+\subparagraph{Fissato il carico applicativo:} dobbiamo scegliere quel particolare 
+schema logico che permette di ottimizzare l'esecuzione del carico applicativo.
+\section{Fasi della progettazione logica}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{11}
+\end{center}
+E qua comincia ciò che maggiormente ho odiato nel mio 5 anno delle superiori:
+\subsection{Ristrutturazione dello schema ER}
+\paragraph{La domanda è: Perchè?} Perchè bisogna rendere semplice la
+traduzione nel modello relazionale, e quindi prendete lo schema ER e ne 
+create un altro equivalente (Quindi, che cazzo abbiam creato a fare
+il primo in principio? Bella domanda). 
+Ah sì poi un altro motivo è l'ottimizzazione del carico applicativo.\\ \\
+Bisogna concentrarsi sul tempo di esecuzioni delle query e sullo spazio in
+memoria che l'esecuzione di una query occupa. 
+\paragraph{Esempio che mi è capitato personalmente:} Prendete due tabellone 
+gigantescone con dei datoni gigantesconi dentro..ni. Bene, dobbiamo andare a 
+selezionare UN campo di UN record che però si ottieme facendo una join. Ecco, ogni
+volta crashava tutto perchè questo caricava in memoria T U T T A la tabella
+del prodotto cartesiano. 
+\paragraph{Che risorse si hanno a disposizione?} \textbf{Spazio}: Tavola dei volumi, che
+per intenderci descrive il numero di istanze delle entità e delle relazioni, e
+\textbf{Tempo}: Tavola degli accessi, che descrive per ogni operazione rilevante, 
+il numero di istanze di entità e relazioni visitate dalla operazione.
+\section{Tavola dei volumi}
+La tavola dei volumi serve per capire quanto spazio occuperà una base di dati: 
+è una tabella gigante in cui si ha per ogni entità o relazione il numero orientativo
+di istanze nel corso della vita del DB. La tabella sarà formata da 3 colonne x N
+righe, dove N dipende da numero di entità+numero relazioni.
+\begin{center}
+\begin{tabular}{ |c|c|c| } 
+ \hline
+ Nome & Tipo & Volume \\
+ \hline
+ Entità 1 & E & $\alpha$ \\ 
+ Entità 2 & E & $\beta$ \\ 
+ Relazione & R & $\gamma$ \\ 
+ \hline
+\end{tabular}
+\end{center}
+Prima di tutto si inserisce il numero di istanze delle entità, successivamente,
+si va a inserire per ogni relazione il numero, che viene generato dai valori
+delle altre entità
+\section{Tavole degli accessi}
+Se quelle precedenti misurano lo spazio indicativo occupato, in questo caso si 
+va a parlare di tempo speso.
+\begin{itemize}
+	\item In pratica descrive il costo di utilizzo da parte di un'operazione
+	(inteso come tempo)
+	\item Si misura con il numero di istanze dell'entità e relazioni visitate 
+	dall'operazione
+	\item Si tratta pur sempre di un'approssimazione, non ragionando su dati
+	oggettivi, ma su ipotesi (per quanto plausibili possano essere)
+\end{itemize}
+\paragraph{Come si fa?}
+\begin{enumerate}
+	\item Input: Operazione con sua frequenza
+		\begin{enumerate}
+			\item Si costruisce lo \underline{Schema di navigazione}
+			\paragraph{Lo schema di navigazine:} E' un ordine espresso 
+			graficamente, in cui l'operazione visita in sequenza entità e relazioni
+			dello schema
+			\item Costruisci la tavola degli accessi (Basata sull'ipotesi
+			che venga seguito lo schema del passo 1)
+			\begin{center}
+			\includegraphics[width=0.75\textwidth]{12}
+			\end{center}
+			\item Nota la frequenza dell'operazione, si calcola il \underline{
+			costo dell'operazione
+			}, che si definisce come accessi per quella frequenza
 
+		\end{enumerate}
+\end{enumerate}
+\paragraph{Avvertenze:} accanto agli accessi in lettura, le transazioni effettuano
+anche accessi in scrittura poichè modificano lo stato del DB.
+E negli access iin scrittura si considera per ogni accesso un doppio trasferimento,
+uno da memoria secondaria a principale e uno che fa l'inverso.
+\section{Le fasi della ristrutturazione}
+\begin{enumerate}
+	\item Analisi delle ridondanze (Alcune potrebbe aver senso lasciarle)
+	\paragraph{Cioè?} Una ridondanza è un'entità o relazione che si può derivare
+	da altri. Derivabile si intende che ha dei valori che sono calcolabili 
+	(sia da attributi dell'entità stessa, che da altributi di altre entità).
+	\paragraph{Nel caso delle relazioni:} Si derivano dalla composizione di 
+	altre relazioni in presenza di cicli di entità e relazioni.
+	\paragraph{Ok, perchè mantenere le ridondanze?} Si semplificano le query ogni
+	volta che compare la struttura ridondante
+	\paragraph{Perchè no?} Perchè vai ad aggiungere operazioni di aggiornamento e
+	perchè serve più spazio
+	\item Eliminazione delle generalizzazioni (Perchè non esistono nel relazionale)
+	\item Partizionamento o accorpamento di entità e relazioni per rendere
+	efficiente lo schema relazionale finale
+	\item Scegliere le chiavi primarie
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Lezione WebEx 1 (credo)}
+\section{Differenze tra Algebra Relazionale e SQL}
+\begin{enumerate}
+	\item L'algebra relazionale è un linguaggio formale, l'SQL si usa quando si 
+	lavora sui DB
+	\item L'algebra relazionale è procedurale, si specifica l'algoritmo, mentre
+	SQL invece è parzialmente dichiarativo, specifica solo il risultato da 
+	ottenere, senza specifica degli algoritmi
+	\item Istruzioni equivalenti differiscono per efficienza, mentre in SQL è 
+	solo un questione di leggibilità
+	\item Nell'algebra relazionale le relazioni sono matematiche, in SQL sono 
+	tabelle
+	\item Negli insiemi non ci possono essere elementi uguali, mentre in SQL sì,
+	possono esserci righe uguali
+\end{enumerate}
 \end{document}

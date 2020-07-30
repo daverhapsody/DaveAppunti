@@ -181,9 +181,286 @@ switch di Unix.
 Un protocollo è un insieme di regole che definiscono un formato, l'ordine,
 payload, operazioni da compiere alla ricezione od all'invio di un 
 messaggio.
+\chapter{Le Socket}
+\paragraph{Cos'è?} Una socket è un'interfaccia tra il sistema operativo ed un 
+processo su di esso eseguito, quindi un programma in stato di esecuzione.
+\textbf{Come?} Fondamentalmente dati due processi, la socket è colei in grado di
+metterli in comunicazione inviando o leggendo dati.
+\section{Aspetti critici}
+\subsection{Gestione del ciclo di vita di client e server}
+Quando si attiva e/o disattiva uno dei due, chi la gestisce è il middleware, 
+oppure può essere manuale
+\subsection{Identificazione ed accesso al server}
+Un client per accedere ad un server deve conoscerne l'indirizzo ed una serie di
+informazioni che consentano di raggiungerlo.
+\paragraph{Come fa un client a conoscere l'indirizzo server?} Ha diverse alternative
+\begin{itemize}
+	\item Inserisce nel codice del client l'indirizzo del server espresso
+	come costante (Il client di un servizio bancario)
+	\item Si chiede all'utente di inserire l'indirizzo (E' quello tipico di 
+	browser e simili)
+	\item Si può utilizzare un \textbf{name server} o si attinge da un repository
+	da cui il client può acquisire informazioni necessarie
+	\item Si adotta un protocollo differente per individuare il server (ad 
+	esempio il DHCP)
+\end{itemize}
+\subsection{Comunicazione client server}
+Quali sono le primitive disponibili? Quali sono le modalità di comunicazione?
+\subsection{Ripartizione dei compiti client e server}
+Dipendentemente dal tipo di applicazione si decide chi fa cosa, quali compiti
+spettano al server, quali al client. Come si decide? Si deve fare un'analisi
+dei rischi in fatto di sicurezza, prestazioni etc.
+\section{Soluzioni agli aspetti critici}
+\begin{enumerate}
+	\item Si identifica la controparte, tramite il naming, ogni host avrà un nome,
+	si fa riferimento ad un indirizzo ed una porta
+	\item Per accedere alla controparte servirà accedere all'indirizzo:porta,
+	usando direttamente l'indirizzo IP (access point)
+	\item Comunicazione 1: (Protocolli) Stream di byte
+	\item Comunicazione 2: (Sintassi e semantica) Metodo di interpretazione dei 
+	flussi di byte 
+\end{enumerate}
+Il livello di trasparenza è basso poichè è il programmatore che deve preoccuparsi
+di queste problematiche
+\section{Comunicazione via socket}
+Le comunicazioni in TCP/IP avvengono tramite flussi di byte in seguito ad una
+connessione esplicita con systemcall read/write
+\paragraph{Perchè?} Perchè sono due funzioni sospensive, ovvero bloccano il processo
+finchè non è raggiunto il completamento dell'operazione e soprattutto viene
+utilizzato un buffer per garantire flessibilità
+\paragraph{Come funziona?}
+\begin{enumerate}
+	\item Il server richiede di aprire un canale in ascolto (Socket bind)
+	\item Il client con una socket crea un canale analogo, senza una bind, ma 
+	con stesso effetto finale
+	\item Il client invia la richiesta, il cui formato è stabilito dal livello
+	di trasporto
+	\item Il server crea un secondo canale di comunicazione che sarebbe l'accept,
+	quindi avviene l'handshake, poi si procede con il trasferimento
+\end{enumerate}
+Non si comunica sulla stessa socket poichè da una socket o si entra o si esce,
+non si possono fare entrambe le cose.
+\chapter{Tipi di comunicazione}
+Ci sono fondamentalmente diversi tipi di comunicazione. Il primo tipo è la 
+comunicazione orientata ai messaggi. Per capire meglio come funzioni quest'ultima
+si fa riferimento all'architettura del Web, ma prima definiamo la comunicazione
+orientata ai messaggi.
+\section{Comunicazione orientata ai messaggi}
+Come accennato prima, questo tipo di comunicazione prevede lo scambio di messaggi,
+generalmente uno richiesta e uno risposta, ed è tutto gestito e controllato da 
+dei protocolli.
+\subsection{Protocolli}
+Un protocollo è un insieme di regole atte a stabilire formato, ordine di invio e
+ricezione, dispositivi, tipi per i dati ed azioni da eseguire in invio e ricezione
+di un messaggio
+\paragraph{Alcuni esempi di protocolli:} HTTP, SFTP, SMTP, FTP, verranno definiti
+in seguito.
+\subsection{Protocollo HTTP}
+Il web (dopo si vedrà come) lavora prevalentemente con HTTP (hypertext transfer
+protocol), quindi tramite 
+scambio di HTTP requests e responses tra client e server, è fondamentalmente
+il protocollo in grado di trasferire dell'ipertesto.
+\paragraph{Cosa c'è alla base di HTTP?} Livello transport: TCP, nello specifico
+instanzia una socket sulla porta 80, il server accetta la connessione (Handshake
+a 3 vie) e si effettuano gli scambi
+\paragraph{E' un protocollo stateless: } Il server non si ricorda delle richieste
+precedenti, quindi una richiesta deve avere tutte le informazioni richieste per
+l'esecuzione. Ci sono altri protocolli che mantengono però l'informazione.
+\paragraph{Formato dei messaggi HTTP: } Request e response hanno la stessa
+struttura: 
+\begin{center}
+\includegraphics[width=0.75\textwidth]{2}
+\end{center}
+\paragraph{Esempio di messaggio HTTP request:}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{3}
+\end{center}
+\subsection{Metodi per effettuare HTTP requests}
+Sono fondamentalmente 3:
+\paragraph{Metodo GET:} Restituisce una rappresentazione di una risorsa, include
+un eventuale input in coda alla URL della risorsa, l'esecuzione non ha effetti sul server
+ed è gestible da una cache del client
+\subparagraph{Specificazione: }Una get può essere condizionale, per evitare di 
+inviare roba che il client ha già nella cache. Ad esempio ci puoi mettere un
+if-modified-since: data che banalmente non trasferisce nulla se l'ultima modifica
+è entro una certa data. 
+\subparagraph{E la risposta?} Il server dà risposta vuota se l'oggetto è aggiornato.
+HTTP/1.0 304 Not Modified 		
+\subparagraph{Uso tipico:} Ottenere dati in formato di pagine html e immagini
+\paragraph{Metodo POST:} Comunica dei dati che vengono elaborati lato SERVER o
+crea una risorsa subordinatta all'URL, inoltre non è idempotente, ogni esecuzione
+ha un effetto diverso, e la risposta non è gestibile con una cache lato client.
+E' usata per gestire i FORM o modificare i DB
+\paragraph{Metodo HEAD:} Molto simile alla GET ma restituisce solo l'HEAD della
+pagina web, si usa spesso in fase di debug.
+\paragraph{Ecco una tabella riassuntiva dei metodi HTTP:} 
+\begin{center}
+	\includegraphics[width=0.75\textwidth]{4}
+\end{center}	
+\paragraph{Formato di una HTTP response:}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{5}
+\end{center}
+\subsection{I tipi MIME}
+Nella parte del web si vedrà una specificazione di questi, fodamentalmente 
+MIME significa Multipurpose Internet Mail Extension, qualifica i dati
+via Internet (in HTTP, qualifica il tipo dei dati del body)
+\paragraph{Quali sono questi tipi? }Testo, immagini, video, audio, dati che devono
+essere processati da un'applicazione prima di esser visibili
+\subsection{I cookie}
+Un cookie serve per legare più richieste in modo da associare un ID alla conversazione.
+Il client manda al server un cookie, che è un numerello, ed il server saprà
+chi è che parla ogni volta che riceve quel cookie per gli accessi positivi.
+\paragraph{Come vien controllato? }Il server autentica ogni cookie, traccia
+le preferenze dell'utente e la sessione di lavoro (Sì, esatto, quella roba dei
+cookie che si legge in ogni sito serve a questo)
+\paragraph{Come controllo l'accesso ai documenti lato server?} Consideriamo che
+HTTP è stateless, il client deve autenticare ogni richiesta, perciò molto
+semplicemente il client manda login e password nell'header del messaggio, e 
+per evitarsi che l'utente li digiti ogni volta, se li salva. Not bad!
+\section{Comunicazione orientata allo stream}
+Questa cosa è stata menzionata nella parte relativa al livello di trasporto
+del modello TCP/IP, fondamentalmente è la differenza tra TCP e UDP. TCP numera
+ogni elemento della sequenza, garantisce la correttezza dell'informazione, 
+l'ordine, e l'integrità. Invece UDP di questo non si cura.
+\paragraph{E al lato applicativo? } L'applicazione invia i messaggi come stream 
+di byte al livello di trasporto, e poi leggerà i byte dal trasporto ricostruendo
+i messaggi. Ma non si cura di ciò che c'è sotto
+\section{Architettura del web}
+Il web supporta l'interazione tra client e server mediante HTTP, e a seconda del
+fatto che un host sia client o server cambierà il tipo di messaggio che invia
+(o riceve). 
+\begin{itemize}
+	\item Se si tratta di un \textbf{Server} riceverà delle HTTP \textbf{Requests}
+	\item Se si tratta di un \textbf{Client} riceverà delle HTTP \textbf{Response}
+\end{itemize}
+Client e server sono rispettivamente rappresentati da:
+\begin{itemize}
+	\item Client: un Browser, od un User-Agent
+	\item Server: un web server o HTTP server
+\end{itemize}
+\section{Tipi di comunicazione}
+Esistono diversi tipi di comunicazione:
+\begin{enumerate}
+	\item Comunicazione sincrona o asincrona
+	\item Comunicazione transiente (se il destinatario non c'è, i dati sono 
+	scartati)
+	\item Comunicazione persistente: Il middleware memorizza i dati fino alla consegna
+	del messaggio, non serve che i processi siano in esecuzione prima e dopo l'invio.
+\end{enumerate}
+\subsection{Comunicazione persistente}
+Un messaggio persistente può esser sia sincrono che asincrono, la differenza nel fatto che
+nel caso dell'asincrono, dati A e B che voglion comunicare:
+\begin{enumerate}
+	\item A invia un messaggio e continua a fare il suo
+	\item B si sveglia ad un certo punto, e riceve il messaggio
+\end{enumerate}
+Mentre nel caso il messaggio è sincrono
+\begin{enumerate}
+	\item A invia un messaggio a B e si ferma ad aspettare
+	\item B non è in esecuzione ma il messaggio verrà salvato in un buffer
+	che leggerà al risveglio
+	\item A riceve l'ok dell'inserimento del dato in quel buffer, e torna a fare il suo
+	\item B si sveglia, e riceve il messaggio
+\end{enumerate}
+Nel caso di una comunicazione asincrona transiente:
+\begin{enumerate}
+	\item A manda il messaggio e fa il suo
+	\item B riceverà solo se è in esecuzione
+\end{enumerate}
+Nel caso invece la comunicazione è sincrona A invia e aspetta che b riceva e risponda.
+Invece per le comunicazioni transienti delivery-based si ha che:
+\begin{enumerate}
+	\item A invia una richiesta e aspetta
+	\item B si sta facendo i cazzi suoi da acceso, riceve, risponde con comodo
+	\item A riparte da quando riceve l'accepted, e poi B processa la sua richiesta
+\end{enumerate}
+Invece nel caso sia una response-based..
+\begin{enumerate}
+	\item A invia il messaggio, e non solo aspetta che B risponda, ma aspetta
+	che B finisca di processare, producendo un Sent-request delay.
+\end{enumerate}
+\subsection{Web browser}
+Considerando il lato client si ha questo software che consente di visualizzare
+le pagine web, è detto \textbf{User-Agent}, fondamentalmente ciò che fa un 
+browser è \textbf{interpretare} un codice di mark up (HTML, ad esempio), che
+sarebbe una pagina web, e successivamente visualizzarlo (in forma di ipertesto)
+\paragraph{Mh.. Manca qualcosa:} Assieme all'HTML (che delinea la grafica) un
+browser consente (soprattutto se $browser \neq Internet-Explorer$) molta più
+roba, dalla multimedialità, ai feed RSS, ai file XML, Json etc. 
+\subsection{La pagina web}
+Come accennato nella sottosezione precedente, si hanno delle vere e proprie 
+pagine web, che fondamentalmente sono dei file, dei documenti, costituiti da
+un certo insieme di oggetti, o \textbf{risorse}.
+\paragraph{Definizione di risorsa:} Una risorsa è una \textbf{sequenza di dati}
+\textbf{identificata da un URL}, che per intenderci è un indirizzo univoco. 
+Questo insieme di dati risiede su \textbf{memoria di massa} e quindi è per 
+semplificarci la vita un \textbf{file}. 
+\paragraph{Okay, che file abbiamo?} La maggior parte delle pagine web ha almeno
+una riga di HTML (Hypertext Markup Language), anche solo per definire i contenuti
+testuali e qualche elemento grafico
+\paragraph{E il web server?} Il web server è l'applicativo che ha il compito di
+gestire quei famosi file, e soprattutto che li rende disponibili ai client (Se
+c'è un mondo dietro ai browser, per fare a gara tra quale è il migliore, c'è 
+anche lato server. Sì.)
+\subsection{L'URL}
+Un URL (Uniform Resource Locator) identifica un oggetto nella rete, ma non è questo
+il lato più importante
+\paragraph{Un URL specifica il protocollo con cui si possono interpretare i dati}.
+\paragraph{Come è composto?} E' composto da 5 componenti principali:
+\begin{enumerate}
+	\item Nome del protocollo (sftp, http, https, ftp, smtp etc.)
+	\item Indirizzo dell'host (IP address)
+	\item Porta di destinazione 
+	\item Percorso file nell'host
+	\item Risorsa
+\end{enumerate}
+\paragraph{Esempio: accedi in ftp a 192.168.50.5 al percorso /media/hdd e 
+prendi il file prova.txt} ftp://192.168.50.5:21/media/hdd/prova.txt
+\subsection{Ipertesto}
+Per tre volte si è menzionato l'\textbf{ipertesto}, ma cosa sarebbe? Fondamentalmente
+è un insieme di testi o pagine leggiili tramite un'interfaccia elettronica. 
+Funzionano tramite hyperlink, o anche solo link.
+\paragraph{E che fanno i link?} Costituiscono una rete raggiata, o incrociata di
+informazioni organizzate su citeri paritetici o gerarchici (I menù, per capirci)
+\subsection{Linguaggi del web}
+I dati testuali si esprimono con linguaggi standard (HTML, XML e JSON),
+rispettivamente descrivono: Struttura contenuti (HTML) e struttura dei dati (JSON, XML)
+\paragraph{E i dati non testuali?} Esiste una tecnica di encoding detta MIME che
+consente di definire il formato dei contenuti non testuali (video, audio, etc.)
+\paragraph{Ma gli script?} Lasciati in disparte fin dal principio, questi 
+sono essenziali, consentono la creazione di pagine web \textbf{dinamiche}.
+Alcuni dei più famosi: VBScript, PHP, JavaScript, Adobe Flash etc.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     
+
+
+
+
+
+
+
+
+
 
 
 
