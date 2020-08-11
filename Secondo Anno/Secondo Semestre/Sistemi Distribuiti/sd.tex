@@ -431,6 +431,86 @@ consente di definire il formato dei contenuti non testuali (video, audio, etc.)
 \paragraph{Ma gli script?} Lasciati in disparte fin dal principio, questi 
 sono essenziali, consentono la creazione di pagine web \textbf{dinamiche}.
 Alcuni dei più famosi: VBScript, PHP, JavaScript, Adobe Flash etc.
+\chapter{HTML, DOM, CSS, JAVASCRIPT}
+Sono tutti linguaggi, sebbene non tutti dello stesso tipo. Di fatto Javascript è
+un linguaggio di programmazione (In questo caso interpretato) mentre per quanto
+riguarda HTML e CSS si fa riferimento a linguaggi di Markup
+\section{Linguaggi di markup}
+\paragraph{Cosa sono?} In modo semplificativo, sono linguaggi che dicono 
+all'interprete come rappresentare graficamente un foglio, o una pagina (in questo
+caso web). 
+\paragraph{Solo per pagine web?} No, questo documento è stato scritto in LaTeX, 
+che è un linguaggio di MarkUp per documenti PDF, però non è solo questa la differenza.
+Infatti LaTeX è compilato, mentre HTML, Markdown e simili sono tutti interpretati.
+\paragraph{Chi è l'interprete di HTML+CSS?} Qualsiasi browser, addirittura anche
+Internet Explorer (Con un quarto d'ora di ritardo, ma c'è).
+\subsection{HTML}
+Hypertext Markup Language, per l'appunto, linguaggio di markup per strutturare contenuti
+web (L'ipertesto). Quando si è di fronte ad una pagina web, 9/10 è scritta, o 
+contiene, del codice in HTML
+\subsection{CSS}
+Cascading Style Sheets, è un linguaggio di supporto all'HTML che invece serve per
+dare uno stile di presentazione ai contenuti, quindi fondamentalmente è tipo una
+libreria di quelle che si importa in Java o C. Da solo non serve a niente, ma 
+integrandolo con HTML, porta a pagine carine
+\paragraph{Diversi stylesheet:} Ne esistono diversi, per l'appunto \\
+\begin{itemize}
+	\item L'autore della pagina in genere ne specifica uno, o anche più di uno
+	\item Il browser ne ha uno solo, o un vero css, oppure uno simulato nel codice
+	del browser
+	\item Il lettore, l'utente del browser, ne può definire uno personale per
+	modificare la propria esperienza d'uso.
+\end{itemize}
+\subsection{DOM}
+Document Object Model, è un'interfaccia neutrale rispetto al linguaggio di programmazione,
+è fondamentalmente quello che consente ad una pagina web di essere dinamica ed 
+avere del codice sotto che funziona. Form, elenchi, quella roba lì.
+\paragraph{Precisazioni:} Usare HTML e CSS serve per fare in modo che contenitore
+e contenuto siano indipendenti l'un dall'altro, la separazione dei concetti infatti
+è ormai d'obbligo in informatica, PERO' lo stile può avere un coupling, un legame
+con il contenuto. \\ \\
+Il browser infatti non è un lettore di pagine scritte in HTML e morta lì, ma è un
+ambiente di sviluppo che fornisce un numero enorme di funzionalità. Se premete
+su una qualunque pagina F12 capirete meglio il concetto.
+\chapter{Servlet e Applicazioni Web}
+Prima di capire cos'è una servlet serve dare una veloce spiegazione di come funziona
+un'applicazione web. \\ \\
+Come spiegato in qualche precedente capitolo, tutto è basato su un'architettura 
+client-server, quindi ci sarà un Web Client (Browser) ed un web server (Apache
+o simili).
+\paragraph{Come si passa dal Web alle applicazioni?} Partendo dal fato che il web
+supporta l'interazione tra client e server via HTTP, il server avrà un programma 
+che si chiama Application Server (E' UN SOFTWARE, NON HARDWARE) che è caratterizzato
+dal protocollo di interazione con il Web Server stesso. L'interazione con il client
+è infatti tutta in HTTP.
+\paragraph{Cosa accade lato server?} Ogni calcolo, ogni computazione, viene 
+svolta dal server, e può avvenire sia da scriptini che da programmi compilati.
+Nel caso di software compilati ciò che accade è che il server invoca l'eseguibile
+(Partendo dalla richiesta del client). 
+\paragraph{Come vengono eseguiti gli script?} Il Web Server ha un motore in grado
+di intepretare il linguaggio di scripting di riferimento, quello richiesto, per intenderci
+\section{Sigle da sapere}
+\begin{enumerate}
+	\item URL: Uniform resource locator, definisce un naming globale, un modo per 
+	tracciare le cose
+	\item CGI: Content Gateway Interface, permette al server di attivare un 
+	programma, passargli le richieste e i parametri dal client, e recuperare 
+	una risposta
+	\paragraph{Che vantaggi ci sono?}
+	\begin{itemize}
+		\item Ti devi programmare solo le logiche
+		\item Hai un modello di applicazioni conformi al modello del linguaggio
+		\item Semplice, riproducibile ovunque, manutenibile in modo agevole
+	\end{itemize}
+	\section{Servlet}
+	Finalmente si arriva alle Servlet. Che sono? Sono applicazioni Java che si 
+	trovano sul server. E' un componente che il server gestisce in modo automatico
+	da un engine, oppure da un container. 
+	Dalle slide c'era qualche esempio di come si costruiscono e usano.
+	\section{Remote Procedure Call}
+\end{enumerate}
+
+
 
 
 
