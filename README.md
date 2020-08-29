@@ -1,6 +1,9 @@
 # Benvenuti nel magico mondo di Dave
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
 
+## Nel mondo del Covid:
+Il secondo semestre del secondo anni è noto per essere il peggiore che voi possiate passare in questo corso, figuratevi se vi toccassi farlo durante un periodo di lockdown in cui non si avevano indicazioni chiare nemmeno su come raggiungere il cesso dalla propria camera. Per cui sssssadly **I miei appunti del secondo semestre del secondo anno potrebbero essere incompleti, ma quel poco che ho fatto l'ho fatto NON a caso, mi ci sono impegnato**
+
 ## Avvertenze:
 
 1) I miei appunti sono stati presi tutti a lezione, quindi c'è scritto quello che durante le lezioni viene erogato agli studenti, ma **CIÒ CHE C'È NEGLI APPUNTI NON È LEGGE**. Non prendete i miei appunti per buoni a prescindere, anzi! 
