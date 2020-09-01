@@ -10,10 +10,10 @@
 \graphicspath{{./img/}}
 \usepackage{tikz}
 \hypersetup{
-    colorlinks=true,
-    linkcolor=blue,
-    filecolor=magenta,      
-    urlcolor=cyan,
+colorlinks=true,
+linkcolor=blue,
+filecolor=magenta,      
+urlcolor=cyan,
 }
 %usepackage[latin1]{inputenc}
 \begin{document}
@@ -295,7 +295,7 @@ E' usata per gestire i FORM o modificare i DB
 pagina web, si usa spesso in fase di debug.
 \paragraph{Ecco una tabella riassuntiva dei metodi HTTP:} 
 \begin{center}
-	\includegraphics[width=0.75\textwidth]{4}
+\includegraphics[width=0.75\textwidth]{4}
 \end{center}	
 \paragraph{Formato di una HTTP response:}
 \begin{center}
@@ -506,9 +506,472 @@ di intepretare il linguaggio di scripting di riferimento, quello richiesto, per 
 	Finalmente si arriva alle Servlet. Che sono? Sono applicazioni Java che si 
 	trovano sul server. E' un componente che il server gestisce in modo automatico
 	da un engine, oppure da un container. 
-	Dalle slide c'era qualche esempio di come si costruiscono e usano.
-	\section{Remote Procedure Call}
+	Dalle slide c'era qualche esempio di come si costruiscono e usano, di 
+	importante c'è solo da tenere a mente che:
+	\begin{enumerate}
+		\item Sono componenti gestite da un container o un engine
+		\item Hanno un'interfaccia che definisce i metodi ridefinibili (Per
+		esigenze di standardizzazione)
+		\item Risiedono in memoria, mantenendo uno stato e possono interagire
+		con altre Servlet
+		\item HTTP non consente di mantenere un'informazione da un messaggio ai
+		successivi, quindi questo lo fa la Servlet con Cookies e HTTPSessions
+	\end{enumerate}
 \end{enumerate}
+\section{Cosa implementa l'interfaccia javax.servlet.Servlet}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{6}
+\end{center}
+Sono presenti comunque due classi astratte che implementano questi metodi
+in modo che non facciano nulla:
+\begin{enumerate}
+	\item javax.servlet.GenericServlet\\
+	Praticamente implementa \textbf{service} che invoca i metodi per gestire
+	le richieste dal web:
+	\begin{itemize}
+		\item doX con X che è un metodo HTTP (doGet, doPost)
+		\item Parametri: HTTPServletRequest e HTTPServletResponse
+		\item Eccezioni: ServletException e IOException
+	\end{itemize}
+	\item javax.servlet.http.HTTPServlet
+\end{enumerate}
+Anche i parametri sono stati adattati al protocollo HTTP, cioè consentono di
+ricevere(inviare) messaggi HTTP leggendo(scrivendo) i dati nell’head e nel
+body di un messaggio.
+\begin{enumerate}
+	\item HTTPServletRequest
+	\begin{itemize}
+		\item Viene passato un oggetto da \textbf{service}
+		\item Contiene la richiesta di un client
+		\item E' un'estensione di ServletRequest
+	\end{itemize}
+	\item HTTPServletResponse
+	\begin{itemize}
+		\item Viene passato un oggetto anche qua da \textbf{service}
+		\item condiene però la risposta PER il client
+		\item Estende (manco a dirlo) ServletResponse
+	\end{itemize}
+\end{enumerate}
+\subsection{Metodi per richieste e risposte}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{7}
+\end{center}
+Poi ci sono altri metodi legati ai cookies:
+\begin{center}
+\includegraphics[width=0.75\textwidth]{8}
+\end{center}
+\section{Come si esegue una servlet}
+Tutto parte da un HTTPServer e un Servlet container che per l'appunto contiene
+la Servlet (In memoria, come specificato nella sezione precedente).
+Semplicemente viene creata un'istanza della servlet condivisa da tutti i
+client, ed ogni richiesta genera un nuovo Thread che esegue doX in base a 
+cosa è stato richiesto.
+\subsection{Ciclo di vita}
+\begin{enumerate}
+	\item Dal container si crea la Servlet
+	\item Si invoca il metodo init() per inizializzazioni specifiche
+	\item Una servlet viene distrutta all'occorrenza di uno o due eventi:
+	\begin{enumerate}
+		\item Quando non ci sono servizi in esecuzione
+		\item Quando è scaduto un timeout predefinito
+	\end{enumerate}
+	\item Si invoca il metodo destroy() che termina la servlet e ne dealloca
+	le risorse.
+	\paragraph{Principali problemi:}
+	\begin{enumerate}
+		\item Container e richieste devono sincronizzarsi sulla terminazione
+		poichè alla scadenza di un timeout magari la service() è ancora in
+		esecuzione e quindi
+		\begin{enumerate}
+			\item Bisogna tener traccia dei Thread in esecuzione
+			\item Bisogna progettare il metodo destroy() in modo da notificare
+			gli shutdown ed attendere il completamento di service()
+			\item Bisogna progettare metodi lunghi in modo che si verifichi
+			periodicamente se è in corso uno shutdown
+		\end{enumerate}
+	\end{enumerate}
+\end{enumerate}
+\section{JSP: Java Server Pages}
+E' una tecnologia per creare applicazioni web.
+Specifica l'interazione tra un container ed un insieme di pagine che l'utente
+avrà davanti.
+\paragraph{Perchè?} Perchè rispetto alle servlet, facilitano la separazione
+tra logica applicativa e presentazione\\ \\
+In pratica servono a separare la parte dinamica dal codice statico HTML
+infatti il codice si racchiude tra "<\%" e "\%>". La pagina viene convertita
+automaticametne in una servlet java la prima volta che vien richiesta
+\subsection{Ciclo di vita di una applicazione JSP}
+\begin{enumerate}
+	\item Il client manda una richiesta al WebServer
+	\item Il webserver contatta il Servlet Container
+	\item Dal Servlet Container si richiama una JSP che compila la Servlet
+	con il JSP compiler, e infine, viene eseguita la Servlet dal Servlet
+	container
+\end{enumerate}
+\subsection{Elementi di una JSP}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{9}
+\end{center}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{10}
+\end{center}
+\subsection{Azioni di una JSP}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{11}
+\end{center}
+\subsection{Elementi di scripting}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{12}
+\end{center}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{13}
+\end{center}
+\subsection{Oggetti e loro "scope"}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{14}
+\end{center}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{15}
+\end{center}
+\section{Pattern Model View Control}
+Il pattern Model View Controller (Da ora solo MVC) serve per
+\begin{itemize}
+	\item Separare i dati ed i metodi per manipolarli (Model)
+	\item Curare l'interfaccia, come si presenta graficamente (View)
+	\item Regolare il coordinamento dell'interazione tra interfaccia (quindi
+	le azioni degli utenti) ed i dati (Controller)
+\end{itemize}
+Il tutto secondo questo schema:
+\begin{center}
+\includegraphics[width=0.75\textwidth]{16}
+\end{center}
+\section{Remote Procedure Call}
+Il RPC è un modello che si applica al client-server, come se fosse una vera
+e propria maschera. Se esiste è perchè ci sono dei vantaggi, ovvero una
+semantica nota (chiamata di procedura) e perchè si semplifica l'implementazione.
+\paragraph{E gli svantaggi?} Sono realizzate dal programmatore, quindi tutto
+è esplicito (basta usare modelli con componenti più complesse). Inoltre sono 
+\textbf{Statiche}, scritte direttamente nel codice dei programmi e non c'è
+concorrenza, quindi son bloccanti. O loro, o nessuno. 
+\paragraph{Tenendo a mente i modelli di comunicazione tra client e server,}
+questo è ciò che accade con il modello RPC asincrono. 
+\begin{center}
+\includegraphics[width=0.75\textwidth]{17}
+\end{center}
+E come si passa da PC a RPC?
+\begin{center}
+\includegraphics[width=0.75\textwidth]{18}
+\end{center}
+\section{RMI: Distributed Objects}
+Partiamo con il considerare l'architettura di riferimento
+\begin{center}
+\includegraphics[width=0.75\textwidth]{19}
+\end{center}
+La quale presenta delle sue caratteristiche
+\begin{center}
+\includegraphics[width=0.75\textwidth]{20}
+\end{center}
+\subsection{Puntatori e riferimenti}
+\paragraph{Un puntatore} è un tipo per i dati le cui variabili contengono un indirizzo
+di memoria (Variabile di tipo puntatore, per accorciare una variabile di tipo
+puntatore è chiamata solo puntatore). \\ \\
+Può essere modificato in qualsiasi istante e non dipende dal tipo per i dati
+della variabile puntata.
+\paragraph{Un riferimento,} o anche solo reference in Java, è una variabile 
+che contiene delle infdormazioni logiche (alias) per accedere ad un oggetto,
+è \textbf{immutabile} e dipendente dalla classe, nel senso che la classe 
+dell'oggetto ne definisce il tipo.
+\paragraph{Ha senso parlare di puntatore distribuito?} No, non avrebbe praticamente
+senso
+\paragraph{Invece una reference distribuita?} Sì, presenta un indirizzo della
+macchina + indirizzo (porta) del server (processo) e soprattutto un \textbf{ID}
+dell'oggetto stesso
+\section{RMI Middleware}
+Tutto questo preambolo per dire che RMI è un middleware, che estende l'approccio
+\textbf{OO} al distribuito
+\begin{itemize}
+	\item Supporta anche l'invocazione di metodi tra oggetti su macchine 
+	virtuali distinte
+	\begin{itemize}
+		\item Le interfacce sono Java, non in un IDL generico
+		\item Vengono passati e tornati oggetti Java
+		\item Le classi vengono caricate dinamicamente
+	\end{itemize}
+	\item Si basa sulla portabilità del bytecode e sulla macchina virtuale:
+	quindi è più \textbf{sicuro} ed \textbf{efficiente} perchè non si deve
+	tradurre nulla.
+	\item Inoltre fornisce alcuni servizi:
+	\begin{itemize}
+		\item Caricamentoe controllo con un class loader e un security manager
+		\item Gestione di oggetti remoti, replicati e persistenti
+		\item Attivazione automatica degli oggetti e multithreading
+		\item Garbage collection di oggetti remoti con un meccanismo di conteggio
+		delle reference
+	\end{itemize}
+\end{itemize}
+\subsection{Trasferimento dei parametri}
+Qualsiasi tipo primitivo è passato per valore, insieme agli oggetti non remoti
+\color{red}\textbf{SOLO SE SERIALIZZABILI}\color{black}
+\paragraph{Esiste anche trasferimento per reference?} Sì, i riferimenti ad 
+oggetto remoto sono passati per valore per permettere invocazioni remote. 
+In particolare:
+\begin{enumerate}
+	\item La classe \textbf{java.rmi.server.UnicastRemoteObject} è una reference class
+	fatta apposta per lo scopo
+	\item Implementa le interfacce Remote e Serializable
+\end{enumerate}
+Sì ok, però si parla da entrambe le parti di passaggio per valore.. Perchè?
+Tutto merito della serializzazione
+\subsection{Concetto di serializzazione}
+E' molto semplicemente la conversione di un oggetto, un dato, un valore, in una
+sequenza di 0 ed 1, un flusso, da un oggetto ad un flusso. Il processo inverso
+è chiamato \textbf{deserializzazione}, o anche noto come \textbf{casting}. 
+Ricevi un flusso, gli dai una forma, fine.
+\paragraph{A che serve?} In rete qualsiasi cosa è passata serializzata, ma
+occorre che si definiscano degli oggetti persistenti. \\ \\
+Il meccanismo di loafding dinamico di Java permette di passare solo le info 
+essenziali sullo stato, infatti la \textbf{descrizione della classe} può
+essere caricata a parte.
+\paragraph{I tipi base sono serializzabili in modo nativo,} mentre per classi 
+più complesse serve implementare l'interfaccia \textbf{Serializable}, che ti
+fa ridefinire 
+\begin{enumerate}
+	\item private void writeObject(java.io.ObjectOutputStream out) throws IOException;
+	\item private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException;
+\end{enumerate}
+\subsection{Identificazione degli oggetti}
+Come può una macchina A ricevere la reference remota dell'oggetto remoto O2?
+\begin{center}
+\includegraphics[width=0.75\textwidth]{21}
+\end{center}
+\begin{enumerate}
+	\item Prima di tutto usando nomi assegnati dall'utente e un 
+	\textbf{directory service} per convertirli in \textbf{reference operative}
+	\item I \textbf{directory service} oppure anche \textbf{naming service} devono
+	essere disponibili ad un host e porta noti (well-known addresses)
+	\item Infatti a questo scopo RMI definisce un \textbf{rmuregistry} che
+	sta su ogni macchina che ospita oggetti remoti (per convenzione sulla porta
+	1099)
+	\item RMI attiva un servizio di ascolto.. per quel servizio (Sorry per la
+	ripetizione, non so in che altro modo possa dirlo)
+\end{enumerate}
+Esiste quindi una classe Naming? Sì esatto, e dà diretto accesso alle funzionalità dei
+RMI Registry
+\subsection{Architettura in dettaglio}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{22}
+\end{center}
+\chapter{Ajax - Javascript}
+\section{Architettura Multitier}
+Riprendendo cos'è l'architettura multi-layer, qui fondamentalmente si parla di
+applicazioni composte da più componenti che collaborano per eseguire un compito.\\ \\
+Prendiamo una tipica scomposizione in 3 livelli:
+\begin{center}
+\includegraphics[width=0.75\textwidth]{23}
+\end{center}
+In un'applicazione scomposta su questi 3 livelli, la parte business agisce come 
+server per la presentation, mentre agisce come client per la componente data
+\section{RIA - Rich Internet Application}
+\paragraph{Quali sono le caratteristiche del web?}
+\begin{enumerate}
+	\item Le pagine web si \textbf{ricaricano} e non \textbf{aggiornano}
+	\item Gli utenti aspettano che si carichi l'intera pagina anche se serve
+	solo un dato
+	\item Si hanno restrizioni su singole request/response
+\end{enumerate}
+\paragraph{Ajax, da titolo, che cos'è?} E' una tecnica di sviluppo per creare
+delle applicazioni web interattive (in senso di pattern programmativo).
+\textbf{Ajax} sta per: \textbf{Asynchronous Javascript and XML}, quindi
+\begin{itemize}
+	\item Asynchronous: rende asincrona la comunicazione tra browser e web server
+	\item Javascript: E' il cuore del codice tramite cui funzionano le applicazioni
+	Ajax, ed è di supporto per la comunicazione con applicazioni server
+	\item XML: è solo usato per trasferire i dati per costruire pagine web identificando
+	i campi per il successivo uso nel resto dell'applicazione (Json è il più
+	comune)
+	\item DOM: Utilizzato tramite JavaScript per manipolare sia la struttura della 
+	pagina HTML che le risposte XML del server
+\end{itemize}
+\paragraph{Quali sono le componenti?}
+\begin{itemize}
+	\item 
+\end{itemize}
+\paragraph{C'entra qualcosa il web 2.0?} Sì, se no non lo menzionavo. Il web
+2.0 fa sì che il web diventi una piattaforma, in cui l'esperienza utente è ricca,
+ed il contenuto viene direttamente dall'utente stesso (con la nascita dei forum)
+\paragraph{Okay, qualche esempio di uso dell'Ajax?}
+\begin{enumerate}
+	\item Form validati in corso di compilazione
+	\item Autocompletamento dei campi dei form
+	\item Controlli UI sofisticati 
+\end{enumerate}
+\paragraph{Componenti Ajax}
+\begin{itemize}
+	\item HTML
+	\item DOM
+	\item XML e XSLT
+	\item Oggetto XMLHttpRequest
+	\item Javascript
+\end{itemize}
+\subsection{Architettura web classica}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{25}
+\end{center}
+\subsection{Architettura web dinamica}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{26}
+\end{center}
+\subsection{Applicazioni web e Ajax}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{27}
+\end{center}
+\subsection{Processo request}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{28}
+\end{center}
+\subsection{Principali problemi}
+\begin{enumerate}
+	\item Rottura del tasto back dei browser, poichè ci sono degli IFrames che
+	possono invocare cambiamenti in grado di modificare la cronologia
+	\item Cambiamenti di alcune parti della pagina inaspettate
+	\item L'aggiunta ai segnalibri di un determinato stato risulta difficoltosa,
+	perchè JS genera la pagina, NON il server
+	\item L'incremento della dimensione, o lunghezza del codice ha un brutto 
+	impatto sui tempi di caricamento del browser, ed i tempi di risposta si
+	dilatano
+	\item Difficile da debuggare
+	\item La sorgente è visualizzabile, quindi il plagio è estremamente facile
+	\item Il server si fa carico del lavoro, poichè una richiesta anonima è 
+	pesante da gestire
+\end{enumerate}
+\subsection{Trasmissione dei dati}
+La trasmissione dei dati tra server e applicazioni RIA è un aspetto critico, 
+infatti esistono diverse alternative:
+\begin{enumerate}
+	\item SOAP (Simple Object Access Protocol)
+	\item XML-RPC (Remote Precedure Call con XML per l'encoding)
+	\item JSON (Javascript Object Notation)
+	\item AMF (Action Message Format, basasto su SOAP)
+\end{enumerate}
+La scelta del formato avrà influenza sulle performance e sulla struttura dell'applicativo
+inoltre un formato richiede del tempo per
+\begin{enumerate}
+	\item Predisporre i dati lato server
+	\item Trasferire i dati
+	\item Effettuare il parsing dei dati
+	\item Effettuare il rendering dell'interfaccia stessa
+\end{enumerate}
+\section{Javascript}
+Forse è già stato detto, ma va ripetuto cos'è un linguaggio di scripting, ossia
+un linguaggio per l'automazione di compiti eseguibili da un utente umano 
+all'interno di un ambiente software. Per ogni dominio di applicazione c'è un 
+linguaggio praticamente, anche qui esistono i \textbf{general purpose} come
+Python, e per l'appunto Javascript.
+\paragraph{Caratteristiche tipiche}
+\begin{enumerate}
+	\item Semplicità
+	\item Specificità
+	\item Intepretazione (Non è codice compilato, ma sempre interpretato)
+\end{enumerate}
+LISP (nella variante AutoLISP) è attualmente incluso in AutoCAD, quindi 
+AutoCAD è un simulatore di parentesi, mica male! Ed in tutto questo, Javascript?
+E' un linguaggio pensato per eseguire script in un browser web \textbf{lato client}
+, e soprattutto per l'interazione con l'utente, validazione dei dati nei form etc.
+\paragraph{JS è dinamico, fortemente tipizzato e con una sintassi simile a Java e
+C,} che tra l'altro questa affermazione è ricorsiva, perchè Java stesso è simile a C.
+Per vedere come funziona Javascript c'è \href{https://www.w3schools.com/js/}{W3Schools}, 
+è il meglio.
+Quello che ci interessa di nuovo è il jQuery.
+\paragraph{Per giochicchiare con Javascript andate su} 
+\href{https://jsfiddle.net/gvizzari/wup42mox/4/}{JSFiddle}
+\section{jQuery}
+E' un framework JavaScript che rende più semplice la scrittura di applicazioni
+web offrendo diverse funzionalità. 
+\begin{enumerate}
+	\item Manipolazione HTML/DOM e CSS
+	\item Metodi per eventi HTML
+	\item Effetti e animazioni
+	\item Supporto per AJAX
+	\item Plugins vari
+\end{enumerate}
+Essendo il più utilizzato manutenuto e testato si è deciso di usare questo, soprattutto
+perchè è Open, compatto ed estendibile. 
+\subsection{Elementi base di jQuery}
+La sintassi è specificamente orientata a permettere una rapida selezione di elementi
+del documento HTML, di base un comando si fa con:
+\$(selector).action() \\ \\
+In cui il \$ definisce l'accesso a funzioni jQuery \\ \\
+Selector è usato per specificare una query per selezionare una parte del documento
+HTML mentre action.. Beh è ciò che viene eseguito sull'elemento stesso.
+\\ \\
+Menzione speciale per la porzione: \\ \\
+\$(document).ready(function()){
+	[...]
+}); // end ready \\ \\
+Praticamente indica che vogliamo effettuare l'azione \textbf{ready} sull'oggetto
+\textbf{document} passando come parametro una funzione anonima, specificata per 
+esteso\\ \\
+L'azione ready invece specifica che il parametro ricevuto, una funzione, va
+ad essere richiamata quando il documento è 'pronto', ovvero caricato completamente.
+\paragraph{Altri elementi utili:}
+\begin{itemize}
+	\item Ciò che vogliamo fare è selezionare le porzioni di documento presenti 
+	ad esempio negli span di classe pq, clonarli dando allo steso tempo lo stile desiderato
+	\paragraph{Il codice risulterà così:}
+	\$('span.pq').each(function(){
+	[...]
+	}) //end each
+	\item Praticamente specifichi una funzione anonima che si applica ad ogni span
+	di classe pq, tipo quelle che si scrivevano in LISP, le lambda
+\end{itemize}
+\chapter{Concorrenza in Java}
+Cosa significa che un software è concorrente? Molto semplicemente che ha diversi
+controlli di flusso in contemporanea, cioè lo stesso software ha più esecuzioni
+in contemporanea. Alcune funzioni ricorsive se effettuate con i Thread possono
+risolvere il problema molto prima.. O riempirvi subito tutta la memoria.
+\section{Perchè software concorrenti?}
+Perchè si sfruttano i sistemi multi-core, e perchè si divide il carico di lavoro,
+facendo in modo che si esegua più velocemente. Una task che con un core ci 
+impiega 10, con 2 core ne impiega 5, e così via. \textbf{Ma non solo.}
+\paragraph{Un altro motivo è} il fatto che in questo modo se si dovesse bloccare
+uno dei thread, non crasha tutto l'intero software (questo dimostra che la UI è
+un thread scollegato da ciò che sta sotto)
+\paragraph{Ultimo ma non ultimo:} Per strutturare il programma in modo più adeguato,
+in particolare programmi che hanno diverse cose da tenere sotto controllo, che gestiscano
+diversi tipi di eventi (Tipo Overwatch, per ogni giocatore ci sarà sotto un Thread),
+per ogni countdown degli oggetti etc.
+\paragraph{Come vengono visti dal sistema operativo?} I processi non condividono
+risorse tra loro, a parte l'esecuzione dalla stessa CPU, ma a questo punto per 
+comunicare devono usare file, syscall, servizi, o middleware etc., inoltre i
+thread di uno stesso processo condividono stesso spazio di indirizzamento e oggetti
+in memoria. Non mi sto a dilungare su come si facciano i Thread in java, vi basti
+sapere che ci son due modi. 
+\begin{enumerate}
+	\item Implementazione dell'interfaccia Runnable
+	\item Estensione della classe Thread
+\end{enumerate}
+Sono praticamente la stessa cosa, son due metodi equivalenti.
+\section{Problemi della concorrenza}
+Avere più processi che operano con le stesse risorse potrebbe rivelarsi un 
+problema, e non indifferente. In primo luogo c'è il problema delle risorse condivise.
+\subsection{Problema di accesso a risorse condivise}
+Ipotizziamo di avere due processi che operano sulla stessa variabile, potrebbero
+avvenire modifiche sbagliate, o uno dei processi potrebbe riscontrare un'incongruenza,
+quindi si genera un problema di consistenza di quella variabile.
+\paragraph{A cosa è dovuto il problema?}
+Quando le operazioni sulla variabile non sono atomiche, diventano interrompibili
+anche a metà della loro esecuzione, questo causa il problema di prima. Come si risolve?
+\textbf{Mutua Esclusione}
+\subsection{Mutua esclusione}
+Il concetto è questo: per mutua esclusiva, se utilizzo una risorsa, io processo 
+sarò l'unico ad utilizzarla fino a fine esecuzione. Come lo posso fare? con
+la keyword \textbf{synchronized} che letteralmente si occupa di fare questo, 
+poichè Java associa un intrinsic lock ad ogni oggetto che abbia almeno un metodo
+synchronized.
+\paragraph{Direttamente da Repl.it c'è} \href{https://repl.it/@gvizzari/ContoCorrente-sync}
+{Questo esempio proposto direttamente
+dal Vizzari}. (Se non dovesse esserci, ci sarà un file.java dentro la cartella di
+SD)
 
 
 
@@ -520,18 +983,6 @@ di intepretare il linguaggio di scripting di riferimento, quello richiesto, per 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-    
 
 
 

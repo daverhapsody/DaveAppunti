@@ -1,0 +1,5 @@
+Dentro scambio ci vanno solo file da compilare in LaTeX
+
+La cartella deve essere vuota, dopo.
+
+La direzione
