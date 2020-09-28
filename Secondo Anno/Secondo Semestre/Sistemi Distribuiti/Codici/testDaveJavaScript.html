@@ -6,15 +6,6 @@
 <body>
 <script type="text/javascript">
 
-	alert('hello uord');
-	document.write('<p> Hello Uord! </p>');
-	var prova = 5;
-	prova = prova + 5;
-	document.write(prova + '<br>');
-
-	var nome = prompt('Qual è il tuo nome?', 'Inserisci il tuo nome');
-	document.write(nome + '<br>');
-
 	function fattoriale(n){
 		if (n == 0) {
 			return 1;
@@ -22,6 +13,17 @@
 		else 
 			return n * fattoriale(n-1);
 	}
+
+	alert('hello uord');
+	document.write('<p> Hello Uord! </p>');
+	var prova = 5;
+	prova = prova + 5;
+	document.write(prova + '<br>');
+
+	var nome = prompt('Qual è il tuo nome?', 'Inserisci il tuo nome');
+	document.write('<h1>' + nome + '<br>'+'</h1>');
+
+	
 	var numero = prompt('Fattoriale di quale numero?','');
 	document.write(fattoriale(numero));
 
